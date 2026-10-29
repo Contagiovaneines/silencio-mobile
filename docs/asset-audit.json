@@ -1,0 +1,7080 @@
+[
+  {
+    "path": "01_DOCUMENTACAO\\DOCUMENTO_INTEGRAL.txt",
+    "bytes": 146846
+  },
+  {
+    "path": "01_DOCUMENTACAO\\ELENCO_RECORTADO.png",
+    "bytes": 303197,
+    "width": 1080,
+    "height": 870,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "01_DOCUMENTACAO\\ITENS_RECORTADOS.png",
+    "bytes": 202912,
+    "width": 1024,
+    "height": 732,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "01_DOCUMENTACAO\\SILENCIO_Historia_Completa_Fases_e_Dialogos.pdf",
+    "bytes": 25989527
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_AMIN\\alternate_pose_SE.png",
+    "bytes": 14382,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_AMIN\\base_unarmed_SE.png",
+    "bytes": 13091,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_AMIN\\equipment_pose_SE.png",
+    "bytes": 13185,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ARTHUR\\alternate_pose_SE.png",
+    "bytes": 12545,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ARTHUR\\base_unarmed_SE.png",
+    "bytes": 12078,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ARTHUR\\equipment_pose_SE.png",
+    "bytes": 11995,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_BEATRIZ\\alternate_pose_SE.png",
+    "bytes": 13723,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_BEATRIZ\\base_unarmed_SE.png",
+    "bytes": 11883,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_BEATRIZ\\equipment_pose_SE.png",
+    "bytes": 12975,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_BIA\\alternate_pose_SE.png",
+    "bytes": 8159,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_BIA\\base_unarmed_SE.png",
+    "bytes": 8251,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_BIA\\equipment_pose_SE.png",
+    "bytes": 8236,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_CAIO\\alternate_pose_SE.png",
+    "bytes": 11304,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_CAIO\\base_unarmed_SE.png",
+    "bytes": 11801,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_CAIO\\equipment_pose_SE.png",
+    "bytes": 12426,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_CLARA\\alternate_pose_SE.png",
+    "bytes": 12282,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_CLARA\\base_unarmed_SE.png",
+    "bytes": 13397,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_CLARA\\equipment_pose_SE.png",
+    "bytes": 13804,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_DAVI\\alternate_pose_SE.png",
+    "bytes": 14012,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_DAVI\\base_unarmed_SE.png",
+    "bytes": 13444,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_DAVI\\equipment_pose_SE.png",
+    "bytes": 13981,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ELISA\\alternate_pose_SE.png",
+    "bytes": 14020,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ELISA\\base_unarmed_SE.png",
+    "bytes": 11576,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ELISA\\equipment_pose_SE.png",
+    "bytes": 12692,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_HELENA\\alternate_pose_SE.png",
+    "bytes": 11954,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_HELENA\\base_unarmed_SE.png",
+    "bytes": 12287,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_HELENA\\equipment_pose_SE.png",
+    "bytes": 13004,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_INES\\alternate_pose_SE.png",
+    "bytes": 12887,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_INES\\base_unarmed_SE.png",
+    "bytes": 13027,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_INES\\equipment_pose_SE.png",
+    "bytes": 14094,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_JOEL\\alternate_pose_SE.png",
+    "bytes": 14217,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_JOEL\\base_unarmed_SE.png",
+    "bytes": 14479,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_JOEL\\equipment_pose_SE.png",
+    "bytes": 13660,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_LIA\\alternate_pose_SE.png",
+    "bytes": 11802,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_LIA\\base_unarmed_SE.png",
+    "bytes": 11793,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_LIA\\equipment_pose_SE.png",
+    "bytes": 11861,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_MARINA\\alternate_pose_SE.png",
+    "bytes": 10727,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_MARINA\\base_unarmed_SE.png",
+    "bytes": 11401,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_MARINA\\equipment_pose_SE.png",
+    "bytes": 14842,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_MAURO\\alternate_pose_SE.png",
+    "bytes": 8083,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_MAURO\\base_unarmed_SE.png",
+    "bytes": 8205,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_MAURO\\equipment_pose_SE.png",
+    "bytes": 8505,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_NESTOR\\alternate_pose_SE.png",
+    "bytes": 18091,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_NESTOR\\base_unarmed_SE.png",
+    "bytes": 13298,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_NESTOR\\equipment_pose_SE.png",
+    "bytes": 14525,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ORLANDO\\alternate_pose_SE.png",
+    "bytes": 14726,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ORLANDO\\base_unarmed_SE.png",
+    "bytes": 14537,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ORLANDO\\equipment_pose_SE.png",
+    "bytes": 15695,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_REIS\\alternate_pose_SE.png",
+    "bytes": 12324,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_REIS\\base_unarmed_SE.png",
+    "bytes": 12193,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_REIS\\equipment_pose_SE.png",
+    "bytes": 12648,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ROSA\\alternate_pose_SE.png",
+    "bytes": 15970,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ROSA\\base_unarmed_SE.png",
+    "bytes": 13449,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_ROSA\\equipment_pose_SE.png",
+    "bytes": 13867,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_SAMUEL\\alternate_pose_SE.png",
+    "bytes": 12562,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_SAMUEL\\base_unarmed_SE.png",
+    "bytes": 12158,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_SAMUEL\\equipment_pose_SE.png",
+    "bytes": 12171,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_TADEU\\alternate_pose_SE.png",
+    "bytes": 14207,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_TADEU\\base_unarmed_SE.png",
+    "bytes": 13132,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_TADEU\\equipment_pose_SE.png",
+    "bytes": 13514,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_TERESA\\alternate_pose_SE.png",
+    "bytes": 14249,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_TERESA\\base_unarmed_SE.png",
+    "bytes": 13728,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_TERESA\\equipment_pose_SE.png",
+    "bytes": 13604,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_VALE\\alternate_pose_SE.png",
+    "bytes": 12844,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_VALE\\base_unarmed_SE.png",
+    "bytes": 12045,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "02_PERSONAGENS\\CHR_VALE\\equipment_pose_SE.png",
+    "bytes": 12480,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\N\\defeat_pose.png",
+    "bytes": 9234,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\N\\heal_pose.png",
+    "bytes": 10099,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\N\\hurt.png",
+    "bytes": 9660,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\N\\idle.png",
+    "bytes": 10844,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\N\\pickup_pose.png",
+    "bytes": 8480,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\N\\push_anticipation.png",
+    "bytes": 10397,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\N\\push_contact.png",
+    "bytes": 11117,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\N\\push_recover.png",
+    "bytes": 10323,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NE\\defeat_pose.png",
+    "bytes": 9476,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NE\\heal_pose.png",
+    "bytes": 10523,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NE\\hurt.png",
+    "bytes": 9831,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NE\\idle.png",
+    "bytes": 8905,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NE\\pickup_pose.png",
+    "bytes": 9447,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NE\\push_anticipation.png",
+    "bytes": 9919,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NE\\push_contact.png",
+    "bytes": 11059,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NE\\push_recover.png",
+    "bytes": 9953,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NW\\defeat_pose.png",
+    "bytes": 9210,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NW\\heal_pose.png",
+    "bytes": 10178,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NW\\hurt.png",
+    "bytes": 9144,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NW\\idle.png",
+    "bytes": 10220,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NW\\pickup_pose.png",
+    "bytes": 8144,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NW\\push_anticipation.png",
+    "bytes": 10455,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NW\\push_contact.png",
+    "bytes": 10494,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\NW\\push_recover.png",
+    "bytes": 10453,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\S\\defeat_pose.png",
+    "bytes": 8685,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\S\\heal_pose.png",
+    "bytes": 10074,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\S\\hurt.png",
+    "bytes": 10323,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\S\\idle.png",
+    "bytes": 11290,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\S\\pickup_pose.png",
+    "bytes": 8896,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\S\\push_anticipation.png",
+    "bytes": 10784,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\S\\push_contact.png",
+    "bytes": 10998,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\S\\push_recover.png",
+    "bytes": 11014,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SE\\defeat_pose.png",
+    "bytes": 9491,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SE\\heal_pose.png",
+    "bytes": 11522,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SE\\hurt.png",
+    "bytes": 11680,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SE\\idle.png",
+    "bytes": 11950,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SE\\pickup_pose.png",
+    "bytes": 10229,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SE\\push_anticipation.png",
+    "bytes": 11748,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SE\\push_contact.png",
+    "bytes": 11944,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SE\\push_recover.png",
+    "bytes": 12109,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SW\\defeat_pose.png",
+    "bytes": 8740,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SW\\heal_pose.png",
+    "bytes": 10378,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SW\\hurt.png",
+    "bytes": 10075,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SW\\idle.png",
+    "bytes": 10599,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SW\\pickup_pose.png",
+    "bytes": 7853,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SW\\push_anticipation.png",
+    "bytes": 10645,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SW\\push_contact.png",
+    "bytes": 10945,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\SW\\push_recover.png",
+    "bytes": 10934,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\W\\defeat_pose.png",
+    "bytes": 9472,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\W\\heal_pose.png",
+    "bytes": 9979,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\W\\hurt.png",
+    "bytes": 10151,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\W\\idle.png",
+    "bytes": 9066,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\W\\pickup_pose.png",
+    "bytes": 8896,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\W\\push_anticipation.png",
+    "bytes": 11033,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\W\\push_contact.png",
+    "bytes": 11047,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\poses\\W\\push_recover.png",
+    "bytes": 10274,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\E\\000.png",
+    "bytes": 11298,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\E\\001.png",
+    "bytes": 11769,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\E\\002.png",
+    "bytes": 11595,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\E\\003.png",
+    "bytes": 11272,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\E\\004.png",
+    "bytes": 11107,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\E\\005.png",
+    "bytes": 11047,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\N\\000.png",
+    "bytes": 10984,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\N\\001.png",
+    "bytes": 10658,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\N\\002.png",
+    "bytes": 10876,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\N\\003.png",
+    "bytes": 10652,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\N\\004.png",
+    "bytes": 10410,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\N\\005.png",
+    "bytes": 10682,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NE\\000.png",
+    "bytes": 11846,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NE\\001.png",
+    "bytes": 12525,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NE\\002.png",
+    "bytes": 11843,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NE\\003.png",
+    "bytes": 10893,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NE\\004.png",
+    "bytes": 10408,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NE\\005.png",
+    "bytes": 12536,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NW\\000.png",
+    "bytes": 11612,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NW\\001.png",
+    "bytes": 11200,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NW\\002.png",
+    "bytes": 10916,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NW\\003.png",
+    "bytes": 10480,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NW\\004.png",
+    "bytes": 11195,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\NW\\005.png",
+    "bytes": 10809,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\S\\000.png",
+    "bytes": 11376,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\S\\001.png",
+    "bytes": 10968,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\S\\002.png",
+    "bytes": 10765,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\S\\003.png",
+    "bytes": 11206,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\S\\004.png",
+    "bytes": 11214,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\S\\005.png",
+    "bytes": 10792,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SE\\000.png",
+    "bytes": 11286,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SE\\001.png",
+    "bytes": 10840,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SE\\002.png",
+    "bytes": 10399,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SE\\003.png",
+    "bytes": 10455,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SE\\004.png",
+    "bytes": 11286,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SE\\005.png",
+    "bytes": 11711,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SW\\000.png",
+    "bytes": 11819,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SW\\001.png",
+    "bytes": 11961,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SW\\002.png",
+    "bytes": 11869,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SW\\003.png",
+    "bytes": 10583,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SW\\004.png",
+    "bytes": 12060,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\SW\\005.png",
+    "bytes": 11003,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\W\\000.png",
+    "bytes": 11714,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\W\\001.png",
+    "bytes": 11733,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\W\\002.png",
+    "bytes": 10599,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\W\\003.png",
+    "bytes": 11542,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\W\\004.png",
+    "bytes": 11905,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\run\\W\\005.png",
+    "bytes": 11566,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\N\\000.png",
+    "bytes": 10484,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\N\\001.png",
+    "bytes": 9767,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\N\\002.png",
+    "bytes": 10124,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\N\\003.png",
+    "bytes": 10350,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\N\\004.png",
+    "bytes": 9909,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\N\\005.png",
+    "bytes": 10141,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NE\\000.png",
+    "bytes": 10192,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NE\\001.png",
+    "bytes": 9981,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NE\\002.png",
+    "bytes": 9958,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NE\\003.png",
+    "bytes": 9784,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NE\\004.png",
+    "bytes": 9918,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NE\\005.png",
+    "bytes": 10013,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NW\\000.png",
+    "bytes": 9985,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NW\\001.png",
+    "bytes": 9697,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NW\\002.png",
+    "bytes": 10022,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NW\\003.png",
+    "bytes": 9251,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NW\\004.png",
+    "bytes": 10269,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\NW\\005.png",
+    "bytes": 10425,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\S\\000.png",
+    "bytes": 10721,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\S\\001.png",
+    "bytes": 10604,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\S\\002.png",
+    "bytes": 10219,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\S\\003.png",
+    "bytes": 10397,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\S\\004.png",
+    "bytes": 10009,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\S\\005.png",
+    "bytes": 10410,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SE\\000.png",
+    "bytes": 12163,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SE\\001.png",
+    "bytes": 11464,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SE\\002.png",
+    "bytes": 10893,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SE\\003.png",
+    "bytes": 11564,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SE\\004.png",
+    "bytes": 11142,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SE\\005.png",
+    "bytes": 11249,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SW\\000.png",
+    "bytes": 10864,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SW\\001.png",
+    "bytes": 10364,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SW\\002.png",
+    "bytes": 10110,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SW\\003.png",
+    "bytes": 10457,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SW\\004.png",
+    "bytes": 10122,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\SW\\005.png",
+    "bytes": 9479,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\W\\000.png",
+    "bytes": 9558,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\W\\001.png",
+    "bytes": 9557,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\W\\002.png",
+    "bytes": 9391,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\W\\003.png",
+    "bytes": 9264,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\W\\004.png",
+    "bytes": 9251,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO\\walk\\W\\005.png",
+    "bytes": 9050,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_defeat_pose_N.png",
+    "bytes": 9234,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_defeat_pose_NE.png",
+    "bytes": 9476,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_defeat_pose_NW.png",
+    "bytes": 9210,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_defeat_pose_S.png",
+    "bytes": 8685,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_defeat_pose_SE.png",
+    "bytes": 9491,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_defeat_pose_SW.png",
+    "bytes": 8740,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_defeat_pose_W.png",
+    "bytes": 9472,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_heal_pose_N.png",
+    "bytes": 10099,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_heal_pose_NE.png",
+    "bytes": 10523,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_heal_pose_NW.png",
+    "bytes": 10178,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_heal_pose_S.png",
+    "bytes": 10074,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_heal_pose_SE.png",
+    "bytes": 11522,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_heal_pose_SW.png",
+    "bytes": 10378,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_heal_pose_W.png",
+    "bytes": 9979,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_hurt_N.png",
+    "bytes": 9660,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_hurt_NE.png",
+    "bytes": 9831,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_hurt_NW.png",
+    "bytes": 9144,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_hurt_S.png",
+    "bytes": 10323,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_hurt_SE.png",
+    "bytes": 11680,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_hurt_SW.png",
+    "bytes": 10075,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_hurt_W.png",
+    "bytes": 10151,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_idle_N.png",
+    "bytes": 10844,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_idle_NE.png",
+    "bytes": 8905,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_idle_NW.png",
+    "bytes": 10220,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_idle_S.png",
+    "bytes": 11290,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_idle_SE.png",
+    "bytes": 11950,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_idle_SW.png",
+    "bytes": 10599,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_idle_W.png",
+    "bytes": 9066,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_pickup_pose_N.png",
+    "bytes": 8480,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_pickup_pose_NE.png",
+    "bytes": 9447,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_pickup_pose_NW.png",
+    "bytes": 8144,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_pickup_pose_S.png",
+    "bytes": 8896,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_pickup_pose_SE.png",
+    "bytes": 10229,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_pickup_pose_SW.png",
+    "bytes": 7853,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_pickup_pose_W.png",
+    "bytes": 8896,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_push_N.png",
+    "bytes": 31308,
+    "width": 384,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_push_NE.png",
+    "bytes": 30357,
+    "width": 384,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_push_NW.png",
+    "bytes": 30879,
+    "width": 384,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_push_S.png",
+    "bytes": 32244,
+    "width": 384,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_push_SE.png",
+    "bytes": 35195,
+    "width": 384,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_push_SW.png",
+    "bytes": 31932,
+    "width": 384,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_push_W.png",
+    "bytes": 31763,
+    "width": 384,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_run_E.png",
+    "bytes": 66434,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_run_N.png",
+    "bytes": 61870,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_run_NE.png",
+    "bytes": 68347,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_run_NW.png",
+    "bytes": 64462,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_run_S.png",
+    "bytes": 64210,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_run_SE.png",
+    "bytes": 64048,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_run_SW.png",
+    "bytes": 67573,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_run_W.png",
+    "bytes": 67361,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_walk_N.png",
+    "bytes": 58643,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_walk_NE.png",
+    "bytes": 57983,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_walk_NW.png",
+    "bytes": 57725,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_walk_S.png",
+    "bytes": 60155,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_walk_SE.png",
+    "bytes": 66336,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_walk_SW.png",
+    "bytes": 59485,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "03_ANIMACOES\\CHR_CAIO_walk_W.png",
+    "bytes": 54072,
+    "width": 768,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_BREU\\walk\\SE\\000.png",
+    "bytes": 1971,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_BREU\\walk\\SE\\001.png",
+    "bytes": 1972,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_BREU\\walk\\SE\\002.png",
+    "bytes": 1850,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_BREU\\walk\\SE\\003.png",
+    "bytes": 1944,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_BREU\\walk\\SE\\004.png",
+    "bytes": 1907,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_BREU\\walk\\SE\\005.png",
+    "bytes": 1825,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_FUBA\\walk\\SE\\000.png",
+    "bytes": 3287,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_FUBA\\walk\\SE\\001.png",
+    "bytes": 3382,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_FUBA\\walk\\SE\\002.png",
+    "bytes": 3199,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_FUBA\\walk\\SE\\003.png",
+    "bytes": 3393,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_FUBA\\walk\\SE\\004.png",
+    "bytes": 3415,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_FUBA\\walk\\SE\\005.png",
+    "bytes": 3154,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_PINGO\\walk\\SE\\000.png",
+    "bytes": 1538,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_PINGO\\walk\\SE\\001.png",
+    "bytes": 1565,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_PINGO\\walk\\SE\\002.png",
+    "bytes": 1589,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_PINGO\\walk\\SE\\003.png",
+    "bytes": 1489,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_PINGO\\walk\\SE\\004.png",
+    "bytes": 1621,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ANI_PINGO\\walk\\SE\\005.png",
+    "bytes": 1579,
+    "width": 96,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\BOSS_IVO\\alternate_pose_SE.png",
+    "bytes": 23943,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\BOSS_IVO\\base_unarmed_SE.png",
+    "bytes": 31112,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\BOSS_IVO\\equipment_pose_SE.png",
+    "bytes": 32764,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_BRUNO\\alternate_pose_SE.png",
+    "bytes": 15406,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_BRUNO\\base_unarmed_SE.png",
+    "bytes": 13508,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_BRUNO\\equipment_pose_SE.png",
+    "bytes": 14001,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_CELIA\\alternate_pose_SE.png",
+    "bytes": 13345,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_CELIA\\base_unarmed_SE.png",
+    "bytes": 12642,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_CELIA\\equipment_pose_SE.png",
+    "bytes": 12692,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_HUGO\\alternate_pose_SE.png",
+    "bytes": 31975,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_HUGO\\base_unarmed_SE.png",
+    "bytes": 28807,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_HUGO\\equipment_pose_SE.png",
+    "bytes": 32717,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_VERA\\base_unarmed_SE.png",
+    "bytes": 11169,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "04_INIMIGOS_ANIMAIS\\ENM_VERA\\equipment_mallet_pose_SE.png",
+    "bytes": 12405,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\FX_NODE.png",
+    "bytes": 6245,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\FX_SIGNAL.png",
+    "bytes": 1274,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      251
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_ADAPTER.png",
+    "bytes": 3870,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_AMMO.png",
+    "bytes": 5678,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_BANDAGE.png",
+    "bytes": 5392,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_BATTERY.png",
+    "bytes": 3527,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_CAMERA.png",
+    "bytes": 5918,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_CAN.png",
+    "bytes": 6432,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_CONTAIN.png",
+    "bytes": 5742,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_DRAWING.png",
+    "bytes": 5624,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_ELECTRODE.png",
+    "bytes": 3271,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_FLASHLIGHT.png",
+    "bytes": 3510,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_FOOD.png",
+    "bytes": 3370,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_KEY_HOME.png",
+    "bytes": 2796,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_MAP.png",
+    "bytes": 5110,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_MATRIX.png",
+    "bytes": 4791,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_MEDKIT.png",
+    "bytes": 5450,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_MEMORY.png",
+    "bytes": 4058,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_NOTEBOOK.png",
+    "bytes": 5390,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_PASS_SENSOR.png",
+    "bytes": 4451,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_PHONE.png",
+    "bytes": 3853,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_PROTOCOL.png",
+    "bytes": 5283,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_RADIO.png",
+    "bytes": 2782,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_RECEIPT.png",
+    "bytes": 4874,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_TRANS_ORDER.png",
+    "bytes": 6557,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\ITM_WATER.png",
+    "bytes": 4120,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_BED.png",
+    "bytes": 4725,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_BIN.png",
+    "bytes": 6465,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_BREAKER.png",
+    "bytes": 6449,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_CHAIR.png",
+    "bytes": 3821,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_CRATE.png",
+    "bytes": 4932,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_DOOR.png",
+    "bytes": 4795,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_LEVER.png",
+    "bytes": 4348,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_RELAY.png",
+    "bytes": 5732,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_SPEAKER.png",
+    "bytes": 6221,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_STREETLIGHT.png",
+    "bytes": 2563,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_TABLE.png",
+    "bytes": 3667,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_TERMINAL.png",
+    "bytes": 6113,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_TOWER.png",
+    "bytes": 3576,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\PRP_WINDOW.png",
+    "bytes": 6363,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\WPN_BATON.png",
+    "bytes": 2023,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\WPN_CROWBAR.png",
+    "bytes": 2010,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\WPN_MALLET.png",
+    "bytes": 2375,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\WPN_PIPE.png",
+    "bytes": 2557,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\WPN_PISTOL.png",
+    "bytes": 3680,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\WPN_RIFLE.png",
+    "bytes": 2102,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\WPN_STICK.png",
+    "bytes": 2534,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\icons\\WPN_WRENCH.png",
+    "bytes": 2817,
+    "width": 64,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\FX_NODE.png",
+    "bytes": 12927,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\FX_SIGNAL.png",
+    "bytes": 2500,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      252
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_ADAPTER.png",
+    "bytes": 7770,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_AMMO.png",
+    "bytes": 11942,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_BANDAGE.png",
+    "bytes": 11365,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_BATTERY.png",
+    "bytes": 7251,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_CAMERA.png",
+    "bytes": 12446,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_CAN.png",
+    "bytes": 13257,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_CONTAIN.png",
+    "bytes": 12057,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_DRAWING.png",
+    "bytes": 12015,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_ELECTRODE.png",
+    "bytes": 6777,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_FLASHLIGHT.png",
+    "bytes": 7283,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_FOOD.png",
+    "bytes": 6923,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_KEY_HOME.png",
+    "bytes": 5868,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_MAP.png",
+    "bytes": 10501,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_MATRIX.png",
+    "bytes": 9738,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_MEDKIT.png",
+    "bytes": 11194,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_MEMORY.png",
+    "bytes": 8712,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_NOTEBOOK.png",
+    "bytes": 11353,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_PASS_SENSOR.png",
+    "bytes": 9039,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_PHONE.png",
+    "bytes": 7760,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_PROTOCOL.png",
+    "bytes": 11211,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_RADIO.png",
+    "bytes": 5683,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_RECEIPT.png",
+    "bytes": 10055,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_TRANS_ORDER.png",
+    "bytes": 13467,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\ITM_WATER.png",
+    "bytes": 8399,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_BED.png",
+    "bytes": 30789,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_BIN.png",
+    "bytes": 39836,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_BREAKER.png",
+    "bytes": 40440,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_CHAIR.png",
+    "bytes": 22681,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_CRATE.png",
+    "bytes": 31042,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_DOOR.png",
+    "bytes": 29108,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_LEVER.png",
+    "bytes": 26303,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_RELAY.png",
+    "bytes": 37000,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_SPEAKER.png",
+    "bytes": 37187,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_STREETLIGHT.png",
+    "bytes": 15408,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_TABLE.png",
+    "bytes": 22751,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_TERMINAL.png",
+    "bytes": 37866,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_TOWER.png",
+    "bytes": 22760,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\PRP_WINDOW.png",
+    "bytes": 39112,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\WPN_BATON.png",
+    "bytes": 4116,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\WPN_CROWBAR.png",
+    "bytes": 3945,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\WPN_MALLET.png",
+    "bytes": 4753,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\WPN_PIPE.png",
+    "bytes": 5241,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\WPN_PISTOL.png",
+    "bytes": 7554,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\WPN_RIFLE.png",
+    "bytes": 4357,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\WPN_STICK.png",
+    "bytes": 5034,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      253
+    ]
+  },
+  {
+    "path": "05_ITENS_ARMAS\\world\\WPN_WRENCH.png",
+    "bytes": 5657,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\BLD_APARTMENT.json",
+    "bytes": 3143
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\BLD_HOUSE.json",
+    "bytes": 2575
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\BLD_SHOP.json",
+    "bytes": 3707
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\DOOR_CLOSED.png",
+    "bytes": 410,
+    "width": 64,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\DOOR_CLOSED.svg",
+    "bytes": 147
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\DOOR_LOCKED.png",
+    "bytes": 409,
+    "width": 64,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\DOOR_LOCKED.svg",
+    "bytes": 147
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\DOOR_OPEN.png",
+    "bytes": 410,
+    "width": 64,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\DOOR_OPEN.svg",
+    "bytes": 147
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\ROOF_GREY.png",
+    "bytes": 684,
+    "width": 128,
+    "height": 80,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\ROOF_GREY.svg",
+    "bytes": 148
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\ROOF_RED.png",
+    "bytes": 683,
+    "width": 128,
+    "height": 80,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\ROOF_RED.svg",
+    "bytes": 148
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\WALL_NE.png",
+    "bytes": 397,
+    "width": 64,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\WALL_NE.svg",
+    "bytes": 146
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\WALL_NW.png",
+    "bytes": 389,
+    "width": 64,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\WALL_NW.svg",
+    "bytes": 144
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\WINDOW.png",
+    "bytes": 488,
+    "width": 64,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "06_CASAS_CENARIOS\\modular\\WINDOW.svg",
+    "bytes": 203
+  },
+  {
+    "path": "07_VEICULOS\\VEH_AMBULANCE\\closed_SE.png",
+    "bytes": 112774,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_AMBULANCE\\damaged_SE.png",
+    "bytes": 122241,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_AMBULANCE\\interior_SE.png",
+    "bytes": 128711,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_AMBULANCE\\open_SE.png",
+    "bytes": 121388,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_BUS\\closed_SE.png",
+    "bytes": 110993,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_BUS\\damaged_SE.png",
+    "bytes": 118179,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_BUS\\interior_SE.png",
+    "bytes": 122782,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_BUS\\open_SE.png",
+    "bytes": 112361,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_SEDAN\\closed_SE.png",
+    "bytes": 66220,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_SEDAN\\damaged_SE.png",
+    "bytes": 71266,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_SEDAN\\interior_SE.png",
+    "bytes": 67980,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_SEDAN\\open_SE.png",
+    "bytes": 69008,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_TRAIN\\closed_SE.png",
+    "bytes": 125983,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_TRAIN\\damaged_SE.png",
+    "bytes": 138219,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_TRAIN\\interior_SE.png",
+    "bytes": 136446,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_TRAIN\\open_SE.png",
+    "bytes": 128131,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_VAN\\closed_SE.png",
+    "bytes": 104907,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_VAN\\damaged_SE.png",
+    "bytes": 109951,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_VAN\\interior_SE.png",
+    "bytes": 109530,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "07_VEICULOS\\VEH_VAN\\open_SE.png",
+    "bytes": 106178,
+    "width": 512,
+    "height": 320,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\SC01_GREYBOX.json",
+    "bytes": 11820
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_ASPHALT.png",
+    "bytes": 334,
+    "width": 64,
+    "height": 32,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_ASPHALT.svg",
+    "bytes": 203
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_CONCRETE.png",
+    "bytes": 300,
+    "width": 64,
+    "height": 32,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_CONCRETE.svg",
+    "bytes": 145
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_GRASS.png",
+    "bytes": 304,
+    "width": 64,
+    "height": 32,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_GRASS.svg",
+    "bytes": 145
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_HOSPITAL.png",
+    "bytes": 299,
+    "width": 64,
+    "height": 32,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_HOSPITAL.svg",
+    "bytes": 145
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_LAB.png",
+    "bytes": 304,
+    "width": 64,
+    "height": 32,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_LAB.svg",
+    "bytes": 145
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_SIDEWALK.png",
+    "bytes": 303,
+    "width": 64,
+    "height": 32,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_SIDEWALK.svg",
+    "bytes": 145
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_WATER.png",
+    "bytes": 304,
+    "width": 64,
+    "height": 32,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_WATER.svg",
+    "bytes": 145
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_WOOD.png",
+    "bytes": 364,
+    "width": 64,
+    "height": 32,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "08_MAPAS_TILESETS\\tiles\\TILE_WOOD.svg",
+    "bytes": 313
+  },
+  {
+    "path": "09_UI\\buttons\\button_disabled.png",
+    "bytes": 272,
+    "width": 256,
+    "height": 48,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\buttons\\button_hover.png",
+    "bytes": 276,
+    "width": 256,
+    "height": 48,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\buttons\\button_normal.png",
+    "bytes": 275,
+    "width": 256,
+    "height": 48,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\buttons\\button_pressed.png",
+    "bytes": 278,
+    "width": 256,
+    "height": 48,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_00.png",
+    "bytes": 166,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_01.png",
+    "bytes": 198,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_02.png",
+    "bytes": 198,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_03.png",
+    "bytes": 198,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_04.png",
+    "bytes": 198,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_05.png",
+    "bytes": 196,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_06.png",
+    "bytes": 198,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_07.png",
+    "bytes": 198,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_08.png",
+    "bytes": 199,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_09.png",
+    "bytes": 200,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\hud\\health_10.png",
+    "bytes": 196,
+    "width": 200,
+    "height": 20,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\menu.json",
+    "bytes": 787
+  },
+  {
+    "path": "09_UI\\panels\\UI_DIALOGUE.png",
+    "bytes": 876,
+    "width": 640,
+    "height": 160,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\panels\\UI_INVENTORY.png",
+    "bytes": 1786,
+    "width": 384,
+    "height": 384,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\panels\\UI_OBJECTIVE.png",
+    "bytes": 359,
+    "width": 384,
+    "height": 64,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\panels\\UI_PAUSE.png",
+    "bytes": 1815,
+    "width": 384,
+    "height": 480,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\panels\\UI_TOOLTIP.png",
+    "bytes": 447,
+    "width": 320,
+    "height": 96,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\BOSS_IVO\\determined.png",
+    "bytes": 59900,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\BOSS_IVO\\neutral.png",
+    "bytes": 59747,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\BOSS_IVO\\relieved.png",
+    "bytes": 60855,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\BOSS_IVO\\worried.png",
+    "bytes": 60661,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_AMIN\\determined.png",
+    "bytes": 53924,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_AMIN\\neutral.png",
+    "bytes": 53747,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_AMIN\\relieved.png",
+    "bytes": 54053,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_AMIN\\worried.png",
+    "bytes": 53856,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ARTHUR\\determined.png",
+    "bytes": 53854,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ARTHUR\\neutral.png",
+    "bytes": 53078,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ARTHUR\\relieved.png",
+    "bytes": 53322,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ARTHUR\\worried.png",
+    "bytes": 53226,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_BEATRIZ\\determined.png",
+    "bytes": 54772,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_BEATRIZ\\neutral.png",
+    "bytes": 53431,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_BEATRIZ\\relieved.png",
+    "bytes": 53798,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_BEATRIZ\\worried.png",
+    "bytes": 53536,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_BIA\\determined.png",
+    "bytes": 62828,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_BIA\\neutral.png",
+    "bytes": 61715,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_BIA\\relieved.png",
+    "bytes": 62723,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_BIA\\worried.png",
+    "bytes": 61918,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_CAIO\\determined.png",
+    "bytes": 55359,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_CAIO\\neutral.png",
+    "bytes": 49133,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_CAIO\\relieved.png",
+    "bytes": 34991,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_CAIO\\worried.png",
+    "bytes": 55104,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_CLARA\\determined.png",
+    "bytes": 64404,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_CLARA\\neutral.png",
+    "bytes": 64425,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_CLARA\\relieved.png",
+    "bytes": 64639,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_CLARA\\worried.png",
+    "bytes": 63940,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_DAVI\\determined.png",
+    "bytes": 55938,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_DAVI\\neutral.png",
+    "bytes": 54594,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_DAVI\\relieved.png",
+    "bytes": 56135,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_DAVI\\worried.png",
+    "bytes": 54699,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ELISA\\determined.png",
+    "bytes": 56207,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ELISA\\neutral.png",
+    "bytes": 56226,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ELISA\\relieved.png",
+    "bytes": 56796,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ELISA\\worried.png",
+    "bytes": 57008,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_HELENA\\determined.png",
+    "bytes": 58454,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_HELENA\\neutral.png",
+    "bytes": 57621,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_HELENA\\relieved.png",
+    "bytes": 57012,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_HELENA\\worried.png",
+    "bytes": 58127,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_INES\\determined.png",
+    "bytes": 60349,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_INES\\neutral.png",
+    "bytes": 60778,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_INES\\relieved.png",
+    "bytes": 60177,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_INES\\worried.png",
+    "bytes": 60377,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_JOEL\\determined.png",
+    "bytes": 51270,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_JOEL\\neutral.png",
+    "bytes": 51016,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_JOEL\\relieved.png",
+    "bytes": 51092,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_JOEL\\worried.png",
+    "bytes": 51070,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_LIA\\determined.png",
+    "bytes": 54294,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_LIA\\neutral.png",
+    "bytes": 54977,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_LIA\\relieved.png",
+    "bytes": 54662,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_LIA\\worried.png",
+    "bytes": 54426,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_MARINA\\determined.png",
+    "bytes": 56556,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_MARINA\\neutral.png",
+    "bytes": 56038,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_MARINA\\relieved.png",
+    "bytes": 56343,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_MARINA\\worried.png",
+    "bytes": 55542,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_MAURO\\determined.png",
+    "bytes": 56076,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_MAURO\\neutral.png",
+    "bytes": 53995,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_MAURO\\relieved.png",
+    "bytes": 54944,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_MAURO\\worried.png",
+    "bytes": 56495,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_NESTOR\\determined.png",
+    "bytes": 56039,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_NESTOR\\neutral.png",
+    "bytes": 55947,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_NESTOR\\relieved.png",
+    "bytes": 55796,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_NESTOR\\worried.png",
+    "bytes": 56036,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ORLANDO\\determined.png",
+    "bytes": 55047,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ORLANDO\\neutral.png",
+    "bytes": 54416,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ORLANDO\\relieved.png",
+    "bytes": 55525,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ORLANDO\\worried.png",
+    "bytes": 54782,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_REIS\\determined.png",
+    "bytes": 50838,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_REIS\\neutral.png",
+    "bytes": 49695,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_REIS\\relieved.png",
+    "bytes": 50996,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_REIS\\worried.png",
+    "bytes": 49502,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ROSA\\determined.png",
+    "bytes": 55245,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ROSA\\neutral.png",
+    "bytes": 55586,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ROSA\\relieved.png",
+    "bytes": 55387,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_ROSA\\worried.png",
+    "bytes": 56205,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_SAMUEL\\determined.png",
+    "bytes": 61456,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_SAMUEL\\neutral.png",
+    "bytes": 60246,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_SAMUEL\\relieved.png",
+    "bytes": 59462,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_SAMUEL\\worried.png",
+    "bytes": 60785,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_TADEU\\determined.png",
+    "bytes": 58974,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_TADEU\\neutral.png",
+    "bytes": 58406,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_TADEU\\relieved.png",
+    "bytes": 57245,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_TADEU\\worried.png",
+    "bytes": 58335,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_TERESA\\determined.png",
+    "bytes": 57963,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_TERESA\\neutral.png",
+    "bytes": 57869,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_TERESA\\relieved.png",
+    "bytes": 57790,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_TERESA\\worried.png",
+    "bytes": 57400,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_VALE\\determined.png",
+    "bytes": 51586,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_VALE\\neutral.png",
+    "bytes": 51663,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_VALE\\relieved.png",
+    "bytes": 52219,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\CHR_VALE\\worried.png",
+    "bytes": 51466,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_BRUNO\\determined.png",
+    "bytes": 53863,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_BRUNO\\neutral.png",
+    "bytes": 53912,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_BRUNO\\relieved.png",
+    "bytes": 52902,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_BRUNO\\worried.png",
+    "bytes": 53401,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_CELIA\\determined.png",
+    "bytes": 54287,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_CELIA\\neutral.png",
+    "bytes": 54784,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_CELIA\\relieved.png",
+    "bytes": 55750,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_CELIA\\worried.png",
+    "bytes": 54986,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_HUGO\\determined.png",
+    "bytes": 64649,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_HUGO\\neutral.png",
+    "bytes": 64111,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_HUGO\\relieved.png",
+    "bytes": 63291,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_HUGO\\worried.png",
+    "bytes": 63376,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_VERA\\determined.png",
+    "bytes": 54542,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_VERA\\neutral.png",
+    "bytes": 53711,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_VERA\\relieved.png",
+    "bytes": 54504,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "09_UI\\portraits\\ENM_VERA\\worried.png",
+    "bytes": 54060,
+    "width": 192,
+    "height": 192,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "10_EFEITOS\\echo_pulse\\000.png",
+    "bytes": 300,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "10_EFEITOS\\echo_pulse\\001.png",
+    "bytes": 389,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      227
+    ]
+  },
+  {
+    "path": "10_EFEITOS\\echo_pulse\\002.png",
+    "bytes": 498,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      199
+    ]
+  },
+  {
+    "path": "10_EFEITOS\\echo_pulse\\003.png",
+    "bytes": 599,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      171
+    ]
+  },
+  {
+    "path": "10_EFEITOS\\echo_pulse\\004.png",
+    "bytes": 734,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      143
+    ]
+  },
+  {
+    "path": "10_EFEITOS\\echo_pulse\\005.png",
+    "bytes": 801,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      115
+    ]
+  },
+  {
+    "path": "10_EFEITOS\\echo_pulse\\006.png",
+    "bytes": 886,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      87
+    ]
+  },
+  {
+    "path": "10_EFEITOS\\echo_pulse\\007.png",
+    "bytes": 977,
+    "width": 128,
+    "height": 128,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      59
+    ]
+  },
+  {
+    "path": "11_DADOS\\asset_manifest.json",
+    "bytes": 347862
+  },
+  {
+    "path": "11_DADOS\\BACKLOG_ANIMACOES.csv",
+    "bytes": 121851
+  },
+  {
+    "path": "11_DADOS\\dialogue_aliases.json",
+    "bytes": 1011
+  },
+  {
+    "path": "11_DADOS\\elenco.json",
+    "bytes": 8345
+  },
+  {
+    "path": "11_DADOS\\inimigos.json",
+    "bytes": 2597
+  },
+  {
+    "path": "11_DADOS\\production_coverage.json",
+    "bytes": 22711
+  },
+  {
+    "path": "11_DADOS\\summary.json",
+    "bytes": 264
+  },
+  {
+    "path": "11_DADOS\\VALIDACAO.json",
+    "bytes": 716
+  },
+  {
+    "path": "12_FASE_01\\animals.png",
+    "bytes": 96443,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\attack.png",
+    "bytes": 103232,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\combat.png",
+    "bytes": 103416,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\echo.png",
+    "bytes": 111022,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\heal.png",
+    "bytes": 91355,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\hit.png",
+    "bytes": 102485,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\hurt.png",
+    "bytes": 91819,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\loot.png",
+    "bytes": 105066,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\lose.png",
+    "bytes": 49531,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\no_vehicle.png",
+    "bytes": 109352,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\normal.png",
+    "bytes": 91986,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\pickup.png",
+    "bytes": 92194,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\preview_push_S.gif",
+    "bytes": 31558
+  },
+  {
+    "path": "12_FASE_01\\preview_push_SE.gif",
+    "bytes": 34620
+  },
+  {
+    "path": "12_FASE_01\\preview_run_S.gif",
+    "bytes": 70568
+  },
+  {
+    "path": "12_FASE_01\\preview_run_SE.gif",
+    "bytes": 69478
+  },
+  {
+    "path": "12_FASE_01\\preview_walk_S.gif",
+    "bytes": 65039
+  },
+  {
+    "path": "12_FASE_01\\preview_walk_SE.gif",
+    "bytes": 69222
+  },
+  {
+    "path": "12_FASE_01\\STORY_01.png",
+    "bytes": 279023,
+    "width": 1440,
+    "height": 960,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\STORY_02.png",
+    "bytes": 253903,
+    "width": 1440,
+    "height": 960,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\STORY_03.png",
+    "bytes": 293878,
+    "width": 1440,
+    "height": 960,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\STORY_04.png",
+    "bytes": 264685,
+    "width": 1440,
+    "height": 960,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\talk.png",
+    "bytes": 122227,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\vehicle.png",
+    "bytes": 109276,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "12_FASE_01\\win.png",
+    "bytes": 102713,
+    "width": 1180,
+    "height": 760,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "13_CODEX\\generated\\LEIA.txt",
+    "bytes": 76
+  },
+  {
+    "path": "13_CODEX\\IMPORTAR_GODOT.gd",
+    "bytes": 2632
+  },
+  {
+    "path": "13_CODEX\\PROMPT_CODEX.md",
+    "bytes": 2292
+  },
+  {
+    "path": "13_CODEX\\VISUALIZADOR.html",
+    "bytes": 24560
+  },
+  {
+    "path": "99_REFERENCIAS\\ANI_BREU.png",
+    "bytes": 2079757,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\ANI_FUBA.png",
+    "bytes": 2008218,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\ANI_PINGO.png",
+    "bytes": 1988751,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\animals.png",
+    "bytes": 2031477,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\caio_actions.png",
+    "bytes": 1657539,
+    "width": 1261,
+    "height": 1247,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      255
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\caio_run.png",
+    "bytes": 1720461,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\caio_walk.png",
+    "bytes": 1704423,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\items_1.png",
+    "bytes": 2220057,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\items_2.png",
+    "bytes": 2195917,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\items_3.png",
+    "bytes": 2261202,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\LEIA.txt",
+    "bytes": 260
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\mauro_fixed.png",
+    "bytes": 1666098,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\people_1.png",
+    "bytes": 1862855,
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\people_2.png",
+    "bytes": 1915728,
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\people_3.png",
+    "bytes": 1999447,
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\atlases_gerados\\vehicles.png",
+    "bytes": 2693145,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      0,
+      254
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\BOARD_ITEMS_1.png",
+    "bytes": 2013681,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\BOARD_ITEMS_2.png",
+    "bytes": 1854942,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\BOARD_ITEMS_3.png",
+    "bytes": 1848091,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\BOSS_IVO.png",
+    "bytes": 2093279,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CAPA.png",
+    "bytes": 2625881,
+    "width": 1024,
+    "height": 1536,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_AMIN.png",
+    "bytes": 1701001,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_ARTHUR.png",
+    "bytes": 1791886,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_BEATRIZ.png",
+    "bytes": 1732336,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_BIA.png",
+    "bytes": 1899038,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_CAIO.png",
+    "bytes": 1885281,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_CLARA.png",
+    "bytes": 1941324,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_DAVI.png",
+    "bytes": 1792799,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_ELISA.png",
+    "bytes": 1725155,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_HELENA.png",
+    "bytes": 1952327,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_INES.png",
+    "bytes": 1906027,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_JOEL.png",
+    "bytes": 1748450,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_LIA.png",
+    "bytes": 1965467,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_MARINA.png",
+    "bytes": 1820160,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_MAURO.png",
+    "bytes": 1729151,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_NESTOR.png",
+    "bytes": 1749701,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_ORLANDO.png",
+    "bytes": 1848435,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGBA",
+    "alpha_extrema": [
+      255,
+      255
+    ]
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_REIS.png",
+    "bytes": 1837178,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_ROSA.png",
+    "bytes": 1763561,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_SAMUEL.png",
+    "bytes": 2121083,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_TADEU.png",
+    "bytes": 1870453,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_TERESA.png",
+    "bytes": 1854880,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\CHR_VALE.png",
+    "bytes": 1792796,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\ENM_BRUNO.png",
+    "bytes": 1747500,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\ENM_CELIA.png",
+    "bytes": 1824052,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\ENM_HUGO.png",
+    "bytes": 2174462,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\ENM_VERA.png",
+    "bytes": 1729277,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\STORY_01.png",
+    "bytes": 2840476,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\STORY_02.png",
+    "bytes": 2884019,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\STORY_03.png",
+    "bytes": 3288151,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\STORY_04.png",
+    "bytes": 3064094,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\VEH_AMBULANCE.png",
+    "bytes": 2414842,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\VEH_BUS.png",
+    "bytes": 2398537,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\VEH_SEDAN.png",
+    "bytes": 2315444,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\VEH_TRAIN.png",
+    "bytes": 2331882,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "99_REFERENCIAS\\VEH_VAN.png",
+    "bytes": 2447156,
+    "width": 1536,
+    "height": 1024,
+    "mode": "RGB",
+    "alpha_extrema": null
+  },
+  {
+    "path": "README.md",
+    "bytes": 2355
+  }
+]

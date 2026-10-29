@@ -1,0 +1,1 @@
+{"version":"0.2.0","configurations":[{"name":"Silêncio · Android","request":"launch","type":"dart","program":"lib/main.dart"},{"name":"Silêncio · navegador","request":"launch","type":"dart","deviceId":"chrome","program":"lib/main.dart"}]}

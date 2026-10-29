@@ -1,0 +1,32 @@
+[
+  {
+    "file": "assets/santa_aurora_conceito_v01.png",
+    "source": "prompt/referencias/santa_aurora_conceito_v01.png",
+    "sha256": "4f2a61cb4c603e54d4bafc3a949124d64c8ad35b2d6c174215878da85c2190e7",
+    "role": "existing_game_reference_not_generated_video"
+  },
+  {
+    "file": "assets/ap203-terreo.png",
+    "source": "docs/screenshots/ap203-terreo.png",
+    "sha256": "fca44db199b3c008b2c2926e5e84d7b293fe4c32671a5554e1c67019cf39a22f",
+    "role": "existing_game_reference_not_generated_video"
+  },
+  {
+    "file": "assets/portrait_caio.png",
+    "source": "assets/images/portrait_caio.png",
+    "sha256": "37f757c32c365f0737b71c9bdf3bc96ff3f186981562e3ad72989b045fb72476",
+    "role": "existing_game_reference_not_generated_video"
+  },
+  {
+    "file": "assets/pose_SE_idle.png",
+    "source": "assets/images/pose_SE_idle.png",
+    "sha256": "b9aa098baef2c07c5b62c21fec7ed18d7bb21cbd76d2cd48e0bb965e27d958c9",
+    "role": "existing_game_reference_not_generated_video"
+  },
+  {
+    "file": "assets/pulse.wav",
+    "source": "assets/audio/pulse.wav",
+    "sha256": "5da51fe489c2d1232e7b8253e6690ebec515ef04fbbcc9e50be166de4c64b8fa",
+    "role": "existing_game_reference_not_generated_video"
+  }
+]

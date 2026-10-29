@@ -1,0 +1,7 @@
+{
+  "valid_presentations": 63,
+  "sample_span_seconds": 1.066231,
+  "median_present_interval_ms": 16.660462000000003,
+  "p95_present_interval_ms": 16.853846,
+  "note": "Short compositor presentation sample; not a sustained FPS or full campaign benchmark."
+}

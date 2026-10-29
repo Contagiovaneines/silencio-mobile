@@ -1,0 +1,21 @@
+{
+  "original": true,
+  "generator": "tools/generate_placeholders.py",
+  "cell_width": 32,
+  "cell_height": 48,
+  "columns": 4,
+  "rows": 8,
+  "directions": [
+    "N",
+    "NE",
+    "E",
+    "SE",
+    "S",
+    "SW",
+    "W",
+    "NW"
+  ],
+  "anchor": "bottom-center",
+  "frames": "0 idle; 0,1,2,3 walking loop; placeholders only",
+  "replaceable": true
+}

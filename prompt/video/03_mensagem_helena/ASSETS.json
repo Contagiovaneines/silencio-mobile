@@ -1,0 +1,26 @@
+[
+  {
+    "file": "assets/item_phone.png",
+    "source": "assets/images/item_phone.png",
+    "sha256": "878e621f384db6fff7ac7f9310aaaed824751b9c434d4064fe0b43e4f456c23b",
+    "role": "existing_game_reference_not_generated_video"
+  },
+  {
+    "file": "assets/portrait_caio.png",
+    "source": "assets/images/portrait_caio.png",
+    "sha256": "37f757c32c365f0737b71c9bdf3bc96ff3f186981562e3ad72989b045fb72476",
+    "role": "existing_game_reference_not_generated_video"
+  },
+  {
+    "file": "assets/portrait_helena.png",
+    "source": "assets/images/portrait_helena.png",
+    "sha256": "ca9255d4e8fe959c6860cb66190515b7521e21ee74dfd0a724fccc6a64d661e2",
+    "role": "existing_game_reference_not_generated_video"
+  },
+  {
+    "file": "assets/phone.wav",
+    "source": "assets/audio/phone.wav",
+    "sha256": "1fab7123816e72609c7aed460ec3b487d9f696d3102af818eb7333323523daec",
+    "role": "existing_game_reference_not_generated_video"
+  }
+]

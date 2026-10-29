@@ -1,0 +1,9 @@
+{
+  "editor.formatOnSave": true,
+  "dart.lineLength": 100,
+  "files.exclude": {
+    "**/.dart_tool": true,
+    "**/build": true
+  },
+  "dart.flutterSdkPath": "C:/Users/giovane/.cache/codex-runtimes/flutter-sdk"
+}

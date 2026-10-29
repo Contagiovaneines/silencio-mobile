@@ -1,0 +1,962 @@
+[
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/N/000.png",
+    "destination": "assets/images/user_caio_N_0.png",
+    "sha256": "4bdb416c95096b584b4b76a1bb3a8dcd867bb2a365dc55cbeaffc02013bb58ac"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/N/001.png",
+    "destination": "assets/images/user_caio_N_1.png",
+    "sha256": "172b382de144ce9fbb2c27588c9625a89874f172fed9c25c99ccbc906813340f"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/N/002.png",
+    "destination": "assets/images/user_caio_N_2.png",
+    "sha256": "a9367e393f4ce51579f5736f7d5c89a719ccb8ede71a72a6813453e916efdcff"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/N/003.png",
+    "destination": "assets/images/user_caio_N_3.png",
+    "sha256": "779f3fe750ed6a033c266884ede0aa3612544ac11cc5bdb3eedd122efadfe42f"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/N/004.png",
+    "destination": "assets/images/user_caio_N_4.png",
+    "sha256": "95a2e65f7aa5c7663c64f267429286d7f0da7d6b87648e80fb93a7b7209ffb37"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/N/005.png",
+    "destination": "assets/images/user_caio_N_5.png",
+    "sha256": "f3411a45bd99df4b1796e90dcfbc6424a9ebe8e24dd2b53bfc53778797667cee"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NE/000.png",
+    "destination": "assets/images/user_caio_NE_0.png",
+    "sha256": "f9ac56f885cdf229ff21b1aceceb642464cdf20290efb755c9ec19b31eb7649c"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NE/001.png",
+    "destination": "assets/images/user_caio_NE_1.png",
+    "sha256": "700b02d24a1a5548ea56fda25b9a796147a48c6b649b205238d799df7a9490d0"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NE/002.png",
+    "destination": "assets/images/user_caio_NE_2.png",
+    "sha256": "a3592219f7d920e0dc4d6ed26b8c26bf51d2bf7004eee6cb27e993ec728e9cef"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NE/003.png",
+    "destination": "assets/images/user_caio_NE_3.png",
+    "sha256": "540bc8a68506ca2094aed07399a14b61c37a0aaeac694fcc7ee708ea5f3e6613"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NE/004.png",
+    "destination": "assets/images/user_caio_NE_4.png",
+    "sha256": "8d32b5261090257ba84b1aea630542d2066ad850dc2d5f37cef8d17fc4c31360"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NE/005.png",
+    "destination": "assets/images/user_caio_NE_5.png",
+    "sha256": "066496e21ffa4aa74e58de0179df00721c2a96acb2e3c790a01c6d21356f68cd"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SE/000.png",
+    "destination": "assets/images/user_caio_SE_0.png",
+    "sha256": "18e8654b536c880dc5fda335d03d4f754b1077ba6cf294733af44939cefc776d"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SE/001.png",
+    "destination": "assets/images/user_caio_SE_1.png",
+    "sha256": "5a0598168ea5202c5bfff4dbefed7b3fd495a1790c87bf2fdcc00600440f6825"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SE/002.png",
+    "destination": "assets/images/user_caio_SE_2.png",
+    "sha256": "7c282d5efcaa9c1d5f0e5388d96996df3353b2a688e5a2f5256fbd0231f47b9b"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SE/003.png",
+    "destination": "assets/images/user_caio_SE_3.png",
+    "sha256": "caaf48bb7d4444ff6f5027e4b692c88258546e56d13813c3610f1d6cc19d85e1"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SE/004.png",
+    "destination": "assets/images/user_caio_SE_4.png",
+    "sha256": "b872a7f145a51edbb32a6c5d7da9bbef596c4e069c5a1f9b1b1ef6946e62b639"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SE/005.png",
+    "destination": "assets/images/user_caio_SE_5.png",
+    "sha256": "d34f3d5fbeb9a74c9b9f31a89f488195ef4e9d3385b5581fb480edd0cffe54dd"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/S/000.png",
+    "destination": "assets/images/user_caio_S_0.png",
+    "sha256": "de22a64d172e6d8679a7982b97a58390620b4514d9e38a3f81a202e40f8f74df"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/S/001.png",
+    "destination": "assets/images/user_caio_S_1.png",
+    "sha256": "35ec15509a6f8bb58df991035d25b49dd7ab293be81938fb2ea75bc01200f77b"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/S/002.png",
+    "destination": "assets/images/user_caio_S_2.png",
+    "sha256": "4f090d1dc138280419644c845959759dda862995a78226741357a1d746c86ff1"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/S/003.png",
+    "destination": "assets/images/user_caio_S_3.png",
+    "sha256": "1e62fb7c7953a88891edb8acc58f1376e329191c468f30c4b5ec3f04e818d5ca"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/S/004.png",
+    "destination": "assets/images/user_caio_S_4.png",
+    "sha256": "94066af79a3bba2e6dae10e878550c89f7a8567b59f69be0cde21c45cb46ce01"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/S/005.png",
+    "destination": "assets/images/user_caio_S_5.png",
+    "sha256": "de62a2ca8d1cc9f1b4ce09f4c66299be41a95b461276b57cf473d19aa8950966"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SW/000.png",
+    "destination": "assets/images/user_caio_SW_0.png",
+    "sha256": "f745e31a68fe5492d03a861fabc79c36b4cbeb67c048414af64d27e14603ae72"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SW/001.png",
+    "destination": "assets/images/user_caio_SW_1.png",
+    "sha256": "f41c3222ea05b4f1d02835a727775a44471b0c5d2ec3a27df5c4de339b7d1652"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SW/002.png",
+    "destination": "assets/images/user_caio_SW_2.png",
+    "sha256": "91f8f7ebc7517bfaf845505a3d4d307e0a09d8688d6546c4b7008a26bd5b4c47"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SW/003.png",
+    "destination": "assets/images/user_caio_SW_3.png",
+    "sha256": "5b7b49c946609f973f9e4e0b1505852906617f6725b2a762d55600fd4e1af163"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SW/004.png",
+    "destination": "assets/images/user_caio_SW_4.png",
+    "sha256": "3d8ea2ab1f6f246dfd7cf705fa8b04d40abd41ad3f8c232854251cde3ee8cde5"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/SW/005.png",
+    "destination": "assets/images/user_caio_SW_5.png",
+    "sha256": "f7fcbfe14303a046e1481ab7c09959c07e8f9c6cda7cf26e78d205bb66dfdebd"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/W/000.png",
+    "destination": "assets/images/user_caio_W_0.png",
+    "sha256": "3b7a09d7abaefe6584bc51024b8814d81eb6b84520fe8066c6d235cf5f80db2c"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/W/001.png",
+    "destination": "assets/images/user_caio_W_1.png",
+    "sha256": "aff954b07ec30af6d8d770daf4358c8a8e52af1d90a542233a8a0d792f116225"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/W/002.png",
+    "destination": "assets/images/user_caio_W_2.png",
+    "sha256": "c806766af6892d8a961eb4299197517b545a23096b59a8082158fe9e9bcd62e4"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/W/003.png",
+    "destination": "assets/images/user_caio_W_3.png",
+    "sha256": "75a1fe5fc56ad0dbaf7d03f4dad5a3cea35e906e3e3443f9ff041bd657f23ebb"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/W/004.png",
+    "destination": "assets/images/user_caio_W_4.png",
+    "sha256": "4e9e744a3908b83673446bcbf70b0821bb7af5ca4aeb3cd8e9ac1414512883ca"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/W/005.png",
+    "destination": "assets/images/user_caio_W_5.png",
+    "sha256": "c1c495185eaad89c2372ba2a0f872ad5a585d5ed48873a05961cce01b2426545"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NW/000.png",
+    "destination": "assets/images/user_caio_NW_0.png",
+    "sha256": "87716d0b5ace9a3e50e7f50a9db4323b2c52fd24fc268a90dba8b064f5b3af65"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NW/001.png",
+    "destination": "assets/images/user_caio_NW_1.png",
+    "sha256": "bc6d0a129e9a26560f2b01a2c7d0b82b43bb8b59e45b89b98726fdf87811420a"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NW/002.png",
+    "destination": "assets/images/user_caio_NW_2.png",
+    "sha256": "69c301f05a041286876b23e59e573439e9fc6d53ddcabe954ba69e26b890968e"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NW/003.png",
+    "destination": "assets/images/user_caio_NW_3.png",
+    "sha256": "1066c721be773b68b34544658a7f7d63c6487c93d370fa9d8de97da3d3419c20"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NW/004.png",
+    "destination": "assets/images/user_caio_NW_4.png",
+    "sha256": "dad2928d1accf5895acbd6e61412f30bf7a6a1865fddaf87e4abce770580aa60"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/walk/NW/005.png",
+    "destination": "assets/images/user_caio_NW_5.png",
+    "sha256": "98e06c42561748ef5f20e518b3db4873b2ba0e2ddc819ad8bbf03d3277c6941c"
+  },
+  {
+    "source": "02_PERSONAGENS/CHR_HELENA/base_unarmed_SE.png",
+    "destination": "assets/images/user_helena.png",
+    "sha256": "81a13cd452ac332b6c156c612511de616948184460dcaf6684581f86ec17383a"
+  },
+  {
+    "source": "02_PERSONAGENS/CHR_TERESA/base_unarmed_SE.png",
+    "destination": "assets/images/user_neighbor.png",
+    "sha256": "71ceed14af8aec43a0a743f3501cca380c06842b92bf0e72f99aad4ae837a645"
+  },
+  {
+    "source": "02_PERSONAGENS/CHR_CAIO/base_unarmed_SE.png",
+    "destination": "assets/images/user_caio_idle.png",
+    "sha256": "caa0f85b5d5bdf9389da9f3c19d2f2f8cecf8d42701de650240008f172b13d44"
+  },
+  {
+    "source": "09_UI/portraits/CHR_CAIO/neutral.png",
+    "destination": "assets/images/portrait_caio.png",
+    "sha256": "37f757c32c365f0737b71c9bdf3bc96ff3f186981562e3ad72989b045fb72476"
+  },
+  {
+    "source": "09_UI/portraits/CHR_HELENA/neutral.png",
+    "destination": "assets/images/portrait_helena.png",
+    "sha256": "ca9255d4e8fe959c6860cb66190515b7521e21ee74dfd0a724fccc6a64d661e2"
+  },
+  {
+    "source": "09_UI/portraits/CHR_TERESA/neutral.png",
+    "destination": "assets/images/portrait_teresa.png",
+    "sha256": "f06f75e475bddadcdb5f055218006364b1f014347e806051c600d66e606608d5"
+  },
+  {
+    "source": "02_PERSONAGENS/CHR_INES/base_unarmed_SE.png",
+    "destination": "assets/images/phase_ines.png",
+    "sha256": "6ee0dd1b41d20be8a9f7a1fb6b9e1a24cbbe6e1c45cdd76a6c40243f5fb05d9e"
+  },
+  {
+    "source": "09_UI/portraits/CHR_INES/neutral.png",
+    "destination": "assets/images/portrait_ines.png",
+    "sha256": "32941b45ce5b1d2d81f09d99ceeeb5cf095173e88847d745a94a8557f5c4ff93"
+  },
+  {
+    "source": "02_PERSONAGENS/CHR_ORLANDO/base_unarmed_SE.png",
+    "destination": "assets/images/phase_orlando.png",
+    "sha256": "127a743b3426b38304cb327d79a49592fffd456185884ce24e7a23fbcc9f51c6"
+  },
+  {
+    "source": "09_UI/portraits/CHR_ORLANDO/neutral.png",
+    "destination": "assets/images/portrait_orlando.png",
+    "sha256": "3cf7b25c6df0bd8bb5ee63ba4e32f8f8477911d39c11be056f6a90937b922b73"
+  },
+  {
+    "source": "02_PERSONAGENS/CHR_DAVI/base_unarmed_SE.png",
+    "destination": "assets/images/phase_davi.png",
+    "sha256": "f6dfd0e84aeff94214c91f63784413e5c083ec4e1095d971847994cf9a87fc04"
+  },
+  {
+    "source": "09_UI/portraits/CHR_DAVI/neutral.png",
+    "destination": "assets/images/portrait_davi.png",
+    "sha256": "15600f9077a5b8130e06273c9e45234d4410e5f06aa1de1df669a844d167dd78"
+  },
+  {
+    "source": "02_PERSONAGENS/CHR_NESTOR/base_unarmed_SE.png",
+    "destination": "assets/images/phase_nestor.png",
+    "sha256": "e2caf940733312df1f8fca5c8d2e1452e5af3bec30c13269c067f8ebfc2a6635"
+  },
+  {
+    "source": "09_UI/portraits/CHR_NESTOR/neutral.png",
+    "destination": "assets/images/portrait_nestor.png",
+    "sha256": "f86863a64242811d4dc3e0f4b25962b07570be2a6c94c678f83dfa3ce1cb1433"
+  },
+  {
+    "source": "02_PERSONAGENS/CHR_MARINA/base_unarmed_SE.png",
+    "destination": "assets/images/phase_marina.png",
+    "sha256": "9be858a68dfa1e290405549d98edcc4a449ee949b2e25121783cded88e752d52"
+  },
+  {
+    "source": "09_UI/portraits/CHR_MARINA/neutral.png",
+    "destination": "assets/images/portrait_marina.png",
+    "sha256": "3edb236bfa1b354d94eac7d3d0638d30b90b986f55c1cc310ea30ad571cab6bb"
+  },
+  {
+    "source": "02_PERSONAGENS/CHR_BIA/base_unarmed_SE.png",
+    "destination": "assets/images/phase_bia.png",
+    "sha256": "2c006721254b7a85c4d80b40effe26a2f606e65dbaace9b4cd44dbb18abdc687"
+  },
+  {
+    "source": "09_UI/portraits/CHR_BIA/neutral.png",
+    "destination": "assets/images/portrait_bia.png",
+    "sha256": "265143912d37acceb622fc05947bcff0ee801ac3189676d2c94344e41bdca821"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/N/idle.png",
+    "destination": "assets/images/pose_N_idle.png",
+    "sha256": "0b4703f95b3162e3f17beae5756780dc0f8819a0bd2243489364593001ad60c9"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/N/hurt.png",
+    "destination": "assets/images/pose_N_hurt.png",
+    "sha256": "6248e36d51f0cd1f869983248d74c55c3939a0c204917cda6a2031f138f896d6"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/N/push_anticipation.png",
+    "destination": "assets/images/pose_N_push_anticipation.png",
+    "sha256": "93947fb97c77ff2a652c6d4c5f3fc453d1f2d01d9aecca1f887593e1cfc5fe11"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/N/push_contact.png",
+    "destination": "assets/images/pose_N_push_contact.png",
+    "sha256": "e5b1465a8979dd842d999f6723cbfca7c82fd3c82743049427dd6c2b265a69f4"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/N/push_recover.png",
+    "destination": "assets/images/pose_N_push_recover.png",
+    "sha256": "614fea2c0b97690ac90694860200aac87a47bff044738131b8a348ba67409e01"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/N/heal_pose.png",
+    "destination": "assets/images/pose_N_heal_pose.png",
+    "sha256": "b0e397bd0b6444b56d52502369410feb59a4cbf3d2b809d2b74324fabd0cbf15"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/N/pickup_pose.png",
+    "destination": "assets/images/pose_N_pickup_pose.png",
+    "sha256": "7de76eb5945ac74ec86ba1352eb97362d5f82206c7715af30ecef85948615257"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/N/defeat_pose.png",
+    "destination": "assets/images/pose_N_defeat_pose.png",
+    "sha256": "5e8ef723307b3db374acc61894a5b90ab73aa2adac62939057f1fbf5c7169f0b"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/N/000.png",
+    "destination": "assets/images/run_N_0.png",
+    "sha256": "81bdcdf4b3e1f487dab9a5661f91b3a2fb9bb023e94f901993a4e5b3195c1cfe"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/N/001.png",
+    "destination": "assets/images/run_N_1.png",
+    "sha256": "c7743eec672c02c348e85597e638b53b719a3d639677f0482da4f4d7c3a5375f"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/N/002.png",
+    "destination": "assets/images/run_N_2.png",
+    "sha256": "f498416019549893ad8511e8169ce1454b1fa968ea1987635d6de4799c81f195"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/N/003.png",
+    "destination": "assets/images/run_N_3.png",
+    "sha256": "b0c3e917e1cd105ed1f30f508839273b6a69373a5efe9bdf8ac8a586a1cdf8d9"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/N/004.png",
+    "destination": "assets/images/run_N_4.png",
+    "sha256": "621b1ac3a5b0d9422f2162498cf16f7e5d7abb59170a01dd390f83e12525e1a2"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/N/005.png",
+    "destination": "assets/images/run_N_5.png",
+    "sha256": "58503865c1cf08527aabbbf40826c2f22add80677bb0775cee30f63cab30345b"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NE/idle.png",
+    "destination": "assets/images/pose_NE_idle.png",
+    "sha256": "a2772798c34f60d979ff977b05fb113f012b91faab82651590f581401b56cc85"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NE/hurt.png",
+    "destination": "assets/images/pose_NE_hurt.png",
+    "sha256": "1ba6336fa80fa6117b93ae77b73a97ead5042d57c96b2d8227488ff7060bee34"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NE/push_anticipation.png",
+    "destination": "assets/images/pose_NE_push_anticipation.png",
+    "sha256": "82506aa644e38f2b5b34c14086050b3483361967a3667935467eb97da8a0e441"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NE/push_contact.png",
+    "destination": "assets/images/pose_NE_push_contact.png",
+    "sha256": "1dc55f8c095b1573e3250d334e0e2c9398b5803db5a9cfe5e82dea827c11d751"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NE/push_recover.png",
+    "destination": "assets/images/pose_NE_push_recover.png",
+    "sha256": "74ac3bf93d6eb2d394b51d8f8759346528e46f14a36838bda6b89c22ebb7e0f2"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NE/heal_pose.png",
+    "destination": "assets/images/pose_NE_heal_pose.png",
+    "sha256": "fbefbb9f0c0efa46190dc73089ac666c4f75f46764c195cde2fe10d7887ec668"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NE/pickup_pose.png",
+    "destination": "assets/images/pose_NE_pickup_pose.png",
+    "sha256": "92482732d9687ddacc6fd265277f2f185fb9bab13181cef920bd6d34beecb7bf"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NE/defeat_pose.png",
+    "destination": "assets/images/pose_NE_defeat_pose.png",
+    "sha256": "68828a75255a57a4d8a23a1dca49383dc7546894eddb24aaaa1df6c316da09b0"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NE/000.png",
+    "destination": "assets/images/run_NE_0.png",
+    "sha256": "efb40aa4d9275881df7ee6a02bb6a84a14c646525d566f14a77b8a86254bf53f"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NE/001.png",
+    "destination": "assets/images/run_NE_1.png",
+    "sha256": "a2666dea3beb5a230f393924a0a9cb0ad19687970e43072f7496439b8af8bb79"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NE/002.png",
+    "destination": "assets/images/run_NE_2.png",
+    "sha256": "057559589a931b03f89e4f054f4fe906deebe157fe74633d4de1add301f90ac4"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NE/003.png",
+    "destination": "assets/images/run_NE_3.png",
+    "sha256": "08b0dce61473e7e4daa25565b66849d38978e41b88118d118fd797a9bfd73207"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NE/004.png",
+    "destination": "assets/images/run_NE_4.png",
+    "sha256": "6fb7e4c2d28b2da2aba48bf099ce114f83e12e46b58da4b5e21e92e40bbaeeb4"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NE/005.png",
+    "destination": "assets/images/run_NE_5.png",
+    "sha256": "f1de5a908452cba84abcae071303b9c6d4bb354e8725674fdb0397d130ac9785"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SE/idle.png",
+    "destination": "assets/images/pose_SE_idle.png",
+    "sha256": "b9aa098baef2c07c5b62c21fec7ed18d7bb21cbd76d2cd48e0bb965e27d958c9"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SE/hurt.png",
+    "destination": "assets/images/pose_SE_hurt.png",
+    "sha256": "3ed6f79d942a7a4171f8686cf0d110d8665368a3181a917536844b5e887c3122"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SE/push_anticipation.png",
+    "destination": "assets/images/pose_SE_push_anticipation.png",
+    "sha256": "0b8a5e99cfd0205205a50672a82a2e1f73838ae52f0270006e669715c8f5b571"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SE/push_contact.png",
+    "destination": "assets/images/pose_SE_push_contact.png",
+    "sha256": "a9f85a6381b2964c543f0e1edaff67f658622b2b34385b61a69f79e074851f9e"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SE/push_recover.png",
+    "destination": "assets/images/pose_SE_push_recover.png",
+    "sha256": "040b5822a64c8750c29f02ed0f27d1365662116684f2442b40c6d090414106aa"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SE/heal_pose.png",
+    "destination": "assets/images/pose_SE_heal_pose.png",
+    "sha256": "489b5b5ebe24c61f3dd2dc9d2e5be08f0b132dd94ebb580c50dd10d9a1e5d0c2"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SE/pickup_pose.png",
+    "destination": "assets/images/pose_SE_pickup_pose.png",
+    "sha256": "1718590125316484d05d2253709f9fb1a06a6015058b1567559fa5cac3b3dff3"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SE/defeat_pose.png",
+    "destination": "assets/images/pose_SE_defeat_pose.png",
+    "sha256": "8ebe0e06c5344b37bfb74b4b93b59c42c1379ea116ed7e45cc24dfcc6517225d"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SE/000.png",
+    "destination": "assets/images/run_SE_0.png",
+    "sha256": "a9e4ee989f25d9ca91c88132ce456e347464f218f08fbc62872c1a9063b62be6"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SE/001.png",
+    "destination": "assets/images/run_SE_1.png",
+    "sha256": "8fe8d9328f0ac79b3e748d86b5f3170b82d6a6bae8fd4d85e20e0c50111d665e"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SE/002.png",
+    "destination": "assets/images/run_SE_2.png",
+    "sha256": "56ae509e61a33124128c35454c0c31e9ec87274d362b2c81823a88fb27d1e167"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SE/003.png",
+    "destination": "assets/images/run_SE_3.png",
+    "sha256": "bcb7be090679aed18f043696a895b072f452d814afb82904da31af15388ba0b4"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SE/004.png",
+    "destination": "assets/images/run_SE_4.png",
+    "sha256": "f49a9e4467da37f6eccee706a32627578d604ec1323c644892111e13e99f3e12"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SE/005.png",
+    "destination": "assets/images/run_SE_5.png",
+    "sha256": "9573c8b4764727b864a2c8ffc218f27b348b8db6afbc4c6fce604e6bf59696db"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/S/idle.png",
+    "destination": "assets/images/pose_S_idle.png",
+    "sha256": "7540af11bec550a8e4edb138e3e319fc849e8ae33bd9e2a6075ef9ea474307f8"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/S/hurt.png",
+    "destination": "assets/images/pose_S_hurt.png",
+    "sha256": "deb50de2100501e8965224565d41227809511e641a3bbef73802640d5a72ef28"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/S/push_anticipation.png",
+    "destination": "assets/images/pose_S_push_anticipation.png",
+    "sha256": "ae2a88adaf7e335ad45c00896ba47ceb434d3f9bb6622a5cd34d494ee77dc4e5"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/S/push_contact.png",
+    "destination": "assets/images/pose_S_push_contact.png",
+    "sha256": "7b7ae7e83de158c09413cdda587976f745563afe9eab63fabf37e094fa9a0ab4"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/S/push_recover.png",
+    "destination": "assets/images/pose_S_push_recover.png",
+    "sha256": "3e31ed08e9d314df24a43a745f39bfdce653bf1b5bb95d95c3b7be7cc8a2ed36"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/S/heal_pose.png",
+    "destination": "assets/images/pose_S_heal_pose.png",
+    "sha256": "8aaff15539db5a35a90a519658da7719b98b60750ef5a78521d2bfa68c4ef364"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/S/pickup_pose.png",
+    "destination": "assets/images/pose_S_pickup_pose.png",
+    "sha256": "2ccf24d3a1feef43766e1768465841f4338cb589905e5c68b296994bd1f518f7"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/S/defeat_pose.png",
+    "destination": "assets/images/pose_S_defeat_pose.png",
+    "sha256": "0d94dd4c1a54f0d8467ecbe5b5eb1dfc6244e29b0054a1ca7c6901040cfc58e1"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/S/000.png",
+    "destination": "assets/images/run_S_0.png",
+    "sha256": "cc94ecc5ba6c9a5eb16b6e1a10a08ac73356305a3e56caf12cde4a1fa86621ab"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/S/001.png",
+    "destination": "assets/images/run_S_1.png",
+    "sha256": "fd6cc7d6a7b8baceaa2cefb6b12c21df9d42df067cb408f5aff255c4451cdd74"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/S/002.png",
+    "destination": "assets/images/run_S_2.png",
+    "sha256": "539ea4b46b2e0561d08df0b6df009db1912681c1f1ca68309a625368fcac4a4b"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/S/003.png",
+    "destination": "assets/images/run_S_3.png",
+    "sha256": "ffabe6aac34c111f11b034aee4eba7723417b21b5ebfd199a5acf43d39e1f4d3"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/S/004.png",
+    "destination": "assets/images/run_S_4.png",
+    "sha256": "e2eb21ab54de5e9360053df598527ba07c5f7d4895164b697bdda8ef9baed118"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/S/005.png",
+    "destination": "assets/images/run_S_5.png",
+    "sha256": "19f8aa37a0fb9649fb7606ada2706004fd3ef7ad84c486a3ae86d0f38c0d9da8"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SW/idle.png",
+    "destination": "assets/images/pose_SW_idle.png",
+    "sha256": "e4cff3c2566d8aa01e22ea4c9ea2c6bac63c49b0f8e6418c13c3f85225666be1"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SW/hurt.png",
+    "destination": "assets/images/pose_SW_hurt.png",
+    "sha256": "6655fa8fc2a1873e7379311c8c0cb016b135a9f7e7c639c012b28aa60ea1dea6"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SW/push_anticipation.png",
+    "destination": "assets/images/pose_SW_push_anticipation.png",
+    "sha256": "a01418466faf852b71361eb7c5dea0b1e651030a68f08f4761e0a4bf6c72388e"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SW/push_contact.png",
+    "destination": "assets/images/pose_SW_push_contact.png",
+    "sha256": "dd234398dee6d05f652962907bc43ab6bcb03f75d5282fa671e1379319e32ae9"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SW/push_recover.png",
+    "destination": "assets/images/pose_SW_push_recover.png",
+    "sha256": "98316bea4c4252e907dfefba03f3d0bb279612b70fec0ed100c902704a6c80b8"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SW/heal_pose.png",
+    "destination": "assets/images/pose_SW_heal_pose.png",
+    "sha256": "48e532663f960d89b563c287067fb2f9387efac4337ece50d28c489c1525ba5f"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SW/pickup_pose.png",
+    "destination": "assets/images/pose_SW_pickup_pose.png",
+    "sha256": "2602a87300601c233a2c154b17480b1c25078db8bd9e72c43d860ec839bedc67"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/SW/defeat_pose.png",
+    "destination": "assets/images/pose_SW_defeat_pose.png",
+    "sha256": "004ab0ab2e53c194e859e86e31b67c0bbaf5af6d0664113f0dfad600cf2d9473"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SW/000.png",
+    "destination": "assets/images/run_SW_0.png",
+    "sha256": "32d7244f7b17879d12a4b76037277bce5f4e5fd935eabb819a700729e11a3e51"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SW/001.png",
+    "destination": "assets/images/run_SW_1.png",
+    "sha256": "459b5a0bf10e101dff060707c29e3876524af0f606f8ef49d65f29c815832c68"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SW/002.png",
+    "destination": "assets/images/run_SW_2.png",
+    "sha256": "485340274a9383aaeea6f51a145a33cffccd20328a689ca68a32265ffa72a9ed"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SW/003.png",
+    "destination": "assets/images/run_SW_3.png",
+    "sha256": "e22016fb69ea9748207ab6d70566b7e85919d82f858474a365dd71028c373056"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SW/004.png",
+    "destination": "assets/images/run_SW_4.png",
+    "sha256": "b15ab2997b8738e0bca61a279ad53a4d04525af2b5c1bf5aa19e33812009eb28"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/SW/005.png",
+    "destination": "assets/images/run_SW_5.png",
+    "sha256": "a3109e5840d4dfdc9089b0ab2dadceb03b0e5785e1b44ed04cb11f1679f69bd8"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/W/idle.png",
+    "destination": "assets/images/pose_W_idle.png",
+    "sha256": "a6aaa523bb2d0eef71e13fa43073a696b76086691f93354e5ea9e7a4634edaa4"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/W/hurt.png",
+    "destination": "assets/images/pose_W_hurt.png",
+    "sha256": "044580af4728872ae6228b0fc1492540e03a4d55cce0a784e87422f5638eb22f"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/W/push_anticipation.png",
+    "destination": "assets/images/pose_W_push_anticipation.png",
+    "sha256": "ac331716e323293b98d5b2d1d41b1c11343185c4b9c7b891902574d961798a64"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/W/push_contact.png",
+    "destination": "assets/images/pose_W_push_contact.png",
+    "sha256": "e789d5daf204ca490eae67450865389a240e35e839962ef1ca1cd5024bcce9d7"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/W/push_recover.png",
+    "destination": "assets/images/pose_W_push_recover.png",
+    "sha256": "c0ab902c77ebaf270294037602d810d3fe7b2dc225c72ef3e472cfc905dcc7d3"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/W/heal_pose.png",
+    "destination": "assets/images/pose_W_heal_pose.png",
+    "sha256": "6c616aa27b62a49e862a43541051c3278e75abaa17ba42111755ba45ca27f710"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/W/pickup_pose.png",
+    "destination": "assets/images/pose_W_pickup_pose.png",
+    "sha256": "2ea63cc6bcc9156eef65450698d96add7870c9b0b475437410bd48c1099afbb8"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/W/defeat_pose.png",
+    "destination": "assets/images/pose_W_defeat_pose.png",
+    "sha256": "c2c8fe1258209d59b4dfb08ae97f6e2080d88457ae3e739800d62f86c68e2bd9"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/W/000.png",
+    "destination": "assets/images/run_W_0.png",
+    "sha256": "317773b21e2f26d0602e230b807bac622b147ea1f040e077e0d041179d9bc94f"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/W/001.png",
+    "destination": "assets/images/run_W_1.png",
+    "sha256": "13283a9b26e79676b1ffa1ced72bf209a37f1e0b4a9e6424b303f789da9ac263"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/W/002.png",
+    "destination": "assets/images/run_W_2.png",
+    "sha256": "cb66ea2d0c5625e1aef9926ba6f92ab3fe7b03ee64f3f1218e63cfc52f91e6d8"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/W/003.png",
+    "destination": "assets/images/run_W_3.png",
+    "sha256": "f1023ea1c61472c1e6dd16a289cb99d8894b97f35b1e8c53d61c7f2b47e96283"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/W/004.png",
+    "destination": "assets/images/run_W_4.png",
+    "sha256": "dfdc87d02c14a61f2a64f8edb524504a68258cea4c74796af0c193f3316469d0"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/W/005.png",
+    "destination": "assets/images/run_W_5.png",
+    "sha256": "f10877e50f803f9c67c6beae0621bdf9c8454bc03c88177d0ce3ed409304b6f1"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NW/idle.png",
+    "destination": "assets/images/pose_NW_idle.png",
+    "sha256": "c80b39f9a8164df4b14336f7d047dec3b62eda5c16434907a42fa31e4bb48d6e"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NW/hurt.png",
+    "destination": "assets/images/pose_NW_hurt.png",
+    "sha256": "19b948808d44ba0fa5aa78a1fa20b78e5ed7b2ac148f77e813a068c62a982d55"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NW/push_anticipation.png",
+    "destination": "assets/images/pose_NW_push_anticipation.png",
+    "sha256": "fd4097e1ffa494c2996bf82103ef70740945514d7257310e39d9fe4c8d1228d6"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NW/push_contact.png",
+    "destination": "assets/images/pose_NW_push_contact.png",
+    "sha256": "2ee7856eadf673bde36a70387fa29c4ea9054eed8cda3edfba1a82af1b39b6ac"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NW/push_recover.png",
+    "destination": "assets/images/pose_NW_push_recover.png",
+    "sha256": "c23d569a3482fc23784a851f17624f8aa7517f8ff029f3efa2fd5ed34ac0f91a"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NW/heal_pose.png",
+    "destination": "assets/images/pose_NW_heal_pose.png",
+    "sha256": "84403cdbf9d0dd9cb00a07e06f3f9fabe3c5de3eb9f330238f6360a51ecb01b5"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NW/pickup_pose.png",
+    "destination": "assets/images/pose_NW_pickup_pose.png",
+    "sha256": "3b7d8dbd39877ea5813f114b5409329340eabb6a7b048ed6fde3913fceaabd6e"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/poses/NW/defeat_pose.png",
+    "destination": "assets/images/pose_NW_defeat_pose.png",
+    "sha256": "9157943c2a7a554179d42a9065fa4b7f597eea7d54ddfbaaef44a548d434cd42"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NW/000.png",
+    "destination": "assets/images/run_NW_0.png",
+    "sha256": "5d4aa6dbc80a6b646b2e78b0750cd3af08a7f77daa19534ec296b27a323882d6"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NW/001.png",
+    "destination": "assets/images/run_NW_1.png",
+    "sha256": "016989496e2a1e951e1d54546434f412bc711ab75fe0be79dd12347d208bf6c4"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NW/002.png",
+    "destination": "assets/images/run_NW_2.png",
+    "sha256": "510b3e1612debac0eb33903f200f4b343c2d93737bf53f0afb9e9a8f93f722e6"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NW/003.png",
+    "destination": "assets/images/run_NW_3.png",
+    "sha256": "ad20a5efb811272cfb6440ed34404811e6ca11499273681217fe974e976600eb"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NW/004.png",
+    "destination": "assets/images/run_NW_4.png",
+    "sha256": "b6c1b610ee8b8283235d6a1fe5ad3555e1ceb71b6b0090a34c5dc0607f3efee2"
+  },
+  {
+    "source": "03_ANIMACOES/CHR_CAIO/run/NW/005.png",
+    "destination": "assets/images/run_NW_5.png",
+    "sha256": "e9c37047407fd6fc57a8140a4cd120d7da00175f2376f7ebb6605452324274a7"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_FUBA/walk/SE/000.png",
+    "destination": "assets/images/animal_fuba_0.png",
+    "sha256": "7dadcfb852b80b6be40f652493e4436148d133d96abc2407704cdc1066ac0cb0"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_FUBA/walk/SE/001.png",
+    "destination": "assets/images/animal_fuba_1.png",
+    "sha256": "e810f1c7864fdaee0db40f8cad50f89fff19c698b6d154cddabe0fbebeca4c32"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_FUBA/walk/SE/002.png",
+    "destination": "assets/images/animal_fuba_2.png",
+    "sha256": "d62b57cf2adc05c0102d6793ff3499567acc130074a368223b834e53caccc1e3"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_FUBA/walk/SE/003.png",
+    "destination": "assets/images/animal_fuba_3.png",
+    "sha256": "4ccd08daded68ca7c4372c5a25e9ea985c22dee4cbc21f7da1fa74eeefbfc80c"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_FUBA/walk/SE/004.png",
+    "destination": "assets/images/animal_fuba_4.png",
+    "sha256": "6c792665bc591648b3324652e471a84becd02aea9bf03bf7377b47f3816ba7c0"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_FUBA/walk/SE/005.png",
+    "destination": "assets/images/animal_fuba_5.png",
+    "sha256": "8bc01745e675d74c11a772369f8341be640f5a41e7b9ddd37a44b5bc545cfc33"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_BREU/walk/SE/000.png",
+    "destination": "assets/images/animal_breu_0.png",
+    "sha256": "5fccca914bda8045061aa04902164180698d3cab3b0b5115ab5186637c76ae33"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_BREU/walk/SE/001.png",
+    "destination": "assets/images/animal_breu_1.png",
+    "sha256": "14d258260affb3d0c4e8d20b683bc736edaeaadd576ae52e53ba86f243282778"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_BREU/walk/SE/002.png",
+    "destination": "assets/images/animal_breu_2.png",
+    "sha256": "08390bdbf7e756f50c596c69f5082c2f28f65f6ce54d87483a686262120759c2"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_BREU/walk/SE/003.png",
+    "destination": "assets/images/animal_breu_3.png",
+    "sha256": "a240ef187226dc4fe003a02377d3b167b616f3e55d5c40fc744fc791357f2067"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_BREU/walk/SE/004.png",
+    "destination": "assets/images/animal_breu_4.png",
+    "sha256": "2722f342f5f2c56f93b5012026e05bc0e5123df39d17676027ad501c4137f836"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_BREU/walk/SE/005.png",
+    "destination": "assets/images/animal_breu_5.png",
+    "sha256": "5a8beec3d1883fac4e27eea7375414bac92cf49d97cb9e1adf9ffa9dae49ca3c"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_PINGO/walk/SE/000.png",
+    "destination": "assets/images/animal_pingo_0.png",
+    "sha256": "90eea58660884f270d44c7c4c51964242123b2b8f4a1dc86327ff7a79c4d3ff7"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_PINGO/walk/SE/001.png",
+    "destination": "assets/images/animal_pingo_1.png",
+    "sha256": "c03dc8b865d51e77e013628c16b613b1b2a94ecebb6d72398dc5bbf536d47110"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_PINGO/walk/SE/002.png",
+    "destination": "assets/images/animal_pingo_2.png",
+    "sha256": "b8bd3ad533bfea85efd6c6f9e13e492d44f802726bc0fb959120044a52e28486"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_PINGO/walk/SE/003.png",
+    "destination": "assets/images/animal_pingo_3.png",
+    "sha256": "11c7610b1c673bbdb0895bd609a637bef7b6af9c861165037d71031922bca8ae"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_PINGO/walk/SE/004.png",
+    "destination": "assets/images/animal_pingo_4.png",
+    "sha256": "d4f91bebdf270497650738dd250cc27b67d96ba053e1a2b341e0d12cc1660388"
+  },
+  {
+    "source": "04_INIMIGOS_ANIMAIS/ANI_PINGO/walk/SE/005.png",
+    "destination": "assets/images/animal_pingo_5.png",
+    "sha256": "fd38a55e05d4a491745d17b54c71d37c424a3156e430495664028abfb407f873"
+  },
+  {
+    "source": "07_VEICULOS/VEH_SEDAN/closed_SE.png",
+    "destination": "assets/images/vehicle_sedan_closed.png",
+    "sha256": "a4c9add2cf5540f932846b144d1f43fe4e9aee10104683b5d761e897c8e9003e"
+  },
+  {
+    "source": "07_VEICULOS/VEH_SEDAN/open_SE.png",
+    "destination": "assets/images/vehicle_sedan_open.png",
+    "sha256": "032b3086445b6a4ac1b868792b08c6e3eabbc09ed962ba2cc85952851312d977"
+  },
+  {
+    "source": "07_VEICULOS/VEH_VAN/closed_SE.png",
+    "destination": "assets/images/vehicle_van_closed.png",
+    "sha256": "64fe916cedec43e965eb47c6caa6768adda6232d9392dc7db77abefbc138487c"
+  },
+  {
+    "source": "07_VEICULOS/VEH_VAN/open_SE.png",
+    "destination": "assets/images/vehicle_van_open.png",
+    "sha256": "824ca02c697399ef0fe42544487646772073857f5797c9a1035631aaa88614e4"
+  },
+  {
+    "source": "07_VEICULOS/VEH_BUS/closed_SE.png",
+    "destination": "assets/images/vehicle_bus_closed.png",
+    "sha256": "9175068d45f911b2cfd9f0e579ee9221a2b5378e5c59459d5f4bc2bda6b45ed9"
+  },
+  {
+    "source": "07_VEICULOS/VEH_BUS/open_SE.png",
+    "destination": "assets/images/vehicle_bus_open.png",
+    "sha256": "ecf9956e187690ee14c560624936b5d1f96f4fde22a18648c4747434691082c4"
+  },
+  {
+    "source": "08_MAPAS_TILESETS/tiles/TILE_ASPHALT.png",
+    "destination": "assets/images/tile_asphalt.png",
+    "sha256": "ceab4e1df871f59c15c3d9248b45ae53ed7b1ce1972766720b843c3a75c1930a"
+  },
+  {
+    "source": "08_MAPAS_TILESETS/tiles/TILE_CONCRETE.png",
+    "destination": "assets/images/tile_concrete.png",
+    "sha256": "099f0c1ce72234d903b79f5795eead7d4afb840ea207fce3a9903569c85cbdb8"
+  },
+  {
+    "source": "08_MAPAS_TILESETS/tiles/TILE_GRASS.png",
+    "destination": "assets/images/tile_grass.png",
+    "sha256": "03765756cae11d74cffbfeef8e4e974c11e3b1c93cdf88f039f1f96a72ae38b8"
+  },
+  {
+    "source": "08_MAPAS_TILESETS/tiles/TILE_SIDEWALK.png",
+    "destination": "assets/images/tile_sidewalk.png",
+    "sha256": "b7315e3bf8fdc5f49bb9c0e4bd7c22c1d2c59e8c5e624d343b6f40f0a1dd1009"
+  },
+  {
+    "source": "08_MAPAS_TILESETS/tiles/TILE_WOOD.png",
+    "destination": "assets/images/tile_wood.png",
+    "sha256": "2b6c3c058e0504bff33587a2537ade4a88e4d93bb4831b2b4ac6d78555920528"
+  },
+  {
+    "source": "05_ITENS_ARMAS/world/ITM_ADAPTER.png",
+    "destination": "assets/images/item_adapter.png",
+    "sha256": "0b8d75085f3124243d9451b7cca06471d733ab6aebbafb4581dc1a4eb30b83f4"
+  },
+  {
+    "source": "05_ITENS_ARMAS/world/ITM_KEY_HOME.png",
+    "destination": "assets/images/item_key.png",
+    "sha256": "02084bb181e5ac1b9905e9b3f2579721027af8ac1f07576e2912bcdd729b919d"
+  },
+  {
+    "source": "05_ITENS_ARMAS/world/ITM_WATER.png",
+    "destination": "assets/images/item_water.png",
+    "sha256": "579978d201a30144595e457e9df0761a37b44cbb9b86828887ac651d3e6146b4"
+  },
+  {
+    "source": "05_ITENS_ARMAS/world/ITM_BANDAGE.png",
+    "destination": "assets/images/item_bandage.png",
+    "sha256": "20fbfd860b669820942930e4f8c4f82c11c48260209f95d44721c46b13e131e1"
+  },
+  {
+    "source": "05_ITENS_ARMAS/world/ITM_PHONE.png",
+    "destination": "assets/images/item_phone.png",
+    "sha256": "878e621f384db6fff7ac7f9310aaaed824751b9c434d4064fe0b43e4f456c23b"
+  }
+]

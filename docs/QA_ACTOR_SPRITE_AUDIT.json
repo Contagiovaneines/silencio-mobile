@@ -1,0 +1,114 @@
+{
+  "user_caio_SW": {
+    "consecutive_pixel_difference_mean": [
+      5.08,
+      4.394,
+      5.183,
+      4.152,
+      6.314,
+      6.171
+    ],
+    "leg_band_difference_mean": [
+      6.144,
+      6.142,
+      4.612,
+      5.39,
+      8.802,
+      7.768
+    ]
+  },
+  "user_caio_N": {
+    "consecutive_pixel_difference_mean": [
+      4.134,
+      4.05,
+      2.73,
+      4.685,
+      4.773,
+      3.958
+    ],
+    "leg_band_difference_mean": [
+      5.251,
+      6.885,
+      3.217,
+      6.794,
+      6.542,
+      5.062
+    ]
+  },
+  "run_SW": {
+    "consecutive_pixel_difference_mean": [
+      5.305,
+      7.193,
+      7.602,
+      7.286,
+      7.617,
+      8.134
+    ],
+    "leg_band_difference_mean": [
+      4.513,
+      8.605,
+      6.822,
+      4.543,
+      5.273,
+      9.43
+    ]
+  },
+  "run_S": {
+    "consecutive_pixel_difference_mean": [
+      5.981,
+      6.388,
+      6.16,
+      5.949,
+      5.501,
+      5.853
+    ],
+    "leg_band_difference_mean": [
+      5.371,
+      6.381,
+      6.225,
+      3.123,
+      6.366,
+      6.116
+    ]
+  },
+  "phase_ines": {
+    "opaque_bounds": [
+      38,
+      17,
+      90,
+      119
+    ]
+  },
+  "phase_orlando": {
+    "opaque_bounds": [
+      31,
+      17,
+      98,
+      119
+    ]
+  },
+  "phase_davi": {
+    "opaque_bounds": [
+      34,
+      17,
+      94,
+      119
+    ]
+  },
+  "pose_SW_idle": {
+    "opaque_bounds": [
+      38,
+      26,
+      91,
+      119
+    ]
+  },
+  "user_caio_N_0": {
+    "opaque_bounds": [
+      36,
+      18,
+      92,
+      119
+    ]
+  }
+}

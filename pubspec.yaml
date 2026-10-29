@@ -1,0 +1,23 @@
+name: silencio
+description: Beta original de sobrevivência narrativa em Santa Aurora.
+publish_to: none
+version: 0.5.0+6
+environment:
+  sdk: ^3.13.5
+dependencies:
+  flutter:
+    sdk: flutter
+  flame: 1.38.2
+  flame_audio: 2.12.2
+  cupertino_icons: 1.0.8
+  shared_preferences: 2.5.6
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/data/
+    - assets/audio/

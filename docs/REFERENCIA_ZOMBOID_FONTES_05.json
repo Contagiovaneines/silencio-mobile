@@ -1,0 +1,38 @@
+[
+  {
+    "relative_path": "media/lua/shared/TimedActions/ISRestAction.lua",
+    "bytes": 7591,
+    "sha256": "dcd87cadfeb028770795a9a745ca8c2f4a866baf28c202a7ae654ad98bc92444",
+    "evidence_kind": "shipped-text-observed-with-shell-not-REA-decompilation"
+  },
+  {
+    "relative_path": "media/lua/shared/TimedActions/ISSitOnGround.lua",
+    "bytes": 1663,
+    "sha256": "3b9c11dc2dea69c26d371a4c8dc08f31ed6e379673beae1f44e368420eaf2a3d",
+    "evidence_kind": "shipped-text-observed-with-shell-not-REA-decompilation"
+  },
+  {
+    "relative_path": "media/lua/shared/TimedActions/ISDrinkFromBottle.lua",
+    "bytes": 5042,
+    "sha256": "a08870345358c1b628f7cf36098cb681b8fc32ee3a599cd45f2405847d080bef",
+    "evidence_kind": "shipped-text-observed-with-shell-not-REA-decompilation"
+  },
+  {
+    "relative_path": "media/AnimSets/player/idle/Idle.xml",
+    "bytes": 5076,
+    "sha256": "c95329b9450b344e56fa490ee260b077339636b5e5fe7c9b88269b1d1fc8511e",
+    "evidence_kind": "shipped-text-observed-with-shell-not-REA-decompilation"
+  },
+  {
+    "relative_path": "media/AnimSets/player/run/defaultRun.xml",
+    "bytes": 4436,
+    "sha256": "605dc67a0b47f5bf3cc4de9936266381ea9142246178895f77ad3e98d300dd29",
+    "evidence_kind": "shipped-text-observed-with-shell-not-REA-decompilation"
+  },
+  {
+    "relative_path": "media/AnimSets/player/shove/ShoveDefault.xml",
+    "bytes": 2506,
+    "sha256": "a0209e392c0fc2380717423219cfd061561635be19d08665dd710e5f7b00b7bd",
+    "evidence_kind": "shipped-text-observed-with-shell-not-REA-decompilation"
+  }
+]

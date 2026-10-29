@@ -1,0 +1,3201 @@
+
+
+=== PAGINA 1 ===
+DOCUMENTO MESTRE ILUSTRADO
+Roteiro • Catálogo • PNGs recortados • Matriz de pendências
+VERSÃO 4.0  /  LOTE INICIAL  /  SEM TESTE NA GODOT
+
+
+=== PAGINA 2 ===
+DOCUMENTO MESTRE / V4.0
+Como ler esta versão
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+02
+Estado real da entrega
+Há PNGs recortados e sequências candidatas, mas o pacote NÃO contém todas as
+animações finais da campanha e não foi testado na Godot. A seção V4 detalha arquivos,
+dimensões e lacunas. Não confundir poses e conceitos com ciclos completos.
+O que foi preservado
+Caio não fala; Santa Aurora é o ponto de partida; Helena, Lia, Samuel e Vale sustentam a
+trama; o ECHO nasce de pesquisa neurológica; o arquivo Sujeito 07 revela o passado de
+Caio. Os 12 títulos de capítulos e os finais Destruição, Cura e Verdade permanecem.
+O que foi desenvolvido nesta revisão
+Cenas, falas, objetivos, puzzles, relações pessoais e condições dos finais foram ampliados
+para formar uma campanha coerente. As novas explicações do ECHO são ficção de roteiro.
+A cidade adicional, os registros de testes e as decisões de campanha são propostas
+autorais desta versão, não conteúdo existente no PDF original.
+Decisão visual
+A referência solicitada é Project Zomboid: câmera elevada em perspectiva isométrica,
+exploração de ruas e interiores, silhuetas legíveis e atmosfera cotidiana degradada. A
+implementação proposta para SILÊNCIO é 2D com sprites originais. Project Zomboid
+também emprega elementos 3D; a referência visual não obriga usar a mesma tecnologia.
+Escopo de gameplay assumido
+Campanha individual com sobrevivência leve: recursos, inventário, ruído, ferimentos e
+cansaço. Fome contínua, agricultura, construção livre, multiplayer e cidades inteiras
+simuladas ficam fora da primeira produção. Essa escolha permite aprofundar a narrativa
+sem transformar o projeto em um sandbox de grande escala.
+As ilustrações são conceitos gerados para este documento. Pranchas de sprites precisam de limpeza, alinhamento,
+recorte e validação antes de entrar na Godot. Este PDF é uma base de produção ampliada, não uma build jogável nem
+um roteiro de todas as falas incidentais.
+
+
+=== PAGINA 3 ===
+DOCUMENTO MESTRE / V4.0
+Guia de leitura
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+03
+Visão e universo · páginas 4–8
+Identidade, cronologia, regras do ECHO, fichas dos cinco personagens centrais e relações.
+Leia esta parte antes de alterar o roteiro.
+Campanha · páginas 9–35
+Prólogo; dois blocos por capítulo, com percurso e cenas principais; três finais e matriz de
+consequências. As falas de Caio são sempre texto, escrita ou tradução de Libras.
+Arte · páginas 36–39
+Cenários isométricos, personagens em oito direções, escala e animações. As imagens são
+referências originais; as especificações técnicas orientam a transformação em assets.
+Sistemas e produção · páginas 40–48
+Movimentação, combate, Percepção, inventário, inimigos, interface, acessibilidade,
+estrutura Godot, demonstração e critérios de aceite.
+Catálogo V3 e prévia da Fase 01 · após página 48
+O anexo identifica cada personagem, retrato, arma permitida, inimigo, animal, veículo e
+item. Inclui contratos de animação, regras para a IA e storyboard final com ações da
+primeira fase.
+Convenções
+Cena: ação encenada. Gameplay: ação do jogador. Caio [texto]: mensagem no celular
+ou escrita. Caio [Libras]: tradução visual de sinais, sem voz. Narração: percepção
+interna escrita. Registro: documento investigável.
+Status das decisões
+Definido pelo pedido: visual isométrico e material mais completo. Preservado do
+original: protagonista não vocal e núcleo da história. Proposta V2: detalhes de sistemas
+e novas cenas. A validar em protótipo: números de balanceamento, duração e custo de
+arte.
+
+
+=== PAGINA 4 ===
+DOCUMENTO MESTRE / V4.0
+Visão do jogo
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+04
+Premissa
+Em Santa Aurora, uma transmissão pública transforma vizinhos em ameaças e memórias
+em armas. Caio, que se comunica sem voz, atravessa a cidade para encontrar uma amiga
+e descobre que sua resistência ao sinal começou em um laboratório do qual não se
+lembra.
+Promessa ao jogador
+Explorar lugares reconhecíveis, ler o comportamento das pessoas, sobreviver a encontros
+curtos e montar uma verdade que muda a interpretação da cidade. O medo vem de
+perceber que alguém ainda existe por trás de um ataque, e de decidir quem pode ser
+salvo.
+Quatro pilares
+Comunicação com consequências: gestos, celular e Libras mudam o modo de pedir
+ajuda. Terror legível: ameaças têm pistas e regras. Investigação concreta: evidências
+desbloqueiam ações. Sobrevivência contida: cada recurso ajuda em uma situação, sem
+rotinas de manutenção intermináveis.
+Ritmo e plataforma
+PC é a primeira plataforma proposta, com teclado/mouse e controle. Campanha-alvo de 5
+a 7 horas após iteração; demonstração de 15 a 25 minutos. São metas, não estimativas
+garantidas. Os capítulos são regiões autorais conectadas por transições, não um mundo
+aberto inteiramente simulado.
+Tom
+Horror psicológico e violência moderada, sem depender de gore constante. Santa Aurora
+tem ônibus, pequenos comércios, escola pública e hospital: a cidade perde sua
+normalidade aos poucos. Nenhum personagem é definido apenas por uma função de
+tutorial.
+
+
+=== PAGINA 5 ===
+DOCUMENTO MESTRE / V4.0
+Santa Aurora e a cronologia
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+05
+Uma cidade que precisa parecer habitada
+Santa Aurora é uma cidade brasileira fictícia construída em torno de um hospital
+universitário e de um polo de telecomunicações. A torre central foi apresentada como
+infraestrutura de saúde e segurança. Uma campanha publicitária ensinou os moradores a
+tratar pequenas falhas como manutenção.
+Doze anos antes
+Samuel testa estimulação neural em ambiente clínico. Um consórcio estatal assume o
+programa e amplia o número de participantes. Caio é levado ao protocolo infantil como
+Sujeito 07. Um incidente deixa lacunas de memória; a mãe o retira do programa. O motivo
+de Caio não usar voz não é reduzido a um efeito do ECHO.
+Seis meses antes
+Uma rede experimental começa a operar na cidade. Relatos de lapsos e agressividade são
+arquivados como estresse. Helena investiga contratos e percebe que os intervalos das
+ocorrências coincidem com registros de transmissão.
+Campanha: quatro dias
+Dia 1: rotina às 07:12; primeira anomalia; encontro frustrado com Helena. Dia 2, 02:00:
+pulso de manutenção, queda e quarentena. Dias 2–3: hospital, abrigo, laboratório e
+centro de detenção. Dia 3: torre local. Dia 4: segunda cidade, capital e núcleo principal.
+Geografia funcional
+Apartamento e comércio ficam no mesmo distrito. O hospital conecta-se ao laboratório por
+uma ala de pesquisa fechada. O abrigo ocupa uma escola elevada fora da cobertura
+direta. O centro de detenção está no pátio logístico. A torre local é acessada por uma
+estação de serviços. As viagens seguintes usam ferrovia técnica: não há teletransporte
+narrativo.
+
+
+=== PAGINA 6 ===
+DOCUMENTO MESTRE / V4.0
+ECHO: regras e limites
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+06
+A explicação interna do roteiro
+ECHO é uma tecnologia fictícia que combina transmissores locais com padrões de
+estimulação neural. O tratamento original buscava interromper ciclos de crises. A versão
+militar passou a reforçar obediência e suprimir reações. A agressividade é uma falha de
+realimentação, não uma doença contagiosa convencional.
+Como o perigo se comporta
+A exposição depende de cobertura, potência, tempo e sensibilidade individual. Uma luz
+vermelha anuncia sincronização, mas olhar para ela não é a causa da alteração. O sinal
+não se espalha por mordidas. Ferimentos continuam perigosos por razões comuns.
+Paredes comuns não bloqueiam tudo; salas de pesquisa blindadas e zonas fora de alcance
+podem interromper a exposição.
+Três estados observáveis
+Latência: enxaqueca, movimentos repetidos e lapsos. Dominação: resposta agressiva a
+estímulos e comandos fragmentados. Colapso: convulsão e lesões persistentes. Reduzir o
+sinal pode recuperar alguém em latência; desligá-lo não cura automaticamente dano já
+causado.
+Caio e a Percepção
+O protocolo infantil produziu uma resposta atípica. Caio percebe padrões e resiste melhor
+à dominação; ainda pode ser ferido e sobrecarregado. Seu modo de comunicação não
+explica sua resistência. Outras pessoas resistentes também existem, com histórias e
+condições diferentes.
+O perigo oculto
+O núcleo guarda um padrão de realimentação apelidado de NÓ. Ele surgiu de testes
+coletivos e é mantido abaixo de um limiar pela portadora de contenção. Vale preserva o
+controle humano para manter esse limiar. Cura exige separar a contenção do módulo
+coercitivo; apagamento cego pode reativar o padrão em uma instalação remota. Tudo isso
+é ficção, não uma alegação médica.
+
+
+=== PAGINA 7 ===
+DOCUMENTO MESTRE / V4.0
+Personagens: Caio e Helena
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+07
+Caio · presença sem voz
+Adulto jovem, observador e prático. Jaqueta grafite, mochila oliva, cabelo escuro curto.
+Conhece caminhos por trabalhar com suporte e pequenos serviços locais, proposta desta
+revisão. Usa celular e caderno; escuta os outros e não usa fala vocal. Já possui noções de
+Libras, mas poucas pessoas do cotidiano as compartilham.
+Desejo: encontrar Helena e voltar para casa. Necessidade: aceitar apoio e agir sobre
+seu passado sem se tornar um recurso do laboratório. Falha: se afasta quando se sente
+usado. Arco: passa de sobrevivente isolado a alguém capaz de negociar as condições da
+própria participação. Ele não precisa recuperar a voz para concluir sua história.
+Helena · a verdade tem um custo
+Jornalista local independente, cabelo cacheado preso, jaqueta vinho e bolsa de câmera.
+Amiga de Caio desde antes da investigação. Perdeu uma fonte após publicar um endereço
+que julgava seguro. Guarda cópias separadas para não repetir o erro.
+Desejo: expor o ECHO. Necessidade: reconhecer que proteger pessoas também faz
+parte da verdade. Falha: confunde urgência com autorização. Arco: aprende a pedir
+consentimento antes de transmitir dados de Caio. Na torre, deve admitir que tem uma
+informação incompleta, em vez de explicar toda a trama com certeza.
+Relação
+Helena adapta o ritmo da conversa para Caio responder; Caio percebe quando ela
+esconde algo. O conflito não nasce de ele não falar: nasce de ela decidir por ele. Gestos
+familiares, como duas batidas na mesa para pedir atenção, ajudam a demonstrar
+intimidade sem exposição verbal.
+
+
+=== PAGINA 8 ===
+DOCUMENTO MESTRE / V4.0
+Personagens: Lia, Samuel e Vale
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+08
+Lia · reconstruir vínculos
+Educadora e organizadora do abrigo; cabelo curto, suéter ocre e bolsa de primeiros
+socorros. Usa Libras por sua história familiar. Não é uma intérprete colocada no jogo
+apenas para Caio: protege moradores, distribui recursos e pode discordar do grupo. Quer
+manter o abrigo vivo. Aprende que segurança sem liberdade pode repetir a lógica de Vale.
+Dr. Samuel · responsabilidade
+Neurologista de meia-idade avançada, cabelo grisalho, camisa azul e jaleco gasto. Criou o
+protocolo inicial e continuou trabalhando depois da militarização. Sua culpa não apaga sua
+responsabilidade. Quer corrigir o sinal, mas precisa entregar arquivos e reconhecer danos.
+Pode ajudar a cura mesmo afastado do comando clínico; seu conhecimento é preservado
+em registros.
+Comandante Vale · ordem como justificativa
+Militar de voz controlada, uniforme escuro sem insígnias reais. Viu um teste de
+desligamento causar mortes e acredita que o controle é a única contenção possível. O
+risco é real; sua conclusão autoritária não é inevitável. Quer impedir colapso nacional.
+Recusa alternativas quando ameaçam seu poder e usa resistentes como material de
+pesquisa.
+Três conflitos que sustentam a campanha
+Caio e Samuel: ajuda não compra perdão. Lia e Helena: divulgar um arquivo pode
+revelar a localização do abrigo. Vale e Caio: uma pessoa não deve virar equipamento
+para salvar as outras. As divergências aparecem em ações e custos, não apenas em
+discursos.
+Idades exatas, origem familiar e caracterização final são decisões editoriais abertas. Antes da animação de Libras,
+contratar ou consultar pessoas fluentes e revisar sinais, contexto e expressões faciais. Gestos inventados não devem
+ser rotulados como Libras.
+
+
+=== PAGINA 9 ===
+DOCUMENTO MESTRE / V4.0
+Prólogo: O Primeiro Experimento
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+09
+Encenação · doze anos antes
+A câmera mostra uma sala clínica pequena. Uma criança gira uma peça de plástico entre
+os dedos. Um profissional oferece papel e pergunta se ela quer continuar. Antes que a
+resposta seja registrada, a luz vermelha acende por ordem da cabine. O espectador não
+vê o rosto inteiro da criança.
+MÉDICO 1: A resposta caiu.
+MÉDICA 2: Não deveria ter caído. Ele pediu uma pausa.
+MÉDICO 1: Aumente cinco por cento.
+MÉDICA 2: O consentimento não cobre isso.
+VOZ NA CABINE: Continuem. Precisamos de uma leitura estável.
+A criança encosta a mão no vidro. Na cabine, Samuel hesita, mas não interrompe a ordem.
+O monitor mostra um padrão incompatível com os outros testes. A peça cai. A luz
+vermelha invade o piso e a médica desconecta o eletrodo principal.
+MÉDICA 2: Pare!
+MÉDICO 1: Ele não respondeu à frequência.
+SAMUEL: Então por que o padrão está se adaptando?
+MÉDICA 2: Primeiro tirem ele daqui. Depois deem um nome ao que fizeram.
+Último plano
+Uma pasta recebe a identificação SUJEITO 07 - RESPOSTA ATÍPICA. Samuel encontra no
+chão o desenho de uma casa com uma torre riscada. Corte para chuva no vidro do
+apartamento: DOZE ANOS DEPOIS.
+Abertura-alvo: 60 a 90 segundos, pulável e reassistível. Texto e identificação são sobreposições localizáveis. Não
+apresentar o nome Caio aqui; a associação fica para o capítulo 7. Esta cena estabelece a falha ética de Samuel, não
+uma explicação completa do ECHO.
+
+
+=== PAGINA 10 ===
+CAMPANHA / CAPÍTULO 01 / DESIGN NARRATIVO
+01 · Um Dia Normal · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+10
+Função e percurso
+Dia 1, 07:12. Apartamento → escada → mercearia → rua comercial → beco → parada de
+ônibus. O jogador aprende a reconhecer interações, recursos e rotas antes do colapso. A
+duração-alvo da versão de demonstração é 15 a 25 minutos.
+Entrada
+Caio acorda com chuva, verifica o celular e procura a chave na cozinha. A torre pulsa ao
+longe. Ao sair, encontra uma vizinha com uma sacola rasgada. Ajudar recolhe objetos
+automaticamente e ensina interação sem uma missão artificial.
+Objetivo e investigação
+Levar um adaptador à mercearia e encontrar Helena no centro. A tomada queimada revela
+um primeiro padrão de oscilação; uma notícia na televisão fala de manutenção noturna. A
+mensagem de Helena altera o destino: ela não pode aparecer em público e pede que ele
+espere instruções.
+Primeiro encontro
+No beco, um homem empurra o comerciante durante uma crise. O jogador pode afastá-lo
+com um empurrão e sair ou interagir com o portão para separar os dois. O tutorial de
+combate ensina distância e recuo, sem premiar matar uma pessoa assustada.
+Puzzle e clímax
+Um portão trava com a queda de energia. A alavanca manual está indicada pelo zelador;
+não exige procurar uma chave aleatória. Após atravessar, todos na rua interrompem o
+movimento por dois segundos. Um passageiro treme no ônibus. Caio permanece
+consciente.
+Saída e aceite
+Concluir a entrega, passar pela anomalia e ler a mensagem noturna. Salvar no
+apartamento. O marcador 02:00 fica disponível. A conclusão não exige lutar nem terminar
+a tarefa opcional da vizinha.
+
+
+=== PAGINA 11 ===
+CAMPANHA / CAPÍTULO 01 / ROTEIRO
+01 · Um Dia Normal · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+11
+Apartamento
+NARRAÇÃO: 07:12. Chuva de novo.
+HELENA [mensagem]: Você passa perto do centro hoje? Preciso te mostrar uma coisa.
+CAIO [texto]: Vou. O que aconteceu?
+HELENA: Prefiro te mostrar. E não abre nada que venha do meu número sem conferir
+comigo.
+Beco
+COMERCIANTE: Ele estava comprando pão. Foi do nada.
+AGRESSOR: Sai daqui! Para com esse barulho!
+CAIO [gesto]: Mostra a palma e recua, indicando a saída.
+NARRAÇÃO: Ele está assustado. Eu também.
+Primeiro pulso
+MÃE: Não olha para a luz. Vem comigo.
+NARRAÇÃO: Todo mundo sentiu alguma coisa. Eu só vi as pessoas pararem.
+COMERCIANTE: Você está bem?
+CAIO [texto]: Estou. Isso acontece sempre?
+COMERCIANTE: Não assim.
+Gancho
+HELENA [mensagem]: Mudaram o horário. Hoje, às duas. Se a torre acender, fica longe da
+avenida.
+CAIO [texto]: Você está onde?
+HELENA: Ainda não posso dizer.
+NARRAÇÃO: Ela nunca pediu para eu esperar desse jeito.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 12 ===
+CAMPANHA / CAPÍTULO 02 / DESIGN NARRATIVO
+02 · 02:00 · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+12
+Função e percurso
+Dia 2, madrugada. Apartamento → corredor → garagem → rua lateral → posto de serviço. A
+normalidade reconhecida no capítulo anterior agora informa o perigo. Introduz ruído,
+lanterna e primeiros estados de dominação.
+Entrada
+Caio desperta com o celular vibrando às 01:58. O rádio anuncia manutenção. A energia
+cai; o jogador percebe luzes de veículos e a torre. A vizinha está presa atrás de uma porta
+emperrada, com alguém batendo no corredor.
+Objetivo
+Sair do prédio e localizar a última mensagem de Helena. O elevador não funciona; escadas
+continuam disponíveis. Investigar um quadro de manutenção mostra que o desligamento
+foi remoto, não uma falha elétrica comum.
+Escolha local
+Abrir a porta da vizinha consome tempo e uma atadura, mas ela entrega uma chave da
+passagem de serviço. Ignorá-la deixa a rota externa como alternativa obrigatoriamente
+viável. Nenhuma escolha provoca game over indireto.
+Tensão e puzzle
+Na garagem, um dominado reage ao alarme de um carro. Desligar o alarme no disjuntor
+abre um corredor seguro; arremessar uma lata cria outra rota. O tutorial mostra o alcance
+do som com indicação visual opcional.
+Saída
+Helena envia a localização de uma oficina no centro. O rádio repete frases mesmo quando
+alguém tenta falar. Alcançar o posto e recolher o mapa libera A Queda; um checkpoint
+anterior ao corredor impede repetição longa.
+
+
+=== PAGINA 13 ===
+CAMPANHA / CAPÍTULO 02 / ROTEIRO
+02 · 02:00 · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+13
+O pulso
+RÁDIO: Atenção. O procedimento de manutenção urbana será realizado durante os
+próximos minutos.
+NARRAÇÃO: Duas horas. Ela sabia.
+VIZINHA: Caio? Tem alguém no corredor. Não abre sem olhar.
+Atrás da porta
+CAIO [texto, mostrado pelo vão]: Vai para o banheiro. Vou abrir uma passagem.
+VIZINHA: Você vai voltar?
+CAIO [gesto]: Acena afirmativamente antes de sair.
+DOMINADO: Não... chega... perto...
+A mensagem
+HELENA: Você viu a torre?
+CAIO [texto]: Vi. O que é aquilo?
+HELENA: Acho que descobri onde controlam isso.
+CAIO [texto]: As pessoas estão se machucando.
+HELENA: Oficina da Rua do Mercado. Entrada dos fundos.
+Encerramento
+RÁDIO: A situação permanece sob controle. A situação permanece sob controle.
+NARRAÇÃO: A mesma frase. Mesmo quando alguém pede ajuda.
+CAIO [texto, mensagem não enviada]: Estou indo.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 14 ===
+CAMPANHA / CAPÍTULO 03 / DESIGN NARRATIVO
+03 · A Queda · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+14
+Função e percurso
+Madrugada até amanhecer. Rua comercial → terminal de ônibus → oficina → passarela. O
+objetivo é encontrar Helena, não limpar a cidade. Introduz patrulhas e cruzamentos com
+rotas alternativas.
+Entrada
+A loja visitada antes está vazia, com pão ainda no balcão. Um ônibus bloqueia a avenida.
+O motorista reconhece Caio, mas não lembra como chegou ali. A cidade não muda toda de
+uma vez: existem pessoas em latência, feridas e conscientes.
+Objetivo e pista
+Recuperar Helena da oficina. Ela levou um gravador de potência e está cercada por
+moradores alterados. No terminal, um recibo digital vincula o pulso a um contrato estatal.
+Helena pode afirmar suspeita, mas a prova completa só chega no hospital e na capital.
+Puzzle
+A passarela tem uma porta elétrica sem energia. Restaurar um circuito alimenta também
+um alto-falante, atraindo inimigos. O jogador deve desligar o amplificador antes de fechar
+o circuito. Um esquema físico legível ensina causa e consequência.
+Clímax
+Ao sair da oficina, Helena deixa cair a câmera. É possível recuperar o cartão de memória
+num desvio curto, ou conservar suprimentos pela rota direta. A evidência principal tem
+cópia em outro lugar; o cartão acrescenta documentação pública e uma cena posterior.
+Saída
+O grupo observa veículos militares bloqueando o viaduto. Um mapa de pontos médicos
+aponta o hospital, mas a quarentena impede acesso direto. Concluir a travessia e falar
+com Helena abre o capítulo 4.
+
+
+=== PAGINA 15 ===
+CAMPANHA / CAPÍTULO 03 / ROTEIRO
+03 · A Queda · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+15
+A oficina
+HELENA: Achei que você não chegaria.
+CAIO [texto]: Achei que você ia me explicar antes.
+HELENA: Eu precisava de uma prova.
+CAIO [texto]: Eu precisava saber onde você estava.
+A hipótese
+HELENA: Não foi um acidente. Alguém aumentou a potência.
+CAIO [texto]: Quem?
+HELENA: O governo. Ou alguém usando a rede dele. Tenho um contrato, mas falta a ordem
+de transmissão.
+CAIO [texto]: Então vamos achar a ordem.
+O motorista
+MOTORISTA: Eu estava no ponto. Depois já estava aqui.
+HELENA: Você lembra de uma luz?
+MOTORISTA: Lembro de querer abrir a porta. Minha mão não abriu.
+NARRAÇÃO: Ele descreve uma prisão que ninguém consegue ver.
+A travessia
+HELENA: O cartão tem o vídeo do primeiro pulso. Não vale a sua vida.
+CAIO [texto]: Você faria o mesmo por mim?
+HELENA: Eu devia ter feito antes.
+NARRAÇÃO: No viaduto, a cidade termina em uma fila de escudos.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 16 ===
+CAMPANHA / CAPÍTULO 04 / DESIGN NARRATIVO
+04 · Quarentena · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+16
+Função e percurso
+Amanhecer. Viaduto bloqueado → praça de triagem → galeria de drenagem → acesso ao
+hospital. A ameaça passa a ter organização humana. Introduz visão de patrulhas e
+abordagem sem combate.
+Objetivo
+Atravessar o cordão para buscar atendimento e documentos no hospital. Um soldado
+jovem, Reis, opera a triagem. Ele cumpre a ordem de impedir saída, mas conhece uma
+passagem de entrada para equipes médicas.
+Investigação
+Na praça, resistentes são separados dos moradores sintomáticos. Um formulário autoriza
+transporte sem indicação de destino. A folha contém o mesmo número de projeto do
+recibo de Helena. Caio pode fotografá-la sem expor os pacientes.
+Escolha e custo
+Ajudar um ferido na triagem gasta um recurso e faz Reis fornecer o código da galeria.
+Recusar não fecha a missão: o jogador usa a rota de manutenção com um puzzle mais
+longo. O resultado influencia a confiança de Reis no capítulo 8.
+Puzzle e encontro
+Na drenagem, abrir comportas na ordem indicada pelo nível da água permite passagem. O
+inimigo principal é ambiental: correnteza e portas. Um dominado encurralado pode ser
+evitado por um corredor alto; não há hordas obrigatórias em espaço estreito.
+Clímax e saída
+Uma ordem de rádio manda recolher todos os resistentes. Reis vê Caio não reagir ao pulso
+e escolhe não denunciá-lo. A chegada à ala de serviço do hospital encerra a fase. O acesso
+à galeria fica registrado no save.
+
+
+=== PAGINA 17 ===
+CAMPANHA / CAPÍTULO 04 / ROTEIRO
+04 · Quarentena · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+17
+A barreira
+SOLDADO: Área interditada. Volte agora.
+CAIO [texto]: Tem pessoas lá dentro.
+SOLDADO: Não podemos deixar ninguém sair.
+HELENA: Então por que os ônibus estão entrando vazios?
+A triagem
+REIS: Eu não assinei os destinos. Só recebo os nomes.
+CAIO [texto]: Você leu o formulário?
+REIS: Li. Esse é o problema.
+HELENA: Não precisamos do seu nome. Precisamos abrir uma passagem.
+A escolha
+FERIDO: Minha filha está no hospital. Só quero saber se ela chegou.
+CAIO [texto]: Como ela se chama?
+REIS: Se ajudarem aqui, eu consigo dois minutos sem a câmera da galeria.
+NARRAÇÃO: Uma ordem ainda deixa espaço para uma pessoa decidir.
+Última ordem
+RÁDIO MILITAR: Resistentes devem ser encaminhados ao centro logístico. Sem exceções.
+REIS: Vocês não passaram por aqui.
+CAIO [gesto]: Duas batidas no próprio peito, depois aponta para ele.
+HELENA: Obrigada. Vamos lembrar disso.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 18 ===
+CAMPANHA / CAPÍTULO 05 / DESIGN NARRATIVO
+05 · O Hospital · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+18
+Função e percurso
+Manhã. Recepção → emergência → enfermaria → arquivo → subsolo. Hospital ocupado, não
+abandonado sem explicação. Equipes improvisadas atendem enquanto o sistema de
+alto-falantes agrava crises.
+Objetivo
+Encontrar a ordem de transmissão e a origem dos experimentos. Samuel tenta transferir
+pacientes para uma sala blindada. Helena quer os arquivos; Caio precisa decidir como
+dividir o tempo entre ajuda imediata e prova.
+Puzzle principal
+Restaurar energia da sala de arquivos sem religar a rede de estímulo. Dois circuitos
+identificados por símbolo e nome, não apenas cor. O esquema mostra uma ponte
+indevida. Retirar essa ponte antes de ativar o gerador resolve o problema sem
+adivinhação.
+Evidências
+Um relatório liga a ampliação de potência a uma autorização assinada; outro registra
+efeitos adversos em crianças. Samuel reconhece uma cicatriz de Caio, mas não declara
+sua identidade sem consultar o arquivo. O jogador nota a hesitação.
+Clímax
+O pulso automático começa antes da evacuação terminar. Caio pode conduzir um
+paciente consciente pelo corredor ou garantir cópia do protocolo clínico. Ambas as ações
+têm caminhos de recuperação posteriores, mas a ajuda imediata muda a ocupação do
+abrigo.
+Saída e consequência
+Samuel acompanha o grupo até uma escola em zona de sinal fraco. A ordem de
+transmissão e o protocolo são adicionados ao diário quando obtidos. O capítulo termina
+com o hospital apagando os alto-falantes, não com uma vitória sobre todos os pacientes.
+
+
+=== PAGINA 19 ===
+CAMPANHA / CAPÍTULO 05 / ROTEIRO
+05 · O Hospital · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+19
+Encontro
+DR. SAMUEL: Você não deveria estar aqui.
+CAIO [texto]: O que vocês fizeram?
+DR. SAMUEL: Tentamos controlar uma doença. Depois perceberam que também dava para
+controlar pessoas.
+HELENA: Quem percebeu? E quando você decidiu continuar?
+A responsabilidade
+SAMUEL: Eu achei que, ficando, conseguiria limitar os danos.
+CAIO [texto]: Limitou?
+SAMUEL: Não o suficiente.
+HELENA: Então entregue os registros. Não só a sua versão.
+O paciente
+PACIENTE: Quando a voz manda, parece que a ideia é minha. Depois eu lembro que não
+era.
+CAIO [texto]: Vou desligar a caixa. Você consegue esperar?
+PACIENTE: Consigo tentar.
+NARRAÇÃO: Tentar já é uma resposta.
+A saída
+SAMUEL: Há uma escola fora do feixe principal. Lia está recebendo gente lá.
+CAIO [texto]: Por que você olhou para minha mão?
+SAMUEL: Porque acho que conheço esse exame. Preciso confirmar.
+CAIO [texto]: Quando confirmar, não esconda de novo.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 20 ===
+CAMPANHA / CAPÍTULO 06 / DESIGN NARRATIVO
+06 · Os Sobreviventes · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+20
+Função e percurso
+Tarde. Escola → pátio → telhado → depósito → abrigo. O ritmo diminui para construir
+relações, mas um problema concreto impede que a fase seja apenas exposição.
+Entrada
+Lia organiza uma fila de água. Ela pergunta a Caio como prefere conversar e percebe seus
+sinais. Não presume surdez nem transforma Libras em habilidade desbloqueada: a
+descoberta é encontrar alguém que compartilha sua língua.
+Objetivo
+Restabelecer a antena local sem repetir a transmissão da torre, distribuir dois recursos
+essenciais e preparar uma saída ao laboratório. O jogador escolhe tarefas em ordem livre;
+NPCs assumem o que não pode ser concluído.
+Puzzle
+A antena de emergência recebe mas também retransmite um pacote automático.
+Desconectar o retorno e manter o receptor alimentado permite ouvir a ferrovia técnica. O
+padrão gráfico de Percepção ajuda a identificar o cabo, com alternativa por leitura de um
+manual.
+Conflito
+Helena quer enviar a prova com localização; Lia recusa revelar o abrigo. O jogador escolhe
+redigir uma mensagem sem coordenadas ou deixar a denúncia para depois. Envio seguro
+preserva confiança e aumenta a repercussão no epílogo.
+Saída
+Samuel confirma que os protocolos completos estão no laboratório. Lia acompanha a
+expedição depois de delegar o abrigo a uma moradora. O grupo parte com um canal de
+rádio e uma rota de retorno, ambos sujeitos às falhas já estabelecidas.
+
+
+=== PAGINA 21 ===
+CAMPANHA / CAPÍTULO 06 / ROTEIRO
+06 · Os Sobreviventes · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+21
+Primeiro contato
+LIA: Prefere escrever ou conversar em Libras?
+CAIO [Libras]: Libras. Se você puder.
+LIA: Posso. Se eu não entender um sinal, você me corrige.
+CAIO [Libras]: Combinado.
+NARRAÇÃO: Pela primeira vez hoje, não preciso olhar para uma bateria.
+O abrigo
+LIA: Eu não posso prometer que ninguém vai morrer. Posso prometer que ninguém vai
+virar número aqui.
+SAMUEL: Preciso dos registros para ajudar.
+LIA: E eu preciso que as pessoas decidam se querem sua ajuda.
+A denúncia
+HELENA: Se ninguém souber que estamos vivos, eles podem apagar tudo.
+LIA: Se souberem exatamente onde estamos, podem nos recolher.
+CAIO [texto]: A prova pode sair. O endereço fica.
+HELENA: Certo. Vamos cortar os metadados também.
+A partida
+LIA [Libras]: Você quer ir ou acha que tem obrigação?
+CAIO [Libras]: Quero saber o que fizeram. Não quero fazer isso sozinho.
+LIA [Libras]: Então vamos juntos.
+SAMUEL: O laboratório fica sob a ala antiga. Eu conheço a entrada.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 22 ===
+CAMPANHA / CAPÍTULO 07 / DESIGN NARRATIVO
+07 · Projeto ECHO · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+22
+Função e percurso
+Noite. Ala antiga → laboratório → arquivo infantil → cabine de testes → saída de serviço. É a
+virada pessoal: o jogador conecta pistas já vistas, sem receber uma amnésia inventada no
+último momento.
+Objetivo
+Recuperar o protocolo de calibração e confirmar a identidade de Caio. O acesso exige
+combinar o código do hospital com a data de um teste registrada na pasta de Samuel; os
+números permanecem no diário.
+Revelação
+A ficha do Sujeito 07 contém o desenho da casa visto no prólogo. Caio reconhece o gesto
+de rasgar uma torre do papel. O relatório descreve adaptação, mas não comprova que ela
+explique todas as memórias ausentes. Samuel admite que esteve na cabine.
+Puzzle de Percepção
+Três emissores têm padrões diferentes. O jogador compara diagramas e desativa o
+emissor coercitivo para abrir a sala. Não precisa expor Caio a um novo teste. A medição
+de resistência opcional usa sensores passivos e pede consentimento.
+Escolha
+Compartilhar a leitura com Samuel abre um atalho da pesquisa. Recusar mantém agência
+e permite obter dados equivalentes do arquivo dos outros resistentes no capítulo 8. A cura
+não é uma recompensa por obedecer ao médico.
+Clímax e saída
+Uma equipe chega para retirar registros. O grupo pode escapar pelo corredor ou preservar
+os arquivos de participantes antes de sair. O alarme chama um guardião alterado; fechar
+portas e usar a geometria evita um combate obrigatório.
+
+
+=== PAGINA 23 ===
+CAMPANHA / CAPÍTULO 07 / ROTEIRO
+07 · Projeto ECHO · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+23
+O arquivo
+SAMUEL: Sujeito 07... é você.
+CAIO [texto]: Eu estive aqui?
+SAMUEL: Quando criança.
+CAIO [texto]: Você estava aqui também?
+SAMUEL: Estava. Na cabine.
+A ruptura
+CAIO [texto]: Você podia ter parado?
+SAMUEL: Podia.
+HELENA: Caio, a gente pode sair agora.
+CAIO [texto]: Eu vou terminar de ler. Depois eu decido.
+NARRAÇÃO: O desenho é meu. A assinatura é dele.
+O consentimento
+SAMUEL: Um sensor passivo pode comparar seu padrão. Sem emitir nada.
+LIA: Explique o que será guardado e quem vai receber.
+CAIO [Libras]: Se eu disser para parar, para.
+SAMUEL: Sim. E você leva a cópia.
+O alarme
+HELENA: Estão vindo apagar os arquivos.
+CAIO [texto]: Não só o meu.
+LIA [Libras]: Eu seguro a porta. Escolha o que dá para levar.
+NARRAÇÃO: Pela primeira vez, Sujeito 07 parece pequeno demais para dizer quem eu sou.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 24 ===
+CAMPANHA / CAPÍTULO 08 / DESIGN NARRATIVO
+08 · Os Prisioneiros · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+24
+Função e percurso
+Dia 3. Pátio logístico → triagem → celas → sala técnica → túnel ferroviário. O objetivo é
+resgatar resistentes e recuperar dados, sem fazer das pessoas apenas chaves da cura.
+Objetivo
+Abrir duas alas de detenção e impedir transferência. Reis, se ajudado, indica uma janela
+de manutenção. Caso contrário, a equipe encontra o cronograma em um terminal
+acessível pela lateral; a história continua.
+Puzzle
+O mecanismo das portas divide energia com o bloqueador de contenção. Cortar tudo abre
+celas mas aumenta a exposição. Sequenciar setores e mover pessoas para uma área
+segura permite uma evacuação gradual. O manual comunica o risco antes da decisão.
+Encontro com Vale
+O comandante aparece por vídeo, depois encontra o grupo atrás de vidro de segurança.
+Mostra um registro de desligamento catastrófico. O registro é real, mas recortado: omite
+que um teste de contenção separado teve êxito parcial.
+Escolha de prioridades
+Resgatar os dois setores exige gasto adicional e traz sobreviventes ao abrigo. A amostra
+de calibração de voluntários pode ser coletada depois, sem impedir a fuga. Ninguém
+precisa permanecer preso para liberar um final.
+Saída
+O túnel leva à base da torre local. Um resistente descreve a expressão NÓ ouvida nos
+testes. O arquivo de contenção, se perdido, volta como cópia na capital, com custo de um
+desvio. Estado de resgate e confiança são persistidos.
+
+
+=== PAGINA 25 ===
+CAMPANHA / CAPÍTULO 08 / ROTEIRO
+08 · Os Prisioneiros · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+25
+Os presos
+RESISTENTE: Eles perguntam se a gente ouviu a ordem. Se dizemos não, apertam mais
+forte.
+CAIO [texto]: Vamos abrir as portas. Ninguém precisa fazer teste para sair.
+LIA: Quem consegue andar ajuda quem não consegue. Sem deixar nome para trás.
+Vale
+VALE: Você não entende o que está tentando destruir.
+CAIO [texto]: Então explique.
+VALE: Se eu parar o ECHO, milhares podem morrer.
+HELENA: Se continuar assim, também. Mostre o registro inteiro.
+A alternativa
+VALE: Vocês têm uma ideia. Eu tenho uma cidade para conter.
+CAIO [texto]: E pessoas em celas.
+VALE: São resistentes. São a única chance.
+CAIO [texto]: Uma chance não vira propriedade.
+O resgate
+REIS: Eu vou ficar no portão. Se perguntarem, fui eu que abri.
+LIA: Venha com a gente.
+REIS: Primeiro eles. Depois eu.
+NARRAÇÃO: Ele não pede perdão. Abre a passagem.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 26 ===
+CAMPANHA / CAPÍTULO 09 / DESIGN NARRATIVO
+09 · A Torre · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+26
+Função e percurso
+Dia 3, fim da tarde. Base → oficina elétrica → escadas técnicas → sala de portadora → topo.
+Primeiro grande confronto e primeiro teste da diferença entre interromper controle e
+cortar contenção.
+Objetivo
+Parar a transmissão coercitiva local. Helena acredita que basta destruir a torre, mas o
+arquivo de detenção mostra que os circuitos têm funções distintas. O plano é atualizado
+antes da ação; a história permite que ela se corrija.
+Puzzle
+Alinhar três relés conforme os símbolos do esquema e isolar o circuito de comando. O
+jogador vê uma prévia de quais módulos ficarão ativos. Há uma versão acessível sem
+tempo limite. Falha reinicia a tentativa, não condena a cidade sem aviso.
+Chefe: O Dominado
+Um operador fundido a uma rotina repetitiva protege os relés. Três fases: varredura de
+corredores, pulso de aproximação e sobrecarga. Os ataques são anunciados por postura,
+indicador e luz. Caio usa obstáculos e desliga relés para abrir janelas; não precisa de
+munição.
+Decisão
+Isolar o módulo preserva contenção local e parte dos registros. Sobrecarga destrutiva é
+possível após confirmação visual de risco, encerra o encontro mais cedo e compromete
+infraestrutura. Essa ação afeta custo posterior, sem determinar sozinha o final C.
+Saída
+Alguns moradores recuperam orientação; outros precisam de atendimento. Um mapa
+mostra o sinal vindo da cidade de Porto Claro. A torre era um retransmissor. O grupo
+embarca no trem técnico com a prova e uma cura ainda incompleta.
+
+
+=== PAGINA 27 ===
+CAMPANHA / CAPÍTULO 09 / ROTEIRO
+09 · A Torre · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+27
+Antes da subida
+HELENA: Se destruir a torre, a cidade deixa de receber o sinal.
+CAIO [texto]: E os infectados?
+HELENA: Alguns podem voltar. Outros não. Eu ainda não sei quantos.
+SAMUEL: Este módulo mantém outra coisa abaixo do limiar. Precisamos separar as duas
+funções.
+O operador
+DOMINADO: Manter... manter... não desligar...
+NARRAÇÃO: A mão dele procura o mesmo botão, mesmo depois de o painel quebrar.
+LIA [Libras]: Ele está preso na ordem. Abra espaço. Eu fico fora do alcance.
+O pulso cessou
+HELENA: A rua parou. Espera... eles estão se mexendo.
+PACIENTE NO RÁDIO: Quem deixou a luz acesa?
+CAIO [texto]: A gente está aqui.
+NARRAÇÃO: Uma pergunta comum parece maior que a torre.
+O mapa
+SAMUEL: Santa Aurora recebe. Não origina.
+HELENA: Porto Claro também está no contrato.
+CAIO [texto]: Então precisamos chegar à origem.
+LIA: Antes que repitam o que fizeram aqui.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 28 ===
+CAMPANHA / CAPÍTULO 10 / DESIGN NARRATIVO
+10 · A Segunda Cidade · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+28
+Função e percurso
+Dia 4, madrugada. Trem técnico → estação de Porto Claro → conjunto residencial →
+retransmissor secundário. A região é menor que Santa Aurora: demonstra expansão sem
+exigir outra cidade completa.
+Objetivo
+Obter transporte para a capital e impedir uma transmissão programada. A estação contém
+duas rotas: manutenção segura porém longa e praça curta com patrulhas. Recursos
+existentes continuam úteis; não há reset arbitrário de inventário.
+Revelação
+Porto Claro recebeu um perfil diferente do mesmo sinal. Pessoas andam sincronizadas,
+sem a agressividade aberta da primeira cidade. A ausência de violência não significa
+liberdade. Um morador descreve minutos em que seu corpo executa tarefas sem decisão.
+Puzzle
+O perfil local é protegido por sequência temporal. Percepção destaca repetições; o diário
+oferece os diagramas para comparação. Desviar o comando da estação impede o próximo
+pulso e conserva a linha ferroviária.
+Escolha
+Transmitir as provas de Santa Aurora de um terminal protegido aumenta a exposição
+pública, mas exige desligar uma câmera e permanecer mais tempo. Ir direto preserva
+recursos. A localização do abrigo nunca é anexada automaticamente.
+Clímax e saída
+Uma patrulha tenta reiniciar o perfil. Defender o painel por um período curto ou bloquear
+duas portas permite fuga. Lia recebe notícia do abrigo conforme resgates anteriores. O
+trem parte para a capital com o módulo coercitivo local desativado.
+
+
+=== PAGINA 29 ===
+CAMPANHA / CAPÍTULO 10 / ROTEIRO
+10 · A Segunda Cidade · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+29
+A estação
+RÁDIO: Estado de emergência declarado.
+LIA: Não é mais só aqui.
+CAIO [texto]: Eles estão andando juntos.
+HELENA: Não é uma evacuação. Ninguém olha para onde vai.
+O morador
+MORADOR: Eu terminei o turno. Não lembro de começar.
+CAIO [texto]: Você consegue ficar aqui comigo?
+MORADOR: Se eu sair da linha no chão, sinto que fiz alguma coisa errada.
+NARRAÇÃO: A rua está limpa. Esse é o horror.
+O abrigo
+LIA NO RÁDIO: Quantos chegaram?
+MORADORA: Os que vocês mandaram estão aqui. Precisamos de água, mas estamos
+juntos.
+LIA: Não use a antena para responder depois do próximo pulso. A gente liga quando for
+seguro.
+A capital
+HELENA: Agora tenho ordem, contrato e testemunha. Falta quem autorizou.
+SAMUEL: E o projeto completo.
+CAIO [texto]: Desta vez, sem cortar páginas.
+NARRAÇÃO: A cidade fica para trás. O sinal vai na mesma direção que nós.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 30 ===
+CAMPANHA / CAPÍTULO 11 / DESIGN NARRATIVO
+11 · A Capital · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+30
+Função e percurso
+Dia 4, manhã. Terminal técnico → arquivo administrativo → centro clínico → ponte ao
+núcleo. A escala aparece em documentos e arquitetura; evitar desenhar uma metrópole
+inteira só para uma transição.
+Objetivo
+Obter a chave do núcleo e reconstruir o protocolo de contenção separado. As provas
+anteriores abrem caminhos de investigação mais curtos. Itens essenciais ausentes têm
+cópias verificáveis no arquivo, com encontros adicionais.
+Verdade de Samuel
+A versão original era terapêutica; ele assinou a expansão com a condição de acompanhar
+os pacientes, condição ignorada. Ele também ocultou mortes por medo de perder acesso.
+Uma gravação demonstra que a separação da portadora funcionou por instantes,
+contrariando a justificativa absoluta de Vale.
+Puzzle e teste
+O grupo simula três canais em uma bancada offline: controle, portadora e
+contrafrequência. O jogador define uma configuração a partir dos documentos. Um teste
+local com voluntário e saída imediata confirma uma recuperação parcial. O consentimento
+é renovado antes de iniciar.
+Preparação de final
+Concluir calibração, conservar a matriz e registrar contenção habilita opções diferentes no
+último capítulo. A tela de preparação informa pendências de modo diegético. Não há
+pontuação moral secreta nem requisitos baseados em adivinhar escolhas de diálogo.
+Saída
+Vale oferece retirada segura em troca dos arquivos. O grupo recusa entregar identidades.
+Samuel entrega sua própria assinatura para a denúncia. A ponte ao núcleo fecha atrás de
+Caio; os aliados entram por acesso técnico com funções próprias.
+
+
+=== PAGINA 31 ===
+CAMPANHA / CAPÍTULO 11 / ROTEIRO
+11 · A Capital · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+31
+O arquivo inteiro
+SAMUEL: Eu criei a primeira versão para tratar pacientes.
+CAIO [texto]: E depois?
+SAMUEL: Eles descobriram que uma pessoa controlada era mais útil do que uma pessoa
+curada.
+HELENA: E você assinou para continuar dentro.
+SAMUEL: Assinei. Essa parte também vai para a publicação.
+A prova omitida
+LIA: Este teste separou os canais por quarenta segundos.
+SAMUEL: Eles chamaram de falha. Eu aceitei o nome.
+CAIO [texto]: Pode ser um começo.
+SAMUEL: Pode. Não posso prometer que funcione em toda a rede.
+O voluntário
+VOLUNTÁRIO: Se eu levantar a mão, vocês desligam.
+LIA: Desligamos.
+CAIO [Libras]: Eu fico onde você consegue me ver.
+VOLUNTÁRIO: Então podemos tentar.
+A oferta
+VALE: Entreguem os arquivos. Saiam vivos.
+CAIO [texto]: Sem os nomes dos presos.
+VALE: Vocês ainda acham que podem escolher as condições.
+CAIO [texto]: É exatamente isso que estamos tentando devolver.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 32 ===
+CAMPANHA / CAPÍTULO 12 / DESIGN NARRATIVO
+12 · O Último Silêncio · percurso
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+32
+Função e percurso
+Dia 4. Câmara externa → anel de servidores → ponte de comando → núcleo. Convergência
+das ferramentas aprendidas: leitura de sinal, gestão de recurso, geometria de combate e
+comunicação.
+Objetivo
+Alcançar o console e escolher uma intervenção informada. Helena prepara a divulgação,
+Lia coordena evacuação e Samuel acompanha os parâmetros. Nenhum aliado toma a
+decisão final no lugar de Caio.
+Encontro final
+Vale usa setores fechados, soldados e pulsos programados para interromper acesso. O
+confronto não exige matá-lo: cortar o canal de comando e manter distância encerra sua
+vantagem. Ele pode ser detido ou abandonado atrás de uma porta segura, mudando o
+epílogo.
+Puzzle final
+Três módulos estão fisicamente separados. O console mostra descrição, requisitos obtidos
+e riscos de cada plano. O jogador pode revisar o diário antes de confirmar. Estado de
+pesquisa torna opções disponíveis; a seleção final e a evacuação definem o desfecho.
+Momento de escolha
+Destruição controlada mantém a portadora isolada e encerra o comando. Cura transmite o
+perfil calibrado e preserva contenção. Desligamento total após remover o bloqueio é
+marcado como risco de NÓ e leva a Verdade. A ameaça distante foi prenunciada em
+registros e comportamento.
+Saída e aceite
+Salvar automaticamente antes da escolha, em slot separado. Mostrar epílogo coerente
+com resgates, denúncia e destino de Vale. Após créditos, permitir rever a decisão sem
+substituir o save de campanha. Os finais não incluem fala vocal ou cura milagrosa de Caio.
+
+
+=== PAGINA 33 ===
+CAMPANHA / CAPÍTULO 12 / ROTEIRO
+12 · O Último Silêncio · cenas e falas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+33
+O console
+VALE: Você ainda pode sair vivo.
+CAIO [texto]: E eles?
+VALE: Eles são o preço.
+CAIO [texto]: Então o preço está errado.
+A última justificativa
+VALE: Você chama de escolha porque nunca carregou milhares de mortes.
+CAIO [texto]: Você não carrega sozinho. Só decide sozinho.
+LIA NO RÁDIO: A evacuação começou. A gente precisa de tempo, não de autorização.
+HELENA: Os arquivos estão prontos. Caio, confirme o plano quando quiser.
+Sem promessas
+SAMUEL: A calibração está estável. Pode haver recaídas e pessoas que não respondam.
+CAIO [texto]: E a contenção?
+SAMUEL: Separada, se preservarmos este canal. Se cortar tudo, não sei onde o NÓ volta
+primeiro.
+NARRAÇÃO: O console não sabe quem merece viver. Ainda bem que a decisão não é dele.
+A confirmação
+LIA [Libras, presencial]: Qualquer que seja o plano, você não precisa ficar aqui sozinho.
+CAIO [Libras]: Fica onde eu possa ver você.
+HELENA: Pronta.
+CAIO [texto no console]: Confirmar intervenção.
+Direção: respeitar o tempo de resposta de Caio. Gestos e mensagens não recebem dublagem. Linhas são as cenas
+principais desta revisão; conversas incidentais e variantes deverão ser escritas na implementação.
+
+
+=== PAGINA 34 ===
+DOCUMENTO MESTRE / V4.0
+Três finais, uma decisão informada
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+34
+Final A · Destruição
+Condição: alcançar o núcleo e escolher demolição do comando com isolamento
+automático da portadora. Disponível em toda campanha; o equipamento de emergência
+do núcleo permite isolamento mesmo sem pesquisa completa. A cidade volta a ter
+autonomia, mas pacientes com dano persistente não se recuperam só com o corte. O
+custo de infraestrutura depende da decisão na torre local.
+HELENA: O sinal de comando caiu. A portadora está isolada.
+LIA: Estão pedindo ajuda por conta própria.
+NARRAÇÃO: Pela primeira vez, o silêncio não parecia uma ameaça.
+Final B · Cura
+Condição: protocolo clínico + matriz de calibração + registro de contenção + teste
+voluntário estável. Cada peça tem recuperação no capítulo 11. Selecionar
+contrafrequência com portadora preservada. Parte dos alterados recupera consciência;
+tratamento posterior continua necessário. A participação de Caio é consentida, e recusas
+anteriores não bloqueiam o final.
+LIA: Você conseguiu.
+CAIO [Libras]: A gente conseguiu.
+SAMUEL: Agora precisamos cuidar de quem voltou. E de quem ainda não voltou.
+Final C · Verdade
+Condição: encontrar e abrir o diagnóstico do NÓ, remover conscientemente o bloqueio e
+confirmar desligamento total apesar do aviso. Não acontece por falhar um puzzle ou
+deixar de achar um item. O comando cessa; uma instalação distante reativa o padrão. O
+grupo entende que existe uma rede fora do mapa conhecido.
+SAMUEL: Não... isso não deveria ter acordado.
+HELENA: Esta torre não está na rede oficial.
+NARRAÇÃO: A luz apagou aqui. Em algum lugar, alguém respondeu.
+
+
+=== PAGINA 35 ===
+DOCUMENTO MESTRE / V4.0
+Consequências e continuidade
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+35
+Flags de campanha
+resgate_predio: vizinha no abrigo, chave alternativa. ajuda_triagem: Reis facilita
+detenção. cartao_helena: prova audiovisual no epílogo. abrigo_exposto: não existe no
+envio seguro; só surge em uma futura escolha explicitamente escrita. resgate_alas:
+número de sobreviventes e falas no rádio.
+dados_clinicos, matriz_calibracao, registro_contencao, teste_estavel: habilitam
+Cura. torre_local_isolada: recursos e tempo na capital. diagnostico_no: habilita revisão
+do desligamento total. denuncia_publicada: investigação pública no epílogo.
+destino_vale: julgamento ou desaparecimento, sem mudar a função técnica do sinal.
+Regra de informação
+Toda escolha mostra a ação e o risco conhecido naquele momento. O resultado pode ser
+incerto, mas não deve depender de uma associação arbitrária entre uma frase simpática e
+um final. O diário registra evidências obtidas e oferece recapitulação antes da torre e do
+núcleo.
+Pistas recorrentes
+Casa desenhada sem torre no prólogo; reação de Samuel à mão de Caio; número 07 em
+relatório parcial; falha de relógios durante pulsos; pessoas repetindo a palavra manter;
+mapa com uma estação sem nome. Cada pista reaparece com significado novo, evitando
+que a revelação pareça improvisada.
+Epílogo variável
+Mostrar o abrigo, o atendimento dos pacientes, os arquivos tornados públicos e a
+localização de aliados. Não exigir uma morte de personagem para transmitir seriedade. Se
+uma futura revisão introduzir mortes variáveis, escrever antes os caminhos equivalentes
+para pesquisa e diálogos.
+Checagem editorial: capítulos 1–2 ensinam; 3–5 comprovam; 6 cria vínculo; 7 revela passado; 8 questiona a autoridade;
+9 testa a intervenção; 10 amplia alcance; 11 oferece alternativa; 12 exige decisão. Nenhuma fase repete apenas
+exploração → combate → revelação.
+
+
+=== PAGINA 36 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Santa Aurora · cenários isométricos
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+36
+Prancha original de seis ambientes: rua, apartamento, hospital, laboratório, abrigo e núcleo. Conceito visual; não
+representa captura de uma build.
+Direção consistente
+Câmera fixa elevada; paleta fria na cidade, âmbar no abrigo e vermelho reservado ao
+ECHO. O jogador deve identificar portas, obstáculos e pessoas mesmo em cenas escuras.
+Chuva, sombras e neblina não podem esconder a geometria necessária para sobreviver.
+
+
+=== PAGINA 37 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Elenco · referência de sprites
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+37
+Prancha conceitual: Caio, Helena, Lia, Samuel e Vale, de cima para baixo. As direções e poses geradas devem ser
+revisadas; não são frames de animação aprovados.
+Silhuetas e comunicação
+Caio: mochila e celular. Helena: bolsa e jaqueta vinho. Lia: ocre e bolsa pequena. Samuel:
+jaleco. Vale: uniforme escuro. Diferenciar também por forma e postura, para que a
+identificação não dependa só de cor. Não espelhar sinais de Libras sem validação.
+
+
+=== PAGINA 38 ===
+DOCUMENTO MESTRE / V4.0
+Especificação de arte para produção
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+38
+Câmera e escala propostas
+Perspectiva isométrica 2:1, fixa, sem rotação na primeira versão. Base de chão de 64 × 32
+pixels; personagem em célula de 64 × 96 com corpo aproximado de 48 a 64 pixels de
+altura. Usar esses valores num teste de rua antes de produzir o conjunto inteiro. Elevação
+é uma propriedade separada da posição no chão.
+Tela e importação
+Área de jogo proposta: 640 × 360, com escalas inteiras e margens quando necessário. UI
+pode ser desenhada na resolução de tela para texto legível. Filtragem nearest para pixel
+art; verificar cintilação de câmera, atlas e bordas. Zoom só em níveis compatíveis com a
+nitidez planejada.
+Interiores
+Telhados ocultos ao entrar no volume de uma sala. Paredes frontais reduzem opacidade
+quando bloqueiam Caio; paredes posteriores permanecem visíveis. Colisão não
+desaparece com o fade. Portas têm estados fechado, aberto, bloqueado e quebrado. Um
+ícone informa uma pessoa atrás de obstáculo apenas se o jogador tiver percepção
+legítima dela.
+Kit inicial de ambiente
+Chão: 12 variações, 4 pavimentos e 4 calçadas. Estrutura: 8 paredes, 4 cantos, 3 portas e
+2 janelas. Props: mesa, cadeira, balcão, cama, caixa, lixeira, poste, terminal e veículo
+estático. Efeitos: chuva, pulso, impacto e indicador de ruído. Quantidades são orçamento
+inicial ajustável.
+Coerência de cutscenes
+Usar a mesma paleta, figurino e geografia dos cenários. Preferir encenação no motor e
+retratos pixel art para conversas. Vídeos externos podem aparecer nas grandes
+revelações; devem preservar identidade e oferecer alternativa acessível em texto. Evitar
+alternar sem motivo entre personagem fotográfico e sprite cartunesco.
+
+
+=== PAGINA 39 ===
+DOCUMENTO MESTRE / V4.0
+Animações e entrega dos sprites
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+39
+Mínimo de Caio para a demonstração
+Oito direções. Idle: 2 frames; caminhada: 6; corrida: 6; empurrão: 4; impacto: 2. Total
+nominal: 160 frames se cada direção tiver quadros próprios. Agachar e interação podem
+usar poses na primeira build; adicionar ciclos completos depois. Não prometer que a
+prancha gerada já contém esses frames.
+Reações e NPCs
+Recuo leve desloca o corpo; golpe pesado derruba somente em situações definidas;
+ataque interrompe corrida quando acerta. NPCs do slice usam idle e caminhada.
+Dominado comum recebe caminhada, ataque, impacto e queda. O chefe exige animações
+próprias para telegráfos e janelas de vulnerabilidade.
+Contrato de exportação
+Arquivo sugerido: caio_walk_SE.png. Atlas por estado, com direções em ordem
+documentada N, NE, E, SE, S, SW, W, NW. Cada célula usa dimensões fixas e origem nos
+pés. Registrar duração, área visível, ponto de contato e hitbox em manifesto. Hitbox de
+ataque não deve ser confundida com colisão do corpo.
+Pipeline
+Conceito aprovado → desenho limpo em escala final → poses principais → interpolação
+manual de frames → revisão de oito direções → atlas e metadados → importação → teste
+em cenário. Se usar modelo 3D pré-renderizado no futuro, manter ângulo, iluminação e
+escala travados; não trocar pipeline a meio da campanha sem uma prova visual.
+Libras e validação
+Cenas de diálogo usam enquadramento aproximado ou painel com mãos e rosto legíveis.
+Manter tradução textual completa. Consultoria fluente valida os sinais; placeholders de
+gesto ficam claramente identificados durante produção. Comunicação significativa exige
+expressão facial e contexto, não só mãos.
+Critério de aceite: pés não deslizam em idle; direções não mudam altura; volumes não piscam entre frames; fundo e
+alpha limpos; protagonista distinguível a 1×; nenhum texto de história incorporado à arte. Referência estética não
+autoriza copiar assets de Project Zomboid ou de jogos SNES.
+
+
+=== PAGINA 40 ===
+DOCUMENTO MESTRE / V4.0
+Movimento e combate
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+40
+Controle isométrico
+Oito direções normalizadas; diagonal não é mais rápida. WASD move em direções da tela,
+com opção alternativa relativa ao mapa após teste. Mouse ou analógico direito define
+mira. Escadas e travessias são interações contextuais; salto livre de plataforma sai do
+escopo.
+Cansaço: ponto de partida
+Stamina de 100; corrida consome 18 por segundo; recuperação de 14 por segundo após 1
+segundo sem esforço. Valores são hipóteses de balanceamento. Exaustão encerra corrida,
+mas nunca remove controle. Agachar reduz velocidade e ruído; ferimentos podem alterar
+ambos com feedback claro.
+Combate como gestão de espaço
+Empurrão cria distância e custa stamina. Golpe corpo a corpo exige alcance e direção,
+com antecipação, contato e recuperação. Esquiva curta pode ser adicionada após provar
+que não trivializa os encontros. A mira mostra alvo previsto sem garantir acerto por trás
+de parede.
+Ruído e dano
+Passos, impacto, vidro e arma têm categorias de alcance. Paredes e portas modificam a
+propagação segundo regras simples. Cada ferimento reduz saúde; sangramento, se ativo,
+tem ícone, descrição e tratamento. Armas de fogo chegam depois do slice: poucas
+munições, alto ruído e função tática.
+Falha justa
+Telegráfo precede ataque; inimigo fora da tela não causa dano imediato sem aviso. A
+morte retorna ao checkpoint com os recursos registrados ali. Diálogos e cinematics vistos
+podem ser pulados. Dificuldade ajusta pressão e dano, não remove pistas necessárias.
+Aceite: colisão funciona em portas e cantos; não atravessar pessoas em diálogo; mover-se com controle e teclado
+produz a mesma velocidade; ataques não acertam através de obstáculo; recuperação de stamina não trava em
+transições.
+
+
+=== PAGINA 41 ===
+DOCUMENTO MESTRE / V4.0
+Percepção e investigação
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+41
+Mecânica exclusiva
+Caio sustenta a Percepção para destacar interferências do ECHO no ambiente próximo. O
+efeito revela padrões em aparelhos, sequência de pulsos e sinais de uma pessoa entrando
+em latência. Não mostra todos os inimigos através de paredes, não lê pensamentos e não
+resolve enigmas sozinho.
+Recurso proposto
+Carga de atenção de 100. Uso consome 25 por segundo; recarga após 3 segundos sem
+ativação. Sobreuso encerra o efeito com distorção leve e sem perda de controle. Permitir
+opção de alternar em vez de segurar. Todos esses valores ficam configuráveis até testes.
+Três aplicações
+Exploração: seguir uma interferência até um equipamento. Encontro: perceber o
+momento antes de um pulso. Puzzle: comparar padrões já registrados. O jogador ainda
+decide a ação. Não há objetos comuns magicamente visíveis só por resistência neural.
+Pistas e diário
+Cada evidência possui ID, origem, texto localizável, tags e fatos desbloqueados. O diário
+separa observação de hipótese. Exemplo: observação = pulso às 02:00; hipótese =
+manutenção foi deliberada. Obter uma prova não exige ler todas as páginas; UI registra
+aquisição e oferece leitura posterior.
+Alternativas acessíveis
+Padrões têm forma, símbolo e legenda. Uma leitura textual informa frequência relativa,
+direção e repetição, sem obrigar distinguir tons ou flashes. Puzzles críticos podem usar
+documentos como alternativa. Reduzir efeitos visuais não reduz informação nem penaliza
+pontuação.
+Critério de sucesso
+Uma pessoa entende o padrão após observar, testar e receber resposta consistente. Se só
+é possível resolver decorando uma sequência sem contexto, redesenhar a pista.
+Percepção deve ajudar a interpretar o mundo, e não funcionar como botão de missão
+pronta.
+
+
+=== PAGINA 42 ===
+DOCUMENTO MESTRE / V4.0
+Inventário, recursos e progressão
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+42
+Inventário pequeno
+Oito slots de recursos no início, proposta a testar. Itens de missão e documentos usam
+espaço separado. Ataduras, baterias e munição podem empilhar com limites claros; dois
+atalhos oferecem uso rápido. Itens indispensáveis não podem ser vendidos, descartados
+ou perdidos sem rota de reposição.
+Sobrevivência leve
+Saúde, stamina e atenção são os recursos principais. Água e comida recuperam esforço
+em pontos definidos, sem medidores contínuos de fome e sede. Abrigos têm uma caixa
+persistente; o jogador não precisa retornar por longas ruas vazias para guardar uma única
+evidência.
+Progressão por aprendizado
+Novas ferramentas abrem opções: lanterna, distração sonora, mapa técnico e acesso a
+terminais. Evitar árvore extensa de níveis. Uma melhoria permanente de mochila pode ser
+recompensa de exploração, sem bloquear a história. A resistência de Caio continua
+limitada e não vira imunidade de combate.
+Loot autoral
+Distribuir recursos de acordo com um orçamento por trecho. Quem escolhe uma rota
+furtiva precisa de menos tratamento; quem investiga encontra alternativas. Sorte pode
+variar itens secundários, mas nunca a única bateria necessária para abrir a porta principal.
+Economia e testes
+Registrar recursos ao entrar e sair de cada encontro. Testar a rota com inventário mínimo
+plausível, não apenas com personagem abastecido. Se uma pessoa fica presa sem cura ou
+munição, adicionar saída alternativa, recurso garantido ou checkpoint anterior com
+espaço para mudar de plano.
+No slice: uma atadura, uma bateria e uma lata de distração bastam para validar coleta, uso e persistência. Crafting,
+degradação de armas e peso físico completo só entram se uma hipótese clara de experiência justificar o custo.
+
+
+=== PAGINA 43 ===
+DOCUMENTO MESTRE / V4.0
+Inimigos e encontros memoráveis
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+43
+Morador em latência
+Não hostil por padrão. Repete gesto, evita luz ou pede distância. Pode ser ajudado. Serve
+para antecipar o perigo e demonstrar que nem toda pessoa alterada deve ser atacada. A
+interação nunca exige aproximar-se sem feedback.
+Dominado comum
+Ouve ruído, investiga origem, persegue após contato visual e perde o alvo quando a rota é
+interrompida. Ataque curto anunciado por recuo do ombro. Fraqueza: portas, distrações e
+empurrão bem temporizado. Preservar fragmentos de fala humana sem transformar toda
+aproximação em jumpscare.
+Repetidor
+Mantém uma ação programada, como bater numa porta ou operar uma alavanca. O perigo
+está no padrão e na região de impacto. Desligar a fonte ou sincronizar passagem permite
+evitar confronto. Aparece no hospital e laboratório como variação, não como novo
+conjunto de centenas de sprites.
+Soldado
+Patrulha por pontos, comunica detecção e tenta bloquear saída. Alguns cumprem ordens
+sem dominação. Pode dialogar ou render-se se perder o canal. Cones de visão e cobertura
+precisam corresponder ao que a câmera mostra.
+Chefe O Dominado
+Arena da torre com circuito, pilares e três relés. Fase 1 ensina varredura; fase 2 combina
+pulso com movimento; fase 3 oferece isolamento ou sobrecarga. Cada fase reutiliza uma
+regra do cenário. Vitória reconhece desligamento dos relés, não apenas reduzir uma barra
+de vida.
+Orçamento da demonstração
+Um agressor consciente, dois dominados com o mesmo conjunto de arte e NPCs de rotina.
+Sem chefe no primeiro slice. Limite inicial de 8 inimigos ativos em área de teste; aumentar
+somente após medir desempenho. IA fora da região carregada não precisa simular uma
+cidade inteira.
+
+
+=== PAGINA 44 ===
+DOCUMENTO MESTRE / V4.0
+Interface, áudio e acessibilidade
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+44
+Menu e HUD
+Novo Jogo, Continuar, Carregar, Configurações e Créditos. Fundo com chuva e torre, sem
+excesso de movimento. HUD compacto: saúde, esforço quando consumido, atenção e dois
+itens rápidos. Objetivo em uma linha consultável; mapa mostra regiões e pistas
+conhecidas, não inimigos invisíveis.
+Diálogo
+Nome, retrato, modalidade e texto. Ícones distinguem celular, escrita e Libras,
+acompanhados de rótulo textual. Caio nunca usa voice=true. O jogador avança a fala; em
+perigo real o diálogo oferece pausa segura ou encenação curta, sem exigir ler um
+parágrafo enquanto sofre dano.
+Áudio como narrativa
+Chuva e motores estabelecem rotina. O ECHO tem pulso identificável sem volume
+agressivo. Ruídos perigosos recebem legenda direcional opcional. Caio não recebe voz
+vocal de diálogo; esforço pode ser comunicado por animação e efeitos ambientais. Não
+exigir audição para puzzle ou alerta.
+Acessibilidade desde o slice
+Remapeamento, legendas com tamanho ajustável, velocidade do texto, modo sem
+flashes, redução de tremor de câmera, alto contraste de interações, alternar/segurar
+ações e assistência de mira. Indicadores de ameaça usam forma além de cor. Mostrar
+previsão antes de efeito intenso e oferecer opções no primeiro início.
+Localização
+Texto externo em PT-BR primeiro. Idiomas futuros só aparecem como disponíveis quando
+implementados. Não embutir nomes de itens, falas e instruções nos backgrounds. Capa
+promocional pode ter título; a arte de menu deve ter versão sem texto para sobreposição.
+A voz de NPCs é opcional no orçamento inicial; todas as falas continuam legendadas. Libras não substitui legendas e não
+deve ser tratada como mero efeito visual. Testar UI em monitor pequeno e com controle antes de fixar tamanhos.
+
+
+=== PAGINA 45 ===
+DOCUMENTO MESTRE / V4.0
+Arquitetura proposta na Godot
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+45
+Base técnica
+Usar Godot 4 com uma versão estável travada ao iniciar o projeto. Separar chão,
+elementos altos e volumes de interior. TileMapLayer e ordenação por Y podem compor o
+mapa isométrico; a origem nos pés deve ser coerente entre atores e props. A revisão
+técnica consultou documentação 4.6, sem assumir migração automática.
+Pastas e responsabilidade
+scenes/world: regiões e portas. scenes/actors: Caio, NPCs e inimigos. systems:
+diálogo, inventário, quests e persistência. data: capítulos, itens e encontros.
+localization: strings. art: atlas e retratos. audio: efeitos e música. tests: verificações de
+dados e rotas.
+Contratos
+Quest entrega um evento de conclusão; mapa altera LOCKED → AVAILABLE →
+COMPLETED. Diálogo envia speaker_id, text_key, portrait_id e communication.
+communication aceita text, sign, gesture ou speech. O validador rejeita speech para CAIO.
+Cenas não guardam cópias divergentes das flags.
+Save e checkpoints
+JSON ou recurso serializado com schema_version, capítulo, checkpoint_id, flags,
+inventário, diário e configurações. Gravar em arquivo temporário, validar e substituir a
+versão anterior; manter backup. Estado do mundo referencia IDs estáveis. Conteúdo novo
+exige migração ou aviso de incompatibilidade.
+Estados e cinematics
+Ator: idle, move, sprint, interact, attack, hurt e disabled. Separar bloqueio de input de
+invulnerabilidade. Cutscene entra por evento, pode ser pulada e aplica o estado final
+exatamente uma vez. Recarregar após cinematic não duplica itens nem libera a fase
+errada.
+Referências técnicas: docs.godotengine.org/en/4.6/classes/class_tilemaplayer.html e
+docs.godotengine.org/en/4.5/tutorials/2d/using_tilemaps.html. Uso previsto para ordenação e composição, não garantia
+de solução automática de oclusão ou navegação.
+
+
+=== PAGINA 46 ===
+DOCUMENTO MESTRE / V4.0
+Demonstração: o primeiro slice
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+46
+Entrega concreta
+Menu funcional → prólogo pulável → mapa → apartamento às 07:12 → rua → encontro no
+beco → primeiro pulso → ônibus → retorno ao apartamento → save → capítulo 02
+disponível. Uma seção vertical pequena deve representar o produto inteiro, incluindo
+apresentação e persistência.
+O que entra
+Caio em oito direções, caminhada e corrida, interação, diálogo com celular, empurrão, um
+recurso de tratamento, stamina, primeira leitura de Percepção, dois interiores simples, um
+trecho de rua e checkpoint. Abertura pode usar imagens estáticas animadas, sem
+depender de vídeo caro.
+O que fica para depois
+Armas de fogo, chefe, sinalização completa de Libras, cidade adicional, resgates variáveis
+extensos e sistema de contrafrequência. A estrutura de dados pode prever esses recursos
+sem implementá-los antes de a movimentação e a câmera funcionarem.
+Portão de qualidade
+Uma pessoa chega ao final sem instrução externa; entende que Caio não usa voz; percebe
+a diferença entre agressor e dominado; identifica a torre como pista; salva, fecha e
+continua sem perder o estado. A apresentação isométrica mantém portas e ameaças
+visíveis.
+Medição
+Registrar tempo por trecho, mortes, recursos usados e interações ignoradas. Fazer sessão
+com 3 a 5 pessoas, perguntando o que compreenderam antes de explicar o roteiro. Se o
+início parecer longo, reduzir deslocamento vazio, não apagar as pessoas que tornam o
+colapso significativo.
+Demonstração não precisa provar todas as 12 fases. Precisa provar câmera, controle, atmosfera, comunicação e ritmo.
+Só expandir capítulos depois de resolver os problemas estruturais observados aqui.
+
+
+=== PAGINA 47 ===
+DOCUMENTO MESTRE / V4.0
+Plano de produção e critérios de aceite
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+47
+Etapa 1 · prova isométrica
+Rua cinza, ator, uma sala, porta e parede com fade. Aceite: câmera sem cintilação, origem
+dos pés consistente, ordenação correta e colisão sem atravessamento. Resolver
+geometria antes de encomendar todos os sprites.
+Etapa 2 · núcleo jogável
+Movimento, interação, diálogo, inventário mínimo, empurrão, ruído e save. Aceite:
+completar um encontro por combate e por desvio; reabrir o jogo preserva flags e itens;
+Caio não recebe voz por erro de dados.
+Etapa 3 · Fase 01 completa
+Arte de slice, som, abertura, tutorial e primeira anomalia. Aceite: rota de 15 a 25 minutos
+após testes, legibilidade com modos acessíveis, menu e continuar funcionando. Congelar o
+conjunto de assets antes de polimento final.
+Etapa 4 · campanha em blocos
+Primeiro capítulos 2–5; depois 6–9; por fim 10–12 e epílogos. Cada bloco deve ter roteiro,
+layout cinza e flags testados antes de arte final. Não preencher todas as cenas com assets
+definitivos enquanto a continuidade ainda muda.
+Testes indispensáveis
+Dados: IDs e referências válidos, nenhuma fala vocal de Caio, caminhos para todos os
+finais. Integração: morte, checkpoint, salto de cinematic e load. Visual: oclusão, direções,
+contraste e UI. Narrativa: nenhuma evidência essencial irreversivelmente perdida; Cura
+acessível após recusa do sensor.
+Principal risco
+A produção de oito direções e ambientes isométricos pode crescer rápido. Usar um kit
+modular, um conjunto pequeno de inimigos e poucos interiores únicos por capítulo. Tempo
+e orçamento devem ser estimados depois da primeira rua finalizada, usando horas reais
+por asset, não promessa de IA.
+
+
+=== PAGINA 48 ===
+DOCUMENTO MESTRE / V4.0
+Referências, autoria e próxima decisão
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+48
+Fonte narrativa
+SILÊNCIO - História Completa, Fases e Diálogos, versão 1.0, PDF de 22 páginas fornecido
+pelo usuário. Esta versão mantém o núcleo e substitui os resumos repetidos por percursos
+e cenas principais. Expansões de trama e sistemas estão identificadas como propostas V2.
+Referência visual solicitada
+Project Zomboid: câmera e leitura espacial de survival isométrico. Materiais oficiais
+consultados: projectzomboid.com/blog/news/2023/02/play-your-cardz-right/ e
+projectzomboid.com/blog/news/2014/01/body-movin/. O projeto mistura técnicas 2D e 3D;
+SILÊNCIO propõe seu próprio pipeline de sprites.
+Artes deste documento
+Capa, seis cenários e prancha do elenco foram gerados por IA para o projeto. A direção
+pede chuva, cidade brasileira, torre vermelha, Caio com jaqueta grafite e mochila oliva,
+ambientes isométricos e silhuetas distintas. As imagens não foram extraídas de Project
+Zomboid.
+Limites da entrega
+As falas principais e o percurso dos 12 capítulos estão escritos. Variantes de reação,
+conversas incidentais, mapas em escala e dados executáveis serão produzidos por bloco.
+Sprites ilustrados não substituem atlas animados testados. O PDF não promete
+desempenho ou duração sem protótipo.
+Decisões para o início da implementação
+Aprovar a prova visual 2D com câmera fixa; manter a sobrevivência leve; validar
+aparência dos personagens; revisar a separação entre controle e contenção no roteiro;
+produzir a rua do slice. Se escolher uma estética de modelos 3D renderizados em tempo
+real, revisar o orçamento antes de criar todos os assets.
+Versão 3.0 • 12/10/2026. Registro editorial: direção lateral removida; perspectiva isométrica definida; comunicação de
+Caio preservada; conflitos ampliados; fins informados e não punitivos; arquitetura e testes acrescentados. Documento
+preparado para orientar desenvolvimento incremental.
+
+
+=== PAGINA 49 ===
+DOCUMENTO MESTRE / V4.0
+V3: um catálogo para construir
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+49
+Pedido consolidado
+Cada identidade tem ficha própria, sprite conceitual, variação de equipamento permitida e
+retratos de diálogo. O catálogo cobre protagonistas, aliados, NPCs, antagonistas, inimigos
+alterados, um chefe-monstro, animais, veículos, itens e mecanismos. O final mostra a Fase
+01 em ações ilustradas.
+O que significa não repetir
+Uma pessoa usa um ID ao longo de toda a história. Mudança de arma, ferimento,
+uniforme, idade em flashback ou expressão não cria outra pessoa. Caio criança é
+CHR_CAIO com age_state=child; Samuel jovem é CHR_SAMUEL com age_state=young.
+Não existem gêmeos na história desta versão.
+Nomes dos papéis menores
+Vizinha vira Dona Inês; comerciante vira Orlando; agressor vira Davi; mãe da rua vira
+Marina; motorista vira Nestor; paciente vira Teresa. O soldado da barreira é Reis, não um
+novo personagem. A nomenclatura resolve referências vagas do roteiro sem alterar as
+falas principais.
+Adições visuais assumidas
+Bia acompanha Marina; Clara é a filha adulta mencionada por Mauro; Rosa é a moradora
+do abrigo. Elisa é a mãe de Caio citada na cronologia. Animais Fubá, Breu e Pingo são
+novas cenas opcionais V3 para dar vida à rua. Hugo e Ivo recebem designs de alteração
+clínica e equipamento: o ECHO não produz mutação biológica instantânea.
+Este é um pacote de pré-produção ilustrado. Uma imagem com várias poses não contém automaticamente todos os
+quadros de animação. As páginas seguintes especificam o que deve ser desenhado, exportado e testado. As pranchas
+são referências, não uma declaração de atlas pronto.
+
+
+=== PAGINA 50 ===
+DOCUMENTO MESTRE / V4.0
+Regra de identidade e equipamento
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+50
+Contrato obrigatório para a IA
+Consultar este catálogo antes de criar uma figura. Todo personagem precisa de entity_id
+único. Toda instanciação no mapa precisa de instance_id próprio e do mesmo entity_id
+quando for a mesma pessoa. Nunca trocar o rosto entre retrato, corpo, ferimento e arma.
+Não clonar o rosto de um NPC para preencher uma multidão.
+Quem pode compartilhar um recurso
+Duas pessoas podem usar o modelo do mesmo fuzil, mas não o mesmo rosto. Portas,
+mesas e lixeiras podem ter várias instâncias porque são objetos repetíveis. Criança e
+adulto de Caio são estados temporais da mesma identidade, não clones presentes ao
+mesmo tempo. Nenhum NPC desta lista é gêmeo.
+Armas separadas do corpo
+Compor corpo + mão/socket + equipamento por estado. Para uma versão desarmada,
+remover a arma e trocar a pose da mão. Para ferido, manter o rosto e o figurino; adicionar
+faixa ou postura. No sprite final, registrar oclusão por direção para que a arma não
+atravesse torso, mochila ou parede.
+Falas e retratos
+Neutral, worried, determined e relieved são o conjunto comum de expressão. Um NPC
+específico pode precisar de afraid, tired ou angry; criar a expressão dentro da mesma
+ficha. Morto ou ausente não inicia conversa. As falas de rádio usam retrato da pessoa já
+identificada ou ícone de dispositivo para sistema.
+Pessoas sem arma
+Lia, médicos, pacientes, moradores e crianças não recebem armas só para preencher uma
+coluna. Bolsa, prancheta, brinquedo, câmera e chave são equipamentos de interação. O
+campo weapon=null é uma decisão válida e evita que a IA transforme todo civil em
+combatente.
+Prioridade em caso de contradição: regra de identidade → história preservada → catálogo V3 → storyboard → ilustração.
+Uma falha visual de uma prancha não autoriza inventar outra pessoa ou outra mecânica.
+
+
+=== PAGINA 51 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Elenco único · 01–11
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+51
+ID / nome
+Papel e origem
+Arma / objeto
+CHR_CAIO Caio
+Protagonista; texto, gestos e Libras;
+nunca voz. Capítulos: 01–12 e prólogo
+adulto base; pé de cabra; celular;
+ferido; cura; criança no prólogo
+CHR_HELENA Helena
+Jornalista; aliada; câmera e provas.
+Capítulos: 01–12
+desarmada; chave de oficina;
+câmera; diálogo
+CHR_LIA Lia
+Educadora; abrigo; Libras e primeiros
+socorros. Capítulos: 06–12
+desarmada; bolsa médica; Libras;
+assistência
+CHR_SAMUEL Dr. Samuel
+Médico; culpa e protocolo; mesmo homem
+do prólogo. Capítulos: prólogo e 05–12
+desarmado; prancheta; sensor;
+versão jovem
+CHR_VALE Comandante
+Vale
+Antagonista humano; não é O Dominado.
+Capítulos: 08 e 11–12
+desarmado; pistola; rádio;
+rendido
+CHR_REIS Reis
+Soldado da barreira; pode ajudar na fuga.
+Capítulos: 04 e 08
+desarmado; fuzil; rádio; auxílio
+CHR_INES Dona Inês
+Vizinha do prédio; sacola e resgate.
+Capítulos: 01–02, 06 e epílogo
+base; sacola; assustada; segura
+CHR_ORLANDO Orlando
+Comerciante; entrega do adaptador.
+Capítulos: 01 e 03
+base; bandeja; conversa; susto
+CHR_DAVI Davi
+Agressor do beco; crise humana, não
+monstro genérico. Capítulos: 01
+desarmado; bastão opcional;
+recuo; rendido
+CHR_MARINA Marina
+Mãe da rua; protege Bia no primeiro
+pulso. Capítulos: 01 e epílogo
+base; guarda-chuva; gesto
+protetor
+CHR_BIA Bia
+Filha de Marina; civil, sem combate ou
+dano explícito. Capítulos: 01 e epílogo
+base; brinquedo; seguir mãe
+
+
+=== PAGINA 52 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Elenco único · 12–22
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+52
+ID / nome
+Papel e origem
+Arma / objeto
+CHR_NESTOR Nestor
+Motorista do ônibus; memória
+interrompida. Capítulos: 01 e 03
+base; chaves; sentado ao volante
+CHR_TERESA Teresa
+Paciente consciente; latência recuperável.
+Capítulos: 05, 06 e rádio 09
+base; copo; sentada; aliviada
+CHR_MAURO Mauro
+Ferido da triagem; pai de Clara. Capítulos:
+04–05 e epílogo
+base; braço enfaixado; foto
+CHR_CLARA Clara
+Filha adulta de Mauro; identificação e
+reencontro. Capítulos: 05 e epílogo
+base; paciente; reencontro
+CHR_ROSA Rosa
+Moradora que assume o abrigo; voz no
+rádio. Capítulos: 06, 10 e epílogo
+base; rádio; distribuir água
+CHR_JOEL Joel
+Resistente preso; testemunha e
+voluntário de dados. Capítulos: 08 e
+epílogo
+preso; libertado; documento
+CHR_AMIN Amin
+Morador de Porto Claro; acompanha o
+grupo e é voluntário do teste na capital.
+Capítulos: 10–11
+base; sensor passivo; pedido de
+pausa
+CHR_ARTHUR Dr. Arthur
+Médico 1 e voz da cabine no prólogo.
+Capítulos: prólogo; arquivos 07
+base; prancheta; ordem
+CHR_BEATRIZ Dra.
+Beatriz
+Médica 2 que interrompe o teste.
+Capítulos: prólogo; arquivos 07
+base; eletrodo; interromper
+CHR_ELISA Elisa
+Mãe de Caio; distinta de Marina; memória.
+Capítulos: memórias do prólogo e 07
+base; desenho; gesto de
+acolhimento
+CHR_TADEU Tadeu
+Zelador; ensina alavanca manual.
+Capítulos: 01
+base; chaves; apontar alavanca
+
+
+=== PAGINA 53 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Inimigos: pessoas, não cópias
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+53
+ID / nome
+Categoria e presença
+Equipamento
+ENM_BRUNO Bruno ·
+dominado
+Dominado comum; garagem e ruas; ainda
+humano. Capítulos: 02–05
+latência; desarmado; cano;
+telegráfo; queda
+ENM_VERA Vera ·
+repetidora
+Repetidora; padrão previsível de alavanca.
+Capítulos: 05 e 07
+desarmada; malho; repetição;
+interrupção
+ENM_CELIA Célia · patrulha
+Patrulha humana; pode render-se.
+Capítulos: 04, 08 e 12
+desarmada; fuzil; bastão;
+rendida
+ENM_HUGO Hugo ·
+guardião alterado
+Mutante clínico/guardião; alterações de
+pesquisa anteriores à campanha, não
+mutação instantânea. Capítulos: 07
+contido; órtese ativada;
+avanço; sobrecarga
+BOSS_IVO Ivo · O
+Dominado
+Chefe-monstro da torre; pessoa e
+equipamento sob dominação. Capítulos: 09
+arnês inativo; ativo;
+varredura; pulso; derrota
+Bruno, Vera, Célia, Hugo e Ivo são cinco identidades diferentes. Vale é outro antagonista humano. Davi não é Bruno. O
+NÓ é um padrão de interferência: não duplicar Ivo ou criar um monstro corporal chamado NÓ sem nova revisão
+narrativa.
+
+
+=== PAGINA 54 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Caio · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+54
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_CAIO · Protagonista; texto, gestos e Libras; nunca voz. Presença: 01–12 e prólogo.
+Cabelo preto curto, jaqueta grafite, mochila oliva, jeans escuro. O celular é comunicação;
+pé de cabra só a partir do capítulo 3.
+Corpo, variações e retratos
+Estados obrigatórios: adulto base; pé de cabra; celular; ferido; cura; criança no prólogo.
+Retratos: neutro, preocupado, determinado e aliviado. Adicionar ataque, bloqueio,
+impacto e derrota; arma é camada separada.
+Caio criança pertence à memória, não é um NPC adicional. O desenho infantil nesta prancha é apenas referência de
+idade; o figurino clínico do prólogo exige arte específica. Libras: poses conceituais não são sinais validados.
+
+
+=== PAGINA 55 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Helena · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+55
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_HELENA · Jornalista; aliada; câmera e provas. Presença: 01–12. Cachos pretos
+presos, jaqueta vinho, bolsa de câmera. A câmera nunca muda para uma arma por
+conveniência visual.
+Corpo, variações e retratos
+Estados obrigatórios: desarmada; chave de oficina; câmera; diálogo. Retratos: neutro,
+preocupado, determinado e aliviado. Adicionar ataque, bloqueio, impacto e derrota; arma
+é camada separada.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 56 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Lia · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+56
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_LIA · Educadora; abrigo; Libras e primeiros socorros. Presença: 06–12. Cabelo curto
+ondulado, suéter ocre, calça azul. Bolsa médica; mãos livres para Libras.
+Corpo, variações e retratos
+Estados obrigatórios: desarmada; bolsa médica; Libras; assistência. Retratos: neutro,
+preocupado, determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou
+transformam a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 57 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Dr. Samuel · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+57
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_SAMUEL · Médico; culpa e protocolo; mesmo homem do prólogo. Presença: prólogo
+e 05–12. Grisalho, óculos retangulares, camisa azul, jaleco claro gasto. Versão jovem
+conserva estrutura facial.
+Corpo, variações e retratos
+Estados obrigatórios: desarmado; prancheta; sensor; versão jovem. Retratos: neutro,
+preocupado, determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou
+transformam a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 58 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Comandante Vale · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+58
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_VALE · Antagonista humano; não é O Dominado. Presença: 08 e 11–12. Rosto
+angular, cabelo curto, uniforme escuro. Pistola e rádio; sem insígnias reais.
+Corpo, variações e retratos
+Estados obrigatórios: desarmado; pistola; rádio; rendido. Retratos: neutro, preocupado,
+determinado e aliviado. Adicionar ataque, bloqueio, impacto e derrota; arma é camada
+separada.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 59 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Reis · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+59
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_REIS · Soldado da barreira; pode ajudar na fuga. Presença: 04 e 08. Cabeça raspada,
+uniforme oliva, braçadeira laranja. Distinguir de Vale e Célia.
+Corpo, variações e retratos
+Estados obrigatórios: desarmado; fuzil; rádio; auxílio. Retratos: neutro, preocupado,
+determinado e aliviado. Adicionar ataque, bloqueio, impacto e derrota; arma é camada
+separada.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 60 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Dona Inês · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+60
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_INES · Vizinha do prédio; sacola e resgate. Presença: 01–02, 06 e epílogo. Idosa,
+trança grisalha, cardigan turquesa, saia bege. Sacola rasgada é estado de missão.
+Corpo, variações e retratos
+Estados obrigatórios: base; sacola; assustada; segura. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 61 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Orlando · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+61
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_ORLANDO · Comerciante; entrega do adaptador. Presença: 01 e 03. Corpo robusto,
+bigode escuro, cabelo ralo, avental verde. Mercearia e bandeja de pão.
+Corpo, variações e retratos
+Estados obrigatórios: base; bandeja; conversa; susto. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 62 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Davi · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+62
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_DAVI · Agressor do beco; crise humana, não monstro genérico. Presença: 01. Magro,
+barba curta, cabelo castanho claro bagunçado, jaqueta ferrugem. Agressor não é zumbi.
+Corpo, variações e retratos
+Estados obrigatórios: desarmado; bastão opcional; recuo; rendido. Retratos: neutro,
+preocupado, determinado e aliviado. Adicionar ataque, bloqueio, impacto e derrota; arma
+é camada separada.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 63 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Marina · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+63
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_MARINA · Mãe da rua; protege Bia no primeiro pulso. Presença: 01 e epílogo. Trança
+longa escura, capa roxa, guarda-chuva azul. Mulher adulta distinta de Elisa.
+Corpo, variações e retratos
+Estados obrigatórios: base; guarda-chuva; gesto protetor. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 64 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Bia · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+64
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_BIA · Filha de Marina; civil, sem combate ou dano explícito. Presença: 01 e epílogo.
+Criança, cachos escuros, capa amarela, botas vermelhas. Não usar a figura de Caio
+criança para Bia.
+Corpo, variações e retratos
+Estados obrigatórios: base; brinquedo; seguir mãe. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 65 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Nestor · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+65
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_NESTOR · Motorista do ônibus; memória interrompida. Presença: 01 e 03. Motorista
+idoso, careca, barba branca, uniforme azul. Mesmo rosto dentro e fora do ônibus.
+Corpo, variações e retratos
+Estados obrigatórios: base; chaves; sentado ao volante. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 66 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Teresa · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+66
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_TERESA · Paciente consciente; latência recuperável. Presença: 05, 06 e rádio 09.
+Paciente adulta, cabelo grisalho curto, óculos redondos e manta lilás. Estados de latência
+e recuperação.
+Corpo, variações e retratos
+Estados obrigatórios: base; copo; sentada; aliviada. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 67 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Mauro · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+67
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_MAURO · Ferido da triagem; pai de Clara. Presença: 04–05 e epílogo. Homem alto,
+barba escura, camisa xadrez marrom, antebraço enfaixado. Pai de Clara.
+Corpo, variações e retratos
+Estados obrigatórios: base; braço enfaixado; foto. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 68 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Clara · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+68
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_CLARA · Filha adulta de Mauro; identificação e reencontro. Presença: 05 e epílogo.
+Mulher jovem adulta, cachos acobreados, jardineira jeans e pulseira hospitalar. Sem
+semelhança de gêmea com Lia.
+Corpo, variações e retratos
+Estados obrigatórios: base; paciente; reencontro. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 69 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Rosa · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+69
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_ROSA · Moradora que assume o abrigo; voz no rádio. Presença: 06, 10 e epílogo.
+Mulher de pele escura, lenço grisalho, cardigan coral. Opera rádio e coordena o abrigo.
+Corpo, variações e retratos
+Estados obrigatórios: base; rádio; distribuir água. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 70 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Joel · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+70
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_JOEL · Resistente preso; testemunha e voluntário de dados. Presença: 08 e epílogo.
+Cabelo com laterais raspadas, macacão índigo de detenção, marca de sensor no punho.
+Resistente libertado.
+Corpo, variações e retratos
+Estados obrigatórios: preso; libertado; documento. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 71 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Amin · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+71
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_AMIN · Morador de Porto Claro; acompanha o grupo e é voluntário do teste na
+capital. Presença: 10–11. Cabelo preto médio, suéter verde, óculos redondos. Sensor
+passivo só durante teste consentido.
+Corpo, variações e retratos
+Estados obrigatórios: base; sensor passivo; pedido de pausa. Retratos: neutro,
+preocupado, determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou
+transformam a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 72 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Dr. Arthur · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+72
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_ARTHUR · Médico 1 e voz da cabine no prólogo. Presença: prólogo; arquivos 07.
+Rosto fino, entradas no cabelo castanho, bigode pequeno, gravata marrom e jaleco.
+Médico 1 do prólogo.
+Corpo, variações e retratos
+Estados obrigatórios: base; prancheta; ordem. Retratos: neutro, preocupado, determinado
+e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam a pessoa em
+inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 73 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Dra. Beatriz · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+73
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_BEATRIZ · Médica 2 que interrompe o teste. Presença: prólogo; arquivos 07. Coque
+alto preto, óculos escuros retangulares, blusa turquesa e jaleco. Médica 2 do prólogo.
+Corpo, variações e retratos
+Estados obrigatórios: base; eletrodo; interromper. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 74 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Elisa · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+74
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_ELISA · Mãe de Caio; distinta de Marina; memória. Presença: memórias do prólogo e
+07. Cabelo castanho curto, cardigan creme, saia vinho. Mãe de Caio na memória; não é
+Marina.
+Corpo, variações e retratos
+Estados obrigatórios: base; desenho; gesto de acolhimento. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 75 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Tadeu · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+75
+Conceito V3: corpo sem arma, equipamento permitido, poses e retratos da mesma pessoa.
+Identidade e função
+CHR_TADEU · Zelador; ensina alavanca manual. Presença: 01. Pele escura, cabelo curto
+grisalho, colete de serviço laranja e camisa azul. Zelador das primeiras ruas.
+Corpo, variações e retratos
+Estados obrigatórios: base; chaves; apontar alavanca. Retratos: neutro, preocupado,
+determinado e aliviado. Sem arma ofensiva. Objetos não alteram o rosto ou transformam
+a pessoa em inimigo.
+Uma única identidade em todas as poses. A posição visual da prancha é referência; direções N/NE/E/SE/S/SW/W/NW
+devem ser conferidas antes de montar atlas. Nenhum ciclo de movimento está declarado completo aqui.
+
+
+=== PAGINA 76 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Bruno · dominado · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+76
+Prancha do inimigo: mesma pessoa em estados de equipamento e retratos.
+Identidade e presença
+ENM_BRUNO · Dominado comum; garagem e ruas; ainda humano. Capítulos: 02–05.
+Comportamento e combate
+Ouve → investiga → percebe → persegue → ataca → recupera. Perde alvo após quebra de
+rota e espera configurável. Cano amplia alcance; versão sem cano empurra. Telegráfo
+pelo ombro e indicação visual. Não reaparece como Davi.
+Produção: idle, move, anticipation, attack, hurt, recover, disabled; 8 direções quando móvel. Retratos só nas falas
+previstas. Mutante é classificação clínica ficcional, não uma regra médica nem poder mágico do sinal.
+
+
+=== PAGINA 77 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Vera · repetidora · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+77
+Prancha do inimigo: mesma pessoa em estados de equipamento e retratos.
+Identidade e presença
+ENM_VERA · Repetidora; padrão previsível de alavanca. Capítulos: 05 e 07.
+Comportamento e combate
+Idle → repetição → pausa → repetição; ao desligar fonte passa a confusa e não hostil.
+Malho pertence à rotina; passar durante pausa. Versão desarmada preserva compulsão do
+braço, com risco menor.
+Produção: idle, move, anticipation, attack, hurt, recover, disabled; 8 direções quando móvel. Retratos só nas falas
+previstas. Mutante é classificação clínica ficcional, não uma regra médica nem poder mágico do sinal.
+
+
+=== PAGINA 78 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Célia · patrulha · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+78
+Prancha do inimigo: mesma pessoa em estados de equipamento e retratos.
+Identidade e presença
+ENM_CELIA · Patrulha humana; pode render-se. Capítulos: 04, 08 e 12.
+Comportamento e combate
+Patrulha → suspeita → alerta → mira → avanço; rendição só fora de canal coercitivo. Fuzil
+tem ruído e linha de visão; bastão só alcance curto. Troca para desarmada não remove
+sua identidade.
+Produção: idle, move, anticipation, attack, hurt, recover, disabled; 8 direções quando móvel. Retratos só nas falas
+previstas. Mutante é classificação clínica ficcional, não uma regra médica nem poder mágico do sinal.
+
+
+=== PAGINA 79 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Hugo · guardião alterado · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+79
+Prancha do inimigo: mesma pessoa em estados de equipamento e retratos.
+Identidade e presença
+ENM_HUGO · Mutante clínico/guardião; alterações de pesquisa anteriores à campanha,
+não mutação instantânea. Capítulos: 07.
+Comportamento e combate
+Contido → sensor ativo → avanço lento → impacto da órtese → sobrecarga → recuo. Sem
+arma carregada; a órtese faz parte do equipamento. Abrir porta lateral permite evitar. Não
+introduzir contágio ou transformação instantânea.
+Produção: idle, move, anticipation, attack, hurt, recover, disabled; 8 direções quando móvel. Retratos só nas falas
+previstas. Mutante é classificação clínica ficcional, não uma regra médica nem poder mágico do sinal.
+
+
+=== PAGINA 80 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Ivo · O Dominado · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+80
+Prancha do inimigo: mesma pessoa em estados de equipamento e retratos.
+Identidade e presença
+BOSS_IVO · Chefe-monstro da torre; pessoa e equipamento sob dominação. Capítulos: 09.
+Comportamento e combate
+Varredura → pausa; pulso → pausa; sobrecarga → janela final. Transições dependem de
+relés. Arnês inativo e ativo são estados do mesmo chefe. Atacar circuitos, isolar comando
+ou sobrecarregar. Não aparece na Fase 01.
+Produção: idle, move, anticipation, attack, hurt, recover, disabled; 8 direções quando móvel. Retratos só nas falas
+previstas. Mutante é classificação clínica ficcional, não uma regra médica nem poder mágico do sinal.
+
+
+=== PAGINA 81 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Fubá · cão · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+81
+Animal único em poses e direções; não humano e sem arma.
+Papel e estados
+ANI_FUBA · Novo V3: rua 01 e abrigo 06; interação opcional; não hostil. Estados: idle;
+caminhar; farejar; sentar; susto; aliviado; sem arma.
+Interação
+Aproximar devagar permite observar; corrida assusta e produz ruído. Não atacar, lootear
+ou causar dano a estes animais no slice. Interação é opcional e não bloqueia missão. Sem
+fala humana: legenda descreve som quando necessário.
+São adições V3 à ambientação; não há animal mutante obrigatório no roteiro. Não criar um cão-monstro apenas porque
+existe uma coluna de inimigos. Fubá, Breu e Pingo não são gêmeos nem variantes do mesmo animal.
+
+
+=== PAGINA 82 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Breu · gato · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+82
+Animal único em poses e direções; não humano e sem arma.
+Papel e estados
+ANI_BREU · Novo V3: janela do prédio e abrigo; ambientação. Estados: idle; caminhar;
+salto contextual; cauda; esconder; sem arma.
+Interação
+Aproximar devagar permite observar; corrida assusta e produz ruído. Não atacar, lootear
+ou causar dano a estes animais no slice. Interação é opcional e não bloqueia missão. Sem
+fala humana: legenda descreve som quando necessário.
+São adições V3 à ambientação; não há animal mutante obrigatório no roteiro. Não criar um cão-monstro apenas porque
+existe uma coluna de inimigos. Fubá, Breu e Pingo não são gêmeos nem variantes do mesmo animal.
+
+
+=== PAGINA 83 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Pingo · pombo · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+83
+Animal único em poses e direções; não humano e sem arma.
+Papel e estados
+ANI_PINGO · Novo V3: praça e estação; alerta ambiental. Estados: idle; bicar; andar;
+decolar; voar; pousar; sem arma.
+Interação
+Aproximar devagar permite observar; corrida assusta e produz ruído. Não atacar, lootear
+ou causar dano a estes animais no slice. Interação é opcional e não bloqueia missão. Sem
+fala humana: legenda descreve som quando necessário.
+São adições V3 à ambientação; não há animal mutante obrigatório no roteiro. Não criar um cão-monstro apenas porque
+existe uma coluna de inimigos. Fubá, Breu e Pingo não são gêmeos nem variantes do mesmo animal.
+
+
+=== PAGINA 84 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Sedã cinza · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+84
+Mesmo veículo em vistas, portas e estados; desenhos de interior são referência espacial.
+ID, papel e presença
+VEH_SEDAN · 01: estacionado, loot do porta-malas com autorização; 02: alarme. Estados:
+fechado; porta aberta; porta-malas aberto; alarme; avaria.
+Contrato de uso
+Porta, ocupante, alarme e inventário usam estado persistente. Entrar vincula o entity_id
+de Caio ao assento; sair restaura corpo no ponto seguro. Na Fase 01 há apenas
+embarque/saída roteirizados e interação com sedã, sem direção livre.
+Colisão usa volume do veículo, não transparência do teto. Occupant_id não é um novo Caio. Dano visual não muda
+modelo, rodas ou cor. Veículos vistos em lembrança recebem instance_id próprio e o mesmo modelo de catálogo.
+
+
+=== PAGINA 85 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Ônibus de Nestor · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+85
+Mesmo veículo em vistas, portas e estados; desenhos de interior são referência espacial.
+ID, papel e presença
+VEH_BUS · 01: passagem e embarque curto; 03: obstrução. Estados: porta fechada;
+aberta; condutor ao volante; parado; avariado.
+Contrato de uso
+Porta, ocupante, alarme e inventário usam estado persistente. Entrar vincula o entity_id
+de Caio ao assento; sair restaura corpo no ponto seguro. Na Fase 01 há apenas
+embarque/saída roteirizados e interação com sedã, sem direção livre.
+Colisão usa volume do veículo, não transparência do teto. Occupant_id não é um novo Caio. Dano visual não muda
+modelo, rodas ou cor. Veículos vistos em lembrança recebem instance_id próprio e o mesmo modelo de catálogo.
+
+
+=== PAGINA 86 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Van de transporte · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+86
+Mesmo veículo em vistas, portas e estados; desenhos de interior são referência espacial.
+ID, papel e presença
+VEH_VAN · 04 e 08: quarentena e detenção; não dirigível no slice. Estados: fechada;
+traseira aberta; patrulha; avaria.
+Contrato de uso
+Porta, ocupante, alarme e inventário usam estado persistente. Entrar vincula o entity_id
+de Caio ao assento; sair restaura corpo no ponto seguro. Na Fase 01 há apenas
+embarque/saída roteirizados e interação com sedã, sem direção livre.
+Colisão usa volume do veículo, não transparência do teto. Occupant_id não é um novo Caio. Dano visual não muda
+modelo, rodas ou cor. Veículos vistos em lembrança recebem instance_id próprio e o mesmo modelo de catálogo.
+
+
+=== PAGINA 87 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Ambulância · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+87
+Mesmo veículo em vistas, portas e estados; desenhos de interior são referência espacial.
+ID, papel e presença
+VEH_AMBULANCE · 05: triagem e suprimentos; transporte roteirizado. Estados: fechada;
+traseira aberta; maca próxima; luz ativa.
+Contrato de uso
+Porta, ocupante, alarme e inventário usam estado persistente. Entrar vincula o entity_id
+de Caio ao assento; sair restaura corpo no ponto seguro. Na Fase 01 há apenas
+embarque/saída roteirizados e interação com sedã, sem direção livre.
+Colisão usa volume do veículo, não transparência do teto. Occupant_id não é um novo Caio. Dano visual não muda
+modelo, rodas ou cor. Veículos vistos em lembrança recebem instance_id próprio e o mesmo modelo de catálogo.
+
+
+=== PAGINA 88 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Trem técnico · ficha individual
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+88
+Mesmo veículo em vistas, portas e estados; desenhos de interior são referência espacial.
+ID, papel e presença
+VEH_TRAIN · 09–11: viagens entre regiões; sem mundo de direção livre. Estados: parado;
+porta aberta; viagem; interior do vagão.
+Contrato de uso
+Porta, ocupante, alarme e inventário usam estado persistente. Entrar vincula o entity_id
+de Caio ao assento; sair restaura corpo no ponto seguro. Na Fase 01 há apenas
+embarque/saída roteirizados e interação com sedã, sem direção livre.
+Colisão usa volume do veículo, não transparência do teto. Occupant_id não é um novo Caio. Dano visual não muda
+modelo, rodas ou cor. Veículos vistos em lembrança recebem instance_id próprio e o mesmo modelo de catálogo.
+
+
+=== PAGINA 89 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Objetos pessoais e peças integradas
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+89
+ID
+Dono / referência
+Regra
+EQP_GROCERY
+Dona Inês / ficha própria
+Sacola rasgada; sem ícone de
+inventário
+EQP_BREAD_TRAY
+Orlando / ficha própria
+Bandeja de pão; interação, sem
+arma
+EQP_UMBRELLA
+Marina / ficha própria
+Guarda-chuva; não arma
+EQP_TOY_RABBIT
+Bia / ficha própria
+Brinquedo; não loot de criança
+EQP_BUS_KEYS
+Nestor / ficha própria
+Chaves; embarque depende de
+diálogo
+EQP_WATER_CUP
+Teresa / ficha própria
+Copo; variante de garrafa, cosmético
+EQP_PHOTO
+Mauro / ficha própria
+Foto de Clara; objeto de diálogo
+EQP_BLANKET
+Clara / ficha própria
+Manta; estado de paciente
+EQP_CLIPBOARD
+Arthur/Samuel / fichas
+Modelo repetível; dono é pessoa
+única
+EQP_MAINT_KEYS
+Tadeu / ficha própria
+Chaveiro; informação de
+manutenção
+EQP_ORTHOSIS
+Hugo / ficha própria
+Equipamento integrado;
+ativo/inativo
+EQP_SIGNAL_HARNESS
+Ivo / ficha própria
+Arnês integrado; ativo/inativo
+São mais 12 recursos visuais ligados às pessoas, já ilustrados em suas pranchas. Não exigem 12 personagens novos.
+Peças de veículo (rodas, portas, bancos, maca e motor) são subcomponentes da ficha do veículo, não itens de loot nem
+sistemas de montagem.
+
+
+=== PAGINA 90 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Comunicação, saúde e evidências · prancha
+de itens
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+90
+Grade de referência, leitura da esquerda para a direita e de cima para baixo. Cada objeto corresponde a um ID único nas
+duas páginas seguintes.
+Uma imagem por objeto catalogado
+Cada célula mostra um objeto distinto. O recorte final deve separar sprite de mundo, ícone
+de inventário e estados. Texto de documentos e terminais permanece na UI. Nenhuma
+arma aparece automaticamente no inventário de Caio.
+A ordem alvo da grade é documentada; a IA deve conferir cada imagem, não assumir alinhamento exato nem recortar
+automaticamente por coordenadas sem revisão. Conceitos não possuem pivôs, colisores ou metadados de animação
+embutidos.
+
+
+=== PAGINA 91 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Itens · registros 1–8
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+91
+Célula / ID
+Nome / categoria / presença
+Uso e persistência
+P1 R1 C1 ITM_PHONE
+Celular comunicação · 01
+Sem consumo de bateria no diálogo crítico;
+mensagens localizadas.
+P1 R1 C2 ITM_NOTEBOOK
+Caderno comunicação · 01
+Alternativa escrita; nunca substitui
+identidade de Caio.
+P1 R1 C3 ITM_KEY_HOME
+Chave de casa missão · 01
+Abre apartamento; item não descartável.
+P1 R1 C4 ITM_ADAPTER
+Adaptador missão · 01
+Entrega a Orlando; não é consumível de
+combate.
+P1 R2 C1 ITM_BANDAGE
+Atadura consumível · 01
+Interrompe sangramento leve; uma unidade
+por uso.
+P1 R2 C2 ITM_BATTERY
+Bateria consumível · 02
+Recarrega lanterna; não alimenta diálogo
+crítico.
+P1 R2 C3 ITM_FLASHLIGHT
+Lanterna equipamento · 02
+Ilumina; não causa dano nem revela
+paredes.
+P1 R2 C4 ITM_CAN
+Lata vazia distração · 02
+Arremesso atrai investigação; sem dano de
+arma.
+01 indica a primeira fase; 03+ indica uso posterior. R/C identificam linha e coluna alvo da prancha. Cada registro exige
+ícone e sprite de mundo próprios; coleta, uso e persistência seguem o contrato compartilhado da página de manifesto.
+
+
+=== PAGINA 92 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Itens · registros 9–16
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+92
+Célula / ID
+Nome / categoria / presença
+Uso e persistência
+P1 R3 C1 ITM_WATER
+Garrafa de água consumível ·
+01/06
+Recuperação em ponto seguro; sem
+medidor permanente de sede.
+P1 R3 C2 ITM_FOOD
+Pacote de alimento
+consumível · 01/06
+Recuperação moderada de esforço; não
+cura ferida grave.
+P1 R3 C3 ITM_CAMERA
+Câmera ferramenta · 03
+Equipamento de Helena; registra prova.
+P1 R3 C4 ITM_MEMORY
+Cartão de memória evidência
+· 03
+Vídeo extra para denúncia; tem cópia
+principal.
+P1 R4 C1 ITM_MAP
+Mapa da cidade investigação
+· 02
+Desbloqueia marcadores conhecidos, não
+todos inimigos.
+P1 R4 C2 ITM_PROTOCOL
+Protocolo clínico evidência ·
+05
+Requisito Cura; recuperável na capital.
+P1 R4 C3 ITM_MATRIX
+Matriz de calibração
+evidência · 07
+Dados para Cura; formato digital no diário.
+P1 R4 C4
+ITM_PASS_SENSOR
+Sensor passivo ferramenta ·
+07/11
+Medição com consentimento; não transmite
+pulso.
+01 indica a primeira fase; 03+ indica uso posterior. R/C identificam linha e coluna alvo da prancha. Cada registro exige
+ícone e sprite de mundo próprios; coleta, uso e persistência seguem o contrato compartilhado da página de manifesto.
+
+
+=== PAGINA 93 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Armas e pesquisa · prancha de itens
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+93
+Grade de referência, leitura da esquerda para a direita e de cima para baixo. Cada objeto corresponde a um ID único nas
+duas páginas seguintes.
+Uma imagem por objeto catalogado
+Cada célula mostra um objeto distinto. O recorte final deve separar sprite de mundo, ícone
+de inventário e estados. Texto de documentos e terminais permanece na UI. Nenhuma
+arma aparece automaticamente no inventário de Caio.
+A ordem alvo da grade é documentada; a IA deve conferir cada imagem, não assumir alinhamento exato nem recortar
+automaticamente por coordenadas sem revisão. Conceitos não possuem pivôs, colisores ou metadados de animação
+embutidos.
+
+
+=== PAGINA 94 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Itens · registros 17–24
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+94
+Célula / ID
+Nome / categoria / presença
+Uso e persistência
+P2 R1 C1 WPN_CROWBAR
+Pé de cabra arma/ferramenta
+· 03+
+Caio; ausência na fase 01; alcance curto e
+alto esforço.
+P2 R1 C2 WPN_WRENCH
+Chave de oficina
+arma/ferramenta · 03+
+Helena; defensa curta; não equivale a arma
+de fogo.
+P2 R1 C3 WPN_PISTOL
+Pistola arma · 08/12
+Vale; saque baixo e mira; munição limitada.
+P2 R1 C4 WPN_RIFLE
+Fuzil arma · 04+
+Reis e Célia, instâncias distintas do mesmo
+modelo.
+P2 R2 C1 WPN_BATON
+Bastão militar arma · 04+
+Reis/Célia; não pertence a crianças ou civis.
+P2 R2 C2 WPN_STICK
+Bastão de madeira arma
+opcional · 01
+Davi; variante opcional do encontro, sem
+nova identidade.
+P2 R2 C3 WPN_PIPE
+Cano metálico arma · 02+
+Bruno; mesma pessoa com ou sem.
+P2 R2 C4 WPN_MALLET
+Malho de borracha
+arma/ferramenta · 05+
+Vera; movimento repetitivo de manutenção.
+01 indica a primeira fase; 03+ indica uso posterior. R/C identificam linha e coluna alvo da prancha. Cada registro exige
+ícone e sprite de mundo próprios; coleta, uso e persistência seguem o contrato compartilhado da página de manifesto.
+
+
+=== PAGINA 95 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Itens · registros 25–32
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+95
+Célula / ID
+Nome / categoria / presença
+Uso e persistência
+P2 R3 C1 ITM_AMMO
+Caixa de munição
+consumível · 04+
+Tipo compatível com arma; fora da fase 01.
+P2 R3 C2 ITM_MEDKIT
+Kit de primeiros socorros
+equipamento · 06
+Lia; estoque limitado por item, não cura
+infinita.
+P2 R3 C3 ITM_RADIO
+Rádio portátil comunicação ·
+04/06
+Reis/Rosa; falha de cobertura sinalizada.
+P2 R3 C4 ITM_ELECTRODE
+Eletrodo pesquisa ·
+prólogo/07
+Próprio da cena clínica, não equipamento
+ofensivo.
+P2 R4 C1 ITM_DRAWING
+Desenho da casa memória ·
+prólogo/07
+Pista Sujeito 07, estado intacto ou dobrado.
+P2 R4 C2 ITM_CONTAIN
+Registro de contenção
+evidência · 08/11
+Requisito de pesquisa; NÓ é padrão, não
+personagem.
+P2 R4 C3
+ITM_TRANS_ORDER
+Ordem de transmissão
+evidência · 05
+Prova de autorização; assinatura localizável.
+P2 R4 C4 ITM_RECEIPT
+Recibo do contrato evidência
+· 03
+Conecta contrato à transmissão; observação
+no diário.
+01 indica a primeira fase; 03+ indica uso posterior. R/C identificam linha e coluna alvo da prancha. Cada registro exige
+ícone e sprite de mundo próprios; coleta, uso e persistência seguem o contrato compartilhado da página de manifesto.
+
+
+=== PAGINA 96 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Mundo, puzzles e ECHO · prancha de itens
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+96
+Grade de referência, leitura da esquerda para a direita e de cima para baixo. Cada objeto corresponde a um ID único nas
+duas páginas seguintes.
+Uma imagem por objeto catalogado
+Cada célula mostra um objeto distinto. O recorte final deve separar sprite de mundo, ícone
+de inventário e estados. Texto de documentos e terminais permanece na UI. Nenhuma
+arma aparece automaticamente no inventário de Caio.
+A ordem alvo da grade é documentada; a IA deve conferir cada imagem, não assumir alinhamento exato nem recortar
+automaticamente por coordenadas sem revisão. Conceitos não possuem pivôs, colisores ou metadados de animação
+embutidos.
+
+
+=== PAGINA 97 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Itens · registros 33–40
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+97
+Célula / ID
+Nome / categoria / presença
+Uso e persistência
+P3 R1 C1 PRP_DOOR
+Porta cenário · 01+
+Fechada/aberta/bloqueada/quebrada; fade
+não remove colisão.
+P3 R1 C2 PRP_WINDOW
+Janela cenário · 01+
+Vidro íntegro ou quebrado; interação
+sonora.
+P3 R1 C3 PRP_LEVER
+Alavanca manual puzzle · 01
+Abre portão, evento único e reversível se
+necessário.
+P3 R1 C4 PRP_BREAKER
+Disjuntor puzzle · 02+
+Liga circuito definido; prévia de efeitos.
+P3 R2 C1 PRP_RELAY
+Relé puzzle · 09
+Ativo/inativo/sobrecarga; sinal e símbolo.
+P3 R2 C2 PRP_SPEAKER
+Alto-falante ECHO · 01+
+Ligado/desligado; som com legenda
+equivalente.
+P3 R2 C3 PRP_TERMINAL
+Terminal investigação · 07+
+Texto UI externo; placa sem texto na arte.
+P3 R2 C4 PRP_CRATE
+Caixa de recursos loot · 01+
+Fechada/aberta/vazia; conteúdo persistido.
+01 indica a primeira fase; 03+ indica uso posterior. R/C identificam linha e coluna alvo da prancha. Cada registro exige
+ícone e sprite de mundo próprios; coleta, uso e persistência seguem o contrato compartilhado da página de manifesto.
+
+
+=== PAGINA 98 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Itens · registros 41–48
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+98
+Célula / ID
+Nome / categoria / presença
+Uso e persistência
+P3 R3 C1 PRP_BED
+Cama hospitalar cenário · 05
+Vazia/ocupada; só ocupa paciente
+identificado.
+P3 R3 C2 PRP_CHAIR
+Cadeira cenário · 01+
+Colisão simples; cadeira de teste é variante
+clínica.
+P3 R3 C3 PRP_TABLE
+Mesa cenário · 01+
+Superfície de interação; ordenar por Y e pés.
+P3 R3 C4 PRP_STREETLIGHT
+Poste cenário · 01
+Luz normal/falha; não causa dominação
+sozinho.
+P3 R4 C1 PRP_BIN
+Lixeira cenário/loot · 01
+Loot permitido; não produz item crítico
+aleatório.
+P3 R4 C2 PRP_TOWER
+Torre ECHO marco · 01/09
+Pulso visual acessível; módulo de comando
+separado.
+P3 R4 C3 FX_NODE
+NÓ / padrão efeito · 08/12
+Forma de interferência no monitor; sem
+corpo biológico.
+P3 R4 C4 FX_SIGNAL
+Pulso ECHO efeito · 01+
+Cor, forma e legenda; modo sem flashes
+equivalente.
+01 indica a primeira fase; 03+ indica uso posterior. R/C identificam linha e coluna alvo da prancha. Cada registro exige
+ícone e sprite de mundo próprios; coleta, uso e persistência seguem o contrato compartilhado da página de manifesto.
+
+
+=== PAGINA 99 ===
+DOCUMENTO MESTRE / V4.0
+Manifesto de assets e animações
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+99
+Status explícito
+Todos os PNGs deste pacote são concept_reference. Nenhum é marcado
+production_ready. A IA deve criar sprites separados e animados a partir dos desenhos,
+com revisão humana de direção e identidade. O manifesto inclui arquivos, papéis, armas
+permitidas e estados; não contém quadros de animação que não foram produzidos.
+Dimensão e exportação
+Corpos humanos: proposta de 64 × 96 por frame, pivô nos pés. Animais: 64 × 64, salvo
+teste de escala. Ícones: 32 × 32 ou 48 × 48 em grupos consistentes. Retratos: 128 × 128.
+Veículos usam tamanho próprio em múltiplos do tile de 64 × 32. Estes são alvos de
+produção; PNG conceitual mantém resolução de geração.
+Nome inequívoco
+Formato: entity_id/state/equipment/direction/frame. Exemplo:
+CHR_CAIO/walk/unarmed/SE/003.png. Retrato: CHR_CAIO/portrait/worried.png. Nunca usar
+caio2, clone1 ou npc_final_final. Um personagem infantil usa age_state=child,
+preservando entity_id.
+Camadas
+body_base; outfit; held_item; injury_overlay; effect_overlay. Para personagem equipado,
+corpo e arma têm sockets coerentes. Preservar mirroring=false para poses que alterem
+mão, roupa assimétrica e Libras. Declaração de socket inclui direção, posição relativa e
+ordem de desenho.
+Metadados exigidos no atlas final
+frame_w, frame_h, pivot, direction_order, state, fps, loop, equipment_id, body_collision,
+hitbox_window e event_frames. Recorte com alpha transparente real, sem fundo cinza.
+Exportar JSON e PNG; validar ausência de clipping e margem entre quadros.
+Exemplo de conceito não basta para interpolar uma ação fisicamente correta. Caminhada precisa de contatos
+alternados de pés; ataque precisa de antecipação, contato e recuperação; cura precisa de mão, faixa e evento de
+consumo.
+
+
+=== PAGINA 100 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Animação mínima · protagonista
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+100
+Estado
+Frames / direções
+Evento / regra
+idle
+2 × 8
+Loop; sem deslizamento nos pés
+walk
+6 × 8
+Loop; contato de passo nos frames 1 e 4
+run
+6 × 8
+Loop; som e stamina
+push / attack
+4 × 8
+Contato no frame 2; alvo por hitbox
+hurt
+2 × 8
+Invulnerabilidade breve configurável
+pickup / loot
+4 × 8
+Aquisição confirmada no frame 3
+heal
+6 × 8
+Consumo no frame 4; cancelamento antes é permitido
+dialogue / phone
+2 × 8
+Sem fala vocal; UI traduz mensagem
+enter / exit vehicle
+4 × 8
+Transferência para assento no frame 3
+defeat
+4 × 8
+Fim não loop; checkpoint restaura estado
+Total nominal desarmado: 320 frames. Conjunto adicional de pé de cabra mínimo: idle 16 + walk 48 + attack 32 = 96.
+Retratos comuns: 4 arquivos. São entregas futuras especificadas, não frames presentes na prancha. Variante de corrida
+equipada pode ser adicionada depois; no slice não há pé de cabra.
+
+
+=== PAGINA 101 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Animação mínima · outros grupos
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+101
+Grupo
+Estados necessários
+Direção e restrição
+Aliado armado
+idle, walk, equip, attack, hurt, dialogue
+8 direções para corpo; mesma
+face no retrato
+Civil adulto
+idle, walk, interact, dialogue, afraid
+Sem attack armado; ferido só
+quando roteiro define
+Criança
+idle, follow, protect, dialogue
+Sem dano explícito, armas ou loot
+de corpo
+Médico
+idle, walk, examine, interact, dialogue
+Prancheta/sensor sem função
+ofensiva
+Inimigo móvel
+idle, move, anticipate, attack, hurt, recover,
+disabled
+8 direções; corpo não troca após
+queda
+Chefe / guardião
+idle, move, anticipate, pulse, overload,
+disabled
+Telegráfos legíveis; arnês/órtese
+são estados
+Animal
+idle, walk, react, rest; bird: takeoff/fly/land
+Sem arma, fala humana ou
+hostilidade no slice
+Veículo
+closed, open, alarm, damaged, interior
+Sem ciclo de direção livre na
+primeira fase
+Cada ficha individual determina o subconjunto aplicável. A IA não deve gerar estado de ataque para Teresa só porque
+existe na tabela de combatentes. Conversas em Libras exigem sinais validados e enquadramento legível.
+
+
+=== PAGINA 102 ===
+DOCUMENTO MESTRE / V4.0
+Fase 01 · roteiro jogável expandido
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+102
+Local e ordem
+Apartamento → hall de Dona Inês → garagem → mercearia de Orlando → praça → beco de
+Davi → parada do ônibus de Nestor → pulso → apartamento. Ordem autoral mantém a
+primeira anomalia no final. Animais são pontos opcionais, não novas missões obrigatórias.
+Objetos do início
+Celular e caderno vêm com Caio. Chave e adaptador são coletados no apartamento.
+Orlando autoriza abrir o porta-malas do sedã para pegar uma atadura. Água opcional fica
+em uma caixa de recursos da mercearia. Chave de casa não some quando o inventário
+está cheio.
+Conflito
+Davi está em crise. Caio pode empurrar, bloquear, fechar portão ou contornar o carro.
+Vitória significa criar distância e proteger Orlando, não matar. A variante com bastão de
+Davi só aparece no modo de encontro opcional posterior à primeira validação; o
+storyboard usa mãos vazias.
+Ferimento e cura
+Um golpe reduz saúde e pode deixar ferimento leve no braço. Em zona segura, uma
+atadura interrompe sangramento; água recupera esforço, não substitui tratamento. Se
+vencer sem dano, a sequência de cura fica como demonstração opcional no menu de
+teste, não é forçada na narrativa.
+Veículo e animais
+Nestor aceita embarque por um trecho curto roteirizado da praça. O jogador pode seguir a
+pé. Fubá fareja a sacola, Breu observa da janela e Pingo decola quando há corrida. Todos
+são identificados no catálogo e não se transformam em inimigos no pulso.
+O slice V3 inclui pickup, loot, hurt e heal porque o pedido ampliou a demonstração. A versão base de 15 a 25 minutos
+pode exigir ajuste de duração. Validar com teste; não afirmar esse tempo antes de jogar.
+
+
+=== PAGINA 103 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Fase 01 · eventos e condições
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+103
+Evento / entrada
+Ação
+Saída persistente
+EV01_START / novo jogo
+Spawn CHR_CAIO em
+apartamento
+checkpoint=APT_START;
+phone+notebook
+EV01_ADAPTER / interagir
+Coletar adaptador
+adapter_acquired=true
+EV01_DELIVER / falar com
+Orlando
+Entregar adaptador
+adapter_delivered=true; permissão
+sedã
+EV01_LOOT / permissão
+Abrir porta-malas, pegar
+atadura
+sedan_looted=true; bandage+1
+EV01_ALLEY / proximidade
+Davi ameaça comerciante
+encounter_active=true; portão
+disponível
+EV01_HURT / hit confirmado
+Aplicar dano e reação
+health reduzida; injury=light_arm
+EV01_HEAL / zona segura
+Consumir atadura no evento do
+frame
+injury=none; bandage-1
+EV01_RESOLVE / distância ou
+portão
+Encerrar ameaça sem matar
+davi_state=deescalated
+EV01_BUS / aceitar rota
+Assento; transporte curto; saída
+bus_taken=true; Caio único
+EV01_PULSE / percurso completo
+Anomalia e mensagem de
+Helena
+chapter02_available=true
+EV01_FAIL / health<=0
+Tela curta e retorno a
+checkpoint
+estado anterior; sem loot duplicado
+Atadura de teste pode ser fornecida no cenário de QA, jamais duplicada num load. Transporte da praça não impede rota
+a pé. Alterações por evento são idempotentes: repetir trigger não entrega o mesmo item duas vezes.
+
+
+=== PAGINA 104 ===
+DOCUMENTO MESTRE / V4.0
+Instrução para a IA implementar
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+104
+Leia antes de gerar código
+Use este documento como referência do jogo SILÊNCIO. Preserve IDs, identidades,
+figurinos, fala não vocal de Caio e a separação entre controle/portadora/NÓ. O catálogo V3
+resolve nomes genéricos do roteiro. Não invente gêmeos, armas, infectividade por
+mordida, monstros extras ou direção livre de veículos.
+Comece pela primeira fase
+Faça inventário de arquivos do projeto; identifique a versão da Godot; crie uma prova de
+câmera, ordenação e colisão; implemente eventos EV01; use placeholders identificados
+enquanto os sprites finais não existem. Não simule uma campanha completa apenas com
+telas estáticas.
+Use as artes com honestidade
+PNGs são conceitos. Não importe uma prancha inteira como animação e não trate quatro
+retratos como frames de caminhada. Gere ou desenhe frames por estado usando o
+contrato, valide identidade e recorte alpha. Mostre os resultados em um cenário real antes
+de expandir o conjunto.
+Entrega verificável de cada etapa
+Informe arquivos alterados, como executar, controles, eventos implementados, testes
+feitos e limitações. Demonstrar coleta sem duplicação, dano e cura, luta evitável,
+vitória/derrota, diálogo, veículo/passagem a pé, reação de animais, pulso e save/load. Não
+marque uma ação como concluída por existir apenas seu botão.
+Resolução de ambiguidade
+Se uma ilustração mostrar equipamento divergente do ID, siga o campo
+equipment_allowed e corrija a arte. Se faltar uma fala incidental, escreva dentro da
+personalidade sem modificar revelações ou finais. Nova identidade, poder, sistema ou
+capítulo exige registrar uma proposta antes de alterar o cânone.
+O ZIP complementar reúne PNGs de referência, cadastro JSON, checklist e este prompt. É material de entrada para
+implementação incremental, não um projeto Godot já pronto. O PDF continua sendo a especificação narrativa principal.
+
+
+=== PAGINA 105 ===
+DOCUMENTO MESTRE / V4.0
+Validação: não esquecer nenhum asset
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+105
+Cobertura de identidades
+22 humanos do elenco + 5 inimigos distintos + 3 animais + 5 veículos + 48
+itens/props/efeitos + 12 equipamentos visuais ligados ao elenco. Caio criança e Samuel
+jovem são estados; não contam como novas pessoas. Rádio institucional é um dispositivo,
+não um locutor com corpo que precise aparecer no mapa.
+Sem duplicação acidental
+Referências SOLDADO/REIS apontam para CHR_REIS. VIZINHA aponta para CHR_INES.
+COMERCIANTE aponta para CHR_ORLANDO. PACIENTE aponta para CHR_TERESA.
+MORADORA aponta para CHR_ROSA. RESISTENTE aponta para CHR_JOEL. VOLUNTÁRIO
+aponta para CHR_AMIN. Cada ocupante de veículo preserva seu ID.
+Estado visual e lógico devem concordar
+Sem arma = sprite sem arma; ferido = pose e HUD compatíveis; cura = consumo único no
+frame indicado; rendido = IA não ataca; porta aberta = geometria e caminho
+correspondentes. Animal assustado foge, não toca animação humana. Órtese desligada
+não emite pulso.
+Trilha de testes
+Cada evento principal tem uma gravação ou sequência de prints da build futura. Testar
+rota sem sofrer dano e com dano; inventário cheio; cancelar cura; perder antes de loot;
+carregar após loot; embarcar/sair duas vezes; recusar veículo; avançar diálogo rápido;
+pulso com efeitos reduzidos.
+Revisão visual
+Conferir mão da arma, oclusão, origem dos pés, silhueta, rosto e oito direções. Expressões
+do retrato devem parecer a mesma pessoa. Criaturas de escala maior precisam conservar
+colisão e altura em todos os quadros. O storyboard a seguir é uma visualização do alvo,
+não evidência de uma build existente.
+
+
+=== PAGINA 106 ===
+DOCUMENTO MESTRE / V4.0
+V4: arquivos reais deste lote
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+106
+O que pode ser aberto e importado
+Este lote contém 512 PNGs registrados no manifesto: 80 poses isoladas de 27 identidades
+humanas, 108 painéis de retratos, 48 ícones, 48 props de mundo, 20 estados de veículos e
+164 frames ou quadros-chave de movimento/ação. Há também atlas derivados, peças de
+cenário, HUD e efeitos de protótipo.
+Três níveis que não devem ser confundidos
+Arquivo válido: PNG abre, tem tamanho conhecido e transparência quando necessário.
+Sequência candidata: existem quadros distintos, mas a ação e a direção precisam de
+revisão. Validado no motor: exige execução no projeto Godot. Este lote passou na
+conferência de arquivos e referências; não foi executado na Godot.
+Limite importante
+Este NÃO é o pacote completo de arte final dos 12 capítulos. A caminhada de Caio tem
+sete vistas; falta E. A corrida tem oito linhas geradas, mas algumas poses variam de
+direção. Cura, coleta e derrota são poses únicas por vista, não ciclos completos. Não há
+locomação armada completa nem todos os movimentos dos NPCs e chefes.
+Como decidir o que usar
+Consulte asset_manifest.json, production_coverage.json e VALIDACAO.json. Um registro
+com visual_review_required=true precisa de inspeção. Não repita idle para simular
+caminhada e não importe conceitos da pasta 99_REFERENCIAS como se fossem atlas de
+animação.
+As cenas no final desta versão foram montadas com os arquivos recortados entregues. São visualizações de composição
+e estados, não capturas de gameplay implementado. O objetivo é permitir integração incremental pelo Codex, com as
+lacunas expostas.
+
+
+=== PAGINA 107 ===
+CATÁLOGO V3 / IDS ÚNICOS / CONSULTA
+Cobertura do pacote · V4
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+107
+Categoria
+Disponível nos arquivos
+Ainda falta
+Personagens
+27 identidades / 80 poses com alpha
+Ciclos completos por ação, direção e
+equipamento
+Retratos
+108 painéis de expressão, por ID
+Aprovação de enquadramento e contexto
+Caio sem arma
+42 walk + 48 run + 56 poses de ação
+Vista E walk; revisão de rumo; transições
+completas
+Caio armado
+Pose de pé de cabra
+Andar/correr/ataques completos com cada
+arma
+Inimigos e chefes
+Corpos, equipamentos e poses
+IA, ataques e ferimentos em todas as
+direções
+Animais
+3 ciclos candidatos SE, 6 frames cada
+Demais direções, reações e teste de
+movimento
+Veículos
+5 modelos, 4 estados SE cada
+Direções restantes, embarque e condução
+Itens
+48 ícones e 48 props com alpha
+Estados adicionais de puzzles e containers
+Cenários
+Kit modular e mapa JSON de protótipo
+Arte final de casas/interiores de toda a
+campanha
+UI e efeitos
+Skins, barras, menu JSON, pulso
+Cenas conectadas à lógica e acessibilidade
+Motor
+Auxiliar de importação e visualizador
+local
+Teste e ajuste no projeto Godot real
+
+
+=== PAGINA 108 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Elenco · PNGs isolados entregues
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+108
+Montagem dos recortes reais: 27 identidades. A repetição de uma pessoa nas variantes preserva o mesmo ID; não
+existem gêmeos definidos.
+Uma pasta por identidade
+02_PERSONAGENS guarda o elenco; 04_INIMIGOS_ANIMAIS guarda inimigos, chefes e
+animais. Base, equipamento e pose alternativa são arquivos separados. Os retratos ficam
+em 09_UI/portraits/ID. A pose equivocada de Vera com fuzil foi rejeitada; a variante de
+malho foi preservada.
+Pessoas não combatentes mantêm objetos de uso e não recebem arma para completar uma coluna. Gestos genéricos
+de Lia não são sinais de Libras validados.
+
+
+=== PAGINA 109 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Itens · ícones recortados entregues
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+109
+Cada ícone é um PNG próprio de 64 × 64, identificado por item_id. A versão de mundo é um arquivo diferente.
+Separação entre UI e mundo
+05_ITENS_ARMAS/icons contém os ícones; world contém objetos de cenário, itens e
+equipamentos. A arma desenhada ao lado do personagem não deve ser cortada de novo
+para obter o ícone: use seu arquivo por ID. Itens de missão continuam fora do inventário
+descartável.
+Arte e comportamento são responsabilidades distintas. Um PNG de atadura não implementa cura; o evento deve validar
+condição, consumir uma unidade e atualizar o estado uma única vez.
+
+
+=== PAGINA 110 ===
+DOCUMENTO MESTRE / V4.0
+Dimensões e integração · V4
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+110
+Estes valores prevalecem para os PNGs entregues
+Corpos humanos: canvas 128 × 128; pivô [64,120]. Hugo e Ivo: canvas 192 × 192;
+pivô [96,184]. Animais: 96 × 96; pivô [48,88]. Veículos: 512 × 320; pivô [256,312].
+Ícones: 64 × 64. Retratos: painéis 192 × 192. Esses tamanhos substituem as dimensões
+apenas propostas nas seções anteriores.
+Arquivos e estado
+Cada registro inclui caminho relativo, tamanho, pivô, tipo, ID e hash. As sequências
+enumeram os arquivos reais, FPS e loop. Os colisores são propostas de pegada no chão;
+precisam de ajuste ao controle e à navegação do projeto, não correspondem ao retângulo
+inteiro do sprite.
+Ferramentas de inspeção
+Abra 13_CODEX/VISUALIZADOR.html para reproduzir os quadros locais sobre fundo
+quadriculado. O arquivo funciona sem enviar todas as imagens para a conversa.
+IMPORTAR_GODOT.gd é um auxiliar de EditorScript para criar SpriteFrames candidatos em
+uma pasta própria. Não altera cenas do projeto.
+Revisão antes de ativar
+Conferir orientação dentro de cada loop, contato dos pés, salto de pivô e volume. Algumas
+corridas geradas mudam ligeiramente de rumo; devem ser corrigidas antes da campanha.
+Sem Godot instalada neste ambiente, não há teste de importação ou execução concluído.
+Referência oficial: docs.godotengine.org/en/4.6/tutorials/2d/2d_sprite_animation.html. Godot utiliza SpriteFrames com
+AnimatedSprite2D para sequências de texturas. O importador é um ponto de partida que o Codex deverá ajustar à
+versão e à estrutura reais do projeto.
+
+
+=== PAGINA 111 ===
+DOCUMENTO MESTRE / V4.0
+O que o Codex deve fazer primeiro
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+111
+Trabalhar no projeto já existente
+Analisar a engine, a versão e as cenas antes de importar. Preservar o trabalho que já está
+sendo feito. Não trocar a implementação do jogo por este pacote de assets ou pelo
+visualizador HTML.
+Integrar um trecho pequeno
+Importar Caio, Orlando, Davi, um piso, uma parede, um item e uma UI. Usar os frames de
+caminhada apenas após revisar sua direção. Ajustar escala e colisão. Demonstrar coleta
+sem duplicação, diálogo sem voz de Caio, dano, cura e continuação de save.
+Fechar lacunas de animação
+Produzir a vista E de walk; corrigir as vistas de run; desenhar transições de pegar, curar,
+cair e levantar; criar locomação armada e ataques por arma; completar Davi e os demais
+NPCs antes de preencher a cidade. Não fabricar completude com quadros repetidos.
+Veículos, magia e ferimentos
+O pedido de condução fica registrado como trabalho pendente: os PNGs não trazem
+direção livre nem todas as vistas do veículo. Não usar o corpo sentado de Nestor como se
+fosse Caio. Não há magia definida na história; ECHO e Percepção permanecem os
+sistemas ficcionais descritos. Tipos específicos de lesão e suas animações ainda precisam
+ser produzidos.
+Entrega verificável
+Ao concluir uma etapa, registrar os arquivos usados, mudanças, controles, testes
+executados e lacunas restantes. Atualizar engine_tested somente depois de executar na
+engine. Manter complete_campaign_assets=false enquanto os assets exigidos pela
+campanha estiverem ausentes.
+
+
+=== PAGINA 112 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Fase 01 · Rotina, coleta, loot e conversa
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+112
+Montagem dos PNGs recortados em 4 momentos. Ordem: superior esquerdo, superior direito, inferior esquerdo, inferior
+direito.
+01. Sem veículo: Caio no apartamento, celular e caderno disponíveis.
+02. Pegar item: adaptador sai da prateleira e entra na missão.
+03. Loot: porta-malas autorizado, uma atadura; persistência impede repetir coleta.
+04. Conversar: Orlando lê o celular; Caio não usa fala vocal.
+As imagens foram montadas com os PNGs do pacote, não são capturas de uma build. Resultados de vitória e derrota são
+ramos alternativos. Artes e legendas devem ser validadas contra os eventos EV01 antes de integrar.
+
+
+=== PAGINA 113 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Fase 01 · Ataque, impacto, ferimento e
+cura
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+113
+Montagem dos PNGs recortados em 4 momentos. Ordem: superior esquerdo, superior direito, inferior esquerdo, inferior
+direito.
+05. Atacar/empurrar: mãos vazias, antecipação, contato e recuperação.
+06. Ser atacado: Davi acerta; reação e dano acontecem juntos.
+07. Ferido: Caio recua para zona segura, postura e indicador de lesão.
+08. Curar: atadura no braço; consumo no frame, não na abertura do menu.
+As imagens foram montadas com os PNGs do pacote, não são capturas de uma build. Resultados de vitória e derrota são
+ramos alternativos. Artes e legendas devem ser validadas contra os eventos EV01 antes de integrar.
+
+
+=== PAGINA 114 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Fase 01 · Vitória, derrota, luta e saída
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+114
+Montagem dos PNGs recortados em 4 momentos. Ordem: superior esquerdo, superior direito, inferior esquerdo, inferior
+direito.
+09. Vencer: ameaça separada por portão; Davi vivo e encontro concluído.
+10. Perder: resultado alternativo; Caio cai e retorna ao checkpoint.
+11. Lutar: distância e obstáculo importam; nenhum acerto através do carro.
+12. Sair sem veículo: volta ao movimento normal e à comunicação por celular.
+As imagens foram montadas com os PNGs do pacote, não são capturas de uma build. Resultados de vitória e derrota são
+ramos alternativos. Artes e legendas devem ser validadas contra os eventos EV01 antes de integrar.
+
+
+=== PAGINA 115 ===
+DIREÇÃO DE ARTE / CONCEITO ORIGINAL
+Fase 01 · Veículo, animais e primeiro ECHO
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+115
+Montagem dos PNGs recortados em 4 momentos. Ordem: superior esquerdo, superior direito, inferior esquerdo, inferior
+direito.
+13. Com veículo: aproximação ao ônibus. Embarque, motorista e condução ainda precisam
+de sprites e implementação.
+14. Sem veículo: circulação a pé usando o mesmo ID de Caio.
+15. Animais: Fubá no chão, Breu na janela e Pingo na praça; reações próprias.
+16. Primeiro ECHO: cidade congela por instantes; Caio permanece consciente.
+As imagens foram montadas com os PNGs do pacote, não são capturas de uma build. Resultados de vitória e derrota são
+ramos alternativos. Artes e legendas devem ser validadas contra os eventos EV01 antes de integrar.
+
+
+=== PAGINA 116 ===
+DOCUMENTO MESTRE / V4.0
+Última página: da referência à build
+SILÊNCIO  /  HISTÓRIA • ARTE • SISTEMAS
+116
+A sequência que a IA deve demonstrar
+Andar sem veículo → pegar adaptador → conversar → loot autorizado → aproximação de
+animais → confronto evitável → sofrer impacto se atingido → mostrar ferimento → usar
+atadura → vencer ou perder → embarcar/sair ou seguir a pé → observar primeiro pulso →
+salvar e continuar.
+Um jogo completo começa por ações reais
+Cada seta corresponde a estado e evento observáveis. O jogador move Caio, escolhe uma
+rota e produz consequência. O desenho da vitória não implementa vitória; a barra de
+saúde não implementa dano; o retrato não implementa diálogo. Demonstrar todas essas
+relações no motor antes de construir os capítulos restantes.
+Pronto para orientar a próxima etapa
+A identidade visual e o elenco estão catalogados. A história tem estrutura, falas principais
+e finais. O slice tem objetos, rotas, eventos e resultados verificáveis. A etapa seguinte é
+produzir frames reais de Caio e Davi, importar um kit de rua e testar essas ações na
+Godot.
+Versão 4.0 • Catálogo, lote inicial recortado e montagens • Outubro 2026. Nenhuma pessoa foi duplicada como novo
+personagem por troca de equipamento. Sem gêmeos. Material de conceito e especificação; produção de animações
+completa permanece uma tarefa explícita.

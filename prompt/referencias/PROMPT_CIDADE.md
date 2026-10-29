@@ -1,0 +1,7 @@
+# Santa Aurora — conceito v01
+
+Produzido com imagegen integrado, usando `docs/screenshots/ap203-final.png` como referência de estilo. Arquivo final: `santa_aurora_conceito_v01.png`. Não é frame extraído de outro jogo. A iluminação de chuva é uma proposta visual; os horários canônicos continuam definidos no jogo.
+
+Prompt utilizado:
+
+Create one original production reference keyframe for SILENCIO, an indie mobile isometric narrative survival game. Landscape 16:9 composition. Match the attached game screenshot's painted pixel-inspired isometric 2.5D materials, restrained proportions, muted blue teal grey exterior and warm amber window accents; no photorealism, no glossy 3D. Scene: Santa Aurora, an ordinary modest contemporary Brazilian neighborhood on a rainy morning. Elevated three-quarter isometric establishing view of a narrow street intersection, two or three story apartment block with a small warmly lit second-floor window, a modest corner grocery, sidewalks with puddles, overhead utility wires, an idle older sedan and bus stop. Quiet unease, ordinary daily life, no disaster, no monsters, no action, no fire. Keep locations generic and original. Room for subtle rain animation and a slow camera drift. No letters, words, signage text, UI, logos, HUD or watermarks. This is a concept keyframe for a future opening cinematic, not an exact screenshot nor a revised map. The game screenshot is visual-style reference only; do not include its UI. Human figures if any must be tiny distant silhouettes. Frame complete edges with environment, no decorative borders.

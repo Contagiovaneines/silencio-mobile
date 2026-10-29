@@ -1,0 +1,9 @@
+{
+  "version": "0.4.1",
+  "apk_sha256": "eadbd927a44331c1614db644323f838eecf6d7778c7c5d1adbbfd199d5928e74",
+  "installed_hash_matches": true,
+  "bytes": 61842543,
+  "reference_assets_verified": 3,
+  "observed_error_lines": [],
+  "automated_tests": 30
+}

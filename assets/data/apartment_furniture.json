@@ -1,0 +1,47 @@
+{
+  "image": "apartment_furniture_v1.png",
+  "source_size": [
+    1536,
+    1024
+  ],
+  "sprites": {
+    "bed": [
+      20,
+      75,
+      555,
+      460
+    ],
+    "wardrobe": [
+      645,
+      0,
+      315,
+      515
+    ],
+    "desk": [
+      1030,
+      80,
+      500,
+      460
+    ],
+    "kitchen": [
+      50,
+      530,
+      475,
+      455
+    ],
+    "bookcase": [
+      570,
+      545,
+      420,
+      425
+    ],
+    "sofa": [
+      1025,
+      550,
+      500,
+      450
+    ]
+  },
+  "note": "Rectangles inspected per object; output is not a regular grid. Source PNG preserved; sampled directly in the renderer.",
+  "sha256": "fd4a3e89b862e125b8d22727bdcd1f6873bf50e36ac2a371989d61da057edb0f"
+}

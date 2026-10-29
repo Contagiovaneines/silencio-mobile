@@ -1,0 +1,20 @@
+[
+  {
+    "source": "C:\\Users\\giovane\\Downloads\\Silencio-main\\Silencio-main\\assets\\v8\\environments\\prologue\\subject07_lab.png",
+    "destination": "assets/images/legacy_subject07_lab.png",
+    "sha256": "1b07753783be602f44c58f15f009856afc8837aae66c3b9e19904a02a63e8385",
+    "use": "Presentation only; not navigable background geometry"
+  },
+  {
+    "source": "C:\\Users\\giovane\\Downloads\\Silencio-main\\Silencio-main\\assets\\backgrounds\\v4\\laboratory.jpg",
+    "destination": "assets/images/legacy_laboratory.jpg",
+    "sha256": "42bb168d4c3d7640039f65d9762ae0710471443bca7cf881933c2ca5c9d88e30",
+    "use": "Presentation only; not navigable background geometry"
+  },
+  {
+    "source": "C:\\Users\\giovane\\Desktop\\editor\\silencio\\prompt\\referencias\\santa_aurora_conceito_v01.png",
+    "destination": "assets/images/menu_santa_aurora_v1.png",
+    "sha256": "4f2a61cb4c603e54d4bafc3a949124d64c8ad35b2d6c174215878da85c2190e7",
+    "use": "Presentation only; not navigable background geometry"
+  }
+]

@@ -1,0 +1,34 @@
+{
+ "frames": {
+  "chave_teste": {
+   "frame": {
+    "x": 0,
+    "y": 0,
+    "w": 26,
+    "h": 18
+   },
+   "rotated": false,
+   "trimmed": false,
+   "spriteSourceSize": {
+    "x": 0,
+    "y": 0,
+    "w": 26,
+    "h": 18
+   },
+   "sourceSize": {
+    "w": 26,
+    "h": 18
+   }
+  }
+ },
+ "meta": {
+  "app": "pxl",
+  "image": "qa_sheet.png",
+  "format": "RGBA8888",
+  "size": {
+   "w": 26,
+   "h": 18
+  },
+  "scale": "1"
+ }
+}

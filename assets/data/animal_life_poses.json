@@ -1,0 +1,41 @@
+{
+  "image": "animal_life_poses_v1.png",
+  "source_size": [
+    2172,
+    724
+  ],
+  "sha256": "b02bc2ef63ead5ad6b5120951e99d04267d196b29a69ff8b964f4fd81b760ae6",
+  "sprites": {
+    "cat_sleep": [
+      115,
+      349,
+      344,
+      222
+    ],
+    "cat_climb": [
+      622,
+      140,
+      464,
+      431
+    ],
+    "dog_sleep": [
+      1086,
+      284,
+      456,
+      277
+    ],
+    "dog_mark": [
+      1653,
+      140,
+      468,
+      476
+    ]
+  },
+  "suggested_render_width": {
+    "cat_sleep": 24,
+    "cat_climb": 20,
+    "dog_sleep": 35,
+    "dog_mark": 34
+  },
+  "note": "Original imagegen RGBA source preserved. Rectangles inspected by alpha occupancy, not a regular square grid. Small prototype poses; full multi-directional animation still pending."
+}

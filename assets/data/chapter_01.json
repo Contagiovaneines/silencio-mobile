@@ -1,0 +1,38 @@
+{
+  "chapter_id": "chapter_01",
+  "title": "Um Dia Normal",
+  "dialogue": [
+    {
+      "id": "start_helena",
+      "speaker": "HELENA",
+      "mode": "mensagem",
+      "text": "Você passa perto do centro hoje? Preciso te mostrar uma coisa."
+    },
+    {
+      "id": "start_caio",
+      "speaker": "CAIO",
+      "mode": "celular",
+      "text": "Vou. O que aconteceu?"
+    },
+    {
+      "id": "start_helena2",
+      "speaker": "HELENA",
+      "mode": "mensagem",
+      "text": "Prefiro te mostrar. E não abre nada que venha do meu número sem conferir comigo."
+    }
+  ],
+  "news": {
+    "source": "CANAL 8 · BOLETIM LOCAL",
+    "title": "Manutenção programada",
+    "pages": [
+      "A prefeitura de Santa Aurora anuncia manutenção da rede de comunicação às 02:00 desta madrugada.",
+      "Comerciantes relatam oscilações de energia. A concessionária afirma que as equipes estão verificando as ocorrências.",
+      "A programação segue normalmente. A reportagem aguarda detalhes sobre as áreas afetadas pela manutenção."
+    ],
+    "ticker": [
+      "Linha 06 suspensa até o amanhecer",
+      "Hospital recebe novos relatos de desorientação",
+      "Escola Aurora mantém portas abertas"
+    ]
+  }
+}

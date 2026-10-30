@@ -5,6 +5,8 @@
     "status": "awaiting_user_video",
     "output": "01_abertura/saida/silencio_f01_abertura_v01.mp4",
     "trigger": "Antes da abertura atual; pular leva ao apartamento 203, 07:12, sem marcar objetivos.",
+    "placeholder_image": "01_abertura/assets/keyframe_placeholder_v01.png",
+    "game_asset": "assets/images/video_placeholder_01_abertura_v01.png",
     "required_for_beta": false
   },
   {
@@ -13,6 +15,8 @@
     "status": "awaiting_user_video",
     "output": "02_primeiro_pulso/saida/silencio_f01_pulso_v01.mp4",
     "trigger": "No evento _pulse já existente, depois de canLeave; conclusão ou pular usa a mesma rotina do beta, uma única vez.",
+    "placeholder_image": "02_primeiro_pulso/assets/keyframe_placeholder_v01.png",
+    "game_asset": "assets/images/video_placeholder_02_pulso_v01.png",
     "required_for_beta": false
   },
   {
@@ -21,6 +25,8 @@
     "status": "awaiting_user_video",
     "output": "03_mensagem_helena/saida/silencio_f01_mensagem_v01.mp4",
     "trigger": "Opcional, depois do pulso, ao abrir o celular. Nunca substituir a leitura interativa nem avançar night sozinho.",
+    "placeholder_image": "03_mensagem_helena/assets/keyframe_placeholder_v01.png",
+    "game_asset": "assets/images/video_placeholder_03_mensagem_v01.png",
     "required_for_beta": false
   },
   {
@@ -29,6 +35,8 @@
     "status": "awaiting_user_video",
     "output": "04_retorno_e_cama/saida/silencio_f01_retorno_v01.mp4",
     "trigger": "Somente ao usar a cama após canLeave + pulse + night. Não acionar ao salvar cedo; nenhuma prévia do capítulo 2.",
+    "placeholder_image": "04_retorno_e_cama/assets/keyframe_placeholder_v01.png",
+    "game_asset": "assets/images/video_placeholder_04_retorno_v01.png",
     "required_for_beta": false
   }
 ]

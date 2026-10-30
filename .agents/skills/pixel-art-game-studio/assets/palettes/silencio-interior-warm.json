@@ -1,0 +1,14 @@
+{
+  "name": "SILÊNCIO — interior habitado",
+  "description": "Papéis para móveis e interiores; conferir contraste e iluminação com o cenário real.",
+  "colors": {
+    "madeira_escura": "#604331",
+    "madeira_luz": "#A87549",
+    "parede_quente": "#B4A78A",
+    "piso_frio": "#4D514C",
+    "sombra": "#263035",
+    "luminaria": "#E2B56E",
+    "tecido": "#596A69",
+    "texto": "#E2DDC9"
+  }
+}

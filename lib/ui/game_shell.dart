@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/gestures.dart';
 
 import '../game/game_session.dart';
 import '../services/game_preferences.dart';
@@ -12,6 +13,7 @@ import '../game/world_model.dart';
 import 'phase_presentation.dart';
 import 'narrative_backdrop.dart';
 import 'campaign_journey.dart';
+import 'menu_atmosphere.dart';
 import '../models/campaign.dart';
 
 const mist = Color(0xffa2cbb8);
@@ -26,13 +28,39 @@ class GameShell extends StatefulWidget {
   State<GameShell> createState() => _GameShellState();
 }
 
-class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
+class _GameShellState extends State<GameShell>
+    with WidgetsBindingObserver, SingleTickerProviderStateMixin {
   late final SilencioGame game;
   final focus = FocusNode();
   final keys = <LogicalKeyboardKey>{};
-  String? _mapTarget;
+  int _mouseButtons = 0;
+  void _pointerInput(PointerEvent event) {
+    if (s.phase != PlayPhase.playing) {
+      _mouseButtons = 0;
+      s.world.endAim();
+      return;
+    }
+    final primaryPressed =
+        event.buttons & kPrimaryMouseButton != 0 &&
+        _mouseButtons & kPrimaryMouseButton == 0;
+    final secondaryHeld = event.buttons & kSecondaryMouseButton != 0;
+    if (secondaryHeld) {
+      game.aimAtScreen(event.localPosition);
+      focus.requestFocus();
+      if (primaryPressed) s.attack();
+    } else if (_mouseButtons & kSecondaryMouseButton != 0) {
+      s.world.endAim();
+    }
+    _mouseButtons = event.buttons;
+  }
+
+  bool _pauseSettings = false;
   GameSession get s => widget.session;
   late final GamePreferences preferences;
+  late final AnimationController _menuMotion;
+  bool _menuExtrasOpen = false;
+  bool _editingControls = false;
+  final Map<String, Offset> _controlAnchors = {};
   String tr(String pt, String en) => preferences.language == 'en' ? en : pt;
   void _preference(String key, bool value) {
     unawaited(preferences.setFlag(key, value));
@@ -44,7 +72,21 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
     super.initState();
     preferences = GamePreferences(s.repository.preferences);
     game = SilencioGame(s, enableAudio: widget.enableAudio);
+    _menuMotion = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 24),
+    );
+    s.addListener(_syncMenuMotion);
+    _syncMenuMotion();
     WidgetsBinding.instance.addObserver(this);
+  }
+
+  void _syncMenuMotion() {
+    if (s.phase == PlayPhase.menu && !s.reducedEffects) {
+      if (!_menuMotion.isAnimating) _menuMotion.repeat();
+    } else if (_menuMotion.isAnimating) {
+      _menuMotion.stop();
+    }
   }
 
   @override
@@ -65,6 +107,10 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
       keys.add(key);
     }
     if (event is KeyDownEvent) {
+      if (key == LogicalKeyboardKey.escape && _pauseSettings) {
+        setState(() => _pauseSettings = false);
+        return;
+      }
       if (key == LogicalKeyboardKey.escape) {
         if (s.phase == PlayPhase.opening) {
           s.finishOpening();
@@ -84,6 +130,9 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
       if (s.phase == PlayPhase.playing) {
         if (key == LogicalKeyboardKey.keyE) s.interact();
         if (key == LogicalKeyboardKey.space) s.push();
+        if (key == LogicalKeyboardKey.keyF) s.attack();
+        if (key == LogicalKeyboardKey.keyV) s.toggleGuard();
+        if (key == LogicalKeyboardKey.keyB) s.vault();
         if (key == LogicalKeyboardKey.keyQ) s.togglePerception();
         if (key == LogicalKeyboardKey.keyJ) s.journal();
         if (key == LogicalKeyboardKey.keyM) s.map();
@@ -101,6 +150,9 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
       }
     }
     if (s.phase != PlayPhase.playing) return;
+    s.world.sprintHeld =
+        keys.contains(LogicalKeyboardKey.shiftLeft) ||
+        keys.contains(LogicalKeyboardKey.shiftRight);
     double axis(LogicalKeyboardKey a, LogicalKeyboardKey b) =>
         keys.contains(a) || keys.contains(b) ? 1 : 0;
     final dx =
@@ -167,12 +219,24 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
           child: Stack(
             fit: StackFit.expand,
             children: [
-              GestureDetector(
-                onTapDown: (d) {
-                  game.tapGround(d.localPosition);
-                  focus.requestFocus();
-                },
-                child: GameWidget(game: game, autofocus: false),
+              IgnorePointer(
+                ignoring: s.phase != PlayPhase.playing,
+                child: Listener(
+                  onPointerDown: _pointerInput,
+                  onPointerMove: _pointerInput,
+                  onPointerUp: _pointerInput,
+                  onPointerCancel: (_) {
+                    _mouseButtons = 0;
+                    s.world.endAim();
+                  },
+                  child: GestureDetector(
+                    onTapDown: (d) {
+                      game.tapGround(d.localPosition);
+                      focus.requestFocus();
+                    },
+                    child: GameWidget(game: game, autofocus: false),
+                  ),
+                ),
               ),
               if (s.phase == PlayPhase.menu) _menu(),
               if (s.phase == PlayPhase.menuSettings) _settings(),
@@ -188,25 +252,37 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
               if (s.phase == PlayPhase.dialogue) _dialogue(),
               if (s.phase == PlayPhase.news) _news(),
               if (s.phase == PlayPhase.journal) _journal(),
-              if (s.phase == PlayPhase.paused) _pause(),
+              if (s.phase == PlayPhase.paused)
+                _pauseSettings ? _settings(fromPause: true) : _pause(),
               if (s.phase == PlayPhase.complete) _complete(),
               if (s.phase == PlayPhase.defeated) _defeated(),
               if (s.notice.isNotEmpty && s.phase == PlayPhase.playing)
                 Positioned(
-                  left: 18,
-                  right: 18,
-                  bottom: MediaQuery.sizeOf(context).width < 600 ? 300 : 18,
+                  left: 0,
+                  right: 0,
+                  bottom: MediaQuery.sizeOf(context).width < 600 ? 300 : 96,
                   child: IgnorePointer(
-                    child: _glass(
-                      Padding(
-                        padding: const EdgeInsets.all(10),
-                        child: Text(
-                          s.notice,
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            color: parchment,
-                            fontSize: 11,
-                            height: 1.4,
+                    child: Center(
+                      child: ConstrainedBox(
+                        key: const Key('game-notice'),
+                        constraints: const BoxConstraints(maxWidth: 440),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 12),
+                          child: _glass(
+                            Padding(
+                              padding: const EdgeInsets.all(9),
+                              child: Text(
+                                s.notice,
+                                textAlign: TextAlign.center,
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                                style: const TextStyle(
+                                  color: parchment,
+                                  fontSize: 11,
+                                  height: 1.35,
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ),
@@ -220,196 +296,613 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
     ),
   );
 
-  Widget _menu() => Stack(
-    fit: StackFit.expand,
-    children: [
-      NarrativeBackdrop(
-        asset: 'assets/images/menu_santa_aurora_v1.png',
-        reducedMotion: s.reducedEffects,
-      ),
-      DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xf5102029), Color(0xd5102029), Color(0x35102029)],
-            stops: [0, .42, 1],
+  Widget _menu() => LayoutBuilder(
+    builder: (context, viewport) {
+      final wide =
+          viewport.maxWidth >= 700 &&
+          viewport.maxHeight >= 360 &&
+          viewport.maxWidth >= viewport.maxHeight * 1.35;
+      final portrait = viewport.maxWidth < 600;
+      final motion = s.reducedEffects ? 0.0 : _menuMotion.value;
+      return Stack(
+        fit: StackFit.expand,
+        children: [
+          Image.asset(
+            'assets/images/menu_santa_aurora_v2.png',
+            fit: BoxFit.cover,
+            alignment: portrait ? Alignment.centerRight : Alignment.topCenter,
+            filterQuality: FilterQuality.medium,
           ),
-        ),
-      ),
-      SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(36, 20, 28, 18),
-          child: LayoutBuilder(
-            builder: (context, bounds) => Row(
-              children: [
-                SizedBox(
-                  width: math.min(
-                    440,
-                    bounds.maxWidth <= 650
-                        ? bounds.maxWidth
-                        : bounds.maxWidth * .64,
+          const DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Color(0xf20a121b),
+                  Color(0xd50a121b),
+                  Color(0x740a121b),
+                  Color(0x160a121b),
+                ],
+                stops: [0, .34, .66, 1],
+              ),
+            ),
+          ),
+          const DecoratedBox(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                colors: [Color(0xe9081119), Color(0x00081119)],
+                stops: [0, .58],
+              ),
+            ),
+          ),
+          AnimatedBuilder(
+            animation: _menuMotion,
+            builder: (context, _) => CustomPaint(
+              painter: MenuAtmospherePainter(
+                progress: s.reducedEffects ? 0 : _menuMotion.value,
+                reducedMotion: s.reducedEffects,
+              ),
+            ),
+          ),
+          Positioned(
+            right: portrait ? -32 : viewport.maxWidth * .025,
+            bottom: portrait ? 94 : 0,
+            width: portrait ? viewport.maxWidth * .66 : viewport.maxWidth * .43,
+            height: portrait
+                ? viewport.maxHeight * .40
+                : viewport.maxHeight * .82,
+            child: IgnorePointer(
+              child: AnimatedBuilder(
+                animation: _menuMotion,
+                builder: (context, child) => Opacity(
+                  opacity: portrait ? .42 : .92,
+                  child: Transform.translate(
+                    offset: Offset(
+                      0,
+                      s.reducedEffects
+                          ? 0
+                          : math.sin(motion * math.pi * 2) * 2.2,
+                    ),
+                    child: child,
                   ),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                ),
+                child: Image.asset(
+                  'assets/images/menu_caio_foreground_v1.png',
+                  fit: BoxFit.contain,
+                  alignment: Alignment.bottomCenter,
+                  filterQuality: FilterQuality.medium,
+                ),
+              ),
+            ),
+          ),
+          SafeArea(
+            child: Padding(
+              padding: EdgeInsets.fromLTRB(
+                portrait ? 18 : 36,
+                portrait ? 14 : 24,
+                portrait ? 18 : 30,
+                portrait ? 14 : 20,
+              ),
+              child: wide
+                  ? Row(
+                      key: const Key('menu-wide-layout'),
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
-                        Text(
-                          tr(
-                            'UM JOGO SOBRE O QUE AINDA É HUMANO',
-                            'A GAME ABOUT WHAT REMAINS HUMAN',
-                          ),
-                          style: const TextStyle(
-                            color: mist,
-                            fontSize: 9,
-                            letterSpacing: 2,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          alignment: Alignment.centerLeft,
-                          child: Text(
-                            'SILÊNCIO',
-                            style: TextStyle(
-                              fontSize: bounds.maxHeight < 400 ? 52 : 68,
-                              height: 1.1,
-                              letterSpacing: 7,
-                              fontWeight: FontWeight.w300,
-                              color: parchment,
+                        SizedBox(
+                          width: math.min(410, viewport.maxWidth * .38),
+                          child: SingleChildScrollView(
+                            child: _menuMainColumn(
+                              compact: viewport.maxWidth < 1100,
+                              wide: true,
                             ),
                           ),
                         ),
-                        const SizedBox(height: 10),
-                        Text(
-                          tr(
-                            'SANTA AURORA / UM DIA NORMAL',
-                            'SANTA AURORA / AN ORDINARY DAY',
-                          ),
-                          style: const TextStyle(
-                            fontSize: 10,
-                            color: ochre,
-                            letterSpacing: 1.5,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        Text(
-                          tr(
-                            '07:12. Chuva de novo.\nHoje parecia ser só mais um dia.',
-                            '07:12. Rain again.\nToday seemed like any other day.',
-                          ),
-                          style: const TextStyle(
-                            color: mist,
-                            fontSize: 12,
-                            height: 1.5,
-                          ),
-                        ),
-                        const SizedBox(height: 14),
-                        Wrap(
-                          spacing: 8,
-                          runSpacing: 6,
-                          children: [
-                            FilledButton.icon(
-                              onPressed: _start,
-                              icon: const Icon(Icons.play_arrow_rounded),
-                              label: Text(tr('Novo jogo', 'New game')),
-                            ),
-                            if (s.hasSave)
-                              FilledButton.tonalIcon(
-                                onPressed: _resume,
-                                icon: const Icon(Icons.restore_rounded),
-                                label: Text(tr('Continuar', 'Continue')),
+                        Expanded(
+                          child: Stack(
+                            children: [
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: _weatherCard(
+                                  compact: viewport.maxWidth < 1100,
+                                ),
                               ),
-                            OutlinedButton.icon(
-                              onPressed: s.menuSettings,
-                              icon: const Icon(Icons.settings_outlined),
-                              label: Text(tr('Configurações', 'Settings')),
-                            ),
-                          ],
-                        ),
-                        TextButton.icon(
-                          onPressed: s.journey,
-                          icon: const Icon(Icons.route_outlined, size: 18),
-                          label: Text(tr('Jornada', 'Journey')),
-                        ),
-                        TextButton(
-                          onPressed: s.replay,
-                          style: TextButton.styleFrom(padding: EdgeInsets.zero),
-                          child: Text(
-                            tr(
-                              'Reassistir à abertura  ↗',
-                              'Watch opening again  ↗',
-                            ),
-                            style: const TextStyle(fontSize: 11, color: mist),
-                          ),
-                        ),
-                        Text(
-                          tr('FASE 01 · BETA 0.5', 'CHAPTER 01 · BETA 0.5'),
-                          style: const TextStyle(
-                            color: Color(0xff718d88),
-                            fontSize: 9,
-                            letterSpacing: 1.2,
+                              if (viewport.maxWidth >= 1100)
+                                Align(
+                                  alignment: Alignment.bottomRight,
+                                  child: ConstrainedBox(
+                                    constraints: const BoxConstraints(
+                                      maxWidth: 960,
+                                    ),
+                                    child: SizedBox(
+                                      width: double.infinity,
+                                      child: Row(
+                                        children: [
+                                          Expanded(child: _cityCard()),
+                                          const SizedBox(width: 10),
+                                          Expanded(
+                                            child: _featureCard(
+                                              Icons.back_hand_outlined,
+                                              tr(
+                                                'COMUNICAÇÃO',
+                                                'COMMUNICATION',
+                                              ),
+                                              tr(
+                                                'Libras e celular',
+                                                'Signs and phone',
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Expanded(
+                                            child: _featureCard(
+                                              Icons.inventory_2_outlined,
+                                              tr('SOBREVIVÊNCIA', 'SURVIVAL'),
+                                              tr(
+                                                'Recursos e inventário',
+                                                'Resources and inventory',
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(width: 10),
+                                          Expanded(
+                                            child: _featureCard(
+                                              Icons.search_rounded,
+                                              tr(
+                                                'INVESTIGAÇÃO',
+                                                'INVESTIGATION',
+                                              ),
+                                              tr(
+                                                'Descubra a verdade',
+                                                'Find the truth',
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                            ],
                           ),
                         ),
                       ],
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                if (bounds.maxWidth > 650)
-                  Flexible(
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: _glass(
-                        Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    )
+                  : SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          if (portrait) _weatherCard(compact: true),
+                          _menuMainColumn(compact: portrait, wide: false),
+                          const SizedBox(height: 18),
+                          _cityCard(),
+                          const SizedBox(height: 10),
+                          Wrap(
+                            spacing: 8,
+                            runSpacing: 8,
                             children: [
-                              const Icon(
-                                Icons.radio_button_checked,
-                                color: ochre,
-                                size: 16,
+                              _smallFeature(
+                                Icons.back_hand_outlined,
+                                tr('COMUNICAÇÃO', 'COMMUNICATION'),
+                                tr('Libras e celular', 'Signs and phone'),
                               ),
-                              const SizedBox(height: 8),
-                              Text(
+                              _smallFeature(
+                                Icons.inventory_2_outlined,
+                                tr('SOBREVIVÊNCIA', 'SURVIVAL'),
                                 tr(
-                                  '01 / UM DIA NORMAL',
-                                  '01 / AN ORDINARY DAY',
-                                ),
-                                style: const TextStyle(
-                                  color: parchment,
-                                  fontSize: 12,
+                                  'Recursos e inventário',
+                                  'Resources and inventory',
                                 ),
                               ),
-                              const SizedBox(height: 6),
-                              Text(
-                                s.hasSave
-                                    ? '${s.campaign.location}\n${s.campaign.evidenceCount}/5 ${tr('marcos registrados', 'milestones recorded')}'
-                                    : tr(
-                                        'Apartamento 203 · 2º andar\nUma manhã que parecia comum.',
-                                        'Apartment 203 · 2nd floor\nA morning that seemed ordinary.',
-                                      ),
-                                style: const TextStyle(
-                                  color: mist,
-                                  fontSize: 11,
-                                  height: 1.5,
-                                ),
+                              _smallFeature(
+                                Icons.search_rounded,
+                                tr('INVESTIGAÇÃO', 'INVESTIGATION'),
+                                tr('Descubra a verdade', 'Find the truth'),
                               ),
                             ],
                           ),
+                        ],
+                      ),
+                    ),
+            ),
+          ),
+          if (_menuExtrasOpen)
+            Positioned.fill(
+              child: ColoredBox(
+                color: const Color(0xb900060c),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 430),
+                    child: _glass(
+                      Padding(
+                        padding: const EdgeInsets.all(22),
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              tr('Extras', 'Extras'),
+                              style: const TextStyle(
+                                color: parchment,
+                                fontSize: 25,
+                              ),
+                            ),
+                            const SizedBox(height: 6),
+                            Text(
+                              tr(
+                                'Acompanhe sua jornada e reveja a abertura.',
+                                'Review your journey and watch the opening again.',
+                              ),
+                              style: const TextStyle(color: mist, height: 1.4),
+                            ),
+                            const SizedBox(height: 16),
+                            OutlinedButton.icon(
+                              onPressed: () {
+                                setState(() => _menuExtrasOpen = false);
+                                s.journey();
+                              },
+                              icon: const Icon(Icons.route_outlined),
+                              label: Text(tr('Jornada', 'Journey')),
+                            ),
+                            OutlinedButton.icon(
+                              onPressed: () {
+                                setState(() => _menuExtrasOpen = false);
+                                s.replay();
+                              },
+                              icon: const Icon(Icons.movie_outlined),
+                              label: Text(
+                                tr(
+                                  'Reassistir à abertura',
+                                  'Watch opening again',
+                                ),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () =>
+                                  setState(() => _menuExtrasOpen = false),
+                              child: Text(tr('Voltar', 'Back')),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                   ),
-              ],
+                ),
+              ),
+            ),
+        ],
+      );
+    },
+  );
+
+  Widget _menuMainColumn({required bool compact, required bool wide}) {
+    final dense = compact && wide;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        const SizedBox(height: 4),
+        Text(
+          tr(
+            'UM JOGO SOBRE O QUE AINDA É HUMANO',
+            'A GAME ABOUT WHAT REMAINS HUMAN',
+          ),
+          style: const TextStyle(color: mist, fontSize: 9, letterSpacing: 2),
+        ),
+        const SizedBox(height: 4),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'SILÊNCIO',
+            style: TextStyle(
+              fontSize: dense ? 38 : (compact ? 50 : (wide ? 66 : 58)),
+              height: 1.04,
+              letterSpacing: compact ? 4 : 7,
+              fontWeight: FontWeight.w800,
+              color: parchment,
+              shadows: const [Shadow(color: Color(0xaa000000), blurRadius: 22)],
             ),
           ),
         ),
+        const SizedBox(height: 5),
+        Text(
+          tr(
+            'SANTA AURORA  /  UM DIA NORMAL',
+            'SANTA AURORA  /  AN ORDINARY DAY',
+          ),
+          style: const TextStyle(
+            fontSize: 10,
+            color: ochre,
+            letterSpacing: 1.5,
+          ),
+        ),
+        SizedBox(height: dense ? 6 : 14),
+        if (!compact && !wide) _weatherCard(compact: true),
+        if (!compact && !wide) const SizedBox(height: 12),
+        _menuButton(
+          key: const Key('menu-continue'),
+          title: tr('Continuar', 'Continue'),
+          subtitle: s.hasSave
+              ? '${s.campaign.location} · ${s.campaign.evidenceCount}/5 ${tr('marcos', 'milestones')}'
+              : tr('Nenhum salvamento encontrado', 'No saved progress found'),
+          icon: Icons.description_outlined,
+          onPressed: s.hasSave ? _resume : null,
+          highlighted: s.hasSave,
+          continueButton: true,
+          dense: dense,
+        ),
+        SizedBox(height: dense ? 4 : 8),
+        _menuButton(
+          key: const Key('menu-new-game'),
+          title: tr('Novo jogo', 'New game'),
+          subtitle: tr('Começar do início', 'Start from the beginning'),
+          icon: Icons.note_add_outlined,
+          onPressed: _start,
+          dense: dense,
+        ),
+        SizedBox(height: dense ? 4 : 8),
+        _menuButton(
+          key: const Key('menu-options'),
+          title: tr('Configurações', 'Settings'),
+          subtitle: tr(
+            'Som, controles e acessibilidade',
+            'Sound, controls and accessibility',
+          ),
+          icon: Icons.settings_outlined,
+          onPressed: s.menuSettings,
+          dense: dense,
+        ),
+        SizedBox(height: dense ? 4 : 8),
+        _menuButton(
+          key: const Key('menu-extras'),
+          title: tr('Extras', 'Extras'),
+          subtitle: tr('Jornada e abertura', 'Journey and opening'),
+          icon: Icons.folder_open_outlined,
+          onPressed: () => setState(() => _menuExtrasOpen = true),
+          dense: dense,
+        ),
+        SizedBox(height: dense ? 5 : 10),
+        Text(
+          tr('FASE 01  ·  BETA 0.5', 'CHAPTER 01  ·  BETA 0.5'),
+          style: const TextStyle(
+            color: Color(0xffb1b6b7),
+            fontSize: 9,
+            letterSpacing: 1.2,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _menuButton({
+    required Key key,
+    required String title,
+    required String subtitle,
+    required IconData icon,
+    required VoidCallback? onPressed,
+    bool highlighted = false,
+    bool continueButton = false,
+    bool dense = false,
+  }) {
+    final content = Row(
+      children: [
+        Icon(icon, size: dense ? 20 : 25),
+        SizedBox(width: dense ? 10 : 14),
+        Expanded(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: dense ? 12 : 14,
+                  letterSpacing: dense ? 1.2 : 1.8,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                subtitle,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                  fontSize: dense ? 9 : 11,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const SizedBox(width: 8),
+        const Icon(Icons.chevron_right_rounded, size: 22),
+      ],
+    );
+    final style = ButtonStyle(
+      alignment: Alignment.centerLeft,
+      minimumSize: WidgetStatePropertyAll(Size.fromHeight(dense ? 50 : 66)),
+      padding: WidgetStatePropertyAll(
+        EdgeInsets.symmetric(
+          horizontal: dense ? 12 : 16,
+          vertical: dense ? 4 : 8,
+        ),
       ),
-    ],
+      shape: WidgetStatePropertyAll(
+        RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(
+            color: highlighted
+                ? const Color(0xfff1ca7c)
+                : const Color(0x998fa5b0),
+          ),
+        ),
+      ),
+      foregroundColor: WidgetStatePropertyAll(
+        highlighted ? const Color(0xff1b1b18) : parchment,
+      ),
+      backgroundColor: WidgetStateProperty.resolveWith((states) {
+        if (states.contains(WidgetState.disabled)) {
+          return const Color(0xa719252f);
+        }
+        return highlighted ? const Color(0xfff0c879) : const Color(0x8d0b151f);
+      }),
+      overlayColor: const WidgetStatePropertyAll(Color(0x22ffffff)),
+      textStyle: const WidgetStatePropertyAll(
+        TextStyle(fontWeight: FontWeight.w500),
+      ),
+    );
+    return SizedBox(
+      width: double.infinity,
+      height: dense ? 52 : 68,
+      child: continueButton
+          ? FilledButton(
+              key: key,
+              onPressed: onPressed,
+              style: style,
+              child: content,
+            )
+          : OutlinedButton(
+              key: key,
+              onPressed: onPressed,
+              style: style,
+              child: content,
+            ),
+    );
+  }
+
+  Widget _weatherCard({required bool compact}) => _glass(
+    Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: compact ? 12 : 18,
+        vertical: compact ? 9 : 12,
+      ),
+      child: Row(
+        mainAxisSize: compact ? MainAxisSize.max : MainAxisSize.min,
+        children: [
+          Icon(
+            Icons.cloudy_snowing,
+            color: const Color(0xffd4e2ed),
+            size: compact ? 25 : 32,
+          ),
+          const SizedBox(width: 10),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text(
+                '07:12',
+                style: TextStyle(
+                  color: parchment,
+                  fontSize: 17,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 1,
+                ),
+              ),
+              Text(
+                tr('CHUVA DE NOVO', 'RAIN AGAIN'),
+                style: const TextStyle(
+                  color: mist,
+                  fontSize: 9,
+                  letterSpacing: 1.2,
+                ),
+              ),
+              if (!compact)
+                Text(
+                  tr(
+                    'Hoje parecia ser só mais um dia.',
+                    'Today seemed like any other day.',
+                  ),
+                  style: const TextStyle(
+                    color: Color(0xffbfc7ce),
+                    fontSize: 10,
+                  ),
+                ),
+            ],
+          ),
+        ],
+      ),
+    ),
   );
 
-  Widget _settings() => _panel(
+  Widget _cityCard() => _glass(
+    Padding(
+      padding: const EdgeInsets.all(13),
+      child: Row(
+        children: [
+          const Icon(Icons.location_city_outlined, color: ochre, size: 24),
+          const SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(
+                  tr('SANTA AURORA', 'SANTA AURORA'),
+                  style: const TextStyle(
+                    color: parchment,
+                    fontSize: 12,
+                    letterSpacing: 1.1,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  tr(
+                    'Uma cidade que já foi normal. Agora, cada rua esconde histórias e perigos.',
+                    'A city that used to be ordinary. Now every street hides stories and danger.',
+                  ),
+                  style: const TextStyle(
+                    color: mist,
+                    fontSize: 10,
+                    height: 1.35,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
+
+  Widget _featureCard(IconData icon, String title, String subtitle) => _glass(
+    Padding(
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, color: ochre, size: 20),
+          const SizedBox(height: 10),
+          Text(
+            title,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(
+              color: parchment,
+              fontSize: 9,
+              letterSpacing: 1.1,
+            ),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            subtitle,
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+            style: const TextStyle(color: mist, fontSize: 9),
+          ),
+        ],
+      ),
+    ),
+  );
+
+  Widget _smallFeature(IconData icon, String title, String subtitle) =>
+      SizedBox(width: 165, child: _featureCard(icon, title, subtitle));
+
+  Widget _settings({bool fromPause = false}) => _panel(
     maxWidth: 620,
     child: Column(
       mainAxisSize: MainAxisSize.min,
@@ -419,6 +912,8 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
           tr('Configurações', 'Settings'),
           style: const TextStyle(color: parchment, fontSize: 26),
         ),
+        const SizedBox(height: 12),
+        _eyebrow(tr('ÁUDIO', 'AUDIO')),
         _setting(
           tr('Sons e ambiente', 'Enable audio'),
           s.soundEnabled,
@@ -428,12 +923,16 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
           tr('Ambiente sonoro', 'Ambient audio'),
           preferences.musicEnabled,
           (v) => _preference('music', v),
+          enabled: s.soundEnabled,
         ),
         _setting(
           tr('Efeitos sonoros', 'Sound effects'),
           preferences.effectsEnabled,
           (v) => _preference('audioEffects', v),
+          enabled: s.soundEnabled,
         ),
+        const SizedBox(height: 12),
+        _eyebrow(tr('IMAGEM E ACESSIBILIDADE', 'DISPLAY AND ACCESSIBILITY')),
         _setting(
           tr(
             'Reduzir chuva, pulsos e movimento',
@@ -446,6 +945,10 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
           tr('Qualidade visual econômica', 'Low visual quality'),
           preferences.lowQuality,
           (v) => _preference('lowQuality', v),
+          subtitle: tr(
+            'Reduz efeitos e detalhes decorativos do cenário.',
+            'Reduces visual effects and decorative scenery details.',
+          ),
         ),
         _setting(
           tr('Texto maior', 'Larger text'),
@@ -457,16 +960,23 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
           preferences.highContrast,
           (v) => _preference('highContrast', v),
         ),
+        const SizedBox(height: 12),
+        _eyebrow(tr('CONTROLES DE TOQUE', 'TOUCH CONTROLS')),
         _setting(
           tr('Controle de movimento à direita', 'Movement control on right'),
           preferences.rightStick,
           (v) => _preference('rightStick', v),
+          subtitle: tr(
+            'Os botões de ação mudam para o lado oposto.',
+            'Action buttons move to the opposite side.',
+          ),
         ),
         _setting(
           tr('Controle de movimento maior', 'Larger movement control'),
           preferences.largeStick,
           (v) => _preference('largeStick', v),
         ),
+        const SizedBox(height: 16),
         DropdownButtonFormField<String>(
           initialValue: preferences.language,
           decoration: InputDecoration(
@@ -492,25 +1002,38 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
         ),
         const SizedBox(height: 16),
         FilledButton(
-          onPressed: s.closePanel,
-          child: Text(tr('Voltar ao menu', 'Back to menu')),
+          onPressed: fromPause
+              ? () => setState(() => _pauseSettings = false)
+              : s.closePanel,
+          child: Text(
+            fromPause
+                ? tr('Voltar à pausa', 'Back to pause')
+                : tr('Voltar ao menu', 'Back to menu'),
+          ),
         ),
       ],
     ),
   );
 
-  Widget _setting(String title, bool value, ValueChanged<bool> onChanged) =>
-      SwitchListTile.adaptive(
-        contentPadding: EdgeInsets.zero,
-        title: Text(title),
-        value: value,
-        onChanged: onChanged,
-      );
+  Widget _setting(
+    String title,
+    bool value,
+    ValueChanged<bool> onChanged, {
+    bool enabled = true,
+    String? subtitle,
+  }) => SwitchListTile.adaptive(
+    contentPadding: EdgeInsets.zero,
+    title: Text(title),
+    subtitle: subtitle == null ? null : Text(subtitle),
+    value: value,
+    onChanged: enabled ? onChanged : null,
+  );
 
   Widget _journey() => _panel(
     maxWidth: 920,
     child: CampaignJourney(
-      completed: s.campaign.finished,
+      completed: s.campaign.has('finish'),
+      onPlayChapterTwo: s.campaign.has('finish') ? s.startChapterTwo : null,
       hasSave: s.hasSave,
       localMap: s.journeyFromMap,
       onPlay: () {
@@ -527,9 +1050,9 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
   );
 
   Widget _hud() => Positioned(
-    top: 12,
-    left: 18,
-    right: 18,
+    top: 8,
+    left: 12,
+    right: 12,
     child: SafeArea(
       bottom: false,
       child: Wrap(
@@ -537,18 +1060,20 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
         runSpacing: 8,
         children: [
           SizedBox(
-            width: MediaQuery.sizeOf(context).width < 600
-                ? MediaQuery.sizeOf(context).width - 36
-                : MediaQuery.sizeOf(context).width - 300,
+            width: math.min(
+              MediaQuery.sizeOf(context).width - 24,
+              MediaQuery.sizeOf(context).width < 600 ? 360 : 390,
+            ),
             child: Align(
               alignment: Alignment.topLeft,
               child: _glass(
                 Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 10,
+                    horizontal: 10,
+                    vertical: 7,
                   ),
                   child: ConstrainedBox(
+                    key: const Key('game-hud-card'),
                     constraints: const BoxConstraints(maxWidth: 390),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -580,15 +1105,19 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
                             ),
                           ],
                         ),
-                        const SizedBox(height: 7),
+                        const SizedBox(height: 4),
                         Text(
                           s.campaign.objective,
+                          key: const Key('hud-objective'),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             fontSize: 12,
+                            height: 1.15,
                             color: parchment,
                           ),
                         ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 6),
                         Row(
                           children: [
                             _meter(
@@ -613,6 +1142,58 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
               ),
             ),
           ),
+          if (s.world.encounterActive &&
+              !s.world.enemyDefeated &&
+              s.world.distance(s.world.enemyX, s.world.enemyY) < 5)
+            SizedBox(
+              width: MediaQuery.sizeOf(context).width < 600
+                  ? MediaQuery.sizeOf(context).width - 36
+                  : MediaQuery.sizeOf(context).width - 300,
+              child: Align(
+                alignment: Alignment.topLeft,
+                child: _glass(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 8,
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(
+                          Icons.warning_amber_rounded,
+                          color: Color(0xffdf6167),
+                          size: 15,
+                        ),
+                        const SizedBox(width: 7),
+                        Text(
+                          'DAVI · ${s.world.enemyHealth.round()}%',
+                          style: const TextStyle(
+                            color: parchment,
+                            fontSize: 10,
+                            letterSpacing: .7,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(3),
+                            child: LinearProgressIndicator(
+                              key: const ValueKey('enemy-health'),
+                              value:
+                                  s.world.enemyHealth /
+                                  WorldModel.enemyMaxHealth,
+                              minHeight: 5,
+                              color: const Color(0xffdf6167),
+                              backgroundColor: const Color(0xff493638),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
           _glass(
             Row(
               mainAxisSize: MainAxisSize.min,
@@ -709,82 +1290,264 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
     return Positioned.fill(
       child: SafeArea(
         top: false,
-        child: Stack(
-          children: [
-            Positioned(
-              left: preferences.rightStick ? null : 24,
-              right: preferences.rightStick ? 24 : null,
-              bottom: preferences.largeStick ? 160 : 138,
-              child: OutlinedButton.icon(
-                onPressed: s.toggleRun,
-                icon: Icon(
-                  s.world.running
-                      ? Icons.directions_run
-                      : Icons.directions_walk,
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            final width = constraints.maxWidth;
+            final height = constraints.maxHeight;
+            final portrait = width < 600;
+            final movementSize = preferences.largeStick ? 132.0 : 106.0;
+            final actionWidth = math.min(width - 20, portrait ? 340.0 : 360.0);
+            final actionHeight = portrait ? 148.0 : 86.0;
+            final side = preferences.rightStick ? .84 : .16;
+            final opposite = 1 - side;
+            final movementDefault = Offset(side, portrait ? .89 : .82);
+            final actionsDefault = Offset(
+              portrait ? .50 : opposite,
+              portrait ? .70 : .82,
+            );
+            final sprintDefault = Offset(side, portrait ? .73 : .64);
+            Offset anchor(String id, Offset fallback) =>
+                _controlAnchors[id] ??
+                preferences.controlPosition(id) ??
+                fallback;
+
+            Widget placed(String id, Offset fallback, Size size, Widget child) {
+              final position = anchor(id, fallback);
+              final left = (position.dx * width - size.width / 2)
+                  .clamp(0.0, math.max(0, width - size.width))
+                  .toDouble();
+              final top = (position.dy * height - size.height / 2)
+                  .clamp(0.0, math.max(0, height - size.height))
+                  .toDouble();
+              return Positioned(
+                left: left,
+                top: top,
+                child: GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onPanUpdate: _editingControls
+                      ? (details) => _moveControl(
+                          id,
+                          details.delta,
+                          Size(width, height),
+                          fallback,
+                        )
+                      : null,
+                  onPanEnd: _editingControls
+                      ? (_) => unawaited(
+                          preferences.setControlPosition(
+                            id,
+                            anchor(id, fallback),
+                          ),
+                        )
+                      : null,
+                  child: DecoratedBox(
+                    decoration: _editingControls
+                        ? BoxDecoration(
+                            border: Border.all(
+                              color: const Color(0xff45d6ba),
+                              width: 2,
+                            ),
+                            borderRadius: BorderRadius.circular(18),
+                            color: const Color(0x3327b69e),
+                          )
+                        : const BoxDecoration(),
+                    child: SizedBox.fromSize(
+                      key: Key('control-$id'),
+                      size: size,
+                      child: IgnorePointer(
+                        ignoring: _editingControls,
+                        child: Center(child: child),
+                      ),
+                    ),
+                  ),
                 ),
-                label: Text(
-                  s.world.recoveringBreath
-                      ? tr('Recuperando fôlego', 'Catching breath')
-                      : s.world.severelyHurt
-                      ? tr('Ferido · caminhar', 'Injured · walk')
-                      : s.world.running
-                      ? tr('Correndo', 'Running')
-                      : tr('Caminhando', 'Walking'),
-                ),
+              );
+            }
+
+            final actions = <Widget>[
+              _action(
+                Icons.blur_on_rounded,
+                tr('Percepção', 'Perception'),
+                s.togglePerception,
+                selected: s.world.perception,
+                small: true,
               ),
-            ),
-            Positioned(
-              left: preferences.rightStick ? null : 24,
-              right: preferences.rightStick ? 24 : null,
-              bottom: 20,
-              child: SizedBox(
-                width: preferences.largeStick ? 132 : 106,
-                height: preferences.largeStick ? 132 : 106,
-                child: FittedBox(
-                  child: VirtualStick(
+              _action(
+                Icons.back_hand_outlined,
+                tr('Empurrar', 'Push'),
+                s.push,
+                small: true,
+              ),
+              if (s.world.encounterActive)
+                _action(
+                  Icons.shield_outlined,
+                  tr('Defender', 'Guard'),
+                  s.toggleGuard,
+                  selected: s.world.guarding,
+                  small: true,
+                ),
+              if (s.world.canVault)
+                _action(
+                  Icons.arrow_upward_rounded,
+                  'Transpor muro',
+                  s.vault,
+                  small: true,
+                ),
+              if (s.world.encounterActive &&
+                  !s.world.enemyDefeated &&
+                  s.campaign.has('weapon'))
+                _action(
+                  Icons.gavel_rounded,
+                  tr('Atacar', 'Attack'),
+                  s.attack,
+                  small: true,
+                  showLabel: true,
+                ),
+              _action(
+                place == null
+                    ? Icons.touch_app_outlined
+                    : Icons.pan_tool_alt_outlined,
+                s.world.resting == 'sit'
+                    ? tr('Levantar', 'Stand up')
+                    : place?.action ?? tr('Interagir', 'Interact'),
+                s.interact,
+                selected: place != null,
+                small: true,
+                showLabel: place != null,
+              ),
+            ];
+            final actionContent = portrait
+                ? Wrap(
+                    alignment: WrapAlignment.center,
+                    runAlignment: WrapAlignment.center,
+                    spacing: 6,
+                    runSpacing: 2,
+                    children: actions,
+                  )
+                : FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        for (var i = 0; i < actions.length; i++) ...[
+                          if (i > 0) const SizedBox(width: 10),
+                          actions[i],
+                        ],
+                      ],
+                    ),
+                  );
+
+            return Stack(
+              children: [
+                placed(
+                  'movement',
+                  movementDefault,
+                  Size(movementSize, movementSize),
+                  VirtualStick(
                     onChanged: (o) =>
                         s.world.setInput(o.dx + o.dy * 2, -o.dx + o.dy * 2),
                   ),
                 ),
-              ),
-            ),
-            Positioned(
-              right: preferences.rightStick ? null : 22,
-              left: preferences.rightStick ? 22 : null,
-              bottom: MediaQuery.sizeOf(context).width < 600 ? 210 : 20,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  _action(
-                    Icons.blur_on_rounded,
-                    tr('Percepção', 'Perception'),
-                    s.togglePerception,
-                    selected: s.world.perception,
-                    small: true,
+                placed(
+                  'actions',
+                  actionsDefault,
+                  Size(actionWidth, actionHeight),
+                  actionContent,
+                ),
+                placed(
+                  'sprint',
+                  sprintDefault,
+                  const Size(48, 48),
+                  Tooltip(
+                    message: s.world.recoveringBreath
+                        ? tr('Recuperando fôlego', 'Catching breath')
+                        : s.world.severelyHurt
+                        ? tr('Ferido · caminhar', 'Injured · walk')
+                        : s.world.effectiveRunning
+                        ? tr('Correndo', 'Running')
+                        : tr('Correr', 'Run'),
+                    child: Material(
+                      color: const Color(0xdb172b33),
+                      shape: const CircleBorder(
+                        side: BorderSide(color: Color(0xff506c69), width: 1.2),
+                      ),
+                      child: InkWell(
+                        customBorder: const CircleBorder(),
+                        onTap: s.toggleRun,
+                        child: SizedBox(
+                          width: 44,
+                          height: 44,
+                          child: Icon(
+                            s.world.effectiveRunning
+                                ? Icons.directions_run
+                                : Icons.directions_walk,
+                            size: 22,
+                            color: parchment,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  const SizedBox(width: 10),
-                  _action(
-                    Icons.back_hand_outlined,
-                    tr('Empurrar', 'Push'),
-                    s.push,
-                    small: true,
+                ),
+                if (_editingControls)
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Material(
+                        color: const Color(0xf5182a32),
+                        borderRadius: BorderRadius.circular(22),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(12, 4, 4, 4),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                tr('Arraste para organizar', 'Drag to arrange'),
+                                style: const TextStyle(
+                                  color: parchment,
+                                  fontSize: 11,
+                                ),
+                              ),
+                              const SizedBox(width: 8),
+                              TextButton(
+                                onPressed: () =>
+                                    setState(() => _editingControls = false),
+                                child: Text(tr('Concluir', 'Done')),
+                              ),
+                              IconButton(
+                                tooltip: tr('Restaurar layout', 'Reset layout'),
+                                onPressed: () async {
+                                  await preferences.resetControlPositions();
+                                  if (mounted) {
+                                    setState(_controlAnchors.clear);
+                                  }
+                                },
+                                icon: const Icon(Icons.restart_alt, size: 18),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
-                  const SizedBox(width: 12),
-                  _action(
-                    place == null
-                        ? Icons.touch_app_outlined
-                        : Icons.pan_tool_alt_outlined,
-                    place?.action ?? tr('Interagir', 'Interact'),
-                    s.interact,
-                    selected: place != null,
-                  ),
-                ],
-              ),
-            ),
-          ],
+              ],
+            );
+          },
         ),
       ),
     );
+  }
+
+  void _moveControl(String id, Offset delta, Size size, Offset fallback) {
+    final current =
+        _controlAnchors[id] ?? preferences.controlPosition(id) ?? fallback;
+    setState(() {
+      _controlAnchors[id] = Offset(
+        (current.dx + delta.dx / size.width).clamp(.04, .96),
+        (current.dy + delta.dy / size.height).clamp(.04, .96),
+      );
+    });
   }
 
   Widget _action(
@@ -793,6 +1556,7 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
     VoidCallback action, {
     bool selected = false,
     bool small = false,
+    bool showLabel = false,
   }) => Column(
     mainAxisSize: MainAxisSize.min,
     children: [
@@ -822,11 +1586,15 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
           ),
         ),
       ),
-      const SizedBox(height: 7),
-      Text(
-        label,
-        style: TextStyle(fontSize: small ? 9 : 10, color: parchment),
-      ),
+      if (showLabel) ...[
+        const SizedBox(height: 4),
+        Text(
+          label,
+          maxLines: 1,
+          overflow: TextOverflow.ellipsis,
+          style: TextStyle(fontSize: small ? 9 : 10, color: parchment),
+        ),
+      ],
     ],
   );
 
@@ -894,6 +1662,19 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
                       ],
                     ),
                     const SizedBox(height: 15),
+                    if (line?.speaker == 'HELENA' &&
+                        s.campaign.has('pulse')) ...[
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(7),
+                        child: Image.asset(
+                          'assets/images/video_placeholder_03_mensagem_v01.png',
+                          width: double.infinity,
+                          height: 145,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                    ],
                     Text(
                       line?.text ?? '',
                       style: TextStyle(
@@ -1042,7 +1823,7 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
     child: SizedBox(
       height: math.min(MediaQuery.sizeOf(context).height - 100, 440),
       child: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Column(
           children: [
             Row(
@@ -1057,9 +1838,11 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
               ],
             ),
             const TabBar(
+              isScrollable: true,
               tabs: [
                 Tab(text: 'Pistas e hipóteses'),
                 Tab(text: 'Conversas'),
+                Tab(text: 'Equipamentos'),
               ],
             ),
             Expanded(
@@ -1143,6 +1926,32 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
                             );
                           },
                         ),
+                  ListView(
+                    children: [
+                      SwitchListTile(
+                        title: const Text('Mochila equipada'),
+                        subtitle: const Text(
+                          'Muda a aparência. Os itens guardados são preservados.',
+                        ),
+                        value: s.campaign.backpackEquipped,
+                        onChanged: (_) => s.toggleBackpack(),
+                      ),
+                      SwitchListTile(
+                        title: const Text('Arma na mão'),
+                        subtitle: Text(
+                          s.campaign.has('weapon')
+                              ? 'Arma improvisada. Guardar não descarta o item.'
+                              : 'Nenhuma arma recolhida.',
+                        ),
+                        value:
+                            s.campaign.has('weapon') &&
+                            s.campaign.weaponEquipped,
+                        onChanged: s.campaign.has('weapon')
+                            ? (_) => s.toggleWeaponEquipment()
+                            : null,
+                      ),
+                    ],
+                  ),
                 ],
               ),
             ),
@@ -1152,77 +1961,248 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
     ),
   );
 
-  Widget _pause() => _panel(
-    maxWidth: 560,
-    child: Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
+  Widget _pause() => Positioned.fill(
+    child: Stack(
+      fit: StackFit.expand,
       children: [
-        _eyebrow(tr('UM INSTANTE DE SILÊNCIO', 'A MOMENT OF SILENCE')),
-        const SizedBox(height: 12),
-        Text(
-          tr('A cidade pode esperar.', 'The city can wait.'),
-          style: TextStyle(
-            color: parchment,
-            fontSize: 27,
-            fontWeight: FontWeight.w300,
-          ),
+        Image.asset(
+          'assets/images/menu_santa_aurora_v2.png',
+          fit: BoxFit.cover,
+          alignment: Alignment.center,
+          filterQuality: FilterQuality.medium,
         ),
-        SwitchListTile.adaptive(
-          contentPadding: EdgeInsets.zero,
-          title: Text(tr('Sons e ambiente', 'Enable audio')),
-          value: s.soundEnabled,
-          onChanged: (_) => s.toggleSound(),
-        ),
-        SwitchListTile.adaptive(
-          contentPadding: EdgeInsets.zero,
-          title: Text(
-            tr('Reduzir chuva e pulsos', 'Reduce rain and pulses'),
-            style: TextStyle(fontSize: 14),
-          ),
-          value: s.reducedEffects,
-          onChanged: (_) => s.toggleEffects(),
-        ),
-        SwitchListTile.adaptive(
-          contentPadding: EdgeInsets.zero,
-          title: Text(
-            tr('Texto maior', 'Larger text'),
-            style: const TextStyle(fontSize: 14),
-          ),
-          value: s.largerText,
-          onChanged: (_) => s.toggleText(),
-        ),
-        Text(
-          tr(
-            'WASD/setas: mover · E: interagir · Espaço: empurrar · R: correr · Q: Percepção · M: mapa · P: celular · J: diário · Esc: voltar.',
-            'WASD/arrows: move · E: interact · Space: push · R: run · Q: perception · M: map · P: phone · J: journal · Esc: back.',
-          ),
-          style: const TextStyle(
-            color: Color(0xff91aca2),
-            fontSize: 11,
-            height: 1.5,
-          ),
-        ),
-        const SizedBox(height: 18),
-        Wrap(
-          spacing: 12,
-          runSpacing: 8,
-          children: [
-            FilledButton(
-              onPressed: s.closePanel,
-              child: Text(tr('Continuar', 'Continue')),
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.centerLeft,
+              end: Alignment.centerRight,
+              colors: [
+                Color(0xe90a121b),
+                Color(0xd90a121b),
+                Color(0x9b0a121b),
+                Color(0x790a121b),
+              ],
             ),
-            OutlinedButton(
-              onPressed: () => unawaited(s.toMenu()),
-              child: Text(
-                tr('Salvar e voltar ao menu', 'Save and return to menu'),
+          ),
+        ),
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.bottomCenter,
+              end: Alignment.topCenter,
+              colors: [Color(0xd9081119), Color(0x28081119)],
+            ),
+          ),
+        ),
+        SafeArea(
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+              child: ConstrainedBox(
+                key: const Key('pause-card'),
+                constraints: BoxConstraints(
+                  maxWidth: 440,
+                  maxHeight: MediaQuery.sizeOf(context).height - 32,
+                ),
+                child: _glass(
+                  SingleChildScrollView(
+                    padding: const EdgeInsets.fromLTRB(20, 18, 20, 12),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: _eyebrow(
+                                tr(
+                                  'UM INSTANTE DE SILÊNCIO',
+                                  'A MOMENT OF SILENCE',
+                                ),
+                              ),
+                            ),
+                            Text(
+                              '${s.world.atmosphere.clock}  ·  ${s.campaign.location}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                color: ochre,
+                                fontSize: 9,
+                                letterSpacing: .7,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Text(
+                          tr('A cidade pode esperar.', 'The city can wait.'),
+                          style: const TextStyle(
+                            color: parchment,
+                            fontSize: 25,
+                            height: 1.1,
+                            fontWeight: FontWeight.w300,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        Container(height: 1, color: const Color(0x665e746d)),
+                        const SizedBox(height: 6),
+                        _pauseSwitch(
+                          tr('Sons e ambiente', 'Ambient audio'),
+                          s.soundEnabled,
+                          s.toggleSound,
+                        ),
+                        _pauseSwitch(
+                          tr(
+                            'Reduzir chuva e pulsos',
+                            'Reduce rain and pulses',
+                          ),
+                          s.reducedEffects,
+                          s.toggleEffects,
+                        ),
+                        _pauseSwitch(
+                          tr('Texto maior', 'Larger text'),
+                          s.largerText,
+                          s.toggleText,
+                        ),
+                        const SizedBox(height: 3),
+                        Text(
+                          tr(
+                            'WASD mover · E interagir · F atacar · V defender · Shift correr · Esc voltar\nQ percepção · M mapa · P celular · J diário · mouse direito mirar',
+                            'WASD move · E interact · F attack · V guard · Shift run · Esc back\nQ perception · M map · P phone · J journal · right mouse aim',
+                          ),
+                          style: const TextStyle(
+                            color: Color(0xffa2b5ac),
+                            fontSize: 9,
+                            height: 1.35,
+                          ),
+                        ),
+                        const SizedBox(height: 12),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 46,
+                          child: FilledButton.icon(
+                            onPressed: s.closePanel,
+                            style: FilledButton.styleFrom(
+                              backgroundColor: const Color(0xfff0c879),
+                              foregroundColor: const Color(0xff1b1b18),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(9),
+                              ),
+                              textStyle: const TextStyle(
+                                fontSize: 13,
+                                fontWeight: FontWeight.w700,
+                                letterSpacing: .8,
+                              ),
+                            ),
+                            icon: const Icon(Icons.play_arrow_rounded),
+                            label: Text(tr('CONTINUAR', 'CONTINUE')),
+                          ),
+                        ),
+                        const SizedBox(height: 7),
+                        Row(
+                          children: [
+                            Expanded(
+                              child: OutlinedButton.icon(
+                                onPressed: () =>
+                                    setState(() => _pauseSettings = true),
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: parchment,
+                                  side: const BorderSide(
+                                    color: Color(0xff789087),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                  ),
+                                  minimumSize: const Size(0, 40),
+                                  textStyle: const TextStyle(fontSize: 11),
+                                ),
+                                icon: const Icon(
+                                  Icons.settings_outlined,
+                                  size: 17,
+                                ),
+                                label: Text(tr('Configurações', 'Settings')),
+                              ),
+                            ),
+                            const SizedBox(width: 8),
+                            Expanded(
+                              child: OutlinedButton.icon(
+                                onPressed: () {
+                                  setState(() => _editingControls = true);
+                                  s.closePanel();
+                                },
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: parchment,
+                                  side: const BorderSide(
+                                    color: Color(0xff789087),
+                                  ),
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 8,
+                                  ),
+                                  minimumSize: const Size(0, 40),
+                                  textStyle: const TextStyle(fontSize: 11),
+                                ),
+                                icon: const Icon(
+                                  Icons.open_with_rounded,
+                                  size: 17,
+                                ),
+                                label: Text(
+                                  tr('Editar controles', 'Edit controls'),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Center(
+                          child: TextButton.icon(
+                            onPressed: () => unawaited(s.toMenu()),
+                            style: TextButton.styleFrom(
+                              foregroundColor: mist,
+                              visualDensity: VisualDensity.compact,
+                              textStyle: const TextStyle(fontSize: 10),
+                            ),
+                            icon: const Icon(Icons.save_outlined, size: 15),
+                            label: Text(
+                              tr(
+                                'Salvar e voltar ao menu',
+                                'Save and return to menu',
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ),
             ),
-          ],
+          ),
         ),
       ],
     ),
   );
+
+  Widget _pauseSwitch(String label, bool value, VoidCallback toggle) =>
+      SizedBox(
+        height: 34,
+        child: Row(
+          children: [
+            Expanded(
+              child: Text(
+                label,
+                style: const TextStyle(fontSize: 13, color: parchment),
+              ),
+            ),
+            Transform.scale(
+              scale: .72,
+              child: Switch.adaptive(
+                value: value,
+                onChanged: (_) => toggle(),
+                materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+              ),
+            ),
+          ],
+        ),
+      );
 
   Widget _complete() => _panel(
     maxWidth: 620,
@@ -1230,36 +2210,71 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        _eyebrow('FASE 01 CONCLUÍDA'),
+        ClipRRect(
+          borderRadius: BorderRadius.circular(8),
+          child: Image.asset(
+            'assets/images/video_placeholder_04_retorno_v01.png',
+            width: double.infinity,
+            height: 190,
+            fit: BoxFit.cover,
+          ),
+        ),
+        const SizedBox(height: 16),
+        _eyebrow(
+          s.campaign.inChapterTwo ? 'FASE 02 CONCLUÍDA' : 'FASE 01 CONCLUÍDA',
+        ),
         const SizedBox(height: 15),
-        const Text(
-          'Um Dia Normal.',
-          style: TextStyle(
+        Text(
+          s.campaign.inChapterTwo ? '02:00.' : 'Um Dia Normal.',
+          style: const TextStyle(
             color: parchment,
             fontSize: 34,
             fontWeight: FontWeight.w300,
           ),
         ),
         const SizedBox(height: 14),
-        const Text(
-          'De volta ao apartamento. O pulso passou, mas o aviso de Helena ficou.\nHoje, às duas. O próximo capítulo começa nesse horário.',
-          style: TextStyle(color: Color(0xffb6c9bd), fontSize: 15, height: 1.7),
+        Text(
+          s.campaign.inChapterTwo
+              ? 'Mapa recolhido no posto de serviço. Helena espera na entrada dos fundos da oficina.\n“Estou indo.” A mensagem ainda não foi enviada. A Queda é o próximo capítulo, ainda em produção.'
+              : 'De volta ao apartamento. O pulso passou, mas o aviso de Helena ficou.\nHoje, às duas. O próximo capítulo começa nesse horário.',
+          style: const TextStyle(
+            color: Color(0xffb6c9bd),
+            fontSize: 15,
+            height: 1.7,
+          ),
         ),
         const SizedBox(height: 16),
         Text(
-          s.campaign.has('help_ines')
+          s.campaign.inChapterTwo
+              ? (s.campaign.has('chapter2_rescue')
+                    ? 'A vizinha ficou protegida. A chave abriu a passagem de serviço.'
+                    : 'Você seguiu pela rota externa. A escolha ficou registrada.')
+              : s.campaign.has('help_ines')
               ? 'Dona Inês se lembra da sua ajuda no hall.'
               : 'O encontro terminou sem matar Davi.',
           style: const TextStyle(color: ochre, fontSize: 12, height: 1.5),
         ),
         const SizedBox(height: 20),
-        Row(
+        if (!s.campaign.inChapterTwo)
+          FilledButton(
+            onPressed: s.startChapterTwo,
+            child: const Text('Jogar fase 02 · 02:00'),
+          ),
+        Wrap(
+          spacing: 12,
+          runSpacing: 12,
+          alignment: WrapAlignment.spaceBetween,
           children: [
-            const Text(
-              'PROGRESSO SALVO · 02:00 DESBLOQUEADO',
-              style: TextStyle(color: mist, fontSize: 10, letterSpacing: 1.5),
+            Text(
+              s.campaign.inChapterTwo
+                  ? 'PROGRESSO SALVO · FASE 02'
+                  : 'PROGRESSO SALVO · 02:00 DESBLOQUEADO',
+              style: const TextStyle(
+                color: mist,
+                fontSize: 10,
+                letterSpacing: 1.5,
+              ),
             ),
-            const Spacer(),
             FilledButton(
               onPressed: () => unawaited(s.toMenu()),
               child: const Text('Voltar ao menu'),
@@ -1300,7 +2315,134 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
     ),
   );
 
-  Widget _opening() => ColoredBox(
+  Widget _opening() => s.openingPrelude
+      ? _openingPrelude()
+      : ColoredBox(
+          color: const Color(0xff07151c),
+          child: SafeArea(
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 18,
+                    vertical: 4,
+                  ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: TextButton.icon(
+                            onPressed: s.toggleOpeningAuto,
+                            icon: Icon(
+                              s.openingAuto
+                                  ? Icons.pause_circle_outline
+                                  : Icons.play_circle_outline,
+                              size: 18,
+                            ),
+                            label: Text(
+                              s.openingAuto
+                                  ? tr('Automático: ligado', 'Auto: on')
+                                  : tr('Leitura manual', 'Manual reading'),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        '${s.openingPage + 1} / ${GameSession.opening.length}',
+                        style: const TextStyle(color: mist),
+                      ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: NarrativeBackdrop(
+                    asset: s.openingPage == 3
+                        ? 'assets/images/opening_subject07_v1.png'
+                        : 'assets/images/opening_storyboard_v1.png',
+                    atlasIndex: s.openingPage == 3
+                        ? null
+                        : s.openingPage == 4
+                        ? 3
+                        : s.openingPage,
+                    atlasColumns: 2,
+                    atlasRows: 2,
+                    progress: s.sceneTime / 13,
+                    reducedMotion: s.reducedEffects,
+                    fit: BoxFit.contain,
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(18, 8, 18, 12),
+                  child: _glass(
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(14, 10, 14, 6),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          _eyebrow(
+                            tr(
+                              GameSession.opening[s.openingPage].$1,
+                              GameSession.openingEn[s.openingPage].$1,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                          ConstrainedBox(
+                            constraints: BoxConstraints(
+                              maxHeight:
+                                  MediaQuery.sizeOf(context).height * .26,
+                            ),
+                            child: SingleChildScrollView(
+                              child: Text(
+                                tr(
+                                  GameSession.opening[s.openingPage].$2,
+                                  GameSession.openingEn[s.openingPage].$2,
+                                ),
+                                style: TextStyle(
+                                  color: parchment,
+                                  fontSize: 14.5,
+                                  height: 1.35,
+                                ),
+                              ),
+                            ),
+                          ),
+                          Wrap(
+                            alignment: WrapAlignment.end,
+                            spacing: 4,
+                            children: [
+                              TextButton(
+                                onPressed: s.openingPage > 0
+                                    ? s.previousOpening
+                                    : null,
+                                child: Text(tr('Anterior', 'Previous')),
+                              ),
+                              TextButton(
+                                onPressed: s.finishOpening,
+                                child: Text(
+                                  tr('Pular abertura', 'Skip opening'),
+                                ),
+                              ),
+                              FilledButton(
+                                onPressed: s.nextOpening,
+                                child: Text(tr('Avançar', 'Next')),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+
+  Widget _openingPrelude() => ColoredBox(
     color: const Color(0xff07151c),
     child: SafeArea(
       child: Column(
@@ -1332,60 +2474,62 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
                 ),
                 const SizedBox(width: 8),
                 Text(
-                  '${s.openingPage + 1} / ${GameSession.opening.length}',
+                  tr('CIDADE · 8 s', 'CITY · 8 s'),
                   style: const TextStyle(color: mist),
                 ),
               ],
             ),
           ),
           Expanded(
-            child: NarrativeBackdrop(
-              asset: s.openingPage == 4
-                  ? 'assets/images/menu_santa_aurora_v1.png'
-                  : s.openingPage.isEven
-                  ? 'assets/images/legacy_subject07_lab.png'
-                  : 'assets/images/legacy_laboratory.jpg',
-              progress: s.sceneTime / 13,
-              reducedMotion: s.reducedEffects,
-              fit: BoxFit.contain,
+            child: Stack(
+              fit: StackFit.expand,
+              children: [
+                Image.asset(
+                  'assets/images/video_placeholder_01_abertura_v01.png',
+                  key: const ValueKey('opening-city-placeholder'),
+                  fit: BoxFit.cover,
+                  alignment: Alignment.center,
+                ),
+                const DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0x12000000), Color(0x7f07151c)],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(18, 8, 18, 12),
             child: _glass(
               Padding(
-                padding: const EdgeInsets.fromLTRB(14, 10, 14, 6),
+                padding: const EdgeInsets.fromLTRB(14, 12, 14, 10),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    _eyebrow(GameSession.opening[s.openingPage].$1),
-                    const SizedBox(height: 6),
-                    ConstrainedBox(
-                      constraints: BoxConstraints(
-                        maxHeight: MediaQuery.sizeOf(context).height * .26,
+                    _eyebrow(
+                      tr('SANTA AURORA · 07:12', 'SANTA AURORA · 07:12'),
+                    ),
+                    const SizedBox(height: 7),
+                    Text(
+                      tr(
+                        'A cidade ainda parece normal. A chuva continua. Em algum lugar, o dia já começou diferente.',
+                        'The city still looks ordinary. Rain keeps falling. Somewhere, the day has already changed.',
                       ),
-                      child: SingleChildScrollView(
-                        child: Text(
-                          GameSession.opening[s.openingPage].$2,
-                          style: TextStyle(
-                            color: parchment,
-                            fontSize: 14.5,
-                            height: 1.35,
-                          ),
-                        ),
+                      style: const TextStyle(
+                        color: parchment,
+                        fontSize: 14.5,
+                        height: 1.4,
                       ),
                     ),
                     Wrap(
                       alignment: WrapAlignment.end,
                       spacing: 4,
                       children: [
-                        TextButton(
-                          onPressed: s.openingPage > 0
-                              ? s.previousOpening
-                              : null,
-                          child: Text(tr('Anterior', 'Previous')),
-                        ),
                         TextButton(
                           onPressed: s.finishOpening,
                           child: Text(tr('Pular abertura', 'Skip opening')),
@@ -1405,14 +2549,8 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
       ),
     ),
   );
+
   Widget _map() {
-    final points = s.world.places;
-    String id(Place p) => '${p.kind.name}:${p.id ?? p.label}';
-    final selected = points.any((p) => id(p) == _mapTarget)
-        ? _mapTarget
-        : points.isEmpty
-        ? null
-        : id(points.first);
     return _panel(
       maxWidth: 960,
       child: Column(
@@ -1451,35 +2589,6 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
             width: 850,
             child: CustomPaint(painter: ChapterMap(s.campaign, s.world)),
           ),
-          Row(
-            children: [
-              Expanded(
-                child: DropdownButton<String>(
-                  value: selected,
-                  isExpanded: true,
-                  items: [
-                    for (final p in points)
-                      DropdownMenuItem(
-                        value: id(p),
-                        child: Text(
-                          p.label,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                  ],
-                  onChanged: (value) => setState(() => _mapTarget = value),
-                ),
-              ),
-              const SizedBox(width: 10),
-              FilledButton(
-                onPressed: selected == null
-                    ? null
-                    : () => s.navigateFromMap(selected),
-                child: const Text('Caminhar até'),
-              ),
-            ],
-          ),
           const Text(
             'Ponto claro: você · Dourado: interação · Blocos: edifícios e veículos.',
             style: TextStyle(color: mist, fontSize: 11),
@@ -1490,24 +2599,35 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
   }
 
   Widget _pulse() => IgnorePointer(
-    child: ColoredBox(
-      color: Color.fromRGBO(
-        177,
-        204,
-        183,
-        s.reducedEffects ? .12 : .16 + math.sin(s.sceneTime * math.pi) * .15,
-      ),
-      child: Center(
-        child: _glass(
-          const Padding(
-            padding: EdgeInsets.all(22),
-            child: Text(
-              'A cidade parou. Você continua consciente.',
-              style: TextStyle(color: parchment, fontSize: 20),
+    child: Stack(
+      fit: StackFit.expand,
+      children: [
+        Image.asset(
+          'assets/images/video_placeholder_02_pulso_v01.png',
+          fit: BoxFit.cover,
+        ),
+        ColoredBox(
+          color: Color.fromRGBO(
+            177,
+            204,
+            183,
+            s.reducedEffects
+                ? .12
+                : .16 + math.sin(s.sceneTime * math.pi) * .15,
+          ),
+          child: Center(
+            child: _glass(
+              const Padding(
+                padding: EdgeInsets.all(22),
+                child: Text(
+                  'A cidade parou. Você continua consciente.',
+                  style: TextStyle(color: parchment, fontSize: 20),
+                ),
+              ),
             ),
           ),
         ),
-      ),
+      ],
     ),
   );
   Widget _objectPanel() => Align(
@@ -1520,41 +2640,39 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
         child: _glass(
           Padding(
             padding: const EdgeInsets.all(16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(
-                  s.objectTitle,
-                  style: const TextStyle(color: parchment, fontSize: 18),
-                ),
-                const SizedBox(height: 10),
-                Expanded(
-                  child: SingleChildScrollView(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(
+                    s.objectTitle,
+                    style: const TextStyle(color: parchment, fontSize: 18),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    s.objectBody,
+                    style: const TextStyle(color: mist, height: 1.5),
+                  ),
+                  for (final action in s.objectActions)
+                    TextButton(
+                      onPressed: action.enabled ? action.run : null,
+                      child: Text(action.label),
+                    ),
+                  FilledButton(
+                    onPressed: () {
+                      s.closePanel();
+                      focus.requestFocus();
+                    },
                     child: Text(
-                      s.objectBody,
-                      style: const TextStyle(color: mist, height: 1.5),
+                      s.world.resting == 'sit' ||
+                              s.world.resting == 'lie' ||
+                              s.world.resting == 'typing'
+                          ? 'Levantar'
+                          : 'Fechar',
                     ),
                   ),
-                ),
-                for (final action in s.objectActions)
-                  TextButton(
-                    onPressed: action.enabled ? action.run : null,
-                    child: Text(action.label),
-                  ),
-                FilledButton(
-                  onPressed: () {
-                    s.closePanel();
-                    focus.requestFocus();
-                  },
-                  child: Text(
-                    s.world.resting == 'sit' ||
-                            s.world.resting == 'lie' ||
-                            s.world.resting == 'typing'
-                        ? 'Levantar'
-                        : 'Fechar',
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),
@@ -1625,19 +2743,26 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
     ),
   );
 
-  Widget _panel({required Widget child, double maxWidth = 700}) => _scrim(
+  Widget _panel({
+    required Widget child,
+    double maxWidth = 700,
+    double outerInset = 24,
+    double contentInset = 24,
+    Key? key,
+  }) => _scrim(
     Center(
       child: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: EdgeInsets.all(outerInset),
           child: ConstrainedBox(
+            key: key,
             constraints: BoxConstraints(
               maxWidth: maxWidth,
-              maxHeight: MediaQuery.sizeOf(context).height - 48,
+              maxHeight: MediaQuery.sizeOf(context).height - outerInset * 2,
             ),
             child: _glass(
               SingleChildScrollView(
-                padding: const EdgeInsets.all(24),
+                padding: EdgeInsets.all(contentInset),
                 child: child,
               ),
             ),
@@ -1646,9 +2771,12 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
       ),
     ),
   );
-  Widget _scrim(Widget child, {double opacity = .65}) => ColoredBox(
-    color: const Color(0xff08171e).withValues(alpha: opacity),
-    child: child,
+  Widget _scrim(Widget child, {double opacity = .65}) => Listener(
+    behavior: HitTestBehavior.opaque,
+    child: ColoredBox(
+      color: const Color(0xff08171e).withValues(alpha: opacity),
+      child: child,
+    ),
   );
   Widget _glass(Widget child) => Material(
     color: preferences.highContrast
@@ -1674,6 +2802,8 @@ class _GameShellState extends State<GameShell> with WidgetsBindingObserver {
   );
   @override
   void dispose() {
+    s.removeListener(_syncMenuMotion);
+    _menuMotion.dispose();
     WidgetsBinding.instance.removeObserver(this);
     focus.dispose();
     super.dispose();

@@ -30,21 +30,48 @@ void main() {
       await tester.pump(const Duration(milliseconds: 100));
       expect(find.text('New game'), findsOneWidget);
       expect(find.text('Settings'), findsOneWidget);
-      expect(find.text('Continue'), findsNothing);
+      expect(find.text('Continue'), findsOneWidget);
+      expect(
+        tester
+            .widget<FilledButton>(find.byKey(const Key('menu-continue')))
+            .onPressed,
+        isNull,
+      );
       expect(tester.takeException(), isNull);
       s.startNew();
       await tester.pump();
+      final cityPlaceholder = tester.widget<Image>(
+        find.byKey(const ValueKey('opening-city-placeholder')),
+      );
+      expect(
+        (cityPlaceholder.image as AssetImage).assetName,
+        'assets/images/video_placeholder_01_abertura_v01.png',
+      );
+      expect(find.text('SANTA AURORA · 07:12'), findsOneWidget);
+      s.nextOpening();
+      await tester.pump();
+      const openingAssets = [
+        'assets/images/opening_storyboard_v1.png',
+        'assets/images/opening_storyboard_v1.png',
+        'assets/images/opening_storyboard_v1.png',
+        'assets/images/opening_subject07_v1.png',
+        'assets/images/opening_storyboard_v1.png',
+      ];
+      const storyboardCells = [0, 1, 2, null, 3];
       for (var page = 0; page < 5; page++) {
         expect(s.openingPage, page);
         final backdrop = tester.widget<NarrativeBackdrop>(
           find.byType(NarrativeBackdrop),
         );
+        expect(backdrop.asset, openingAssets[page]);
+        expect(backdrop.atlasIndex, storyboardCells[page]);
         expect(backdrop.fit, BoxFit.contain);
+        await rootBundle.load(openingAssets[page]);
         final imageBottom = tester
             .getBottomLeft(find.byType(NarrativeBackdrop))
             .dy;
         final textTop = tester
-            .getTopLeft(find.text(GameSession.opening[page].$2))
+            .getTopLeft(find.text(GameSession.openingEn[page].$2))
             .dy;
         expect(textTop, greaterThanOrEqualTo(imageBottom));
         expect(find.text('Skip opening'), findsOneWidget);

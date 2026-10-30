@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui' show Offset;
 
 enum PlayPhase {
   menu,
@@ -61,10 +62,18 @@ class DialogueLine {
 
 class Campaign {
   double x = 6, y = 6, health = 100, stamina = 100;
+  double enemyHealth = 100;
+  double nightEnemyHealth = 100;
+  double? downedEnemyX, downedEnemyY;
   int floor = 2;
   final Set<String> openDoors = {};
+  final Set<String> openWindows = {};
+  final Set<String> brokenWindows = {};
+  final Set<String> closedCurtains = {};
+  final Set<String> removedCurtains = {};
   int storedBandages = 0;
   bool fridgeWater = true;
+  bool backpackEquipped = true, weaponEquipped = true;
   int bandages = 0;
   bool injured = false;
   final Set<String> events = {};
@@ -73,6 +82,8 @@ class Campaign {
     'phone',
     'key',
     'adapter',
+    'weapon',
+    'enemy_defeated',
     'help_ines',
     'delivered',
     'news',
@@ -81,6 +92,7 @@ class Campaign {
     'resolved',
     'loot',
     'water',
+    'bus_arrived',
     'bus',
     'pulse',
     'night',
@@ -88,6 +100,18 @@ class Campaign {
     'dog',
     'cat',
     'pigeon',
+    'chapter2_started',
+    'chapter2_torch',
+    'chapter2_supply',
+    'chapter2_panel',
+    'chapter2_rescue',
+    'chapter2_garage',
+    'chapter2_alarm_off',
+    'chapter2_lured',
+    'chapter2_message',
+    'chapter2_shortcut',
+    'chapter2_enemy_down',
+    'chapter2_complete',
   };
   bool has(String id) => events.contains(id);
   bool mark(String id) {
@@ -95,11 +119,44 @@ class Campaign {
     return events.add(id);
   }
 
-  bool get finished => has('finish');
+  bool get inChapterTwo => has('chapter2_started');
+  Offset? get downedEnemyPosition =>
+      downedEnemyX == null ? null : Offset(downedEnemyX!, downedEnemyY!);
+
+  void rememberDownedEnemy(Offset position) {
+    downedEnemyX = position.dx;
+    downedEnemyY = position.dy;
+  }
+
+  bool get finished => inChapterTwo ? has('chapter2_complete') : has('finish');
   bool get canLeave => has('delivered') && has('news') && has('resolved');
   int get evidenceCount =>
       ['delivered', 'news', 'resolved', 'pulse', 'night'].where(has).length;
   String get objective {
+    if (inChapterTwo) {
+      if (finished) {
+        return '02:00 concluída. O mapa indica o caminho para A Queda.';
+      }
+      if (!has('chapter2_torch')) {
+        return 'Pegue a lanterna no apartamento. O celular marca 01:58.';
+      }
+      if (floor == 2 && y < 10) {
+        return 'Saia pela porta 203. O elevador está sem energia.';
+      }
+      if (!has('chapter2_panel')) {
+        return 'Examine o quadro de manutenção no corredor.';
+      }
+      if (floor > 0) {
+        return 'Desça pela escada. A vizinha da 202 precisa de ajuda opcional.';
+      }
+      if (!has('chapter2_garage')) {
+        return 'Atravesse a garagem. Desligue o alarme ou use a lata como distração.';
+      }
+      if (!has('chapter2_message')) {
+        return 'Confira a mensagem de Helena no celular.';
+      }
+      return 'Recolha o mapa no posto de serviço, atrás da oficina. A avenida também dá acesso.';
+    }
     if (finished) {
       return 'Fase 01 concluída. 02:00 está disponível para a próxima fase.';
     }
@@ -120,7 +177,17 @@ class Campaign {
     if (!has('resolved')) {
       return 'Atravesse o beco: crie distância ou feche o portão.';
     }
-    if (!has('pulse')) return 'Vá à parada. Você pode embarcar ou seguir a pé.';
+    if (!has('bus')) {
+      if (has('bus_arrived')) {
+        return 'O ônibus chegou. Embarque com Nestor na parada.';
+      }
+      if (floor == 0 &&
+          (Offset(x, y) - const Offset(43.5, 29.5)).distance < 2) {
+        return 'Aguarde na parada. O ônibus de Nestor está chegando.';
+      }
+      return 'Siga até a parada e aguarde o ônibus de Nestor.';
+    }
+    if (!has('pulse')) return 'No trajeto, observe o que acontece na cidade.';
     if (!has('night')) return 'Leia a mensagem de Helena no celular.';
     return 'Volte ao apartamento 203, no 2º andar, e use a cama.';
   }
@@ -135,6 +202,41 @@ class Campaign {
             ? 'TÉRREO · GARAGEM'
             : 'SANTA AURORA');
   List<JournalEntry> get entries => [
+    if (inChapterTwo)
+      const JournalEntry(
+        'chapter2_started',
+        '01:58 · 02:00',
+        'A energia caiu. O celular vibrou. Vou encontrar Helena sem depender do elevador.',
+        'OBJETIVO',
+      ),
+    if (has('chapter2_panel'))
+      const JournalEntry(
+        'chapter2_panel',
+        'Desligamento remoto',
+        'O registro do painel indica um comando remoto às 02:00. Não foi uma pane local.',
+        'EVIDÊNCIA',
+      ),
+    if (has('chapter2_rescue'))
+      const JournalEntry(
+        'chapter2_rescue',
+        'A vizinha da 202',
+        'Usei uma atadura e libertei a porta emperrada. Ela me deu a chave da passagem de serviço.',
+        'CONSEQUÊNCIA',
+      ),
+    if (has('chapter2_message'))
+      const JournalEntry(
+        'chapter2_message',
+        'Oficina da Rua do Mercado',
+        'Helena pediu que eu fosse à entrada dos fundos. O mapa fica no posto de serviço.',
+        'MENSAGEM',
+      ),
+    if (has('chapter2_complete'))
+      const JournalEntry(
+        'chapter2_complete',
+        'Estou indo',
+        'Mapa recolhido. A mensagem não foi enviada. Preciso alcançar a oficina.',
+        'OBJETIVO',
+      ),
     const JournalEntry(
       'start',
       '07:12 · Um Dia Normal',
@@ -176,11 +278,18 @@ class Campaign {
         'A televisão anuncia manutenção da rede às 02:00.',
         'OBSERVAÇÃO',
       ),
-    if (has('resolved'))
+    if (has('resolved') && !has('enemy_defeated'))
       const JournalEntry(
         'davi',
         'Uma saída sem matar',
         'Davi estava em crise. Consegui separar os dois.',
+        'CONSEQUÊNCIA',
+      ),
+    if (has('enemy_defeated'))
+      const JournalEntry(
+        'enemy_defeated',
+        'Davi ficou inconsciente',
+        'O cano improvisado interrompeu o ataque. Davi ainda respirava; Caio se afastou sem continuar a agressão.',
         'CONSEQUÊNCIA',
       ),
     if (has('pulse'))
@@ -202,12 +311,24 @@ class Campaign {
     'schema_version': 2,
     'floor': floor,
     'open_doors': openDoors.toList()..sort(),
+    'open_windows': openWindows.toList()..sort(),
+    'broken_windows': brokenWindows.toList()..sort(),
+    'closed_curtains': closedCurtains.toList()..sort(),
+    'removed_curtains': removedCurtains.toList()..sort(),
     'stored_bandages': storedBandages,
     'fridge_water': fridgeWater,
+    'backpack_equipped': backpackEquipped,
+    'weapon_equipped': weaponEquipped,
     'x': x,
     'y': y,
     'health': health,
     'stamina': stamina,
+    'enemy_health': enemyHealth,
+    'night_enemy_health': nightEnemyHealth,
+    if (downedEnemyX != null && downedEnemyY != null) ...{
+      'downed_enemy_x': downedEnemyX,
+      'downed_enemy_y': downedEnemyY,
+    },
     'bandages': bandages,
     'injured': injured,
     'events': events.toList()..sort(),
@@ -220,6 +341,15 @@ class Campaign {
       throw const FormatException('Versão de progresso incompatível.');
     }
     double number(String k, double max) {
+      final v = d[k];
+      if (v is! num || !v.isFinite || v < 0 || v > max) {
+        throw FormatException('Progresso inválido: $k');
+      }
+      return v.toDouble();
+    }
+
+    double optionalNumber(String k, double max, double fallback) {
+      if (!d.containsKey(k)) return fallback;
       final v = d[k];
       if (v is! num || !v.isFinite || v < 0 || v > max) {
         throw FormatException('Progresso inválido: $k');
@@ -243,8 +373,27 @@ class Campaign {
       ..y = number('y', 43)
       ..health = number('health', 100)
       ..stamina = number('stamina', 100)
+      ..enemyHealth = optionalNumber('enemy_health', 100, 100)
+      ..nightEnemyHealth = optionalNumber('night_enemy_health', 100, 100)
       ..bandages = bs
       ..injured = d['injured'];
+    final downedX = d['downed_enemy_x'];
+    final downedY = d['downed_enemy_y'];
+    if (downedX != null || downedY != null) {
+      if (downedX is! num ||
+          downedY is! num ||
+          !downedX.isFinite ||
+          !downedY.isFinite ||
+          downedX < 0 ||
+          downedX > 55 ||
+          downedY < 0 ||
+          downedY > 43) {
+        throw const FormatException('Posição do inimigo inválida.');
+      }
+      c
+        ..downedEnemyX = downedX.toDouble()
+        ..downedEnemyY = downedY.toDouble();
+    }
     // Version 0.2 saves had one continuous map. Preserve inventory and infer its floor.
     final savedFloor = d.containsKey('floor')
         ? d['floor']
@@ -254,29 +403,75 @@ class Campaign {
     }
     c.floor = savedFloor as int;
     final doors = d['open_doors'] ?? <dynamic>[];
+    final windows = d['open_windows'] ?? <dynamic>[];
     final stored = d['stored_bandages'] ?? 0;
     final water = d['fridge_water'] ?? true;
+    final backpack = d['backpack_equipped'] ?? true;
+    final weapon = d['weapon_equipped'] ?? true;
     if (doors is! List ||
         doors.any(
           (v) => v is! String || !['entrada', 'banheiro'].contains(v),
         ) ||
+        windows is! List ||
+        windows.any(
+          (v) =>
+              v is! String ||
+              !['103', '102', '101', '203', '202', '201'].contains(v),
+        ) ||
         stored is! int ||
         stored < 0 ||
         stored > 999 ||
-        water is! bool) {
+        water is! bool ||
+        backpack is! bool ||
+        weapon is! bool) {
       throw const FormatException('Estado doméstico inválido.');
     }
     c.openDoors.addAll(doors.cast<String>());
+    c.openWindows.addAll(windows.cast<String>());
+    for (final entry in {
+      'broken_windows': c.brokenWindows,
+      'closed_curtains': c.closedCurtains,
+      'removed_curtains': c.removedCurtains,
+    }.entries) {
+      final values = d[entry.key] ?? <dynamic>[];
+      if (values is! List ||
+          values.any(
+            (v) =>
+                v is! String ||
+                !['103', '102', '101', '203', '202', '201'].contains(v),
+          )) {
+        throw const FormatException('Estado de janela inválido.');
+      }
+      entry.value.addAll(values.cast<String>());
+    }
+    c.closedCurtains.removeAll(c.removedCurtains);
+
     c.storedBandages = stored;
     c.fridgeWater = water;
+    c.backpackEquipped = backpack;
+    c.weaponEquipped = weapon;
     c.events.addAll(es.cast<String>());
     c.history.addAll(
       hs.map((v) => DialogueLine.fromJson(v as Map<String, dynamic>)),
     );
     if (c.history.map((v) => v.id).toSet().length != c.history.length ||
-        (c.finished && (!c.has('night') || !c.has('pulse') || !c.canLeave)) ||
+        (c.has('finish') &&
+            (!c.has('night') || !c.has('pulse') || !c.canLeave)) ||
         (c.has('loot') && !c.has('delivered')) ||
-        (c.has('delivered') && !c.has('adapter'))) {
+        (c.has('delivered') && !c.has('adapter')) ||
+        (c.has('enemy_defeated') &&
+            (!c.has('weapon') ||
+                !c.has('alley') ||
+                !c.has('resolved') ||
+                c.enemyHealth != 0)) ||
+        (!c.has('enemy_defeated') && c.enemyHealth == 0) ||
+        (c.inChapterTwo && !c.has('finish')) ||
+        (!c.inChapterTwo && c.events.any((id) => id.startsWith('chapter2_'))) ||
+        (c.has('chapter2_complete') &&
+            (!c.inChapterTwo ||
+                !c.has('chapter2_message') ||
+                !c.has('chapter2_garage'))) ||
+        (c.has('chapter2_enemy_down') != (c.nightEnemyHealth == 0))) {
       throw const FormatException('Eventos incompatíveis.');
     }
     return c;

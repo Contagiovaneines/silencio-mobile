@@ -31,6 +31,98 @@ void main() {
     b.update(.1);
     expect(b.facingX, closeTo(.7071, .001));
   });
+  test('street pedestrians do not pace without a story purpose', () {
+    final campaign = Campaign()
+      ..floor = 0
+      ..x = 34
+      ..y = 28;
+    final world = WorldModel(campaign);
+
+    expect(world.people.map((person) => person.id), isNot(contains('nestor')));
+    expect(world.people.map((person) => person.id), isNot(contains('marina')));
+    expect(world.people.map((person) => person.id), isNot(contains('bia')));
+
+    campaign.mark('bus_arrived');
+    final nestor = world.people.singleWhere((person) => person.id == 'nestor');
+    expect(
+      (Offset(nestor.x, nestor.y) - WorldModel.busStop).distance,
+      lessThan(2),
+    );
+  });
+
+  test(
+    'bus stop shelter and sign have collision footprints beside the route',
+    () {
+      final campaign = Campaign()
+        ..floor = 0
+        ..x = 43.5
+        ..y = 29.5;
+      final world = WorldModel(campaign);
+      final shelter = world.visibleFurniture.singleWhere(
+        (f) => f.kind == 'bus_shelter',
+      );
+      final sign = world.visibleFurniture.singleWhere(
+        (f) => f.kind == 'bus_stop_sign',
+      );
+
+      expect(
+        world.canStand(shelter.bounds.center.dx, shelter.bounds.center.dy),
+        isFalse,
+      );
+      expect(
+        world.canStand(sign.bounds.center.dx, sign.bounds.center.dy),
+        isFalse,
+      );
+      expect(
+        world.canStand(WorldModel.busStop.dx, WorldModel.busStop.dy),
+        isTrue,
+      );
+    },
+  );
+
+  test('street dressing stays on sidewalks and keeps the road lane clear', () {
+    final world = WorldModel(Campaign()..floor = 0);
+    final dressing = world.visibleFurniture.where(
+      (f) =>
+          f.kind == 'bench' ||
+          f.kind == 'bus_shelter' ||
+          f.kind == 'street_tree' ||
+          f.kind == 'street_tree_autumn',
+    );
+
+    expect(dressing, hasLength(6));
+    for (final prop in dressing) {
+      expect(
+        prop.bounds.bottom <= 26 || prop.bounds.top >= 31,
+        isTrue,
+        reason: '${prop.kind} must stay clear of the road surface.',
+      );
+    }
+    expect(
+      world.canStand(WorldModel.busStop.dx, WorldModel.busStop.dy),
+      isTrue,
+    );
+  });
+
+  test(
+    'passive furniture labels require close range but stay interactable',
+    () {
+      final campaign = Campaign();
+      final world = WorldModel(campaign);
+      final chair = world.allPlaces.firstWhere(
+        (place) => place.kind == PointKind.chair,
+      );
+
+      expect(world.nearby?.kind, isNot(PointKind.chair));
+      expect(world.shouldShowPlaceLabel(chair), isFalse);
+
+      campaign
+        ..x = chair.x
+        ..y = chair.y;
+      expect(world.shouldShowPlaceLabel(chair), isTrue);
+      expect(world.nearby, chair);
+    },
+  );
   test('player cannot pass through a person, wall or vehicle', () {
     final c = Campaign()
       ..x = 6.8
@@ -120,6 +212,123 @@ void main() {
     expect(w.enemyStun, greaterThan(0));
     expect(w.push(), isFalse);
   });
+  test('melee requires weapon, facing, stamina and a reachable target', () {
+    final c = Campaign()
+      ..floor = 0
+      ..x = 38
+      ..y = 29;
+    c.mark('alley');
+    final w = WorldModel(c)
+      ..enemyX = 39.3
+      ..enemyY = 29;
+    expect(w.attack(), isFalse, reason: 'must collect the weapon first');
+
+    c.mark('weapon');
+    w
+      ..facingX = -1
+      ..facingY = 0;
+    expect(w.attack(), isFalse, reason: 'must face Davi');
+
+    w
+      ..facingX = 1
+      ..enemyX = 41;
+    expect(w.attack(), isFalse, reason: 'must be inside melee reach');
+
+    w
+      ..enemyX = 39.3
+      ..campaign.stamina = 10;
+    expect(w.attack(), isFalse, reason: 'must have stamina');
+
+    c.stamina = 100;
+    expect(w.attack(), isTrue);
+    expect(c.stamina, lessThan(100));
+  });
+  test('melee damages only at contact and incapacitates Davi nonlethally', () {
+    final c = Campaign()
+      ..floor = 0
+      ..x = 38
+      ..y = 29;
+    c.events.addAll(['alley', 'weapon']);
+    final w = WorldModel(c)
+      ..enemyX = 39
+      ..enemyY = 29
+      ..enemyStun = 100;
+
+    for (var hit = 0; hit < 4; hit++) {
+      expect(w.attack(), isTrue);
+      expect(w.enemyHealth, greaterThan(0));
+      for (var frame = 0; frame < 40; frame++) {
+        w.update(1 / 60);
+      }
+      if (hit < 3) {
+        expect(w.enemyHealth, lessThan(100 - hit * 25));
+        expect(w.enemyDefeated, isFalse);
+        for (var frame = 0; frame < 36; frame++) {
+          w.update(1 / 60);
+        }
+      }
+    }
+
+    expect(w.enemyHealth, 0);
+    expect(w.enemyDefeated, isTrue);
+    expect(c.has('resolved'), isTrue);
+    expect(c.has('enemy_defeated'), isTrue);
+    expect(w.encounterActive, isFalse);
+    expect(c.downedEnemyPosition, const Offset(39, 29));
+    final resumedCampaign = Campaign.decode(c.encode());
+    final resumedWorld = WorldModel(resumedCampaign)..restore(resumedCampaign);
+    expect(resumedWorld.enemyDefeated, isTrue);
+    expect(
+      Offset(resumedWorld.enemyX, resumedWorld.enemyY),
+      const Offset(39, 29),
+    );
+    expect(resumedWorld.canStand(39, 29), isTrue);
+  });
+  test('Davi cannot render upright and downed at the same time', () {
+    final campaign = Campaign()..floor = 0;
+    campaign.events.addAll(['alley', 'weapon', 'resolved', 'enemy_defeated']);
+    campaign.enemyHealth = 0;
+    campaign.rememberDownedEnemy(const Offset(38, 26.5));
+    final world = WorldModel(campaign)..restore(campaign);
+
+    expect(world.people.where((person) => person.id == 'davi'), isEmpty);
+    expect(world.enemyDefeated, isTrue);
+    expect(world.enemyBodyPosition, const Offset(38, 26.5));
+  });
+  test('Davi remains present when he escapes without being defeated', () {
+    final campaign = Campaign()..floor = 0;
+    campaign.events.addAll(['alley', 'resolved']);
+    final world = WorldModel(campaign)..restore(campaign);
+
+    expect(world.people.where((person) => person.id == 'davi'), hasLength(1));
+    expect(world.enemyDefeated, isFalse);
+  });
+  test('the infected cannot render upright after its downed event', () {
+    final campaign = Campaign()..floor = 0;
+    campaign.events.addAll([
+      'finish',
+      'chapter2_started',
+      'chapter2_enemy_down',
+    ]);
+    campaign.nightEnemyHealth = 0;
+    campaign.rememberDownedEnemy(const Offset(22, 13.5));
+    final world = WorldModel(campaign)..restore(campaign);
+
+    expect(world.people.where((person) => person.id == 'bruno'), isEmpty);
+    expect(world.enemyDefeated, isTrue);
+  });
+  test(
+    'the alley weapon is collectible before crossing into the encounter',
+    () {
+      final c = Campaign()..floor = 0;
+      final w = WorldModel(c);
+      final weapon = w.allPlaces.singleWhere((p) => p.kind == PointKind.weapon);
+      expect(weapon.x, lessThanOrEqualTo(32));
+      expect(w.canStand(weapon.x, weapon.y), isTrue);
+      c.mark('weapon');
+      expect(w.allPlaces.any((p) => p.kind == PointKind.weapon), isFalse);
+    },
+  );
   test('attacks cannot cross the gate and announce before damage', () {
     final c = Campaign()
       ..floor = 0

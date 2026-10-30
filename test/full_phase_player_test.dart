@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -21,8 +19,9 @@ void main() {
     const trace = bool.fromEnvironment('FULL_PHASE_TRACE');
     final timer = Stopwatch()..start();
     void progress(String message) {
-      if (trace)
+      if (trace) {
         debugPrint('[phase-player ${timer.elapsedMilliseconds}ms] $message');
+      }
     }
 
     void tick() {
@@ -124,6 +123,16 @@ void main() {
     void domestic(PointKind kind, String pose) {
       approach(kind);
       session.interact();
+      if (pose == 'sit') {
+        expect(session.phase, PlayPhase.playing);
+        expect(world.resting, pose);
+        expect(session.objectActions, isEmpty);
+        expect(session.campaign.finished, isFalse);
+        session.interact(); // the same contextual button stands Caio up
+        expect(world.resting, isNull);
+        expect(world.restAnchor, isNull);
+        return;
+      }
       expect(session.phase, PlayPhase.objectPanel);
       expect(session.objectKind, kind);
       expect(world.resting, pose);
@@ -229,6 +238,13 @@ void main() {
     expect(world.encounterActive, isFalse);
     expect(session.campaign.health, greaterThan(0));
     approach(PointKind.bus);
+    expect(session.campaign.has('bus_arrived'), isFalse);
+    for (var frame = 0; frame < 24; frame++) {
+      session.tick(.12);
+    }
+    expect(session.campaign.has('bus_arrived'), isTrue);
+    expect(session.campaign.objective, contains('Embarque'));
+    expect(world.visibleVehicles.any((vehicle) => vehicle.id == 'bus'), isTrue);
     session.interact();
     dialogue();
     expect(session.phase, PlayPhase.transit);

@@ -101,7 +101,10 @@ class AnimalBehaviourWorld {
   Iterable<AnimalActor> get actors => [cat, dog, pigeon];
 
   void reset() {
-    cat = AnimalActor('breu', AnimalKind.cat, wall.boardingPoint);
+    // Spawn on the approach side so the cat never occupies the player's
+    // contextual vault launch point. The cat can still walk to and climb this
+    // wall through its normal surface behaviour.
+    cat = AnimalActor('breu', AnimalKind.cat, wall.groundAccessPoint);
     dog = AnimalActor(
       'fuba',
       AnimalKind.dog,
@@ -171,18 +174,22 @@ class AnimalBehaviourWorld {
     final animal = actors.firstWhere((a) => a.id == id);
     switch (animal.kind) {
       case AnimalKind.cat:
-        if (animal.sleeping)
+        if (animal.sleeping) {
           return 'Breu dorme enroscado ${animal.surface?.kind == AnimalSurfaceKind.parkedCar ? 'sobre o carro parado' : 'no alto do muro'}.';
+        }
         return animal.state == AnimalState.climb
             ? 'Breu encontra apoio e sobe com cuidado.'
             : 'Breu acompanha o movimento com os olhos e escolhe outro apoio.';
       case AnimalKind.dog:
-        if (animal.sleeping)
+        if (animal.sleeping) {
           return 'Fubá descansa na garagem. O peito se move devagar.';
-        if (animal.state == AnimalState.mark)
+        }
+        if (animal.state == AnimalState.mark) {
           return 'Fubá marca a parede e volta a farejar.';
-        if (animal.state != AnimalState.walk)
+        }
+        if (animal.state != AnimalState.walk) {
           _state(animal, AnimalState.sniff, 2);
+        }
         return 'Fubá fareja perto de Caio e volta à sua rotina.';
       case AnimalKind.pigeon:
         _startFlight(animal, canOccupy);
@@ -355,8 +362,9 @@ class AnimalBehaviourWorld {
         _state(animal, AnimalState.idle, 3);
       }
     } else {
-      if (animal._arrivalState == AnimalState.mark)
+      if (animal._arrivalState == AnimalState.mark) {
         animal.facing = const Offset(1, 0);
+      }
       _state(animal, animal._arrivalState, animal._arrivalDuration);
     }
   }
@@ -392,7 +400,14 @@ class AnimalBehaviourWorld {
       return;
     }
     if (!animal._descending && available != null && !available(surface)) {
-      _beginClimb(animal, surface, descending: true);
+      if (animal.elevation < .01) {
+        // No takeoff has occurred yet. Keep the valid ground position instead
+        // of manufacturing a zero-height descent across the obstacle footprint.
+        animal.surface = null;
+        _state(animal, AnimalState.idle, 3);
+      } else {
+        _beginClimb(animal, surface, descending: true);
+      }
       return;
     }
     final before = animal.position;
@@ -534,8 +549,9 @@ class AnimalBehaviourWorld {
             next.$1 > 104 ||
             next.$2 < 20 ||
             next.$2 > 79 ||
-            previous.containsKey(next))
+            previous.containsKey(next)) {
           continue;
+        }
         final from = current == start ? animal.position : point(current);
         if (!_segment(animal.id, from, point(next), clear)) continue;
         previous[next] = current;

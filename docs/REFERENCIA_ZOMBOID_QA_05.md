@@ -10,6 +10,8 @@ O catálogo MCP desta conversa não apresentou ferramentas REA. O launcher `npx`
 - CLI: `C:/Users/giovane/AppData/Local/npm-cache/_npx/af752b90495482d7/node_modules/rea-agents/scripts/rea.mjs`.
 - Operação efetiva: `inspect-artifact` no `projectzomboid.jar`, formato JSON completo. Não houve extração ou decompilação.
 
+Foi feita também uma consulta ao catálogo de provedores e à operação REA de unidades JEB. `rea providers` reportou Ghidra sem `GHIDRA_INSTALL_DIR`, Hopper não suportado nesta configuração Windows e IDA não configurado. `rea list-jeb-units --format json` respondeu `capability_unavailable`: precisa de um cliente JEB atendendo no MCP (padrão `http://127.0.0.1:8425/mcp` ou `REA_JEB_MCP_URL`), e a conexão local falhou. Portanto, **não foi possível decompilar o bytecode Java neste ambiente**. Não foi instalado nem configurado um decompilador. O inventário ZIP do JAR e a inspeção de fontes Lua/XML continuam sendo a evidência realmente disponível.
+
 Evidência REA principal: `ev_02d2cd9bcca76d580703a46a28c9269188f11aa3dc682666809784e0e277e2d6`.
 
 Subetapa de inventário: `ev_1e795ac2817dc84f6c1c346bd5c597b1366c608d954a167c6c26cb65cd62822e`.
@@ -76,7 +78,9 @@ Para Libras no jogo, preparar um contrato por fala: glosa/expressão pretendida,
 
 ## Cobertura e pendências
 
-- REA: inventário autenticado do JAR concluído, sem execução/decompilação.
+- REA: inventário autenticado do JAR concluído; tentativa de listar unidades JEB documentou ausência do backend local. Sem decompilação Java ou execução do Project Zomboid.
 - Comportamentos: leitura estática de seis fontes distribuídas; aparência real do Zomboid, custos de CPU/GPU e todos os limiares permanecem não verificados.
 - Comunicação: auditoria do estado anterior ao lote e contratos propostos; o agente de integração está aplicando as mudanças, portanto conferir o código e o QA final antes de afirmar que todas foram concluídas.
 - Assets: nenhum material comercial ou figura de Libras foi incorporado como sprite final.
+
+Atualização de perguntas sobre casas, containers, portas/janelas, armas, veículos, spawns e animais está em [REA_PZ_MECHANICS_06.md](REA_PZ_MECHANICS_06.md). Essa leitura amplia a inspeção de Lua/XML, mas não altera a limitação de decompilação Java: JEB/MCP continua sem serviço ativo; os detalhes do engine seguem desconhecidos.

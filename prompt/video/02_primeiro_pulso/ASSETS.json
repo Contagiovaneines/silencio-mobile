@@ -28,5 +28,11 @@
     "source": "assets/audio/pulse.wav",
     "sha256": "5da51fe489c2d1232e7b8253e6690ebec515ef04fbbcc9e50be166de4c64b8fa",
     "role": "existing_game_reference_not_generated_video"
+  },
+  {
+    "file": "assets/keyframe_placeholder_v01.png",
+    "source": "assets/images/video_placeholder_02_pulso_v01.png",
+    "sha256": "2cac8af58cc26a09a2959c48433b97a81de22a44c7df46dd004930ad4f012ef3",
+    "role": "generated_static_keyframe_placeholder"
   }
 ]

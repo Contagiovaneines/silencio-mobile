@@ -1,0 +1,92 @@
+[
+  {
+    "cue": "cat",
+    "page": "https://freesound.org/people/tuberatanka/sounds/110011/",
+    "preview": "https://cdn.freesound.org/previews/110/110011_1537422-hq.mp3",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source_sha256": "2890268279c76f06dc0b7c2b59313becf63a152a1addcede5ee5161cee9eb45a",
+    "output_sha256": "d0f36109495721804e29acdb2e4c5290fe71fb4f88e687c6a9ed956a35e2bf93",
+    "duration": 1.5445351473922901,
+    "processing": "mono 22050Hz, filtering, peak -4dBFS max, fades; rain overlap loop",
+    "author": "tuberatanka"
+  },
+  {
+    "cue": "rain",
+    "page": "https://freesound.org/people/barkenov/sounds/640655/",
+    "preview": "https://cdn.freesound.org/previews/640/640655_2414299-hq.mp3",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source_sha256": "f5e4d1958e192762dc35e535e79afd30755986e18e7edabade998d84d446e6b9",
+    "output_sha256": "fbc7310700c4374d547835c235a4233581a7a4ae49da5ba198616b623284df22",
+    "duration": 23.25002267573696,
+    "processing": "mono 22050Hz, filtering, peak -4dBFS max, fades; rain overlap loop",
+    "author": "barkenov"
+  },
+  {
+    "cue": "door",
+    "page": "https://freesound.org/people/pagancow/sounds/15419/",
+    "preview": "https://cdn.freesound.org/previews/15/15419_45698-hq.mp3",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source_sha256": "9698be4a2a667d8f9b52ec14c7aff058f946460d9a77b5eb9b913932ba0198d6",
+    "output_sha256": "e8e8733685271bbea8c63ee220d0dbff97315e7110ea12e6947d86a99906686f",
+    "duration": 1.3478004535147392,
+    "processing": "mono 22050Hz, filtering, peak -4dBFS max, fades; rain overlap loop",
+    "author": "pagancow"
+  },
+  {
+    "cue": "dog",
+    "page": "https://freesound.org/people/ipears1/sounds/118072/",
+    "preview": "https://cdn.freesound.org/previews/118/118072_951673-hq.mp3",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source_sha256": "f953ce735d079f5de013ffdc4fa30bbd7677a8f1035a4c3e47d505128f3959f7",
+    "output_sha256": "56bd5cadbfa1b869115259ab2904f52da4b044b20824d6e4024ea50ede0edc37",
+    "duration": 0.8136054421768707,
+    "processing": "mono 22050Hz, filtering, peak -4dBFS max, fades; rain overlap loop",
+    "author": "ipears1"
+  },
+  {
+    "cue": "step",
+    "page": "https://freesound.org/people/ZNukem/sounds/697182/",
+    "preview": "https://cdn.freesound.org/previews/697/697182_15054374-hq.mp3",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source_sha256": "c9b33748b1feb95fac025fc047ee2382be136589d5e8d90069cbee733170b392",
+    "output_sha256": "44f99e365acdb5019366ba7231e7294ef29a57701bc31135f0ae4d8f32b74c81",
+    "duration": 0.26852607709750564,
+    "processing": "mono 22050Hz, filtering, peak -4dBFS max, fades; rain overlap loop",
+    "author": "ZNukem"
+  },
+  {
+    "cue": "bird",
+    "page": "https://freesound.org/people/JavierSerrat/sounds/524345/",
+    "preview": "https://cdn.freesound.org/previews/524/524345_3518208-hq.mp3",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source_sha256": "81f76fe94ea514f3bc7d00466917fde0b7afd95469284ed066a76915259757bf",
+    "output_sha256": "26881c7d017bb15160a92db35f89851df00e7cd6ddb787ad85358f16d2a96bbf",
+    "duration": 3.0,
+    "processing": "mono 22050Hz, filtering, peak -4dBFS max, fades; rain overlap loop",
+    "author": "JavierSerrat"
+  },
+  {
+    "cue": "window",
+    "page": "https://freesound.org/people/SamuelGremaud/sounds/437636/",
+    "preview": "https://cdn.freesound.org/previews/437/437636_8031303-hq.mp3",
+    "license": "CC0-1.0",
+    "license_url": "https://creativecommons.org/publicdomain/zero/1.0/",
+    "source_sha256": "018be440764de353fd188cbbc815412c677ecdb8a44d4fb3535a995b4c4db975",
+    "output_sha256": "c4593862994caca1b03ef910aff20e1191ab9894fafd13105e0a394ca50b8468",
+    "duration": 2.350748299319728,
+    "processing": "mono 22050Hz, filtering, peak -4dBFS max, fades; rain overlap loop",
+    "author": "SamuelGremaud"
+  },
+  {
+    "cue": "swing",
+    "author": "SILENCIO",
+    "license": "Original project audio",
+    "processing": "seeded filtered noise, shaped envelope, 0.26s"
+  }
+]

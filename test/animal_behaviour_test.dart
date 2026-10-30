@@ -39,12 +39,13 @@ void main() {
         birdFlew |= animals.pigeon.state == AnimalState.fly;
         if (animals.cat.sleeping) catSurfaces.add(animals.cat.surface!.id);
         for (final animal in animals.actors) {
-          if (animal.onGround)
+          if (animal.onGround) {
             expect(
               clear(animal.id, animal.position),
               isTrue,
               reason: '${animal.id} on invalid ground at ${animal.position}',
             );
+          }
           if (animal.elevation > .01 && animal.kind == AnimalKind.cat) {
             expect(animal.surface, isNotNull);
           }
@@ -214,6 +215,35 @@ void main() {
     },
   );
 
+  test('cat cancels takeoff when its named support becomes unavailable', () {
+    final animals = AnimalBehaviourWorld();
+    final clear = exterior(animals);
+    var supportAvailable = true;
+    for (var i = 0; i < 3 * 60; i++) {
+      animals.update(
+        1 / 60,
+        canOccupy: clear,
+        playerPosition: player,
+        canUseSurface: (_) => supportAvailable,
+      );
+      if (animals.cat.state == AnimalState.climb) break;
+    }
+    expect(animals.cat.state, AnimalState.climb);
+    expect(animals.cat.elevation, 0);
+    final takeoff = animals.cat.position;
+    supportAvailable = false;
+    animals.update(
+      1 / 60,
+      canOccupy: clear,
+      playerPosition: player,
+      canUseSurface: (_) => supportAvailable,
+    );
+    expect(animals.cat.surface, isNull);
+    expect(animals.cat.state, AnimalState.idle);
+    expect(animals.cat.position, takeoff);
+    expect(clear('breu', animals.cat.position), isTrue);
+  });
+
   test('marking belongs only to the explicitly male dog', () {
     final animals = AnimalBehaviourWorld(dogIsMale: false);
     final clear = exterior(animals);
@@ -244,7 +274,7 @@ void main() {
         expect(aa.walkFrame, bb.walkFrame);
       }
       a.reset();
-      expect(a.cat.position, AnimalBehaviourWorld.wall.boardingPoint);
+      expect(a.cat.position, AnimalBehaviourWorld.wall.groundAccessPoint);
       expect(a.cat.surface, isNull);
       expect(a.dog.state, AnimalState.sniff);
     },

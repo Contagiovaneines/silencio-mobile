@@ -27,6 +27,13 @@ SCENES = [
      ['docs/screenshots/ap203-final.png', 'assets/images/portrait_caio.png', 'assets/images/pose_SE_idle.png', 'assets/images/apartment_furniture_v1.png', 'assets/audio/rain.wav']),
 ]
 
+VIDEO_PLACEHOLDERS = {
+    '01_abertura': 'assets/images/video_placeholder_01_abertura_v01.png',
+    '02_primeiro_pulso': 'assets/images/video_placeholder_02_pulso_v01.png',
+    '03_mensagem_helena': 'assets/images/video_placeholder_03_mensagem_v01.png',
+    '04_retorno_e_cama': 'assets/images/video_placeholder_04_retorno_v01.png',
+}
+
 ANIMATIONS = [
     ('01_deitar', 'Cama', 'aproximar parado; sentar na borda; inclinar; deitar; repouso; levantar em ordem inversa. Manter roupa e cama da referência. Separar corpo do personagem e camadas do móvel para oclusão. Não animar a cama deslizando.'),
     ('02_cadeira', 'Cadeira da escrivaninha', 'parado; flexionar joelhos; abaixar quadril; sentado; digitar sutilmente; levantar. Mãos e pés consistentes, sem atravessar mesa. Entregar pose sentada sem movimento para loop opcional.'),
@@ -51,13 +58,26 @@ def main():
             assets.append({'file': 'assets/' + original.name, 'source': source,
                            'sha256': hashlib.sha256(destination.read_bytes()).hexdigest(),
                            'role': 'existing_game_reference_not_generated_video'})
+        placeholder_source = VIDEO_PLACEHOLDERS[scene_id]
+        placeholder = ROOT / placeholder_source
+        if not placeholder.is_file():
+            raise FileNotFoundError(placeholder)
+        placeholder_name = 'keyframe_placeholder_v01.png'
+        placeholder_destination = directory / 'assets' / placeholder_name
+        shutil.copy2(placeholder, placeholder_destination)
+        assets.append({'file': 'assets/' + placeholder_name,
+                       'source': placeholder_source,
+                       'sha256': hashlib.sha256(placeholder_destination.read_bytes()).hexdigest(),
+                       'role': 'generated_static_keyframe_placeholder'})
         (directory / 'PROMPT.md').write_text(
-            f'# {scene_id}\n\n## Referências\n\nAnexar os arquivos de assets como referências, não como quadros de colagem. Retratos fixam identidade; sprites fixam roupa e proporção; captura fixa cenário; WAV é guia para pós-produção, não trilha obrigatória.\n\n## Prompt pronto\n\n{STYLE}\n\n{action}\n\nVídeo único de {duration} segundos, horizontal 16:9, alvo 1920×1080, 24 fps, sem áudio embutido. Movimento discreto, câmera isométrica coerente. Guardar primeiro e último quadro para conferir continuidade.\n\n## Entrega\n\nSalvar `saida/{filename}`. MP4 H.264, yuv420p, SDR. Se o serviço exportar outra resolução, manter 16:9 e informar; não esticar a imagem. A taxa e compressão final serão ajustadas na integração. Versões novas usam v02, v03, sem sobrescrever a aprovada.\n\n## Integração futura\n\n{trigger}\n\nO vídeo é opcional. O beta continua com sua apresentação atual. Material ainda não produzido; esta pasta não contém MP4 fictício.\n', encoding='utf-8')
+            f'# {scene_id}\n\n## Referências\n\nAnexar os arquivos de assets como referências, não como quadros de colagem. Retratos fixam identidade; sprites fixam roupa e proporção; captura fixa cenário; WAV é guia para pós-produção, não trilha obrigatória. `assets/keyframe_placeholder_v01.png` é o quadro estático que o jogo mostra enquanto o vídeo não existe.\n\n## Prompt pronto\n\n{STYLE}\n\n{action}\n\nVídeo único de {duration} segundos, horizontal 16:9, alvo 1920×1080, 24 fps, sem áudio embutido. Movimento discreto, câmera isométrica coerente. Guardar primeiro e último quadro para conferir continuidade.\n\n## Entrega\n\nSalvar `saida/{filename}`. MP4 H.264, yuv420p, SDR. Se o serviço exportar outra resolução, manter 16:9 e informar; não esticar a imagem. A taxa e compressão final serão ajustadas na integração. Versões novas usam v02, v03, sem sobrescrever a aprovada.\n\n## Integração\n\n{trigger}\n\nO jogo usa atualmente `assets/images/{Path(placeholder_source).name}` como imagem provisória nesta cena. Ao receber e aprovar o MP4, trocar a mídia deste slot pela reprodução do vídeo e manter texto, acessibilidade e avanço controlados pelo motor. O vídeo é opcional; nunca renomear PNG como MP4.\n', encoding='utf-8')
         (directory / 'saida' / 'COLOQUE_O_VIDEO_AQUI.md').write_text(
             f'Entregar aqui `{filename}`. Nenhum vídeo gerado ainda. Não renomear uma imagem como MP4.\n', encoding='utf-8')
         (directory / 'ASSETS.json').write_text(json.dumps(assets, ensure_ascii=False, indent=2), encoding='utf-8')
         records.append({'id': scene_id, 'duration_seconds': duration, 'status': 'awaiting_user_video',
-                        'output': f'{scene_id}/saida/{filename}', 'trigger': trigger, 'required_for_beta': False})
+                        'output': f'{scene_id}/saida/{filename}', 'trigger': trigger,
+                        'placeholder_image': f'{scene_id}/assets/{placeholder_name}',
+                        'game_asset': placeholder_source, 'required_for_beta': False})
     (PACK / 'video' / 'manifest.json').write_text(json.dumps(records, ensure_ascii=False, indent=2), encoding='utf-8')
     for action_id, subject, action in ANIMATIONS:
         directory = PACK / 'animacao' / action_id

@@ -18,6 +18,10 @@ dev_dependencies:
 flutter:
   uses-material-design: true
   assets:
+    - assets/images/equipment/
     - assets/images/
+    - assets/images/received/chapter01/
+    - assets/images/pixel_tiles/sprites/
+    - assets/images/actors/
     - assets/data/
     - assets/audio/

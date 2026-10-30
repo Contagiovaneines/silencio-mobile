@@ -1,0 +1,195 @@
+{
+  "image": "apartment_refined_v1.png",
+  "source": "SILENCIO_Apartamento_Assets_Refinados; user-provided art pack",
+  "size": [
+    2048,
+    1471
+  ],
+  "sprites": {
+    "caio_deitado_cama": [
+      0,
+      0,
+      752,
+      661
+    ],
+    "caio_sentado_sofa": [
+      756,
+      0,
+      656,
+      535
+    ],
+    "caio_sentado_cadeira": [
+      1416,
+      0,
+      311,
+      492
+    ],
+    "box_chuveiro_A": [
+      1731,
+      0,
+      233,
+      346
+    ],
+    "balcao_cuba_A": [
+      0,
+      665,
+      341,
+      304
+    ],
+    "cama_parede_A": [
+      345,
+      665,
+      318,
+      300
+    ],
+    "rack_tv_A": [
+      667,
+      665,
+      261,
+      283
+    ],
+    "vaso_sanitario_B": [
+      932,
+      665,
+      218,
+      280
+    ],
+    "cesto_roupa_B": [
+      1154,
+      665,
+      198,
+      279
+    ],
+    "abajur_aceso_A": [
+      1356,
+      665,
+      180,
+      278
+    ],
+    "guarda_roupa_B": [
+      1540,
+      665,
+      175,
+      275
+    ],
+    "geladeira_fechada_A": [
+      1719,
+      665,
+      173,
+      275
+    ],
+    "gabinete_pia_A": [
+      0,
+      973,
+      229,
+      267
+    ],
+    "planta_B": [
+      233,
+      973,
+      203,
+      266
+    ],
+    "mesa_jantar_A": [
+      440,
+      973,
+      277,
+      265
+    ],
+    "sofa_parede_A": [
+      721,
+      973,
+      291,
+      264
+    ],
+    "espelho_A": [
+      1016,
+      973,
+      165,
+      257
+    ],
+    "estante_A": [
+      1185,
+      973,
+      200,
+      251
+    ],
+    "fogao_B": [
+      1389,
+      973,
+      185,
+      245
+    ],
+    "escrivaninha_A": [
+      1578,
+      973,
+      220,
+      241
+    ],
+    "mesa_cabeceira_A": [
+      1802,
+      973,
+      155,
+      228
+    ],
+    "cadeira_A": [
+      0,
+      1244,
+      162,
+      223
+    ],
+    "mesa_centro_B": [
+      166,
+      1244,
+      257,
+      211
+    ],
+    "tapete_banheiro_A": [
+      427,
+      1244,
+      317,
+      205
+    ],
+    "cadeira_B": [
+      748,
+      1244,
+      155,
+      199
+    ],
+    "armario_suspenso_B": [
+      907,
+      1244,
+      158,
+      182
+    ]
+  },
+  "source_files": {
+    "sofa_parede_A": "01_Sala/PNG_Individuais/sofa_parede_A.png",
+    "mesa_centro_B": "01_Sala/PNG_Individuais/mesa_centro_B.png",
+    "rack_tv_A": "01_Sala/PNG_Individuais/rack_tv_A.png",
+    "abajur_aceso_A": "01_Sala/PNG_Individuais/abajur_aceso_A.png",
+    "planta_B": "01_Sala/PNG_Individuais/planta_B.png",
+    "cama_parede_A": "02_Quarto/PNG_Individuais/cama_parede_A.png",
+    "guarda_roupa_B": "02_Quarto/PNG_Individuais/guarda_roupa_B.png",
+    "mesa_cabeceira_A": "02_Quarto/PNG_Individuais/mesa_cabeceira_A.png",
+    "escrivaninha_A": "02_Quarto/PNG_Individuais/escrivaninha_A.png",
+    "cadeira_A": "02_Quarto/PNG_Individuais/cadeira_A.png",
+    "cadeira_B": "02_Quarto/PNG_Individuais/cadeira_B.png",
+    "estante_A": "02_Quarto/PNG_Individuais/estante_A.png",
+    "balcao_cuba_A": "03_Cozinha/PNG_Individuais/balcao_cuba_A.png",
+    "fogao_B": "03_Cozinha/PNG_Individuais/fogao_B.png",
+    "geladeira_fechada_A": "03_Cozinha/PNG_Individuais/geladeira_fechada_A.png",
+    "armario_suspenso_B": "03_Cozinha/PNG_Individuais/armario_suspenso_B.png",
+    "mesa_jantar_A": "03_Cozinha/PNG_Individuais/mesa_jantar_A.png",
+    "gabinete_pia_A": "04_Banheiro/PNG_Individuais/gabinete_pia_A.png",
+    "vaso_sanitario_B": "04_Banheiro/PNG_Individuais/vaso_sanitario_B.png",
+    "box_chuveiro_A": "04_Banheiro/PNG_Individuais/box_chuveiro_A.png",
+    "tapete_banheiro_A": "04_Banheiro/PNG_Individuais/tapete_banheiro_A.png",
+    "espelho_A": "04_Banheiro/PNG_Individuais/espelho_A.png",
+    "cesto_roupa_B": "04_Banheiro/PNG_Individuais/cesto_roupa_B.png",
+    "caio_sentado_sofa": "06_Personagem/PNG_Individuais/caio_sentado_sofa.png",
+    "caio_sentado_cadeira": "06_Personagem/PNG_Individuais/caio_sentado_cadeira.png",
+    "caio_deitado_cama": "06_Personagem/PNG_Individuais/caio_deitado_cama.png"
+  },
+  "sha256": "1fda648b5fc2375b95711287cbc83232d851c87b5c069a77e0dba02c4a94ad6c"
+}

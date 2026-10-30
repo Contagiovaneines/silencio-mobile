@@ -23,13 +23,6 @@ void main() {
 
   void at(PointKind kind) {
     final p = s.world.allPlaces.firstWhere((v) => v.kind == kind);
-    if (kind == PointKind.bed) {
-      s.campaign
-        ..floor = 2
-        ..x = 4.3
-        ..y = 5.65;
-      return;
-    }
     if (kind == PointKind.key) {
       s.campaign
         ..floor = 2
@@ -50,7 +43,15 @@ void main() {
       ..y = p.y + 1;
   }
 
-  test('first phase requires delivery, nonlethal encounter, pulse, message and returning home', () async {
+  test('opening handoff does not duplicate the objective in a toast', () {
+    s.startNew();
+    s.finishOpening();
+    expect(s.phase, PlayPhase.playing);
+    expect(s.campaign.objective, contains('celular'));
+    expect(s.notice, isEmpty);
+  });
+
+  test('first phase requires delivery, bus boarding, pulse, message and returning home', () async {
     s.startNew();
     expect(s.phase, PlayPhase.opening);
     s.finishOpening();
@@ -82,6 +83,17 @@ void main() {
     expect(s.campaign.has('resolved'), isTrue);
     at(PointKind.crossing);
     s.interact();
+    expect(s.phase, PlayPhase.playing);
+    at(PointKind.bus);
+    for (var i = 0; i < 24; i++) {
+      s.tick(.12);
+    }
+    expect(s.campaign.has('bus_arrived'), isTrue);
+    s.interact();
+    endDialogue();
+    for (var i = 0; s.phase == PlayPhase.transit && i < 30; i++) {
+      s.tick(.12);
+    }
     expect(s.phase, PlayPhase.pulse);
     s.tick(2.1);
     endDialogue();
@@ -121,6 +133,53 @@ void main() {
       endDialogue();
       expect(s.campaign.has('help_ines'), isTrue);
       expect(s.campaign.bandages, 1);
+    },
+  );
+  test(
+    'wooden weapon pickup is physical and persists in the existing save',
+    () async {
+      s.startNew();
+      s.finishOpening();
+      s.campaign
+        ..floor = 0
+        ..x = 31.7
+        ..y = 26.5;
+      final pickup = s.world.nearby;
+      expect(pickup?.kind, PointKind.weapon);
+      s.interact();
+      expect(s.campaign.has('weapon'), isTrue);
+      for (var frame = 0; frame < 45; frame++) {
+        s.tick(1 / 60);
+      }
+      await s.save();
+      expect(r.load()?.has('weapon'), isTrue);
+      expect(s.world.nearby?.kind, isNot(PointKind.weapon));
+    },
+  );
+  test(
+    'partial melee damage resumes from a save without healing Davi',
+    () async {
+      s.startNew();
+      s.finishOpening();
+      s.campaign
+        ..floor = 0
+        ..x = 38
+        ..y = 29;
+      s.campaign.events.addAll(['alley', 'weapon']);
+      s.world
+        ..enemyX = 39
+        ..enemyY = 29
+        ..enemyStun = 20;
+      expect(s.world.attack(), isTrue);
+      for (var frame = 0; frame < 30; frame++) {
+        s.tick(1 / 60);
+      }
+      expect(s.world.enemyHealth, 75);
+      await s.save();
+      final loaded = r.load()!;
+      expect(loaded.enemyHealth, 75);
+      s.world.restore(loaded);
+      expect(s.world.enemyHealth, 75);
     },
   );
   test(

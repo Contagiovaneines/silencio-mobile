@@ -2,7 +2,7 @@
 
 ## Referências
 
-Anexar os arquivos de assets como referências, não como quadros de colagem. Retratos fixam identidade; sprites fixam roupa e proporção; captura fixa cenário; WAV é guia para pós-produção, não trilha obrigatória.
+Anexar os arquivos de assets como referências, não como quadros de colagem. Retratos fixam identidade; sprites fixam roupa e proporção; captura fixa cenário; WAV é guia para pós-produção, não trilha obrigatória. `assets/keyframe_placeholder_v01.png` é o quadro estático que o jogo mostra enquanto o vídeo não existe.
 
 ## Prompt pronto
 
@@ -16,8 +16,8 @@ Vídeo único de 6 segundos, horizontal 16:9, alvo 1920×1080, 24 fps, sem áudi
 
 Salvar `saida/silencio_f01_retorno_v01.mp4`. MP4 H.264, yuv420p, SDR. Se o serviço exportar outra resolução, manter 16:9 e informar; não esticar a imagem. A taxa e compressão final serão ajustadas na integração. Versões novas usam v02, v03, sem sobrescrever a aprovada.
 
-## Integração futura
+## Integração
 
 Somente ao usar a cama após canLeave + pulse + night. Não acionar ao salvar cedo; nenhuma prévia do capítulo 2.
 
-O vídeo é opcional. O beta continua com sua apresentação atual. Material ainda não produzido; esta pasta não contém MP4 fictício.
+O jogo usa atualmente `assets/images/video_placeholder_04_retorno_v01.png` como imagem provisória nesta cena. Ao receber e aprovar o MP4, trocar a mídia deste slot pela reprodução do vídeo e manter texto, acessibilidade e avanço controlados pelo motor. O vídeo é opcional; nunca renomear PNG como MP4.

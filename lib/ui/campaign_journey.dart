@@ -10,9 +10,11 @@ class CampaignJourney extends StatefulWidget {
     required this.localMap,
     required this.onPlay,
     required this.onBack,
+    this.onPlayChapterTwo,
   });
   final bool completed, hasSave, localMap;
   final VoidCallback onPlay, onBack;
+  final VoidCallback? onPlayChapterTwo;
   @override
   State<CampaignJourney> createState() => _CampaignJourneyState();
 }
@@ -86,6 +88,8 @@ class _CampaignJourneyState extends State<CampaignJourney> {
                               ? widget.completed
                                     ? Icons.check_circle_outline
                                     : Icons.radio_button_checked
+                              : i == 1 && widget.onPlayChapterTwo != null
+                              ? Icons.play_circle_outline
                               : Icons.lock_outline,
                           size: 14,
                         ),
@@ -112,13 +116,15 @@ class _CampaignJourneyState extends State<CampaignJourney> {
             ? widget.completed
                   ? 'Concluído'
                   : 'Disponível'
+            : selected == 1 && widget.onPlayChapterTwo != null
+            ? 'Disponível'
             : 'Em produção'}',
         style: const TextStyle(color: Color(0xffe3e4d5), fontSize: 15),
       ),
       const SizedBox(height: 6),
-      if (selected > 0)
+      if (selected > 0 && !(selected == 1 && widget.onPlayChapterTwo != null))
         const Text(
-          'Este capítulo ainda não está implementado. Explorar esta tela não desbloqueia nem altera o progresso.',
+          'Conclua o capítulo anterior para abrir 02:00. Os capítulos seguintes continuam em produção.',
           style: TextStyle(color: Color(0xffa2cbb8), fontSize: 12),
         ),
       if (selected == 0)
@@ -135,6 +141,14 @@ class _CampaignJourneyState extends State<CampaignJourney> {
                   ? 'Continuar fase 01'
                   : 'Começar fase 01',
             ),
+          ),
+        ),
+      if (selected == 1 && widget.onPlayChapterTwo != null)
+        Align(
+          alignment: Alignment.centerRight,
+          child: FilledButton(
+            onPressed: widget.onPlayChapterTwo,
+            child: const Text('Jogar fase 02 · 02:00'),
           ),
         ),
     ],

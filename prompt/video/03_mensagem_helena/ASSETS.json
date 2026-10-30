@@ -22,5 +22,11 @@
     "source": "assets/audio/phone.wav",
     "sha256": "1fab7123816e72609c7aed460ec3b487d9f696d3102af818eb7333323523daec",
     "role": "existing_game_reference_not_generated_video"
+  },
+  {
+    "file": "assets/keyframe_placeholder_v01.png",
+    "source": "assets/images/video_placeholder_03_mensagem_v01.png",
+    "sha256": "a28a90b6d85a06f1f42bedc6724c7668fb755edf08d57175a72324ba06271540",
+    "role": "generated_static_keyframe_placeholder"
   }
 ]

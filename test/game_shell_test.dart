@@ -24,6 +24,7 @@ void main() {
         await tester.pumpWidget(MaterialApp(home: GameShell(session: s)));
         await tester.pump(const Duration(milliseconds: 100));
         expect(tester.takeException(), isNull);
+        await tester.ensureVisible(find.text('Configurações'));
         await tester.tap(find.text('Configurações'));
         await tester.pump();
         expect(s.phase, PlayPhase.menuSettings);
@@ -31,12 +32,15 @@ void main() {
         await tester.ensureVisible(find.text('Voltar ao menu'));
         await tester.tap(find.text('Voltar ao menu'));
         await tester.pump();
+        await tester.ensureVisible(find.byKey(const Key('menu-extras')));
+        await tester.tap(find.byKey(const Key('menu-extras')));
+        await tester.pump();
         await tester.tap(find.text('Jornada'));
         await tester.pump();
         await tester.tap(find.text('02:00'));
         await tester.pump();
         expect(
-          find.textContaining('ainda não está implementado'),
+          find.textContaining('Conclua o capítulo anterior'),
           findsOneWidget,
         );
         expect(tester.takeException(), isNull);
@@ -77,4 +81,34 @@ void main() {
       },
     );
   }
+
+  testWidgets('closing phone dialogue does not send its tap to the game', (
+    tester,
+  ) async {
+    tester.view.physicalSize = const Size(832, 384);
+    tester.view.devicePixelRatio = 1;
+    addTearDown(tester.view.resetPhysicalSize);
+    addTearDown(tester.view.resetDevicePixelRatio);
+    rootBundle.evict('assets/data/chapter_01.json');
+    SharedPreferences.setMockInitialValues({});
+    final s = await GameSession.load(
+      SaveRepository(await SharedPreferences.getInstance()),
+    );
+    s.startNew();
+    s.finishOpening();
+    s.phone();
+    await tester.pumpWidget(MaterialApp(home: GameShell(session: s)));
+    await tester.pump();
+
+    while (s.phase == PlayPhase.dialogue) {
+      await tester.tap(find.text('Continuar'));
+      await tester.pump();
+    }
+
+    expect(s.phase, PlayPhase.playing);
+    expect(find.text('Continuar'), findsNothing);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+    s.dispose();
+  });
 }

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pixel Art Game Studio"
+  short_description: "Pixel art, mapas e sprites para Flutter/Flame"
+  default_prompt: "Use $pixel-art-game-studio to inspect the SILÊNCIO asset pipeline, then produce or validate original game-ready pixel art without changing its projection or existing assets."

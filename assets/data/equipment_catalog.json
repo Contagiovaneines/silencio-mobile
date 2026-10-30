@@ -1,0 +1,448 @@
+{
+  "source": {
+    "pdf": "SILENCIO_Historia_Completa_Fases_e_Dialogos.pdf",
+    "pages": 116,
+    "weapons_page": 94
+  },
+  "weapons": {
+    "WPN_CROWBAR": {
+      "name": "Pé de cabra",
+      "world": "equipment/gear_crowbar.png",
+      "icon": "equipment/icon_crowbar.png",
+      "grip": [
+        16,
+        50
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "first_chapter": 3,
+      "owners": [
+        "caio"
+      ],
+      "art_exported": true,
+      "runtime_held": false,
+      "future_character_animations_complete": false
+    },
+    "WPN_WRENCH": {
+      "name": "Chave de oficina",
+      "world": "equipment/gear_wrench.png",
+      "icon": "equipment/icon_wrench.png",
+      "grip": [
+        16,
+        50
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "first_chapter": 3,
+      "owners": [
+        "helena"
+      ],
+      "art_exported": true,
+      "runtime_held": false,
+      "future_character_animations_complete": false
+    },
+    "WPN_PISTOL": {
+      "name": "Pistola",
+      "world": "equipment/gear_pistol.png",
+      "icon": "equipment/icon_pistol.png",
+      "grip": [
+        16,
+        50
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "first_chapter": 8,
+      "owners": [
+        "vale"
+      ],
+      "art_exported": true,
+      "runtime_held": false,
+      "future_character_animations_complete": false
+    },
+    "WPN_RIFLE": {
+      "name": "Fuzil",
+      "world": "equipment/gear_rifle.png",
+      "icon": "equipment/icon_rifle.png",
+      "grip": [
+        16,
+        50
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "first_chapter": 4,
+      "owners": [
+        "reis",
+        "celia"
+      ],
+      "art_exported": true,
+      "runtime_held": false,
+      "future_character_animations_complete": false
+    },
+    "WPN_BATON": {
+      "name": "Bastão militar",
+      "world": "equipment/gear_baton.png",
+      "icon": "equipment/icon_baton.png",
+      "grip": [
+        16,
+        50
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "first_chapter": 4,
+      "owners": [
+        "reis",
+        "celia"
+      ],
+      "art_exported": true,
+      "runtime_held": false,
+      "future_character_animations_complete": false
+    },
+    "WPN_STICK": {
+      "name": "Bastão de madeira",
+      "world": "equipment/gear_stick.png",
+      "icon": "equipment/icon_stick.png",
+      "grip": [
+        16,
+        50
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "first_chapter": 1,
+      "owners": [
+        "davi"
+      ],
+      "art_exported": true,
+      "runtime_held": false,
+      "future_character_animations_complete": false
+    },
+    "WPN_PIPE": {
+      "name": "Cano metálico",
+      "world": "equipment/gear_pipe.png",
+      "icon": "equipment/icon_pipe.png",
+      "grip": [
+        16,
+        50
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "first_chapter": 2,
+      "owners": [
+        "bruno"
+      ],
+      "art_exported": true,
+      "runtime_held": true,
+      "future_character_animations_complete": false
+    },
+    "WPN_MALLET": {
+      "name": "Malho de borracha",
+      "world": "equipment/gear_mallet.png",
+      "icon": "equipment/icon_mallet.png",
+      "grip": [
+        16,
+        50
+      ],
+      "size": [
+        64,
+        64
+      ],
+      "first_chapter": 5,
+      "owners": [
+        "vera"
+      ],
+      "art_exported": true,
+      "runtime_held": false,
+      "future_character_animations_complete": false
+    }
+  },
+  "characters": {
+    "CHR_CAIO": {
+      "runtime_id": "caio",
+      "allowed_equipment": [
+        "celular",
+        "mochila",
+        "crowbar"
+      ],
+      "body_cycles_integrated": true,
+      "all_equipment_variants_complete": false,
+      "combatant": true
+    },
+    "CHR_HELENA": {
+      "runtime_id": "helena",
+      "allowed_equipment": [
+        "wrench",
+        "câmera",
+        "bolsa de câmera"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": true
+    },
+    "CHR_LIA": {
+      "runtime_id": "lia",
+      "allowed_equipment": [
+        "bolsa médica"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_SAMUEL": {
+      "runtime_id": "samuel",
+      "allowed_equipment": [
+        "prancheta",
+        "sensor"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_VALE": {
+      "runtime_id": "vale",
+      "allowed_equipment": [
+        "pistol",
+        "rádio"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": true
+    },
+    "CHR_REIS": {
+      "runtime_id": "reis",
+      "allowed_equipment": [
+        "rifle",
+        "baton",
+        "rádio"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": true
+    },
+    "CHR_INES": {
+      "runtime_id": "ines",
+      "allowed_equipment": [
+        "sacola",
+        "chave de serviço"
+      ],
+      "body_cycles_integrated": true,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_ORLANDO": {
+      "runtime_id": "orlando",
+      "allowed_equipment": [
+        "bandeja"
+      ],
+      "body_cycles_integrated": true,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_DAVI": {
+      "runtime_id": "davi",
+      "allowed_equipment": [
+        "stick"
+      ],
+      "body_cycles_integrated": true,
+      "all_equipment_variants_complete": false,
+      "combatant": true
+    },
+    "CHR_MARINA": {
+      "runtime_id": "marina",
+      "allowed_equipment": [
+        "guarda-chuva"
+      ],
+      "body_cycles_integrated": true,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_BIA": {
+      "runtime_id": "bia",
+      "allowed_equipment": [
+        "brinquedo"
+      ],
+      "body_cycles_integrated": true,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_NESTOR": {
+      "runtime_id": "nestor",
+      "allowed_equipment": [
+        "chaves"
+      ],
+      "body_cycles_integrated": true,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_TERESA": {
+      "runtime_id": "teresa",
+      "allowed_equipment": [
+        "copo"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_MAURO": {
+      "runtime_id": "mauro",
+      "allowed_equipment": [
+        "faixa",
+        "foto"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_CLARA": {
+      "runtime_id": "clara",
+      "allowed_equipment": [],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_ROSA": {
+      "runtime_id": "rosa",
+      "allowed_equipment": [
+        "rádio",
+        "água"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_JOEL": {
+      "runtime_id": "joel",
+      "allowed_equipment": [
+        "documento"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_AMIN": {
+      "runtime_id": "amin",
+      "allowed_equipment": [
+        "sensor passivo"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_ARTHUR": {
+      "runtime_id": "arthur",
+      "allowed_equipment": [
+        "prancheta"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_BEATRIZ": {
+      "runtime_id": "beatriz",
+      "allowed_equipment": [
+        "eletrodo"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_ELISA": {
+      "runtime_id": "elisa",
+      "allowed_equipment": [
+        "desenho"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "CHR_TADEU": {
+      "runtime_id": "tadeu",
+      "allowed_equipment": [
+        "chaves"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": false
+    },
+    "ENM_BRUNO": {
+      "runtime_id": "bruno",
+      "allowed_equipment": [
+        "pipe"
+      ],
+      "body_cycles_integrated": true,
+      "all_equipment_variants_complete": false,
+      "combatant": true
+    },
+    "ENM_VERA": {
+      "runtime_id": "vera",
+      "allowed_equipment": [
+        "mallet"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": true
+    },
+    "ENM_CELIA": {
+      "runtime_id": "celia",
+      "allowed_equipment": [
+        "rifle",
+        "baton"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": true
+    },
+    "ENM_HUGO": {
+      "runtime_id": "hugo",
+      "allowed_equipment": [
+        "órtese"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": true
+    },
+    "BOSS_IVO": {
+      "runtime_id": "ivo",
+      "allowed_equipment": [
+        "arnês"
+      ],
+      "body_cycles_integrated": false,
+      "all_equipment_variants_complete": false,
+      "combatant": true
+    }
+  },
+  "legacy_player_weapon": {
+    "path": "item_weapon.png",
+    "note": "Arma improvisada já existente. Preservada para não apagar item ou mecânica dos saves. Não concede as armas do catálogo."
+  },
+  "coverage": {
+    "caio_backpack_variants": [
+      "equipped",
+      "removed"
+    ],
+    "caio_held_states": [
+      "idle",
+      "walk",
+      "run",
+      "attack",
+      "guard",
+      "hurt"
+    ],
+    "free_jump": false,
+    "contextual_vault": false,
+    "public_screen": true,
+    "all_future_cast_complete": false
+  }
+}

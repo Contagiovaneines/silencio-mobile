@@ -26,7 +26,13 @@
   {
     "file": "assets/rain.wav",
     "source": "assets/audio/rain.wav",
-    "sha256": "9984328b70a50d0518bdfaff807f5def1e37a249aac455d5b5f5318018491e1d",
+    "sha256": "fbc7310700c4374d547835c235a4233581a7a4ae49da5ba198616b623284df22",
     "role": "existing_game_reference_not_generated_video"
+  },
+  {
+    "file": "assets/keyframe_placeholder_v01.png",
+    "source": "assets/images/video_placeholder_04_retorno_v01.png",
+    "sha256": "cf743f9f32507ad34d7167c505bf366cccfa9bcf10ed3091afa42f9d2d812c3c",
+    "role": "generated_static_keyframe_placeholder"
   }
 ]

@@ -1,0 +1,15 @@
+{
+  "canvas": [128, 144],
+  "anchor": [64, 119],
+  "direction_order": ["N", "NE", "E", "SE", "S", "SW", "W", "NW"],
+  "frames": [
+    {
+      "source": "authored/caio_walk_south_00.png",
+      "source_anchor": [64, 117],
+      "direction": "S",
+      "action": "walk",
+      "index": 0,
+      "scale": 1
+    }
+  ]
+}

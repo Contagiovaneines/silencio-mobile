@@ -39,6 +39,26 @@ void main() {
     expect(s.campaign.encode(), playing);
   });
 
+  test(
+    'new game shows the city prelude before story and previous returns to it',
+    () {
+      s.startNew();
+      expect(s.openingPrelude, isTrue);
+      expect(s.openingPage, 0);
+
+      s.nextOpening();
+      expect(s.openingPrelude, isFalse);
+      expect(s.openingPage, 0);
+
+      s.previousOpening();
+      expect(s.openingPrelude, isTrue);
+      expect(s.openingPage, 0);
+
+      s.nextOpening();
+      expect(s.openingPrelude, isFalse);
+      expect(s.openingPage, 0);
+    },
+  );
   test('opening defaults to manual; previous, automatic and skip preserve the mission', () async {
     s.startNew();
     final before = s.campaign.encode();
@@ -48,6 +68,9 @@ void main() {
     s.previousOpening();
     expect(s.openingPage, 0);
     s.toggleOpeningAuto();
+    s.tick(8.1);
+    expect(s.openingPrelude, isFalse);
+    expect(s.openingPage, 0);
     s.tick(13.1);
     expect(s.openingPage, 1);
     expect(s.campaign.encode(), before);

@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:ui';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -34,6 +33,53 @@ class GameSession extends ChangeNotifier {
   Campaign get campaign => world.campaign;
   PlayPhase phase = PlayPhase.menu;
   BuildingTransition? buildingTransition;
+  Place? approachTarget;
+  void cancelApproach() => approachTarget = null;
+
+  void approachAndInteract(Place target) {
+    if (phase != PlayPhase.playing || world.action != 'idle') return;
+    approachTarget = target;
+    world.endAim();
+    world.moveTo(target.x, target.y);
+    _finishApproach();
+  }
+
+  void _finishApproach() {
+    final requested = approachTarget;
+    if (requested == null) return;
+    if (world.inputX != 0 || world.inputY != 0 || world.action != 'idle') {
+      cancelApproach();
+      return;
+    }
+    final matches = world.places.where(
+      (p) => p.kind == requested.kind && p.id == requested.id,
+    );
+    if (matches.isEmpty) {
+      cancelApproach();
+      return;
+    }
+    final target = matches.first;
+    final architectural =
+        target.kind == PointKind.apartmentDoor ||
+        target.kind == PointKind.buildingDoor ||
+        target.kind == PointKind.window;
+    if (world.distance(target.x, target.y) < 1.75 &&
+        (architectural ||
+            world.interactionClear(
+              Offset(campaign.x, campaign.y),
+              Offset(target.x, target.y),
+            ))) {
+      cancelApproach();
+      world.stop();
+      world.aimAt(target.x, target.y);
+      world.endAim();
+      interact(target);
+    } else if (!world.navigating) {
+      cancelApproach();
+      tell('Não há acesso livre até esse ponto.');
+    }
+  }
+
   String objectTitle = '', objectBody = '';
   PointKind? objectKind;
   final List<({String label, bool enabled, VoidCallback run})> objectActions =
@@ -44,6 +90,7 @@ class GameSession extends ChangeNotifier {
       largerText = false,
       soundEnabled = true;
   bool openingAuto = false;
+  bool openingPrelude = false;
   PlayPhase _journeyReturn = PlayPhase.menu;
   bool get journeyFromMap => _journeyReturn == PlayPhase.map;
   String notice = '';
@@ -76,6 +123,28 @@ class GameSession extends ChangeNotifier {
       '07:12. Chuva no vidro.\nSanta Aurora ainda parece uma cidade comum.',
     ),
   ];
+  static const openingEn = [
+    (
+      'TWELVE YEARS EARLIER',
+      'A clinical room. A child asks for a pause. The red light comes on before the answer is recorded.',
+    ),
+    (
+      'THE FIRST EXPERIMENT',
+      'DOCTOR: He asked for a pause.\nCONTROL ROOM: Continue. We need a stable reading.',
+    ),
+    (
+      'AN ATYPICAL RESPONSE',
+      'SAMUEL: Then why is the pattern adapting?\nThe doctor disconnects the main electrode.',
+    ),
+    (
+      'SUBJECT 07',
+      'Samuel finds a drawing of a house with a crossed-out tower. The folder receives a label, not an answer.',
+    ),
+    (
+      'TWELVE YEARS LATER',
+      '07:12. Rain on the window.\nSanta Aurora still looks like an ordinary city.',
+    ),
+  ];
   static Future<GameSession> load(SaveRepository repository) async {
     final d = jsonDecode(
       await rootBundle.loadString('assets/data/chapter_01.json'),
@@ -91,6 +160,10 @@ class GameSession extends ChangeNotifier {
 
   void _change(PlayPhase value) {
     phase = value;
+    cancelApproach();
+    world.endAim();
+    world.sprintHeld = false;
+    world.guarding = false;
     world.stop();
     notifyListeners();
   }
@@ -103,15 +176,21 @@ class GameSession extends ChangeNotifier {
     }
     if (phase == PlayPhase.opening) {
       sceneTime += dt;
-      if (openingAuto && sceneTime >= 13) {
+      if (openingAuto && sceneTime >= (openingPrelude ? 8 : 13)) {
         nextOpening();
       }
     }
     if (phase == PlayPhase.playing) {
       final resolved = campaign.has('resolved');
+      final busWasArrived = campaign.has('bus_arrived');
       final bandages = campaign.bandages;
       final fridgeWater = campaign.fridgeWater;
       world.update(dt);
+      _finishApproach();
+      if (!busWasArrived && campaign.has('bus_arrived')) {
+        // Persist the one-time arrival as soon as the player reaches the stop.
+        unawaited(checkpoint());
+      }
       _autosaveTime += dt;
       if (campaign.bandages != bandages ||
           campaign.fridgeWater != fridgeWater ||
@@ -122,7 +201,11 @@ class GameSession extends ChangeNotifier {
         unawaited(save());
       }
       if (!resolved && campaign.has('resolved')) {
-        tell('Davi ficou para trás. Ninguém precisava morrer.');
+        tell(
+          campaign.has('enemy_defeated')
+              ? 'Davi caiu, ainda vivo. Caio se afasta e não continua a agressão.'
+              : 'Davi ficou para trás. Ninguém precisava morrer.',
+        );
         unawaited(checkpoint());
       }
       if (campaign.health <= 0) {
@@ -207,13 +290,43 @@ class GameSession extends ChangeNotifier {
     elapsed = 0;
     openingPage = 0;
     sceneTime = 0;
+    openingPrelude = true;
     _change(PlayPhase.opening);
     unawaited(checkpoint());
+  }
+
+  void startChapterTwo() {
+    if (!campaign.has('finish')) return;
+    if (campaign.inChapterTwo) {
+      _change(campaign.finished ? PlayPhase.complete : PlayPhase.playing);
+      return;
+    }
+    campaign.mark('chapter2_started');
+    campaign.floor = 2;
+    campaign.x = 6;
+    campaign.y = 6;
+    world.restore(campaign);
+    unawaited(checkpoint());
+    _openDialogue(const [
+      DialogueLine(
+        'c2_wake',
+        'CELULAR',
+        'tela',
+        '01:58. O celular vibra. A energia do prédio acaba. No aviso de manutenção: novo ciclo às 02:00.',
+      ),
+      DialogueLine(
+        'c2_caio',
+        'CAIO',
+        'escrita',
+        'Helena avisou sobre a torre. Preciso sair pela escada e conferir a mensagem dela.',
+      ),
+    ]);
   }
 
   void replayOpening() {
     openingPage = 0;
     sceneTime = 0;
+    openingPrelude = true;
     _change(PlayPhase.opening);
   }
 
@@ -224,8 +337,12 @@ class GameSession extends ChangeNotifier {
   }
 
   void previousOpening() {
-    if (phase != PlayPhase.opening || openingPage == 0) return;
-    openingPage--;
+    if (phase != PlayPhase.opening || openingPrelude) return;
+    if (openingPage == 0) {
+      openingPrelude = true;
+    } else {
+      openingPage--;
+    }
     sceneTime = 0;
     notifyListeners();
   }
@@ -252,6 +369,12 @@ class GameSession extends ChangeNotifier {
   }
 
   void nextOpening() {
+    if (openingPrelude) {
+      openingPrelude = false;
+      sceneTime = 0;
+      notifyListeners();
+      return;
+    }
     openingPage++;
     sceneTime = 0;
     if (openingPage >= opening.length) {
@@ -268,7 +391,6 @@ class GameSession extends ChangeNotifier {
       return;
     }
     _change(PlayPhase.playing);
-    tell('07:12. Confira o celular e pegue a chave e o adaptador.');
   }
 
   void resume() {
@@ -346,17 +468,6 @@ class GameSession extends ChangeNotifier {
 
   void journal() => _change(PlayPhase.journal);
   void map() => _change(PlayPhase.map);
-  void navigateFromMap(String key) {
-    if (phase != PlayPhase.map) return;
-    final targets = world.places.where(
-      (p) => '${p.kind.name}:${p.id ?? p.label}' == key,
-    );
-    if (targets.isEmpty) return;
-    final point = targets.first;
-    closePanel();
-    world.moveTo(point.x, point.y);
-  }
-
   void toggleEffects() {
     reducedEffects = !reducedEffects;
     unawaited(
@@ -394,6 +505,81 @@ class GameSession extends ChangeNotifier {
     notifyListeners();
   }
 
+  void toggleGuard() {
+    if (phase != PlayPhase.playing) return;
+    world.guarding = !world.guarding;
+    world.stop();
+    notifyListeners();
+  }
+
+  void vault() {
+    if (phase != PlayPhase.playing) return;
+    if (!world.vault()) {
+      tell('Aproxime-se do muro baixo para transpor com segurança.');
+    }
+    notifyListeners();
+  }
+
+  void toggleWeaponEquipment() {
+    if (![
+          PlayPhase.playing,
+          PlayPhase.journal,
+          PlayPhase.paused,
+        ].contains(phase) ||
+        world.action != 'idle' ||
+        !campaign.has('weapon')) {
+      return;
+    }
+    campaign.weaponEquipped = !campaign.weaponEquipped;
+    world.endAim();
+    world.guarding = false;
+    world.stop();
+    unawaited(checkpoint());
+    notifyListeners();
+  }
+
+  void toggleBackpack() {
+    if (![
+          PlayPhase.playing,
+          PlayPhase.journal,
+          PlayPhase.paused,
+        ].contains(phase) ||
+        world.action != 'idle') {
+      return;
+    }
+    campaign.backpackEquipped = !campaign.backpackEquipped;
+    unawaited(checkpoint());
+    notifyListeners();
+  }
+
+  void attack() {
+    if (phase != PlayPhase.playing ||
+        world.action != 'idle' ||
+        world.playerAttackCooldown > 0) {
+      return;
+    }
+    if (!campaign.has('weapon')) {
+      tell('Pegue o cano de madeira antes de enfrentar Davi.');
+      return;
+    }
+    if (!campaign.weaponEquipped) {
+      tell('Saque a arma em Caderno · Equipamentos antes de golpear.');
+      return;
+    }
+    if (campaign.stamina < 18) {
+      tell('Sem fôlego para golpear. Afaste-se e recupere o fôlego.');
+      return;
+    }
+    if (!world.encounterActive) return;
+    if (!world.aiming) world.faceEnemyForMelee();
+    if (!world.canAttack) {
+      tell('Chegue perto de Davi, fique de frente e desobstrua o caminho.');
+      return;
+    }
+    if (!world.attack()) return;
+    notifyListeners();
+  }
+
   void heal() {
     if (phase != PlayPhase.playing) return;
     if (!world.heal()) {
@@ -407,6 +593,53 @@ class GameSession extends ChangeNotifier {
   }
 
   void phone() {
+    if (campaign.inChapterTwo) {
+      if (!campaign.has('chapter2_garage')) {
+        tell(
+          '01:58 · Aviso de manutenção. A última mensagem de Helena ainda não chegou. Desça pela escada.',
+        );
+        return;
+      }
+      _openDialogue(
+        const [
+          DialogueLine(
+            'c2_helena_tower',
+            'HELENA',
+            'mensagem',
+            'Você viu a torre?',
+          ),
+          DialogueLine(
+            'c2_tower_reply',
+            'CAIO',
+            'celular',
+            'Vi. O que é aquilo?',
+          ),
+          DialogueLine(
+            'c2_control',
+            'HELENA',
+            'mensagem',
+            'Acho que descobri onde controlam isso.',
+          ),
+          DialogueLine(
+            'c2_people',
+            'CAIO',
+            'celular',
+            'As pessoas estão se machucando.',
+          ),
+          DialogueLine(
+            'c2_workshop',
+            'HELENA',
+            'mensagem',
+            'Oficina da Rua do Mercado. Entrada dos fundos. Pegue o mapa no posto de serviço.',
+          ),
+        ],
+        after: () {
+          campaign.mark('chapter2_message');
+          unawaited(checkpoint());
+        },
+      );
+      return;
+    }
     if (campaign.has('pulse')) {
       _openDialogue(
         [
@@ -501,6 +734,60 @@ class GameSession extends ChangeNotifier {
     );
   }
 
+  void openWindowPanel(String id) {
+    objectKind = PointKind.window;
+    objectTitle = 'Janela $id';
+    final broken = campaign.brokenWindows.contains(id);
+    final removed = campaign.removedCurtains.contains(id);
+    objectBody =
+        '${broken
+            ? "Vidro quebrado; abertura permanente."
+            : world.windowIsOpen(id)
+            ? "Janela aberta."
+            : "Janela fechada."}\n'
+        '${removed
+            ? "Cortina retirada e guardada."
+            : campaign.closedCurtains.contains(id)
+            ? "Cortina fechada."
+            : "Cortina aberta."}';
+    objectActions.clear();
+    void action(String label, String command, bool enabled) {
+      objectActions.add((
+        label: label,
+        enabled: enabled,
+        run: () {
+          if (!world.changeWindow(id, command)) {
+            tell('Aproxime-se e verifique se a abertura está livre.');
+            return;
+          }
+          unawaited(checkpoint());
+          openWindowPanel(id);
+        },
+      ));
+    }
+
+    action(
+      world.windowIsOpen(id) ? 'Fechar janela' : 'Abrir janela',
+      'toggle',
+      !broken,
+    );
+    action(
+      campaign.closedCurtains.contains(id) ? 'Abrir cortina' : 'Fechar cortina',
+      'curtain',
+      !removed,
+    );
+    action('Retirar cortina', 'remove', !removed);
+    action(
+      'Quebrar vidro com arma · 10 fôlego',
+      'break',
+      !broken &&
+          campaign.has('weapon') &&
+          campaign.weaponEquipped &&
+          campaign.stamina >= 10,
+    );
+    _change(PlayPhase.objectPanel);
+  }
+
   void openObject(PointKind kind) {
     objectKind = kind;
     objectActions.clear();
@@ -511,7 +798,7 @@ class GameSession extends ChangeNotifier {
         objectTitle = 'Cama · apartamento 203';
         objectBody = 'Você pode descansar e salvar. A fase termina aqui somente depois dos acontecimentos do dia. Descansar não adianta o relógio nem cura ferimentos.';
         world.resting = 'lie';
-        world.restAnchor = const Offset(4.2, 4.3);
+        world.restAnchor = const Offset(3.85, 3.65);
         action('Salvar progresso', true, () {
           unawaited(checkpoint());
           tell('Progresso salvo.');
@@ -524,8 +811,8 @@ class GameSession extends ChangeNotifier {
         objectBody = 'Um instante de descanso. Levantar devolve o controle sem alterar seus objetivos.';
         world.resting = 'sit';
         world.restAnchor = kind == PointKind.sofa
-            ? const Offset(3.8, 8.2)
-            : const Offset(6.4, 4.8);
+            ? const Offset(3.6, 6.42)
+            : const Offset(6.95, 5.65);
       case PointKind.wardrobe:
         objectTitle = 'Guarda-roupa · armazenamento';
         objectBody =
@@ -562,32 +849,91 @@ class GameSession extends ChangeNotifier {
         objectBody =
             'Caderno do dia\n${campaign.objective}\n\n${campaign.entries.map((e) => '${e.title}\n${e.text}').join('\n\n')}';
         world.resting = 'typing';
-        world.restAnchor = const Offset(6.4, 4.8);
+        world.restAnchor = const Offset(6.4, 4.75);
       default:
         return;
     }
     _change(PlayPhase.objectPanel);
   }
 
-  void interact() {
+  void interact([Place? selected]) {
     if (phase != PlayPhase.playing || world.action != 'idle') return;
-    final p = world.nearby;
+    // The same contextual action that sits Caio down gets him back up. Keep
+    // rest diegetic: no full-screen object panel or floating instruction.
+    if (world.resting == 'sit') {
+      world.resting = null;
+      world.restAnchor = null;
+      world.stop();
+      notifyListeners();
+      return;
+    }
+    final p = selected ?? world.nearby;
     if (p == null) {
       tell('Aproxime-se de uma pessoa ou de um objeto marcado.');
       return;
     }
+    if (selected != null) {
+      final portal =
+          p.kind == PointKind.apartmentDoor ||
+          p.kind == PointKind.buildingDoor ||
+          p.kind == PointKind.window;
+      if (p.floor != campaign.floor ||
+          world.distance(p.x, p.y) >= 1.85 ||
+          !portal &&
+              !world.interactionClear(
+                Offset(campaign.x, campaign.y),
+                Offset(p.x, p.y),
+              )) {
+        tell('Aproxime-se pelo lado livre para interagir.');
+        return;
+      }
+    }
+    if (campaign.inChapterTwo && _nightInteraction(p)) return;
     switch (p.kind) {
+      case PointKind.broadcast:
+        _openDialogue(
+          campaign.inChapterTwo
+              ? const [
+                  DialogueLine(
+                    'broadcast_night',
+                    'TELÃO PÚBLICO',
+                    'texto no telão',
+                    'A situação permanece sob controle. A situação permanece sob controle.',
+                  ),
+                ]
+              : const [
+                  DialogueLine(
+                    'broadcast_day',
+                    'TELÃO PÚBLICO',
+                    'texto no telão',
+                    'MANUTENÇÃO DA REDE · HOJE, 02:00. Aguarde as orientações do serviço urbano.',
+                  ),
+                ],
+        );
       case PointKind.ladder:
-        if (world.climbLadder())
+        if (world.climbLadder()) {
           tell(
             world.onRoof ? 'Caio desce pelos apoios.' : 'Caio sobe pela escada até o patamar. Use a mesma escada para descer.',
           );
+        }
       case PointKind.apartmentDoor:
         _useDoor('203');
       case PointKind.buildingDoor:
         _useDoor(p.id!);
+      case PointKind.window:
+        openWindowPanel(p.id!);
       case PointKind.chair:
       case PointKind.sofa:
+        world.resting = 'sit';
+        world.restAnchor = p.kind == PointKind.sofa
+            ? const Offset(3.6, 6.42)
+            : const Offset(6.95, 5.65);
+        objectKind = null;
+        objectBody = '';
+        objectActions.clear();
+        world.stop();
+        notifyListeners();
+        return;
       case PointKind.wardrobe:
       case PointKind.refrigerator:
       case PointKind.notebook:
@@ -618,12 +964,17 @@ class GameSession extends ChangeNotifier {
         );
       case PointKind.adapter:
         _pickup('adapter', 'Adaptador recolhido. Orlando espera na mercearia.');
+      case PointKind.weapon:
+        _pickup(
+          'weapon',
+          'Cano de madeira recolhido. Fique de frente e golpeie de perto.',
+        );
       case PointKind.bed:
         if (campaign.has('night') &&
             campaign.has('pulse') &&
             campaign.canLeave) {
           world.resting = 'lie';
-          world.restAnchor = const Offset(4.2, 4.3);
+          world.restAnchor = const Offset(3.85, 3.65);
           campaign.mark('finish');
           _change(PlayPhase.complete);
           unawaited(checkpoint());
@@ -755,8 +1106,12 @@ class GameSession extends ChangeNotifier {
           tell(campaign.objective);
           return;
         }
+        if (!campaign.has('bus_arrived')) {
+          // The compact mission HUD already tells the player to wait here.
+          return;
+        }
         if (campaign.has('bus') || campaign.has('pulse')) {
-          tell('A viagem já terminou. Volte a pé para casa.');
+          tell('A viagem já terminou. Leia a mensagem de Helena no celular.');
           return;
         }
         _openDialogue(
@@ -765,7 +1120,7 @@ class GameSession extends ChangeNotifier {
               'nestor_board',
               'NESTOR',
               'fala',
-              'Eu levo você até a próxima esquina. Pode ir a pé também. Sente perto da porta.',
+              'O ônibus chegou. Eu levo você até a próxima esquina. Pode embarcar; a porta está aberta.',
             ),
           ],
           after: () {
@@ -777,6 +1132,10 @@ class GameSession extends ChangeNotifier {
       case PointKind.crossing:
         if (!campaign.canLeave) {
           tell(campaign.objective);
+          return;
+        }
+        if (!campaign.has('bus')) {
+          tell('Aguarde o ônibus na parada e embarque com Nestor.');
           return;
         }
         _pulse();
@@ -800,7 +1159,141 @@ class GameSession extends ChangeNotifier {
                   canOccupy: world.animalCanOccupy,
                 ),
         );
+      case PointKind.nightTorch:
+      case PointKind.nightSupply:
+      case PointKind.nightPanel:
+      case PointKind.nightNeighbor:
+      case PointKind.nightBreaker:
+      case PointKind.nightCan:
+      case PointKind.nightMap:
+        break;
     }
+  }
+
+  bool _nightInteraction(Place p) {
+    switch (p.kind) {
+      case PointKind.nightTorch:
+        campaign.mark('chapter2_torch');
+        tell('Lanterna recolhida. O chão e as entradas continuam visíveis.');
+      case PointKind.nightSupply:
+        if (campaign.mark('chapter2_supply')) campaign.bandages++;
+        tell(
+          'Uma atadura no kit de emergência. Pode tratar um ferimento ou ajudar a vizinha.',
+        );
+      case PointKind.nightPanel:
+        campaign.mark('chapter2_panel');
+        _openDialogue(const [
+          DialogueLine(
+            'c2_remote',
+            'PAINEL',
+            'registro visual',
+            '02:00 · DESLIGAMENTO REMOTO. O comando veio de fora do prédio. Elevador indisponível. Utilize as escadas.',
+          ),
+        ]);
+      case PointKind.nightNeighbor:
+        if (campaign.bandages < 1) {
+          tell(
+            'Um bilhete passa sob a porta: “Caio? Tem alguém no corredor. Machuquei o braço.” Há uma atadura no kit do apartamento. Você também pode seguir sem resgatar.',
+          );
+          return true;
+        }
+        campaign.bandages--;
+        campaign.mark('chapter2_rescue');
+        // The bandage is given to the neighbor, not used to heal Caio.
+        world.beginAction('pickup', 1.8);
+        _openDialogue(const [
+          DialogueLine(
+            'c2_neighbor_note',
+            'VIZINHA',
+            'bilhete',
+            'Caio? Tem alguém no corredor. A porta está emperrada.',
+          ),
+          DialogueLine(
+            'c2_neighbor_reply',
+            'CAIO',
+            'escrita',
+            'Vai para o banheiro. Vou abrir uma passagem.',
+          ),
+          DialogueLine(
+            'c2_neighbor_question',
+            'VIZINHA',
+            'bilhete',
+            'Você vai voltar?',
+          ),
+          DialogueLine(
+            'c2_neighbor_nod',
+            'CAIO',
+            'gesto',
+            'Acena afirmativamente pelo vão aberto.',
+          ),
+          DialogueLine(
+            'c2_neighbor_key',
+            'VIZINHA',
+            'bilhete',
+            'Obrigada pela atadura e por soltar o trinco. Leve a chave da passagem de serviço. Vou ficar protegida no banheiro.',
+          ),
+        ]);
+      case PointKind.nightBreaker:
+        campaign.mark('chapter2_garage');
+        campaign.mark('chapter2_alarm_off');
+        world.attackWindup = 0;
+        tell(
+          'Alarme desligado. O dominado perde o foco. A passagem pelo hall está livre.',
+        );
+      case PointKind.nightCan:
+        campaign.mark('chapter2_garage');
+        campaign.mark('chapter2_lured');
+        world.enemyStun = 1;
+        world.attackWindup = 0;
+        world.sounds.add('push');
+        tell(
+          'A lata cai no fundo da garagem. O dominado segue a distração. Saia pelo hall residencial.',
+        );
+      case PointKind.gate:
+        if (!campaign.has('chapter2_rescue')) {
+          tell(
+            'A passagem exige a chave de serviço. Contorne pela avenida, abaixo do muro.',
+          );
+          return true;
+        }
+        campaign.mark('chapter2_shortcut');
+        world.gateClosed = false;
+        world.sounds.add('door');
+        tell('Passagem de serviço aberta com a chave da vizinha.');
+      case PointKind.bed:
+        tell('Checkpoint salvo. Helena espera na oficina.');
+      case PointKind.nightMap:
+        if (!campaign.has('chapter2_message')) {
+          tell('Confira primeiro a mensagem de Helena no celular.');
+          return true;
+        }
+        _openDialogue(
+          const [
+            DialogueLine(
+              'c2_repeat',
+              'RÁDIO · VISOR',
+              'texto no visor',
+              'A situação permanece sob controle. A situação permanece sob controle.',
+            ),
+            DialogueLine(
+              'c2_unsent',
+              'CAIO',
+              'celular',
+              'Estou indo. [mensagem não enviada]',
+            ),
+          ],
+          after: () {
+            campaign.mark('chapter2_complete');
+            _change(PlayPhase.complete);
+            unawaited(checkpoint());
+          },
+        );
+      default:
+        return false;
+    }
+    unawaited(checkpoint());
+    notifyListeners();
+    return true;
   }
 
   void _openDialogue(List<DialogueLine> values, {VoidCallback? after}) {

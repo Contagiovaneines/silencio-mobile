@@ -51,7 +51,7 @@ class ActorAnimation {
           ? .10
           : recoveringBreath
           ? .08
-          : running
+          : moving && running
           ? .035
           : 0,
       chestScale:

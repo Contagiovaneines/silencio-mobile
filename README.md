@@ -1,4 +1,6 @@
-# Silêncio — fase 01 / versão 0.4.1
+# Silêncio — fases 01 e 02 / fontes 0.5.0
+
+A revisão atual acrescenta o capítulo **02:00**, peças de arquitetura, pranchas de personagens e defesa frontal. [Mudanças, conferência do PDF e limites de teste](docs/ASSETS_E_FASE02_2026-10-29.md). Na conclusão da fase 01, use **Jogar fase 02 · 02:00**. O APK instalado descrito abaixo é um registro anterior; não foi atualizado automaticamente nesta revisão.
 
 Jogo original de investigação e sobrevivência leve em Flutter + Flame. Versão Android 0.4.1 instalada no Samsung Galaxy A15 em paisagem. A revisão reaproveita ideias e duas ilustrações da primeira tentativa em Godot: [reuso e verificações](docs/REUSO_PRIMEIRA_VERSAO.md). A revisão anterior do prédio permanece em [verificação do prédio e Android](docs/VERIFICACAO_PREDIO_04.md).
 
@@ -6,7 +8,7 @@ Jogo original de investigação e sobrevivência leve em Flutter + Flame. Versã
 
 O aplicativo instalado chama-se Silêncio. O APK atual está em `build/releases/silencio-0.4.1-android.apk`; é uma versão de desenvolvimento assinada com a chave de teste existente. A atualização foi feita com preservação dos dados, sem desinstalar ou limpar o aplicativo. O save antigo v1 continua preservado; a campanha atual utiliza o slot v2.
 
-O menu inclui Configurações e Jornada. A Jornada mostra os doze espaços de capítulo, mas somente a fase 01 está jogável; os demais estão em produção. O mapa local continua disponível durante a exploração. O prólogo usa quadros ilustrados, leitura manual por padrão, Anterior/Avançar/Pular e avanço automático opcional. Reassistir não reinicia a campanha.
+O menu inclui Configurações e Jornada. A Jornada mostra os doze espaços de capítulo; as fases 01 e 02 estão jogáveis, e as demais estão em produção. A fase 02 é liberada ao concluir a primeira. O mapa local continua disponível durante a exploração. O prólogo usa quadros ilustrados, leitura manual por padrão, Anterior/Avançar/Pular e avanço automático opcional. Reassistir não reinicia a campanha.
 
 ## Jogar no PC
 

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "pixel-art-game-builder": {
+      "source": "cooksaw/claude-skills",
+      "sourceType": "github",
+      "skillPath": "plugins/pixel-art-game-builder/skills/pixel-art-game-builder/SKILL.md",
+      "computedHash": "9700ce9f35b4405c907d74d578315626d52be6d2f6a6129b7377ebd894d711dd"
+    }
+  }
+}

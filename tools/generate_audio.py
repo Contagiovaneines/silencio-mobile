@@ -1,5 +1,7 @@
-import wave,struct,math,random
+import wave,struct,math,random,sys
 from pathlib import Path
+if Path('assets/data/audio_sources.json').exists() and '--replace-recordings' not in sys.argv:
+ raise SystemExit('Real recordings are installed. Use tools/audio_sources.py; --replace-recordings explicitly restores prototype sounds.')
 r=Path('assets/audio');r.mkdir(exist_ok=True);rate=22050;random.seed(712)
 def save(name,seconds,fn):
  with wave.open(str(r/(name+'.wav')),'wb') as w:

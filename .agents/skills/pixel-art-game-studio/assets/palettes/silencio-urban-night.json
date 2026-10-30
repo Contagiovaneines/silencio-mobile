@@ -1,0 +1,14 @@
+{
+  "name": "SILÊNCIO — urbano noturno",
+  "description": "Papéis de cor para novas artes. Referência orientativa; não recolorir sprites existentes automaticamente.",
+  "colors": {
+    "asfalto_umido": "#293438",
+    "concreto_frio": "#68716D",
+    "sombra_profunda": "#111D22",
+    "luz_quente": "#D99A54",
+    "janela_acessa": "#F0C884",
+    "vegetacao_noite": "#53664D",
+    "alerta": "#A74C45",
+    "texto_claro": "#D8D6C7"
+  }
+}

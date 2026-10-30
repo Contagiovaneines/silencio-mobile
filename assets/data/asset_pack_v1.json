@@ -1,0 +1,1401 @@
+{
+  "projection": "2:1 isometric",
+  "actors": {
+    "actor_bia_attack": {
+      "path": "actors/actor_bia_attack.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_bia_guard": {
+      "path": "actors/actor_bia_guard.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_bia_hurt": {
+      "path": "actors/actor_bia_hurt.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_bia_idle": {
+      "path": "actors/actor_bia_idle.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_bia_run": {
+      "path": "actors/actor_bia_run.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_bia_walk": {
+      "path": "actors/actor_bia_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_bruno_attack": {
+      "path": "actors/actor_bruno_attack.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_bruno_guard": {
+      "path": "actors/actor_bruno_guard.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_bruno_hurt": {
+      "path": "actors/actor_bruno_hurt.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_bruno_idle": {
+      "path": "actors/actor_bruno_idle.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_bruno_run": {
+      "path": "actors/actor_bruno_run.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_bruno_walk": {
+      "path": "actors/actor_bruno_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_caio_attack": {
+      "path": "actors/actor_caio_attack.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_caio_guard": {
+      "path": "actors/actor_caio_guard.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_caio_guard_walk": {
+      "path": "actors/actor_caio_guard_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_caio_hurt": {
+      "path": "actors/actor_caio_hurt.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_caio_idle": {
+      "path": "actors/actor_caio_idle.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_caio_nobag_attack": {
+      "path": "actors/actor_caio_nobag_attack.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_caio_nobag_guard": {
+      "path": "actors/actor_caio_nobag_guard.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_caio_nobag_guard_walk": {
+      "path": "actors/actor_caio_nobag_guard_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_caio_nobag_hurt": {
+      "path": "actors/actor_caio_nobag_hurt.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_caio_nobag_idle": {
+      "path": "actors/actor_caio_nobag_idle.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_caio_nobag_run": {
+      "path": "actors/actor_caio_nobag_run.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_caio_nobag_walk": {
+      "path": "actors/actor_caio_nobag_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_caio_run": {
+      "path": "actors/actor_caio_run.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_caio_walk": {
+      "path": "actors/actor_caio_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_davi_attack": {
+      "path": "actors/actor_davi_attack.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_davi_guard": {
+      "path": "actors/actor_davi_guard.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_davi_hurt": {
+      "path": "actors/actor_davi_hurt.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_davi_idle": {
+      "path": "actors/actor_davi_idle.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_davi_run": {
+      "path": "actors/actor_davi_run.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_davi_walk": {
+      "path": "actors/actor_davi_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_ines_attack": {
+      "path": "actors/actor_ines_attack.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_ines_guard": {
+      "path": "actors/actor_ines_guard.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_ines_hurt": {
+      "path": "actors/actor_ines_hurt.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_ines_idle": {
+      "path": "actors/actor_ines_idle.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_ines_run": {
+      "path": "actors/actor_ines_run.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_ines_walk": {
+      "path": "actors/actor_ines_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_marina_attack": {
+      "path": "actors/actor_marina_attack.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_marina_guard": {
+      "path": "actors/actor_marina_guard.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_marina_hurt": {
+      "path": "actors/actor_marina_hurt.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_marina_idle": {
+      "path": "actors/actor_marina_idle.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_marina_run": {
+      "path": "actors/actor_marina_run.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_marina_walk": {
+      "path": "actors/actor_marina_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_nestor_attack": {
+      "path": "actors/actor_nestor_attack.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_nestor_guard": {
+      "path": "actors/actor_nestor_guard.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_nestor_hurt": {
+      "path": "actors/actor_nestor_hurt.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_nestor_idle": {
+      "path": "actors/actor_nestor_idle.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_nestor_run": {
+      "path": "actors/actor_nestor_run.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_nestor_walk": {
+      "path": "actors/actor_nestor_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_orlando_attack": {
+      "path": "actors/actor_orlando_attack.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_orlando_guard": {
+      "path": "actors/actor_orlando_guard.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_orlando_hurt": {
+      "path": "actors/actor_orlando_hurt.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 6,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        768,
+        1152
+      ]
+    },
+    "actor_orlando_idle": {
+      "path": "actors/actor_orlando_idle.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 4,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        512,
+        1152
+      ]
+    },
+    "actor_orlando_run": {
+      "path": "actors/actor_orlando_run.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    },
+    "actor_orlando_walk": {
+      "path": "actors/actor_orlando_walk.png",
+      "cell": [
+        128,
+        144
+      ],
+      "directions": 8,
+      "frames": 8,
+      "pivot": [
+        64,
+        119
+      ],
+      "size": [
+        1024,
+        1152
+      ]
+    }
+  },
+  "building": {
+    "kit_bandage": {
+      "path": "pixel_tiles/sprites/kit_bandage.png",
+      "size": [
+        48,
+        48
+      ],
+      "bounds": [
+        4,
+        11,
+        46,
+        44
+      ]
+    },
+    "kit_bench": {
+      "path": "pixel_tiles/sprites/kit_bench.png",
+      "size": [
+        128,
+        96
+      ],
+      "bounds": [
+        6,
+        16,
+        99,
+        96
+      ]
+    },
+    "kit_breaker": {
+      "path": "pixel_tiles/sprites/kit_breaker.png",
+      "size": [
+        48,
+        64
+      ],
+      "bounds": [
+        7,
+        2,
+        38,
+        60
+      ]
+    },
+    "kit_broadcast": {
+      "path": "pixel_tiles/sprites/kit_broadcast.png",
+      "size": [
+        256,
+        240
+      ],
+      "bounds": [
+        23,
+        4,
+        225,
+        240
+      ]
+    },
+    "kit_can": {
+      "path": "pixel_tiles/sprites/kit_can.png",
+      "size": [
+        48,
+        48
+      ],
+      "bounds": [
+        14,
+        13,
+        33,
+        39
+      ]
+    },
+    "kit_counter": {
+      "path": "pixel_tiles/sprites/kit_counter.png",
+      "size": [
+        128,
+        112
+      ],
+      "bounds": [
+        6,
+        25,
+        103,
+        112
+      ]
+    },
+    "kit_door_closed": {
+      "path": "pixel_tiles/sprites/kit_door_closed.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        8,
+        8,
+        68,
+        106
+      ]
+    },
+    "kit_door_frame": {
+      "path": "pixel_tiles/sprites/kit_door_frame.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        8,
+        8,
+        68,
+        106
+      ]
+    },
+    "kit_door_open": {
+      "path": "pixel_tiles/sprites/kit_door_open.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        8,
+        8,
+        68,
+        106
+      ]
+    },
+    "kit_elevator": {
+      "path": "pixel_tiles/sprites/kit_elevator.png",
+      "size": [
+        128,
+        144
+      ],
+      "bounds": [
+        17,
+        0,
+        110,
+        138
+      ]
+    },
+    "kit_exterior_canopy": {
+      "path": "pixel_tiles/sprites/kit_exterior_canopy.png",
+      "size": [
+        160,
+        96
+      ],
+      "bounds": [
+        10,
+        6,
+        148,
+        85
+      ]
+    },
+    "kit_flashlight": {
+      "path": "pixel_tiles/sprites/kit_flashlight.png",
+      "size": [
+        48,
+        48
+      ],
+      "bounds": [
+        9,
+        6,
+        41,
+        39
+      ]
+    },
+    "kit_fridge": {
+      "path": "pixel_tiles/sprites/kit_fridge.png",
+      "size": [
+        96,
+        128
+      ],
+      "bounds": [
+        14,
+        9,
+        74,
+        104
+      ]
+    },
+    "kit_map": {
+      "path": "pixel_tiles/sprites/kit_map.png",
+      "size": [
+        64,
+        48
+      ],
+      "bounds": [
+        7,
+        11,
+        56,
+        40
+      ]
+    },
+    "kit_shop_shelf": {
+      "path": "pixel_tiles/sprites/kit_shop_shelf.png",
+      "size": [
+        128,
+        144
+      ],
+      "bounds": [
+        8,
+        18,
+        105,
+        136
+      ]
+    },
+    "kit_shower": {
+      "path": "pixel_tiles/sprites/kit_shower.png",
+      "size": [
+        128,
+        160
+      ],
+      "bounds": [
+        13,
+        28,
+        96,
+        160
+      ]
+    },
+    "kit_sink": {
+      "path": "pixel_tiles/sprites/kit_sink.png",
+      "size": [
+        96,
+        112
+      ],
+      "bounds": [
+        10,
+        26,
+        72,
+        102
+      ]
+    },
+    "kit_stair_down": {
+      "path": "pixel_tiles/sprites/kit_stair_down.png",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        14,
+        28,
+        110,
+        119
+      ]
+    },
+    "kit_stair_up": {
+      "path": "pixel_tiles/sprites/kit_stair_up.png",
+      "size": [
+        128,
+        128
+      ],
+      "bounds": [
+        14,
+        28,
+        110,
+        119
+      ]
+    },
+    "kit_toilet": {
+      "path": "pixel_tiles/sprites/kit_toilet.png",
+      "size": [
+        80,
+        96
+      ],
+      "bounds": [
+        16,
+        18,
+        59,
+        87
+      ]
+    },
+    "kit_wall_brick_east": {
+      "path": "pixel_tiles/sprites/kit_wall_brick_east.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        7,
+        5,
+        77,
+        104
+      ]
+    },
+    "kit_wall_brick_west": {
+      "path": "pixel_tiles/sprites/kit_wall_brick_west.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        3,
+        5,
+        73,
+        104
+      ]
+    },
+    "kit_wall_exterior_east": {
+      "path": "pixel_tiles/sprites/kit_wall_exterior_east.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        7,
+        5,
+        77,
+        104
+      ]
+    },
+    "kit_wall_exterior_west": {
+      "path": "pixel_tiles/sprites/kit_wall_exterior_west.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        3,
+        5,
+        73,
+        104
+      ]
+    },
+    "kit_wall_plaster_east": {
+      "path": "pixel_tiles/sprites/kit_wall_plaster_east.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        7,
+        5,
+        77,
+        104
+      ]
+    },
+    "kit_wall_plaster_west": {
+      "path": "pixel_tiles/sprites/kit_wall_plaster_west.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        3,
+        5,
+        73,
+        104
+      ]
+    },
+    "kit_wall_wallpaper_east": {
+      "path": "pixel_tiles/sprites/kit_wall_wallpaper_east.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        7,
+        5,
+        77,
+        104
+      ]
+    },
+    "kit_wall_wallpaper_west": {
+      "path": "pixel_tiles/sprites/kit_wall_wallpaper_west.png",
+      "size": [
+        80,
+        112
+      ],
+      "bounds": [
+        3,
+        5,
+        73,
+        104
+      ]
+    },
+    "kit_window_broken_east": {
+      "path": "pixel_tiles/sprites/kit_window_broken_east.png",
+      "size": [
+        64,
+        80
+      ],
+      "bounds": [
+        7,
+        6,
+        59,
+        75
+      ]
+    },
+    "kit_window_broken_west": {
+      "path": "pixel_tiles/sprites/kit_window_broken_west.png",
+      "size": [
+        64,
+        80
+      ],
+      "bounds": [
+        5,
+        6,
+        57,
+        75
+      ]
+    },
+    "kit_window_closed_east": {
+      "path": "pixel_tiles/sprites/kit_window_closed_east.png",
+      "size": [
+        64,
+        80
+      ],
+      "bounds": [
+        7,
+        6,
+        59,
+        75
+      ]
+    },
+    "kit_window_closed_west": {
+      "path": "pixel_tiles/sprites/kit_window_closed_west.png",
+      "size": [
+        64,
+        80
+      ],
+      "bounds": [
+        5,
+        6,
+        57,
+        75
+      ]
+    },
+    "kit_window_open_east": {
+      "path": "pixel_tiles/sprites/kit_window_open_east.png",
+      "size": [
+        64,
+        80
+      ],
+      "bounds": [
+        7,
+        6,
+        59,
+        75
+      ]
+    },
+    "kit_window_open_west": {
+      "path": "pixel_tiles/sprites/kit_window_open_west.png",
+      "size": [
+        64,
+        80
+      ],
+      "bounds": [
+        5,
+        6,
+        57,
+        75
+      ]
+    }
+  }
+}

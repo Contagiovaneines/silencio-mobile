@@ -1,0 +1,21 @@
+// Original SILENCIO street dressing, sized for the 2:1 isometric world.
+pal({ k: "#202d2c", a: "#5f7043", b: "#71834d", c: "#89965a", d: "#a4a66a", t: "#624b37", u: "#806044", p: "#514d42", P: "#817562", l: "#b2b08c" })
+sprite("street_tree_small", { w: 72, h: 112 }, c => {
+  // Ground shadow and narrow trunk keep the canopy anchored at the foot point.
+  c.ellipse(35, 101, 22, 7, "k")
+  c.poly([31, 97, 40, 97, 41, 75, 35, 69, 29, 76], "t")
+  c.line(34, 91, 34, 73, "u", 3)
+  c.poly([35, 5, 51, 11, 63, 26, 61, 40, 68, 49, 59, 64, 61, 76, 48, 85, 27, 87, 12, 77, 9, 62, 3, 51, 12, 37, 8, 25, 20, 11], "a")
+  c.poly([35, 8, 48, 13, 59, 27, 56, 41, 64, 50, 55, 63, 57, 74, 46, 82, 28, 82, 15, 73, 13, 61, 8, 51, 16, 39, 13, 27, 23, 14], "b")
+  c.ellipse(28, 27, 14, 12, "c")
+  c.ellipse(45, 35, 15, 13, "c")
+  c.ellipse(27, 52, 14, 13, "b")
+  c.ellipse(46, 57, 15, 13, "a")
+  c.ellipse(34, 70, 13, 10, "a")
+  c.ellipse(26, 23, 5, 4, "d")
+  c.ellipse(45, 31, 5, 4, "d")
+  c.ellipse(19, 46, 4, 3, "c")
+  c.ellipse(51, 51, 5, 4, "c")
+  c.ellipse(31, 66, 4, 3, "c")
+})
+sprite("street_tree_small_autumn", { base: "street_tree_small", swap: { a: "p", b: "u", c: "P", d: "l" } })

@@ -21,5 +21,16 @@ assert len(entries) == 4
 for entry in entries:
     assert not entry['required_for_beta']
     assert (root / 'video' / entry['output']).parent.is_dir()
+    placeholder = root / 'video' / entry['placeholder_image']
+    game_asset = root.parent / entry['game_asset']
+    assert placeholder.is_file(), placeholder
+    assert game_asset.is_file(), game_asset
+    assert any(
+        asset['file'] == 'assets/' + placeholder.name
+        and asset['role'] == 'generated_static_keyframe_placeholder'
+        for asset in json.loads(
+            (root / 'video' / entry['id'] / 'ASSETS.json').read_text(encoding='utf-8')
+        )
+    )
 print(f'OK: {len(manifests)} pacotes, {count} referencias verificadas, {total / 1024 / 1024:.1f} MiB.')
-print('Quatro destinos de video preparados; nenhuma alteracao no codigo do jogo.')
+print('Quatro quadros-chave estaticos validados e quatro destinos de video preparados.')

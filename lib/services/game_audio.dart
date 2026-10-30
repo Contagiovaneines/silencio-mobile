@@ -4,6 +4,7 @@ import 'package:flame_audio/flame_audio.dart';
 
 import '../game/game_session.dart';
 import 'game_preferences.dart';
+import 'audio_mix.dart';
 import '../models/campaign.dart';
 
 class GameAudio {
@@ -11,6 +12,8 @@ class GameAudio {
   Future<void> _pending = Future.value();
   final Map<String, Future<AudioPool>> _pools = {};
   final Set<Future<void>> _effects = {};
+  final AudioMix _mix = AudioMix();
+  double _ambientVolume = -1;
   void update(GameSession session) {
     final preferences = GamePreferences(session.repository.preferences);
     final active =
@@ -23,17 +26,20 @@ class GameAudio {
           PlayPhase.defeated,
         ].contains(session.phase);
     final wanted = active && preferences.musicEnabled;
-    if (wanted != _enabled) {
+    final volume = AudioMix.ambientVolume(indoors: session.world.indoors);
+    if (wanted != _enabled || wanted && volume != _ambientVolume) {
       _enabled = wanted;
+      _ambientVolume = volume;
       _pending = _pending.then((_) async {
         if (_disposed) return;
         try {
           if (!_started && wanted) {
             await FlameAudio.bgm.initialize();
-            await FlameAudio.bgm.play('rain.wav', volume: .18);
+            await FlameAudio.bgm.play('rain.wav', volume: volume);
             _started = true;
           } else if (_started) {
             if (wanted) {
+              await FlameAudio.bgm.audioPlayer.setVolume(volume);
               await FlameAudio.bgm.resume();
             } else {
               await FlameAudio.bgm.pause();
@@ -52,7 +58,8 @@ class GameAudio {
     final sounds = List<String>.of(session.world.sounds);
     session.world.sounds.clear();
     if (!active || !preferences.effectsEnabled || _disposed) return;
-    for (final cue in sounds) {
+    for (final cue in sounds.toSet()) {
+      if (!_mix.allow(cue, session.elapsed)) continue;
       final effect = _play(cue);
       _effects.add(effect);
       unawaited(effect.whenComplete(() => _effects.remove(effect)));
@@ -63,9 +70,12 @@ class GameAudio {
     try {
       final pool = await _pools.putIfAbsent(
         cue,
-        () => FlameAudio.createPool('$cue.wav', maxPlayers: 2),
+        () => FlameAudio.createPool(
+          '$cue.wav',
+          maxPlayers: cue == 'step' ? 2 : 1,
+        ),
       );
-      if (!_disposed) await pool.start(volume: cue == 'step' ? .18 : .38);
+      if (!_disposed) await pool.start(volume: AudioMix.volume(cue));
     } catch (_) {
       /* Optional effect failure never blocks the simulation. */
     }

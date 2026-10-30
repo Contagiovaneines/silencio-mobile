@@ -1,6 +1,6 @@
 # Produção visual — fase 01
 
-Este pacote prepara mídia futura. Não altera as mecânicas nem exige vídeos para jogar o beta.
+Este pacote organiza prompts e quadros-chave estáticos para quatro vídeos futuros. As imagens provisórias já aparecem nos momentos correspondentes do beta; não são vídeos e não alteram a história nem as mecânicas.
 
 ## Começar
 
@@ -12,12 +12,12 @@ Este pacote prepara mídia futura. Não altera as mecânicas nem exige vídeos p
 
 | Pasta | Duração alvo | Uso |
 |---|---:|---|
-| video/01_abertura | 8 s | Estabelecer Santa Aurora e apartamento |
-| video/02_primeiro_pulso | 6 s | Pessoas param, Caio permanece consciente |
-| video/03_mensagem_helena | 4 s | Inserto opcional; texto segue interativo |
-| video/04_retorno_e_cama | 6 s | Encerrar a primeira fase sem revelar a próxima |
+| video/01_abertura | 8 s | Quadro da cidade antes das cinco páginas originais da abertura |
+| video/02_primeiro_pulso | 6 s | Quadro do pulso antes da narração e do diálogo |
+| video/03_mensagem_helena | 4 s | Imagem junto à mensagem interativa de Helena |
+| video/04_retorno_e_cama | 6 s | Quadro de encerramento da fase |
 
-Cada pasta contém assets reais de referência, proveniência SHA-256 em `ASSETS.json`, prompt e destino do vídeo. `video/manifest.json` registra os eventos propostos. Os MP4 ainda serão produzidos pelo usuário. O pacote não inclui imagens/filmagens extraídas dos jogos de referência.
+Cada pasta contém referências, `assets/keyframe_placeholder_v01.png`, proveniência SHA-256 em `ASSETS.json`, prompt e destino do vídeo. `video/manifest.json` indica também o asset provisório usado no jogo. Os quatro quadros foram criados originalmente para SILÊNCIO; não vieram dos jogos de referência. Os MP4 continuam aguardando produção.
 
 ## Padrão e referências
 
@@ -27,11 +27,11 @@ O retrato de Caio fixa a identidade; sprites existentes fixam roupa e escala. A 
 
 Prompts de animação interativa estão em `animacao/`. Referências analisadas e plano de mundo explorável: [MUNDO_E_INTERACOES.md](../docs/MUNDO_E_INTERACOES.md) e [REFERENCIAS_THREADS.md](../docs/REFERENCIAS_THREADS.md).
 
-## Integração futura e acessibilidade
+## Integração dos quadros e troca por vídeo
 
-Não implementar um evento narrativo dentro do arquivo de vídeo: o motor controla progresso e checkpoint. Pular, concluir normalmente ou falhar a reprodução precisam chegar ao mesmo estado, uma única vez. Interromper/retomar não pode duplicar itens ou finalizar a fase cedo. Manter apresentação atual como alternativa quando a mídia faltar. Vídeos não substituem diálogos, escolhas, colisão ou exploração. Texto/legendas ficam no motor; respeitar efeitos reduzidos e áudio desligado. Porta e escada continuam no motor.
+O jogo exibe os PNG `video_placeholder_...` enquanto não há MP4. Quando o vídeo for entregue, a integração deve trocar somente a mídia do slot indicado no manifesto. Não implementar um evento narrativo dentro do arquivo: o motor controla progresso e checkpoint. Pular, concluir normalmente ou falhar a reprodução devem chegar ao mesmo estado, uma única vez. Retomar não pode duplicar itens ou finalizar a fase cedo. Vídeos não substituem diálogos, escolhas, colisão ou exploração. Texto/legendas ficam no motor; respeitar efeitos reduzidos e áudio desligado. Porta e escada continuam no motor.
 
-Ainda não existe player de vídeo integrado. Nenhum desempenho móvel foi validado para essa mídia. O formato inicial é MP4 H.264 SDR yuv420p horizontal; o tamanho e a resolução de distribuição serão ajustados ao aparelho, preservando proporção.
+Ainda não existe player de vídeo integrado. Nenhum desempenho móvel foi validado para essa mídia. O formato inicial é MP4 H.264 SDR yuv420p horizontal; o tamanho e a resolução de distribuição serão ajustados ao aparelho, preservando proporção. Até lá, cada evento usa um quadro estático original como substituto.
 
 ## Atualizar cópias
 

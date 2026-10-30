@@ -10,6 +10,7 @@ import 'world_atmosphere.dart';
 enum PointKind {
   apartmentDoor,
   buildingDoor,
+  window,
   chair,
   sofa,
   wardrobe,
@@ -23,6 +24,7 @@ enum PointKind {
   phone,
   key,
   adapter,
+  weapon,
   neighbor,
   merchant,
   television,
@@ -37,6 +39,14 @@ enum PointKind {
   cat,
   pigeon,
   ladder,
+  nightTorch,
+  nightSupply,
+  nightPanel,
+  nightNeighbor,
+  nightBreaker,
+  nightCan,
+  nightMap,
+  broadcast,
 }
 
 class Place {
@@ -54,6 +64,11 @@ class Place {
   final PointKind kind;
   final double x, y;
   final String label, action;
+
+  String? get floatingLabel => switch (kind) {
+    PointKind.apartmentDoor || PointKind.buildingDoor => null,
+    _ => label,
+  };
 }
 
 class Block {
@@ -74,11 +89,21 @@ class Block {
 }
 
 class Furnishing {
-  const Furnishing(this.bounds, this.kind, this.height, {this.floor = 0});
+  const Furnishing(
+    this.bounds,
+    this.kind,
+    this.height, {
+    this.floor = 0,
+    this.sprite,
+    this.collidable = true,
+  });
   final int floor;
   final Rect bounds;
   final String kind;
   final double height;
+  /// Optional original PNG name from the approved refined apartment pack.
+  final String? sprite;
+  final bool collidable;
 }
 
 class Person {
@@ -89,11 +114,25 @@ class Person {
 }
 
 class Vehicle {
-  const Vehicle(this.id, this.position, this.bounds, this.width);
+  const Vehicle(
+    this.id,
+    this.position,
+    this.bounds,
+    this.width, {
+    this.view = 0,
+  });
   final String id;
   final Offset position;
   final Rect bounds;
   final double width;
+
+  /// Front-left, front-right, side, or rear three-quarter sprite variant.
+  final int view;
+
+  Vehicle at(Offset next) {
+    final delta = next - position;
+    return Vehicle(id, next, bounds.shift(delta), width, view: view);
+  }
 }
 
 class WorldModel {
@@ -107,19 +146,53 @@ class WorldModel {
   bool onRoof = false;
   bool _descendingLadder = false;
   Offset? ladderBase;
-  Offset get playerDrawPosition => ladderBase == null
+  Offset? _vaultStart, _vaultEnd;
+  Offset get playerDrawPosition => action == 'vault' && _vaultStart != null
+      ? Offset.lerp(_vaultStart!, _vaultEnd!, 1 - actionTime / actionDuration)!
+      : ladderBase == null
       ? Offset(campaign.x, campaign.y)
       : Offset.lerp(
           ladderBase!,
           const Offset(9.65, 22.5),
           playerElevation / 56,
         )!;
+  bool get canVault {
+    if (campaign.floor != 0 ||
+        onRoof ||
+        action != 'idle' ||
+        encounterActive ||
+        campaign.stamina < 12) {
+      return false;
+    }
+    if (campaign.x < 7.0 || campaign.x > 8.0) return false;
+    final y = campaign.y;
+    if (!((y >= 25.2 && y <= 25.5) || (y >= 26.2 && y <= 26.7))) {
+      return false;
+    }
+    final landingY = y < 25.65 ? 26.45 : 25.3;
+    return canStand(campaign.x, y) && canStand(campaign.x, landingY);
+  }
+
+  bool vault() {
+    if (!canVault) return false;
+    _vaultStart = Offset(campaign.x, campaign.y);
+    _vaultEnd = Offset(campaign.x, campaign.y < 25.65 ? 26.45 : 25.3);
+    facingX = 0;
+    facingY = (_vaultEnd!.dy - _vaultStart!.dy).sign;
+    campaign.stamina -= 12;
+    guarding = false;
+    endAim();
+    beginAction('vault', .8);
+    return true;
+  }
+
   bool climbLadder() {
     if (action != 'idle' ||
         encounterActive ||
         campaign.floor != 0 ||
-        distance(10.7, 22.5) > 1.85)
+        distance(10.7, 22.5) > 1.85) {
       return false;
+    }
     _descendingLadder = onRoof;
     ladderBase ??= Offset(campaign.x, campaign.y);
     beginAction('climb', 3.2);
@@ -127,6 +200,13 @@ class WorldModel {
   }
 
   static const width = 56, height = 44, radius = .22;
+  static const shopBounds = Rect.fromLTRB(24, 17, 32, 24);
+  static const busStop = Offset(42.5, 29.5);
+  static const busBay = Offset(45.3, 31.2);
+  bool get inShop =>
+      campaign.floor == 0 &&
+      shopBounds.contains(Offset(campaign.x, campaign.y));
+  bool get indoors => inResidence || inShop;
   static const blocks = [
     Block(
       Rect.fromLTRB(2, 2, 12, 10),
@@ -197,101 +277,568 @@ class WorldModel {
       Rect.fromLTRB(17.4, 12.2, 20.5, 13.6),
       145,
     ),
-    Vehicle('van', Offset(35, 28), Rect.fromLTRB(33.4, 27.2, 36.6, 28.7), 155),
-    Vehicle('bus', Offset(47, 32), Rect.fromLTRB(44.2, 30.7, 49.6, 32.7), 245),
+    Vehicle(
+      'van',
+      Offset(35, 28),
+      Rect.fromLTRB(33.4, 27.2, 36.6, 28.7),
+      155,
+      view: 1,
+    ),
+    Vehicle(
+      'bus',
+      Offset(47, 32),
+      Rect.fromLTRB(44.2, 30.7, 49.6, 32.7),
+      245,
+      view: 2,
+    ),
   ];
+  double _busWaitTime = 0;
+  double _busArrivalProgress = 1;
   static const furniture = [
-    Furnishing(Rect.fromLTRB(3, 3, 5.4, 5), 'bed', 16, floor: 2),
-    Furnishing(Rect.fromLTRB(9, 3, 10.6, 4), 'kitchen', 24, floor: 2),
-    Furnishing(Rect.fromLTRB(3, 5.7, 4, 6.7), 'wardrobe', 48, floor: 2),
-    Furnishing(Rect.fromLTRB(3, 7.5, 4.4, 8.7), 'sofa', 23, floor: 2),
+    // Apartment 203 follows the approved floorplan: bedroom at the back,
+    // living room to the left, kitchen/dining to the right, bathroom at front.
+    Furnishing(
+      Rect.fromLTRB(2.35, 2.55, 4.75, 4.55),
+      'bed',
+      40,
+      floor: 2,
+      sprite: 'cama_parede_A',
+    ),
+    Furnishing(
+      Rect.fromLTRB(5.8, 2.55, 6.85, 4.05),
+      'wardrobe',
+      48,
+      floor: 2,
+      sprite: 'guarda_roupa_B',
+    ),
+    Furnishing(
+      Rect.fromLTRB(5.15, 3.4, 5.75, 4.25),
+      'bedside',
+      28,
+      floor: 2,
+      sprite: 'mesa_cabeceira_A',
+      collidable: false,
+    ),
+    Furnishing(
+      Rect.fromLTRB(6.9, 2.5, 7.7, 3.35),
+      'desk',
+      33,
+      floor: 2,
+      sprite: 'escrivaninha_A',
+    ),
+    Furnishing(
+      Rect.fromLTRB(7.0, 3.4, 7.6, 4.15),
+      'chair',
+      26,
+      floor: 2,
+      sprite: 'cadeira_B',
+    ),
+    Furnishing(
+      Rect.fromLTRB(2.45, 5.8, 4.8, 7.05),
+      'sofa',
+      42,
+      floor: 2,
+      sprite: 'sofa_parede_A',
+    ),
+    Furnishing(
+      Rect.fromLTRB(4.85, 7.2, 6.25, 8.2),
+      'coffee',
+      25,
+      floor: 2,
+      sprite: 'mesa_centro_B',
+    ),
+    Furnishing(
+      Rect.fromLTRB(2.45, 8.05, 4.5, 9.35),
+      'television',
+      40,
+      floor: 2,
+      sprite: 'rack_tv_A',
+    ),
+    Furnishing(
+      Rect.fromLTRB(2.35, 4.75, 2.9, 5.55),
+      'lamp',
+      31,
+      floor: 2,
+      sprite: 'abajur_aceso_A',
+      collidable: false,
+    ),
+    Furnishing(
+      Rect.fromLTRB(4.9, 4.8, 5.4, 5.5),
+      'plant',
+      32,
+      floor: 2,
+      sprite: 'planta_B',
+      collidable: false,
+    ),
+    // Kitchen counters line the right wall; the middle remains a walk path.
+    Furnishing(
+      Rect.fromLTRB(9.8, 2.3, 11.7, 3.2),
+      'kitchen',
+      38,
+      floor: 2,
+      sprite: 'balcao_cuba_A',
+    ),
+    Furnishing(
+      Rect.fromLTRB(8.45, 2.55, 9.35, 3.45),
+      'stove',
+      34,
+      floor: 2,
+      sprite: 'fogao_B',
+    ),
+    Furnishing(
+      Rect.fromLTRB(10.95, 3.55, 11.75, 4.7),
+      'fridge',
+      44,
+      floor: 2,
+      sprite: 'geladeira_fechada_A',
+    ),
+    Furnishing(
+      Rect.fromLTRB(8.35, 3.65, 9.55, 4.4),
+      'wall_cabinet',
+      42,
+      floor: 2,
+      sprite: 'armario_suspenso_B',
+      collidable: false,
+    ),
+    Furnishing(
+      Rect.fromLTRB(9.45, 5.0, 10.95, 6.25),
+      'dining_table',
+      38,
+      floor: 2,
+      sprite: 'mesa_jantar_A',
+    ),
+    Furnishing(
+      Rect.fromLTRB(9.45, 6.3, 10.2, 6.75),
+      'chair',
+      26,
+      floor: 2,
+      sprite: 'cadeira_A',
+    ),
+    Furnishing(
+      Rect.fromLTRB(11.1, 5.2, 11.8, 6.0),
+      'chair',
+      26,
+      floor: 2,
+      sprite: 'cadeira_B',
+    ),
     Furnishing(Rect.fromLTRB(24.5, 17.7, 26, 20.5), 'shelf', 48),
     Furnishing(Rect.fromLTRB(29.7, 17.8, 31.4, 19.2), 'fridge', 57),
     Furnishing(Rect.fromLTRB(30, 21, 31.5, 22.7), 'counter', 23),
-    Furnishing(Rect.fromLTRB(18.5, 27, 20, 28), 'bench', 14),
-    Furnishing(Rect.fromLTRB(23, 30.5, 24.5, 31.5), 'bench', 14),
-    Furnishing(Rect.fromLTRB(5.7, 3.4, 7.1, 4.4), 'desk', 18, floor: 2),
-    Furnishing(Rect.fromLTRB(9.7, 5.5, 11, 6.3), 'bookcase', 35, floor: 2),
-    Furnishing(Rect.fromLTRB(10.5, 7.4, 11.5, 8.5), 'shower', 45, floor: 2),
-    Furnishing(Rect.fromLTRB(8.4, 8.7, 9.1, 9.5), 'toilet', 15, floor: 2),
-    Furnishing(Rect.fromLTRB(10, 8.9, 10.8, 9.5), 'basin', 20, floor: 2),
-    Furnishing(Rect.fromLTRB(10.9, 3, 11.7, 4), 'fridge', 48, floor: 2),
-    Furnishing(Rect.fromLTRB(3.6, 8.9, 4.4, 9.4), 'coffee', 12, floor: 2),
+    // Street furniture is set on the sidewalks, clear of both traffic and
+    // the walkable route through the block.
+    Furnishing(Rect.fromLTRB(17.4, 24.4, 18.6, 25.2), 'bench', 18),
+    Furnishing(Rect.fromLTRB(22.4, 31.2, 23.6, 32), 'bench', 18),
+    Furnishing(Rect.fromLTRB(38.8, 23, 42, 24.5), 'bus_shelter', 0),
+    Furnishing(Rect.fromLTRB(42.5, 28, 42.8, 28.4), 'bus_stop_sign', 0),
+    Furnishing(Rect.fromLTRB(11.4, 24.2, 12.4, 25), 'street_tree', 76),
+    Furnishing(Rect.fromLTRB(31.8, 31.2, 32.8, 32), 'street_tree', 76),
+    Furnishing(Rect.fromLTRB(40.5, 31.2, 41.5, 32), 'street_tree', 76),
+    Furnishing(
+      Rect.fromLTRB(8.2, 8.35, 9.25, 9.05),
+      'basin',
+      30,
+      floor: 2,
+      sprite: 'gabinete_pia_A',
+    ),
+    Furnishing(
+      Rect.fromLTRB(9.5, 9.15, 10.25, 9.75),
+      'toilet',
+      25,
+      floor: 2,
+      sprite: 'vaso_sanitario_B',
+    ),
+    Furnishing(
+      Rect.fromLTRB(10.55, 7.55, 11.8, 9.55),
+      'shower',
+      38,
+      floor: 2,
+      sprite: 'box_chuveiro_A',
+    ),
+    Furnishing(
+      Rect.fromLTRB(9.45, 8.15, 10.15, 8.75),
+      'bathmat',
+      15,
+      floor: 2,
+      sprite: 'tapete_banheiro_A',
+      collidable: false,
+    ),
+    Furnishing(
+      Rect.fromLTRB(9.45, 7.35, 10.0, 8.05),
+      'bathroom_mirror',
+      38,
+      floor: 2,
+      sprite: 'espelho_A',
+      collidable: false,
+    ),
+    Furnishing(
+      Rect.fromLTRB(11.1, 6.55, 11.7, 7.1),
+      'laundry',
+      21,
+      floor: 2,
+      sprite: 'cesto_roupa_B',
+    ),
+    Furnishing(
+      Rect.fromLTRB(4.8, 8.4, 5.6, 9.4),
+      'bookcase',
+      35,
+      floor: 2,
+      sprite: 'estante_A',
+    ),
   ];
-  List<Person> get _allPeople => [
-    Person('ines', inesX, 11.5, floor: 2),
-    if (campaign.has('alley') && !campaign.has('resolved'))
-      const Person('orlando', 36, 25)
-    else
-      const Person('orlando', 28, 22),
-    Person('nestor', _ambientNpcs['nestor']!.dx, _ambientNpcs['nestor']!.dy),
-    Person('marina', _ambientNpcs['marina']!.dx, _ambientNpcs['marina']!.dy),
-    Person('bia', _ambientNpcs['bia']!.dx, _ambientNpcs['bia']!.dy),
-    if (campaign.has('resolved')) const Person('davi', 38, 25),
-  ];
-  Iterable<Block> get visibleBlocks =>
-      blocks.where((b) => b.floor == campaign.floor);
-  Iterable<Furnishing> get visibleFurniture =>
-      furniture.where((f) => f.floor == campaign.floor);
-  Iterable<Vehicle> get visibleVehicles =>
-      campaign.floor == 0 ? vehicles : const <Vehicle>[];
+  List<Person> get _allPeople => campaign.inChapterTwo
+      ? [
+          if (!campaign.has('chapter2_rescue'))
+            const Person('ines', 15, 9, floor: 2),
+          if (campaign.has('chapter2_alarm_off') && !enemyDefeated)
+            Person('bruno', enemyX, enemyY),
+        ]
+      : [
+          Person('ines', inesX, 11.5, floor: 2),
+          if (campaign.has('alley') && !campaign.has('resolved'))
+            const Person('orlando', 36, 25)
+          else
+            const Person('orlando', 28, 22),
+          if (campaign.has('bus_arrived'))
+            Person('nestor', busStop.dx - .7, busStop.dy),
+          if (campaign.has('resolved') && !campaign.has('enemy_defeated'))
+            const Person('davi', 38, 25),
+        ];
+  Iterable<Block> get visibleBlocks {
+    final unit = ResidentialLayout.unitAt(
+      campaign.floor,
+      Offset(campaign.x, campaign.y),
+    );
+    return blocks.where(
+      (b) =>
+          b.floor == campaign.floor &&
+          (!b.interior || unit == null || b.bounds == unit),
+    );
+  }
+
+  Iterable<Furnishing> get visibleFurniture {
+    final unit = ResidentialLayout.unitAt(
+      campaign.floor,
+      Offset(campaign.x, campaign.y),
+    );
+    return furniture.where((f) {
+      if (f.floor != campaign.floor) return false;
+      if (f.floor == 0 && shopBounds.contains(f.bounds.center) && !inShop) {
+        return false;
+      }
+      final furnishingUnit = ResidentialLayout.unitAt(f.floor, f.bounds.center);
+      return unit == null ? furnishingUnit == null : furnishingUnit == unit;
+    });
+  }
+
+  Iterable<Vehicle> get visibleVehicles {
+    if (campaign.floor != 0) return const <Vehicle>[];
+    return vehicles
+        .where((v) => v.id != 'bus' || campaign.has('bus_arrived'))
+        .map(
+          (v) => v.id == 'bus'
+              ? v.at(Offset.lerp(v.position, busBay, _busArrivalProgress)!)
+              : v,
+        );
+  }
+
   List<Person> get people =>
       _allPeople.where((p) => p.floor == campaign.floor).toList();
+  List<Person> get visiblePeople {
+    final unit = ResidentialLayout.unitAt(
+      campaign.floor,
+      Offset(campaign.x, campaign.y),
+    );
+    return people.where((person) {
+      if (person.floor == 0 &&
+          shopBounds.contains(Offset(person.x, person.y)) &&
+          !inShop) {
+        return false;
+      }
+      if (unit == null) return true;
+      return unit.contains(Offset(person.x, person.y));
+    }).toList();
+  }
+
   Person get merchant => _allPeople.firstWhere((p) => p.id == 'orlando');
-  List<Place> get places =>
-      allPlaces.where((p) => p.floor == campaign.floor).toList();
+  List<Place> get places {
+    final unit = ResidentialLayout.unitAt(
+      campaign.floor,
+      Offset(campaign.x, campaign.y),
+    );
+    return allPlaces.where((p) {
+      if (p.floor != campaign.floor) return false;
+      final position = Offset(p.x, p.y);
+      if (unit == null) {
+        return campaign.floor == 0 ||
+            ResidentialLayout.corridor.contains(position);
+      }
+      return unit.contains(position) ||
+          p.kind == PointKind.apartmentDoor &&
+              unit == ResidentialLayout.apartment203 ||
+          p.id == '203' && unit == ResidentialLayout.apartment203 ||
+          p.id == '202' && unit == ResidentialLayout.apartment202 ||
+          p.id == '201' && unit == ResidentialLayout.apartment201 ||
+          p.id == '103' && unit == ResidentialLayout.apartment103 ||
+          p.id == '102' && unit == ResidentialLayout.apartment102 ||
+          p.id == '101' && unit == ResidentialLayout.apartment101;
+    }).toList();
+  }
+
   double inesX = 14;
-  List<Place> get allPlaces => [
-    for (final d in ResidentialLayout.doors.where((d) => d.id != '203'))
-      Place(
-        PointKind.buildingDoor,
-        d.center.dx,
-        d.center.dy,
-        d.id == 'entrada'
-            ? 'Entrada residencial'
-            : d.id == 'banheiro'
-            ? 'Porta do banheiro'
-            : 'Porta ${d.id}',
-        d.locked ? 'Bater à porta' : 'Abrir e passar',
-        floor: d.floor,
-        id: d.id,
-      ),
-    const Place(PointKind.sofa, 4.8, 8.1, 'Sofá', 'Sentar', floor: 2),
-    const Place(PointKind.chair, 6.5, 5, 'Cadeira', 'Sentar', floor: 2),
+  List<Place> get allPlaces => campaign.inChapterTwo
+      ? _nightPlaces
+      : [
+          const Place(
+            PointKind.broadcast,
+            22.4,
+            25,
+            'Telão público',
+            'Ler transmissão',
+          ),
+          for (final window in ResidentialLayout.windows.where(
+            (window) => window.floor == campaign.floor,
+          ))
+            Place(
+              PointKind.window,
+              window.center.dx,
+              window.center.dy,
+              'Janela ${window.id}',
+              windowIsOpen(window.id) ? 'Fechar janela' : 'Abrir janela',
+              floor: window.floor,
+              id: window.id,
+            ),
+          for (final d in ResidentialLayout.doors.where((d) => d.id != '203'))
+            Place(
+              PointKind.buildingDoor,
+              d.center.dx,
+              d.center.dy,
+              d.id == 'entrada'
+                  ? 'Entrada residencial'
+                  : d.id == 'banheiro'
+                  ? 'Porta do banheiro'
+                  : 'Porta ${d.id}',
+              d.locked ? 'Bater à porta' : 'Abrir e passar',
+              floor: d.floor,
+              id: d.id,
+            ),
+          const Place(PointKind.sofa, 5.05, 6.42, 'Sofá', 'Sentar', floor: 2),
+          const Place(PointKind.chair,
+              7.5,
+              4.3, 'Cadeira', 'Sentar', floor: 2),
+          const Place(
+            PointKind.wardrobe,
+            5.25,
+            3.3,
+            'Guarda-roupa',
+            'Abrir armário',
+            floor: 2,
+          ),
+          const Place(
+            PointKind.refrigerator,
+            10.5,
+            4.5,
+            'Geladeira',
+            'Abrir geladeira',
+            floor: 2,
+          ),
+          const Place(
+            PointKind.notebook,
+            6.4,
+            4.5,
+            'Notebook',
+            'Usar notebook',
+            floor: 2,
+          ),
+          const Place(
+            PointKind.bathroom,
+            9.8,
+            8.5,
+            'Banheiro',
+            'Examinar',
+            floor: 2,
+          ),
+          if (campaign.floor > 0)
+            Place(
+              PointKind.noticeboard,
+              18.5,
+              11,
+              'Quadro de avisos',
+              'Ler',
+              floor: campaign.floor,
+            ),
+          const Place(
+            PointKind.apartmentDoor,
+            7,
+            10,
+            'Porta 203',
+            'Abrir e passar',
+            floor: 2,
+          ),
+          const Place(
+            PointKind.stairsDown,
+            10,
+            14.5,
+            'Escada · 1º andar',
+            'Descer',
+            floor: 2,
+          ),
+          const Place(
+            PointKind.stairsUp,
+            4.7,
+            14.5,
+            'Escada · 1º andar',
+            'Subir',
+          ),
+          const Place(
+            PointKind.stairsDown,
+            10,
+            14.5,
+            'Escada · térreo',
+            'Descer',
+            floor: 1,
+          ),
+          const Place(
+            PointKind.stairsUp,
+            4.7,
+            14.5,
+            'Escada · 2º andar',
+            'Subir',
+            floor: 1,
+          ),
+          const Place(
+            PointKind.elevator,
+            3.8,
+            14.3,
+            'Elevador',
+            'Chamar',
+            floor: 2,
+          ),
+          const Place(
+            PointKind.phone,
+            5.05,
+            4.15,
+            'Celular',
+            'Ler mensagem',
+            floor: 2,
+          ),
+          if (!campaign.has('key'))
+            const Place(
+              PointKind.key,
+              9,
+              4.7,
+              'Chave de casa',
+              'Pegar chave',
+              floor: 2,
+            ),
+          if (!campaign.has('adapter'))
+            const Place(
+              PointKind.adapter,
+              8.8,
+              5.5,
+              'Adaptador',
+              'Recolher',
+              floor: 2,
+            ),
+          const Place(
+            PointKind.bed,
+            5.55,
+            4.7,
+            'Cama · salvar o dia',
+            'Descansar',
+            floor: 2,
+          ),
+          Place(
+            PointKind.neighbor,
+            inesX,
+            11.5,
+            'Dona Inês · 202',
+            'Ajudar',
+            floor: 2,
+          ),
+          Place(
+            PointKind.merchant,
+            merchant.x,
+            merchant.y,
+            'Orlando',
+            'Conversar',
+          ),
+          const Place(
+            PointKind.television,
+            30.4,
+            19.8,
+            'TV da mercearia',
+            'Ver notícia',
+          ),
+          const Place(PointKind.panel, 25.2, 21, 'Tomada queimada', 'Examinar'),
+          const Place(PointKind.sedan, 19, 14.3, 'Sedã · porta-malas', 'Abrir'),
+          if (!campaign.has('water'))
+            const Place(PointKind.water, 29.4, 22.5, 'Água', 'Recolher'),
+          if (!campaign.has('weapon') && !campaign.has('resolved'))
+            const Place(
+              PointKind.weapon,
+              31.7,
+              26.5,
+              'Cano de madeira',
+              'Pegar',
+            ),
+          Place(
+            PointKind.gate,
+            41.7,
+            26.2,
+            'Portão · alavanca',
+            gateClosed ? 'Portão fechado' : 'Fechar',
+          ),
+          Place(
+            PointKind.ladder,
+            10.7,
+            22.5,
+            'Escada de manutenção',
+            onRoof ? 'Descer' : 'Subir',
+          ),
+          const Place(
+            PointKind.bus,
+            43.5,
+            29.5,
+            'Parada · Nestor',
+            'Aguardar ônibus',
+          ),
+          const Place(
+            PointKind.crossing,
+            48.5,
+            28,
+            'Passagem a pé',
+            'Seguir a pé',
+          ),
+          Place(
+            PointKind.dog,
+            animals.dog.position.dx,
+            animals.dog.position.dy,
+            'Fubá',
+            'Observar',
+          ),
+          Place(
+            PointKind.cat,
+            animals.cat.position.dx,
+            animals.cat.position.dy,
+            'Breu',
+            'Observar',
+          ),
+          Place(
+            PointKind.pigeon,
+            animals.pigeon.position.dx,
+            animals.pigeon.position.dy,
+            isNight ? 'Morcego' : 'Pingo',
+            'Observar',
+          ),
+        ];
+  List<Place> get _nightPlaces => [
     const Place(
-      PointKind.wardrobe,
-      4.6,
-      6.3,
-      'Guarda-roupa',
-      'Abrir armário',
-      floor: 2,
+      PointKind.broadcast,
+      22.4,
+      25,
+      'Telão público',
+      'Ler transmissão',
     ),
-    const Place(
-      PointKind.refrigerator,
-      11,
-      4.8,
-      'Geladeira',
-      'Abrir geladeira',
-      floor: 2,
-    ),
-    const Place(
-      PointKind.notebook,
-      7.2,
-      4.6,
-      'Notebook',
-      'Usar notebook',
-      floor: 2,
-    ),
-    const Place(PointKind.bathroom, 9.5, 8.7, 'Banheiro', 'Examinar', floor: 2),
-    if (campaign.floor > 0)
-      Place(
-        PointKind.noticeboard,
-        18.5,
-        12,
-        'Quadro de avisos',
-        'Ler',
-        floor: campaign.floor,
-      ),
     const Place(
       PointKind.apartmentDoor,
       7,
@@ -301,6 +848,14 @@ class WorldModel {
       floor: 2,
     ),
     const Place(
+      PointKind.buildingDoor,
+      7,
+      16,
+      'Entrada residencial',
+      'Abrir e passar',
+      id: 'entrada',
+    ),
+    const Place(
       PointKind.stairsDown,
       10,
       14.5,
@@ -308,7 +863,6 @@ class WorldModel {
       'Descer',
       floor: 2,
     ),
-    const Place(PointKind.stairsUp, 4.7, 14.5, 'Escada · 1º andar', 'Subir'),
     const Place(
       PointKind.stairsDown,
       10,
@@ -317,6 +871,7 @@ class WorldModel {
       'Descer',
       floor: 1,
     ),
+    const Place(PointKind.stairsUp, 4.7, 14.5, 'Escada · 1º andar', 'Subir'),
     const Place(
       PointKind.stairsUp,
       4.7,
@@ -325,90 +880,79 @@ class WorldModel {
       'Subir',
       floor: 1,
     ),
-    const Place(PointKind.elevator, 3.8, 14.3, 'Elevador', 'Chamar', floor: 2),
+    const Place(
+      PointKind.elevator,
+      3.8,
+      14.3,
+      'Elevador sem energia',
+      'Examinar',
+      floor: 2,
+    ),
     const Place(PointKind.phone, 6.5, 4, 'Celular', 'Ler mensagem', floor: 2),
-    if (!campaign.has('key'))
-      const Place(
-        PointKind.key,
-        9,
-        4.7,
-        'Chave de casa',
-        'Pegar chave',
-        floor: 2,
-      ),
-    if (!campaign.has('adapter'))
-      const Place(
-        PointKind.adapter,
-        8.8,
-        5.2,
-        'Adaptador',
-        'Recolher',
-        floor: 2,
-      ),
     const Place(
       PointKind.bed,
       4.3,
       5.5,
-      'Cama · salvar o dia',
-      'Descansar',
+      'Cama · checkpoint',
+      'Salvar',
       floor: 2,
     ),
-    Place(
-      PointKind.neighbor,
-      inesX,
-      11.5,
-      'Dona Inês · 202',
-      'Ajudar',
-      floor: 2,
-    ),
-    Place(PointKind.merchant, merchant.x, merchant.y, 'Orlando', 'Conversar'),
+    if (!campaign.has('chapter2_torch'))
+      const Place(
+        PointKind.nightTorch,
+        6,
+        5.8,
+        'Lanterna',
+        'Recolher',
+        floor: 2,
+      ),
+    if (!campaign.has('chapter2_supply'))
+      const Place(
+        PointKind.nightSupply,
+        5.5,
+        5.5,
+        'Kit de emergência',
+        'Recolher atadura',
+        floor: 2,
+      ),
     const Place(
-      PointKind.television,
-      30.4,
-      19.8,
-      'TV da mercearia',
-      'Ver notícia',
+      PointKind.nightPanel,
+      18.5,
+      11,
+      'Quadro de manutenção',
+      'Ler registro',
+      floor: 2,
     ),
-    const Place(PointKind.panel, 25.2, 21, 'Tomada queimada', 'Examinar'),
-    const Place(PointKind.sedan, 19, 14.3, 'Sedã · porta-malas', 'Abrir'),
-    if (!campaign.has('water'))
-      const Place(PointKind.water, 29.4, 22.5, 'Água', 'Recolher'),
-    Place(
-      PointKind.gate,
-      41.7,
-      26.2,
-      'Portão · alavanca',
-      gateClosed ? 'Portão fechado' : 'Fechar',
+    if (!campaign.has('chapter2_rescue'))
+      const Place(
+        PointKind.nightNeighbor,
+        15,
+        10.5,
+        'Vizinha · 202',
+        'Ajudar com atadura',
+        floor: 2,
+      ),
+    const Place(
+      PointKind.nightBreaker,
+      16.6,
+      13.3,
+      'Disjuntor do alarme',
+      'Desligar',
     ),
-    Place(
-      PointKind.ladder,
-      10.7,
-      22.5,
-      'Escada de manutenção',
-      onRoof ? 'Descer' : 'Subir',
+    const Place(
+      PointKind.nightCan,
+      22,
+      15,
+      'Lata na garagem',
+      'Lançar distração',
     ),
-    const Place(PointKind.bus, 45, 29.5, 'Nestor · ônibus', 'Embarcar'),
-    const Place(PointKind.crossing, 48.5, 28, 'Passagem a pé', 'Seguir a pé'),
-    Place(
-      PointKind.dog,
-      animals.dog.position.dx,
-      animals.dog.position.dy,
-      'Fubá',
-      'Observar',
-    ),
-    Place(
-      PointKind.cat,
-      animals.cat.position.dx,
-      animals.cat.position.dy,
-      'Breu',
-      'Observar',
-    ),
-    Place(
-      PointKind.pigeon,
-      animals.pigeon.position.dx,
-      animals.pigeon.position.dy,
-      isNight ? 'Morcego' : 'Pingo',
-      'Observar',
+    const Place(PointKind.gate, 41.7, 26.2, 'Portão de serviço', 'Usar chave'),
+    const Place(
+      PointKind.nightMap,
+      42.5,
+      24.5,
+      'Posto de serviço · mapa',
+      'Recolher mapa',
     ),
   ];
   double simulationTime = 0;
@@ -416,48 +960,75 @@ class WorldModel {
   double get dogY => animals.dog.position.dy;
   bool get dogMoving => animals.dog.moving;
   bool recoveringBreath = false;
+  bool aiming = false, sprintHeld = false, guarding = false;
+  Offset? aimTarget;
+  void aimAt(double x, double y) {
+    aiming = true;
+    aimTarget = Offset(x, y);
+    final delta = aimTarget! - Offset(campaign.x, campaign.y);
+    if (delta.distance > .01) {
+      facingX = delta.dx / delta.distance;
+      facingY = delta.dy / delta.distance;
+    }
+  }
+
+  void endAim() {
+    aiming = false;
+    aimTarget = null;
+  }
+
   bool get severelyHurt => campaign.health <= 25;
   bool get effectiveRunning =>
-      running && !recoveringBreath && !severelyHurt && campaign.stamina > 5;
+      (running || sprintHeld) &&
+      !aiming &&
+      !guarding &&
+      !recoveringBreath &&
+      !severelyHurt &&
+      campaign.stamina > 5;
   double enemyWalked = 0;
+  static const double enemyMaxHealth = 100;
+  double playerAttackCooldown = 0;
+  double get enemyHealth =>
+      campaign.inChapterTwo ? campaign.nightEnemyHealth : campaign.enemyHealth;
+  String get enemyIdentity => campaign.inChapterTwo ? 'bruno' : 'davi';
+  bool get enemyDefeated => campaign.has(
+    campaign.inChapterTwo ? 'chapter2_enemy_down' : 'enemy_defeated',
+  );
+  Offset get enemyBodyPosition => Offset(enemyX, enemyY);
+  bool get attackAvailable =>
+      encounterActive &&
+      campaign.has('weapon') &&
+      campaign.weaponEquipped &&
+      action == 'idle' &&
+      playerAttackCooldown <= 0 &&
+      campaign.stamina >= 18;
+  bool get canAttack {
+    if (!attackAvailable) return false;
+    final dx = enemyX - campaign.x, dy = enemyY - campaign.y;
+    final range = math.sqrt(dx * dx + dy * dy);
+    return range > .01 &&
+        range <= 1.9 &&
+        (dx * facingX + dy * facingY) / range > .35 &&
+        lineClear(Offset(campaign.x, campaign.y), Offset(enemyX, enemyY));
+  }
+
+  /// Mobile melee is a contextual action: when Davi is in reach, face him before
+  /// the strike. Ranged/manual aiming keeps its explicit direction.
+  bool faceEnemyForMelee() {
+    if (!encounterActive) return false;
+    final dx = enemyX - campaign.x, dy = enemyY - campaign.y;
+    final range = math.sqrt(dx * dx + dy * dy);
+    if (range <= .01 || range > 1.9) return false;
+    final direction = Offset(dx / range, dy / range);
+    facingX = direction.dx;
+    facingY = direction.dy;
+    return canAttack;
+  }
+
   final Map<String, Offset> _npcPrevious = {};
   final Map<String, double> _npcTraveled = {};
   final Map<String, Offset> _npcFacing = {};
   final Set<String> _movingNpcs = {};
-  final Map<String, Offset> _ambientNpcs = {
-    'nestor': const Offset(45, 29.5),
-    'marina': const Offset(22, 29.5),
-    'bia': const Offset(22.8, 29.8),
-  };
-  void _ambientStep(double dt) {
-    if (campaign.floor != 0) return;
-    const routes = {
-      'nestor': [Offset(45, 29.5), Offset(44.4, 28.4)],
-      'marina': [Offset(22, 29.5), Offset(21.6, 30.6)],
-      'bia': [Offset(22.8, 29.8), Offset(22.5, 31.1)],
-    };
-    var index = 0;
-    for (final e in routes.entries) {
-      final cycle = (simulationTime + index++ * 3) % 24;
-      final target = e.value[cycle < 12 ? 0 : 1];
-      final at = _ambientNpcs[e.key]!;
-      final delta = target - at;
-      if (delta.distance < .03) continue;
-      final next =
-          at + delta / delta.distance * math.min(delta.distance, dt * .42);
-      if (!isOpen(next.dx, next.dy) ||
-          (next - Offset(campaign.x, campaign.y)).distance < .75 ||
-          _allPeople.any(
-            (p) =>
-                p.id != e.key &&
-                p.floor == 0 &&
-                (next - Offset(p.x, p.y)).distance < .65,
-          ))
-        continue;
-      _ambientNpcs[e.key] = next;
-    }
-  }
-
   ({Offset facing, double traveled, bool moving}) npcMotion(String id) => (
     facing: _npcFacing[id] ?? const Offset(1, 1),
     traveled: _npcTraveled[id] ?? 0,
@@ -492,7 +1063,13 @@ class WorldModel {
 
   final sounds = <String>[];
   bool get encounterActive =>
-      campaign.floor == 0 && campaign.has('alley') && !campaign.has('resolved');
+      campaign.floor == 0 &&
+      (campaign.inChapterTwo
+          ? campaign.x > 15 &&
+                campaign.y < 17 &&
+                !campaign.has('chapter2_alarm_off') &&
+                !enemyDefeated
+          : campaign.has('alley') && !campaign.has('resolved'));
   bool get moving =>
       action == 'idle' && (inputX != 0 || inputY != 0 || path.isNotEmpty);
   double distance(double x, double y) =>
@@ -504,6 +1081,63 @@ class WorldModel {
       ResidentialLayout.corridor.contains(Offset(campaign.x, campaign.y));
   bool doorIsOpen(String id) =>
       id == '203' ? doorOpen : campaign.openDoors.contains(id);
+  bool windowIsOpen(String id) =>
+      campaign.openWindows.contains(id) || campaign.brokenWindows.contains(id);
+  bool changeWindow(String id, String action) {
+    final matches = ResidentialLayout.windows.where(
+      (w) => w.id == id && w.floor == campaign.floor,
+    );
+    if (matches.isEmpty) return false;
+    final w = matches.first;
+    if (distance(w.center.dx, w.center.dy) > 1.85) return false;
+    switch (action) {
+      case 'toggle':
+        if (campaign.brokenWindows.contains(id)) return false;
+        return toggleWindow(id);
+      case 'curtain':
+        if (campaign.removedCurtains.contains(id)) return false;
+        if (!campaign.closedCurtains.remove(id)) {
+          campaign.closedCurtains.add(id);
+        }
+      case 'remove':
+        if (!campaign.removedCurtains.add(id)) return false;
+        campaign.closedCurtains.remove(id);
+      case 'break':
+        if (!campaign.weaponEquipped ||
+            !campaign.has('weapon') ||
+            campaign.stamina < 10 ||
+            !campaign.brokenWindows.add(id)) {
+          return false;
+        }
+        campaign.stamina -= 10;
+        campaign.openWindows.add(id);
+      default:
+        return false;
+    }
+    _geometry.clear();
+    return true;
+  }
+
+  bool setWindowOpen(String id, bool open) {
+    if (!open && campaign.brokenWindows.contains(id)) return false;
+    final window = ResidentialLayout.windows.firstWhere(
+      (candidate) => candidate.id == id && candidate.floor == campaign.floor,
+    );
+    if (!open) {
+      final body = Rect.fromCircle(
+        center: Offset(campaign.x, campaign.y),
+        radius: radius,
+      );
+      if (body.overlaps(window.collider)) return false;
+      campaign.openWindows.remove(id);
+    } else {
+      campaign.openWindows.add(id);
+    }
+    _geometry.clear();
+    return true;
+  }
+
+  bool toggleWindow(String id) => setWindowOpen(id, !windowIsOpen(id));
   void setDoor(String id, bool open) {
     if (id == '203') {
       doorOpen = open;
@@ -527,7 +1161,13 @@ class WorldModel {
   }
 
   Iterable<Rect> _buildWalls() sync* {
+    if (campaign.floor == 0) yield const Rect.fromLTRB(21.9, 24.1, 22.9, 24.5);
     yield* ResidentialLayout.partitions(campaign.floor);
+    for (final window in ResidentialLayout.windows.where(
+      (window) => window.floor == campaign.floor && !windowIsOpen(window.id),
+    )) {
+      yield window.collider;
+    }
     for (final d in ResidentialLayout.doors.where(
       (d) => d.floor == campaign.floor,
     )) {
@@ -548,7 +1188,10 @@ class WorldModel {
       yield Rect.fromLTRB(b.left, b.bottom - t, middle - .9, b.bottom + t);
       yield Rect.fromLTRB(middle + .9, b.bottom - t, b.right, b.bottom + t);
     }
-    yield* visibleFurniture.map((f) => f.bounds);
+    // Hiding an interior must never remove its physical obstacles.
+    yield* furniture
+        .where((f) => f.floor == campaign.floor && f.collidable)
+        .map((f) => f.bounds);
     yield* visibleVehicles.map((v) => v.bounds);
     if (campaign.floor == 0 && gateClosed) {
       yield const Rect.fromLTRB(40.8, 24, 41.05, 27.8);
@@ -571,12 +1214,14 @@ class WorldModel {
     final clear = isOpen(at.dx, at.dy);
     campaign.floor = floor;
     if (!clear) return false;
-    if (floor == 0 && (at - Offset(campaign.x, campaign.y)).distance < .6)
+    if (floor == 0 && (at - Offset(campaign.x, campaign.y)).distance < .6) {
       return false;
+    }
     if (_allPeople
         .where((p) => p.floor == 0)
-        .any((p) => (at - Offset(p.x, p.y)).distance < .55))
+        .any((p) => (at - Offset(p.x, p.y)).distance < .55)) {
       return false;
+    }
     return !animals.actors.any(
       (a) => a.id != id && a.onGround && (a.position - at).distance < .42,
     );
@@ -587,8 +1232,9 @@ class WorldModel {
     if (campaign.floor == 0 &&
         animals.actors.any(
           (a) => a.onGround && (Offset(x, y) - a.position).distance < .40,
-        ))
+        )) {
       return false;
+    }
     for (final p in people) {
       if ((Offset(x, y) - Offset(p.x, p.y)).distance < .58) return false;
     }
@@ -606,56 +1252,102 @@ class WorldModel {
 
   Place? get nearby {
     Place? nearest;
-    var d = 1.85;
+    var bestDistance = double.infinity;
+    bool isPortal(PointKind kind) =>
+        kind == PointKind.apartmentDoor ||
+        kind == PointKind.buildingDoor ||
+        kind == PointKind.window;
     for (final p in places) {
       final next = distance(p.x, p.y);
-      if (next < d &&
+      final range = p.kind == PointKind.chair || p.kind == PointKind.sofa
+          ? .85
+          : 1.85;
+      // A nearby portal gets the contextual action while Caio is at its
+      // threshold, even if a collectible lies a few pixels closer. This
+      // prevents a key or adapter from stealing the door/window interaction.
+      final portalAtThreshold = isPortal(p.kind) && next < 1.1;
+      final nearestPortalAtThreshold =
+          nearest != null && isPortal(nearest.kind) && bestDistance < 1.1;
+      if (portalAtThreshold && !nearestPortalAtThreshold) {
+        if (next < range &&
+            (p.kind == PointKind.apartmentDoor ||
+                p.kind == PointKind.buildingDoor ||
+                p.kind == PointKind.window ||
+                interactionClear(
+                  Offset(campaign.x, campaign.y),
+                  Offset(p.x, p.y),
+                ))) {
+          nearest = p;
+          bestDistance = next;
+        }
+        continue;
+      }
+      if (nearestPortalAtThreshold && !portalAtThreshold) continue;
+      if (next < range &&
+          next < bestDistance &&
           (p.kind == PointKind.apartmentDoor ||
               p.kind == PointKind.buildingDoor ||
+              p.kind == PointKind.window ||
               interactionClear(
                 Offset(campaign.x, campaign.y),
                 Offset(p.x, p.y),
               ))) {
-        d = next;
+        bestDistance = next;
         nearest = p;
       }
     }
     return nearest;
   }
 
+  bool shouldShowPlaceLabel(Place place) {
+    if (perception) return true;
+    if (place.kind == PointKind.chair || place.kind == PointKind.sofa) {
+      return distance(place.x, place.y) <= .85;
+    }
+    return true;
+  }
+
   void restore(Campaign value) {
     campaign = value;
+    _busWaitTime = 0;
+    _busArrivalProgress = value.has('bus_arrived') ? 1 : 0;
     _destination = null;
     _geometry.clear();
     playerElevation = 0;
     onRoof = false;
     ladderBase = null;
+    _vaultStart = _vaultEnd = null;
     resting = null;
     restAnchor = null;
     doorOpen = false;
     inputX = inputY = 0;
     path.clear();
-    enemyX = 38;
-    enemyY = 26.5;
+    final downed = value.downedEnemyPosition;
+    enemyX = downed?.dx ?? (value.inChapterTwo ? 22 : 38);
+    enemyY = downed?.dy ?? (value.inChapterTwo ? 13.5 : 26.5);
     enemyStun = attackCooldown = pushCooldown = attackWindup = encounterTime =
         0;
     enemyKnockX = enemyKnockY = 0;
+    playerAttackCooldown = 0;
     action = 'idle';
     simulationTime = 0;
     animals.reset();
     atmosphere.restore(night: value.has('night'));
-    gateClosed = value.has('resolved');
+    gateClosed = value.inChapterTwo
+        ? !value.has('chapter2_shortcut')
+        : value.has('resolved');
+    if (value.inChapterTwo) atmosphere.minutes = 118;
     recoveringBreath = value.stamina < 15;
     enemyWalked = 0;
-    _ambientNpcs['nestor'] = const Offset(45, 29.5);
-    _ambientNpcs['marina'] = const Offset(22, 29.5);
-    _ambientNpcs['bia'] = const Offset(22.8, 29.8);
     _npcPrevious.clear();
     _npcTraveled.clear();
     _npcFacing.clear();
     _movingNpcs.clear();
     actionTime = 0;
     perception = running = false;
+    sprintHeld = false;
+    guarding = false;
+    endAim();
     sounds.clear();
     final inaccessibleUnit =
         value.y < 10 && (value.floor == 1 || value.floor == 2 && value.x >= 12);
@@ -806,7 +1498,22 @@ class WorldModel {
     simulationTime += dt;
     if (campaign.stamina <= 15) recoveringBreath = true;
     if (campaign.stamina >= 99.9) recoveringBreath = false;
-    _ambientStep(dt);
+    if (campaign.floor == 0 && campaign.canLeave && !campaign.has('bus')) {
+      if (!campaign.has('bus_arrived') &&
+          (Offset(campaign.x, campaign.y) - busStop).distance <= 1.7) {
+        _busWaitTime += dt;
+        if (_busWaitTime >= 2.5) {
+          campaign.mark('bus_arrived');
+          _busArrivalProgress = 0;
+          sounds.add('engine');
+        }
+      } else if (!campaign.has('bus_arrived')) {
+        _busWaitTime = 0;
+      }
+      if (campaign.has('bus_arrived')) {
+        _busArrivalProgress = math.min(1, _busArrivalProgress + dt * .7);
+      }
+    }
     _movingNpcs.clear();
     for (final person in people) {
       final at = Offset(person.x, person.y);
@@ -832,7 +1539,12 @@ class WorldModel {
         inesX = old;
       }
     }
-    atmosphere.update(dt, storyNight: campaign.has('night'));
+    if (campaign.inChapterTwo) {
+      atmosphere.minutes = 118 + simulationTime * .2;
+      atmosphere.nightBlend = 1;
+    } else {
+      atmosphere.update(dt, storyNight: campaign.has('night'));
+    }
     if (campaign.floor == 0) {
       animals.update(
         dt,
@@ -847,6 +1559,7 @@ class WorldModel {
 
     pushCooldown = math.max(0, pushCooldown - dt);
     attackCooldown = math.max(0, attackCooldown - dt);
+    playerAttackCooldown = math.max(0, playerAttackCooldown - dt);
     enemyStun = math.max(0, enemyStun - dt);
     birdFlight = math.max(0, birdFlight - dt);
     if (action != 'idle') {
@@ -857,6 +1570,17 @@ class WorldModel {
         if (actionTime == 0) {
           onRoof = !_descendingLadder;
           if (!onRoof) ladderBase = null;
+        }
+      }
+      if (action == 'vault') {
+        final progress = 1 - actionTime / actionDuration;
+        playerElevation = math.sin(progress * math.pi) * 32;
+        if (actionTime == 0) {
+          campaign.x = _vaultEnd!.dx;
+          campaign.y = _vaultEnd!.dy;
+          _vaultStart = _vaultEnd = null;
+          playerElevation = 0;
+          sounds.add('step');
         }
       }
       if (!actionContact && actionTime <= actionDuration * .55) {
@@ -878,6 +1602,7 @@ class WorldModel {
             enemyKnockY = delta.dy / delta.distance * (severelyHurt ? 2.5 : 5);
           }
         }
+        if (action == 'attack') _resolvePlayerAttack();
         if (action == 'drink' && campaign.fridgeWater) {
           campaign.fridgeWater = false;
           campaign.stamina = 100;
@@ -916,8 +1641,12 @@ class WorldModel {
     if (length > 0) {
       dx /= length;
       dy /= length;
-      facingX = dx;
-      facingY = dy;
+      if (aiming && aimTarget != null) {
+        aimAt(aimTarget!.dx, aimTarget!.dy);
+      } else if (!guarding) {
+        facingX = dx;
+        facingY = dy;
+      }
       final fast = effectiveRunning;
       final limp = severelyHurt
           ? .55
@@ -926,7 +1655,15 @@ class WorldModel {
           : recoveringBreath
           ? .8
           : 1.0;
-      final step = (fast ? 4.3 : 2.65) * limp * dt;
+      final step =
+          (fast ? 4.3 : 2.65) *
+          limp *
+          (guarding
+              ? .45
+              : aiming
+              ? .52
+              : 1) *
+          dt;
       final old = Offset(campaign.x, campaign.y);
       if (canStand(campaign.x + dx * step, campaign.y)) campaign.x += dx * step;
       if (canStand(campaign.x, campaign.y + dy * step)) campaign.y += dy * step;
@@ -946,10 +1683,13 @@ class WorldModel {
     if (perception) {
       campaign.stamina = math.max(0, campaign.stamina - 12 * dt);
       if (campaign.stamina == 0) perception = false;
+    } else if (guarding) {
+      campaign.stamina = math.max(0, campaign.stamina - dt * 3);
     } else if (!effectiveRunning || length == 0) {
       campaign.stamina = math.min(100, campaign.stamina + 12 * dt);
     }
-    if (campaign.has('delivered') &&
+    if (!campaign.inChapterTwo &&
+        campaign.has('delivered') &&
         campaign.has('news') &&
         !campaign.has('alley') &&
         campaign.x > 32 &&
@@ -958,10 +1698,19 @@ class WorldModel {
       campaign.mark('alley');
       sounds.add('alert');
     }
+    if (campaign.inChapterTwo &&
+        campaign.floor == 0 &&
+        campaign.x > 15 &&
+        campaign.y < 17) {
+      campaign.mark('chapter2_garage');
+    }
     if (onRoof) return;
     if (!encounterActive) return;
     encounterTime += dt;
-    if (encounterTime > 3 && distance(enemyX, enemyY) > 5 && campaign.x > 40) {
+    if (!campaign.inChapterTwo &&
+        encounterTime > 3 &&
+        distance(enemyX, enemyY) > 5 &&
+        campaign.x > 40) {
       campaign.mark('resolved');
       sounds.add('door');
       return;
@@ -983,10 +1732,21 @@ class WorldModel {
         attackCooldown = 1.6;
         if (dist < 1.25 &&
             lineClear(Offset(enemyX, enemyY), Offset(campaign.x, campaign.y))) {
-          campaign.health = math.max(0, campaign.health - 12);
-          campaign.injured = true;
-          beginAction('hurt', .4);
-          sounds.add('hit');
+          final blocked =
+              guarding &&
+              action == 'idle' &&
+              campaign.stamina >= 12 &&
+              (-ex * facingX - ey * facingY) / dist > .35;
+          campaign.health = math.max(0, campaign.health - (blocked ? 3 : 12));
+          if (blocked) {
+            campaign.stamina -= 12;
+            beginAction('block', .3);
+            sounds.add('push');
+          } else {
+            campaign.injured = true;
+            beginAction('hurt', .4);
+            sounds.add('hit');
+          }
         }
       }
       return;
@@ -995,6 +1755,19 @@ class WorldModel {
         attackCooldown == 0 &&
         lineClear(Offset(enemyX, enemyY), Offset(campaign.x, campaign.y))) {
       attackWindup = .65;
+      return;
+    }
+    if (campaign.inChapterTwo && dist > 2.5) {
+      final target = campaign.has('chapter2_lured')
+          ? const Offset(23.5, 11.5)
+          : const Offset(21.5, 13.8);
+      final delta = target - Offset(enemyX, enemyY);
+      if (delta.distance > .15) {
+        final step = delta / delta.distance * dt;
+        if (canStand(enemyX + step.dx, enemyY, enemy: true)) enemyX += step.dx;
+        if (canStand(enemyX, enemyY + step.dy, enemy: true)) enemyY += step.dy;
+        enemyWalked += step.distance;
+      }
       return;
     }
     if (dist < 7 && dist > .8) {
@@ -1020,6 +1793,52 @@ class WorldModel {
     return true;
   }
 
+  bool attack() {
+    if (!attackAvailable || !aiming && !canAttack) return false;
+    campaign.stamina -= 18;
+    guarding = false;
+    playerAttackCooldown = .55;
+    beginAction('attack', .72);
+    return true;
+  }
+
+  void _resolvePlayerAttack() {
+    final dx = enemyX - campaign.x, dy = enemyY - campaign.y;
+    final distance = math.sqrt(dx * dx + dy * dy);
+    final facing = distance <= .01
+        ? 0.0
+        : (dx * facingX + dy * facingY) / distance;
+    if (!encounterActive ||
+        !campaign.has('weapon') ||
+        distance > 1.9 ||
+        facing <= .35 ||
+        !lineClear(Offset(campaign.x, campaign.y), Offset(enemyX, enemyY))) {
+      sounds.add('swing');
+      return;
+    }
+
+    final health = math.max(0.0, enemyHealth - (severelyHurt ? 20 : 25));
+    if (campaign.inChapterTwo) {
+      campaign.nightEnemyHealth = health;
+    } else {
+      campaign.enemyHealth = health;
+    }
+    enemyStun = 1.2;
+    attackWindup = 0;
+    enemyKnockX = enemyKnockY = 0;
+    sounds.add('hit');
+    if (enemyHealth == 0) {
+      campaign.rememberDownedEnemy(Offset(enemyX, enemyY));
+      if (campaign.inChapterTwo) {
+        campaign.mark('chapter2_enemy_down');
+      } else {
+        campaign.mark('enemy_defeated');
+        campaign.mark('resolved');
+      }
+      enemyStun = 5;
+    }
+  }
+
   bool heal() {
     if (action != 'idle' ||
         encounterActive && distance(enemyX, enemyY) < 5 ||
@@ -1031,3 +1850,19 @@ class WorldModel {
     return true;
   }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

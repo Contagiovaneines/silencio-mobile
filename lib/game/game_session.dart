@@ -63,7 +63,14 @@ class GameSession extends ChangeNotifier {
         target.kind == PointKind.apartmentDoor ||
         target.kind == PointKind.buildingDoor ||
         target.kind == PointKind.window;
-    if (world.distance(target.x, target.y) < 1.75 &&
+    final seated =
+        target.kind == PointKind.chair || target.kind == PointKind.sofa;
+    final reach = architectural
+        ? 1.75
+        : seated
+        ? .85
+        : 1.3;
+    if (world.distance(target.x, target.y) < reach &&
         (architectural ||
             world.interactionClear(
               Offset(campaign.x, campaign.y),
@@ -267,9 +274,9 @@ class GameSession extends ChangeNotifier {
       sceneTime += dt;
       if (sceneTime >= 3) {
         campaign.mark('bus');
-        campaign.x = 48.5;
-        campaign.y = 28;
-        _pulse();
+        campaign.mark('finish');
+        unawaited(checkpoint());
+        _change(PlayPhase.complete);
       }
     }
     _uiElapsed += dt;
@@ -796,7 +803,7 @@ class GameSession extends ChangeNotifier {
     switch (kind) {
       case PointKind.bed:
         objectTitle = 'Cama · apartamento 203';
-        objectBody = 'Você pode descansar e salvar. A fase termina aqui somente depois dos acontecimentos do dia. Descansar não adianta o relógio nem cura ferimentos.';
+        objectBody = 'Você pode descansar e salvar. Descansar não adianta o relógio nem cura ferimentos.';
         world.resting = 'lie';
         world.restAnchor = const Offset(3.85, 3.65);
         action('Salvar progresso', true, () {
@@ -811,8 +818,8 @@ class GameSession extends ChangeNotifier {
         objectBody = 'Um instante de descanso. Levantar devolve o controle sem alterar seus objetivos.';
         world.resting = 'sit';
         world.restAnchor = kind == PointKind.sofa
-            ? const Offset(3.6, 6.42)
-            : const Offset(6.95, 5.65);
+            ? const Offset(3.8, 6.92)
+            : const Offset(7.3, 4.3);
       case PointKind.wardrobe:
         objectTitle = 'Guarda-roupa · armazenamento';
         objectBody =
@@ -849,7 +856,9 @@ class GameSession extends ChangeNotifier {
         objectBody =
             'Caderno do dia\n${campaign.objective}\n\n${campaign.entries.map((e) => '${e.title}\n${e.text}').join('\n\n')}';
         world.resting = 'typing';
-        world.restAnchor = const Offset(6.4, 4.75);
+        // Keep the visual pose on the chair; campaign coordinates stay at
+        // the clear approach point in front of the desk.
+        world.restAnchor = const Offset(7.3, 3.85);
       default:
         return;
     }
@@ -860,7 +869,7 @@ class GameSession extends ChangeNotifier {
     if (phase != PlayPhase.playing || world.action != 'idle') return;
     // The same contextual action that sits Caio down gets him back up. Keep
     // rest diegetic: no full-screen object panel or floating instruction.
-    if (world.resting == 'sit') {
+    if (world.resting == 'sit' || world.resting == 'typing') {
       world.resting = null;
       world.restAnchor = null;
       world.stop();
@@ -877,8 +886,14 @@ class GameSession extends ChangeNotifier {
           p.kind == PointKind.apartmentDoor ||
           p.kind == PointKind.buildingDoor ||
           p.kind == PointKind.window;
+      final seated = p.kind == PointKind.chair || p.kind == PointKind.sofa;
+      final reach = portal
+          ? 1.85
+          : seated
+          ? .85
+          : 1.3;
       if (p.floor != campaign.floor ||
-          world.distance(p.x, p.y) >= 1.85 ||
+          world.distance(p.x, p.y) >= reach ||
           !portal &&
               !world.interactionClear(
                 Offset(campaign.x, campaign.y),
@@ -919,15 +934,24 @@ class GameSession extends ChangeNotifier {
       case PointKind.apartmentDoor:
         _useDoor('203');
       case PointKind.buildingDoor:
-        _useDoor(p.id!);
+        if (p.id == 'banheiro') {
+          final open = !world.doorIsOpen('banheiro');
+          world.setDoor('banheiro', open);
+          world.sounds.add('door');
+          tell(
+            open ? 'Porta do banheiro aberta.' : 'Porta do banheiro fechada.',
+          );
+        } else {
+          _useDoor(p.id!);
+        }
       case PointKind.window:
         openWindowPanel(p.id!);
       case PointKind.chair:
       case PointKind.sofa:
         world.resting = 'sit';
         world.restAnchor = p.kind == PointKind.sofa
-            ? const Offset(3.6, 6.42)
-            : const Offset(6.95, 5.65);
+            ? const Offset(3.8, 6.92)
+            : const Offset(7.3, 3.85);
         objectKind = null;
         objectBody = '';
         objectActions.clear();
@@ -970,24 +994,14 @@ class GameSession extends ChangeNotifier {
           'Cano de madeira recolhido. Fique de frente e golpeie de perto.',
         );
       case PointKind.bed:
-        if (campaign.has('night') &&
-            campaign.has('pulse') &&
-            campaign.canLeave) {
-          world.resting = 'lie';
-          world.restAnchor = const Offset(3.85, 3.65);
-          campaign.mark('finish');
-          _change(PlayPhase.complete);
-          unawaited(checkpoint());
-        } else {
-          openObject(PointKind.bed);
-          unawaited(checkpoint());
-        }
+        openObject(PointKind.bed);
+        unawaited(checkpoint());
       case PointKind.neighbor:
         _openDialogue(
           [
             DialogueLine(
               'ines_bag',
-              'INÊS',
+              'CELINA',
               'fala',
               campaign.has('help_ines')
                   ? 'Obrigada de novo, Caio. Orlando abriu cedo.'
@@ -1057,6 +1071,24 @@ class GameSession extends ChangeNotifier {
       case PointKind.television:
         newsPage = 0;
         _change(PlayPhase.news);
+      case PointKind.homeTelevision:
+        if (campaign.has('home_tv_on')) {
+          campaign.events.remove('home_tv_on');
+          tell('Televisão desligada.');
+        } else {
+          campaign.mark('home_tv_on');
+          tell('Televisão ligada. A tela ilumina a sala.');
+        }
+        unawaited(save());
+      case PointKind.lightSwitch:
+        if (campaign.has('home_lights_off')) {
+          campaign.events.remove('home_lights_off');
+          tell('Luzes do apartamento acesas.');
+        } else {
+          campaign.mark('home_lights_off');
+          tell('Luzes do apartamento apagadas.');
+        }
+        unawaited(save());
       case PointKind.panel:
         _openDialogue(
           [
@@ -1110,17 +1142,21 @@ class GameSession extends ChangeNotifier {
           // The compact mission HUD already tells the player to wait here.
           return;
         }
-        if (campaign.has('bus') || campaign.has('pulse')) {
-          tell('A viagem já terminou. Leia a mensagem de Helena no celular.');
+        if (!campaign.busReady) {
+          tell(campaign.objective);
+          return;
+        }
+        if (campaign.has('bus')) {
+          tell('A fase terminou. 02:00 está disponível no menu.');
           return;
         }
         _openDialogue(
           [
             const DialogueLine(
-              'nestor_board',
-              'NESTOR',
+              'nando_board',
+              'NANDO',
               'fala',
-              'O ônibus chegou. Eu levo você até a próxima esquina. Pode embarcar; a porta está aberta.',
+              'A linha 203 chegou ao Centro. Pode embarcar; a porta está aberta.',
             ),
           ],
           after: () {
@@ -1129,13 +1165,42 @@ class GameSession extends ChangeNotifier {
             _change(PlayPhase.transit);
           },
         );
+      case PointKind.busPassenger:
+        if (!campaign.has('pulse')) {
+          tell('Bia aguarda a linha 203 sob o abrigo.');
+          return;
+        }
+        _openDialogue(
+          const [
+            DialogueLine(
+              'bia_message',
+              'BIA',
+              'mensagem escrita',
+              'Minha mãe está trabalhando perto do hospital. Você sabe se a linha ainda vai passar?',
+            ),
+            DialogueLine(
+              'bia_reply',
+              'CAIO',
+              'celular',
+              'Vai chegar. Fica do lado de dentro do abrigo.',
+            ),
+          ],
+          after: () {
+            campaign.mark('answered_bia');
+            unawaited(checkpoint());
+          },
+        );
       case PointKind.crossing:
         if (!campaign.canLeave) {
           tell(campaign.objective);
           return;
         }
-        if (!campaign.has('bus')) {
-          tell('Aguarde o ônibus na parada e embarque com Nestor.');
+        if (campaign.has('pulse')) {
+          tell(
+            campaign.has('night')
+                ? 'A mensagem de Helena está no celular. Depois, siga ao ponto da linha 203.'
+                : 'Leia a mensagem de Helena no celular.',
+          );
           return;
         }
         _pulse();
@@ -1299,7 +1364,12 @@ class GameSession extends ChangeNotifier {
   void _openDialogue(List<DialogueLine> values, {VoidCallback? after}) {
     activeLines = values.map((line) {
       if (line.mode != 'fala' || line.speaker == 'CAIO') return line;
-      final id = line.speaker.toLowerCase().replaceAll('ê', 'e');
+      final id = switch (line.speaker) {
+        'NANDO' => 'nestor',
+        'INÊS' => 'ines',
+        'CELINA' => 'ines',
+        _ => line.speaker.toLowerCase().replaceAll('ê', 'e'),
+      };
       final matches = world.people.where((p) => p.id == id);
       final visible = matches.any(
         (p) =>

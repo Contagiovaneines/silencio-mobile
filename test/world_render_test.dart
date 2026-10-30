@@ -16,6 +16,7 @@ void main() {
 
   for (final scene in [
     (name: 'apartment', floor: 2, x: 6.5, y: 6.0),
+    (name: 'apartment-resting', floor: 2, x: 3.55, y: 3.55),
     (name: 'corridor', floor: 2, x: 7.0, y: 12.0),
     (name: 'landing', floor: 1, x: 7.0, y: 12.0),
     (name: 'entrance', floor: 0, x: 7.0, y: 15.0),
@@ -47,6 +48,11 @@ void main() {
           ..floor = scene.floor
           ..x = scene.x
           ..y = scene.y;
+        if (scene.name == 'apartment-resting') {
+          session.world
+            ..resting = 'lie'
+            ..restAnchor = const ui.Offset(3.55, 3.55);
+        }
         if (scene.name.startsWith('night-')) {
           session.campaign.events.addAll([
             'phone',
@@ -168,8 +174,7 @@ void main() {
           expect(
             brightestChannelAtScreen(sharedBuildingFacade),
             greaterThan(60),
-            reason:
-                'The apartment cutaway must be supported by the full building footprint, not a floating single-unit box.',
+            reason: 'The apartment cutaway must be supported by the full building footprint, not a floating single-unit box.',
           );
           final streetBelowApartment =
               (game.iso(8, 18) - camera) * game.zoom +
@@ -178,22 +183,25 @@ void main() {
           expect(
             brightestChannelAtScreen(streetBelowApartment),
             greaterThan(60),
-            reason:
-                'The second-floor cutaway should reveal the real ground plane below the facade instead of empty void.',
+            reason: 'The second-floor cutaway should reveal the real ground plane below the facade instead of empty void.',
           );
           final firstFacadeWindow =
               (game.iso(7.5, ResidentialLayout.footprint.bottom) +
-                          const ui.Offset(0, 31) -
-                          camera) *
-                      game.zoom +
+                      const ui.Offset(0, 31) -
+                      camera) *
+                  game.zoom +
               const ui.Offset(640, 424);
           var facadeGlassPixels = 0;
-          for (var y = firstFacadeWindow.dy.floor() - 12;
-              y < firstFacadeWindow.dy.floor() + 13;
-              y++) {
-            for (var x = firstFacadeWindow.dx.floor() - 12;
-                x < firstFacadeWindow.dx.floor() + 13;
-                x++) {
+          for (
+            var y = firstFacadeWindow.dy.floor() - 12;
+            y < firstFacadeWindow.dy.floor() + 13;
+            y++
+          ) {
+            for (
+              var x = firstFacadeWindow.dx.floor() - 12;
+              x < firstFacadeWindow.dx.floor() + 13;
+              x++
+            ) {
               final i = (y * 1280 + x) * 4;
               final r = bytes!.getUint8(i),
                   g = bytes.getUint8(i + 1),

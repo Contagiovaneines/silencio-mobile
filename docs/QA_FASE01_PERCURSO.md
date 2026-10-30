@@ -35,7 +35,7 @@ Para localizar um trajeto lento no teste focado, executar com `--dart-define=FUL
 
 `ActorAnimation` deriva a fase do passo da distância percorrida. Os testes existentes conferem alternância de apoios, ausência de passada quando parado, expansão da respiração e assimetria com ferimento. No renderer, Caio usa a detecção de deslocamento real; NPCs usam `npcMotion`; Davi usa deslocamento real do inimigo. As poses domésticas selecionam o atlas próprio e suas âncoras.
 
-O teste de percurso confirma estados de pose (`lie`, `sit`, `typing`, `reach`) e encerramento ao levantar. Não confirma aparência dos pixels. O rig corta pernas e tronco em regiões fixas do sprite; proporção, emenda, orientação e pivô precisam de inspeção visual em todas as direções. Testes matemáticos de `ActorAnimation` não substituem essa inspeção.
+O teste de percurso confirma estados de pose (`lie`, `sit`, `typing`, `reach`) e encerramento ao levantar. Não confirma sozinho a aparência dos pixels. Caio usa atlas de quadros completos, não rig que recorta pernas e tronco; escala, orientação, pivô, apoio e transições ainda precisam de inspeção visual. Testes matemáticos de `ActorAnimation` não substituem essa inspeção.
 
 ## Limitações explícitas
 
@@ -166,3 +166,13 @@ Pendências visuais que permanecem explícitas: verificar junções e pivôs do 
 - Build debug `0.5.3` / código 10 foi instalado no Samsung A15 apenas como `dev.silencio.silencio.qa2`. A inspeção manual no aparelho cobriu menu, retomada da cena salva, abrir/avançar/fechar a mensagem. O percurso inteiro da Fase 01 não foi jogado fisicamente.
 - O arquivo de preferências do QA2 foi restaurado do backup temporário e o SHA-256 conferiu: `9f34d19485d298d875093a20d7fd89e11b7dea36dd48529e6327d1bfda07e02c`. Produção `dev.silencio.silencio` permaneceu intocada.
 - Capturas finais temporárias: `C:\Users\giovane\AppData\Local\Temp\silencio-mobile-qa\final-qa.png` (menu) e `final-game.png` (mundo). O save restaurado não foi reiniciado.
+
+## Aceitação da V3 da Fase 01 — 30/10/2026
+
+- Esta seção substitui as notas históricas acima sobre a condição de conclusão: na V3, a Fase 01 termina ao embarcar no ônibus da linha 203 após o pulso, a chegada do ônibus e a mensagem principal. Voltar para a cama já não conclui a fase.
+- O ônibus não pode ser embarcado antes dos pré-requisitos. A transição após embarcar grava os eventos de chegada/embarque/conclusão, salva a campanha e abre a tela de conclusão no ponto de ônibus.
+- Bia permanece no abrigo como personagem opcional; depois do pulso, Caio pode ler e responder à mensagem dela pelo celular. A resposta entra no diário e no save. Nando só aparece como motorista junto ao ônibus depois de sua chegada, em vez de vagar pela rua.
+- A interface usa seis marcos para refletir a sequência V3. As identificações internas legadas de Celina/Inês e Nando/Nestor foram preservadas para compatibilidade com saves existentes.
+- A rota automatizada percorre a missão até embarcar e conclui a fase; testes também cobrem tentativa prematura de embarque, descanso na cama sem conclusão e conversa opcional com Bia.
+- Verificação final: `flutter test --no-pub --reporter expanded` — 144 testes passaram; `flutter analyze --no-pub` — sem problemas; `flutter build web --release --no-pub --no-wasm-dry-run` — build concluída; `git diff --check` — sem erros de whitespace.
+- Limite desta aceitação: os testes automatizados verificam estado, progressão, posição e renderização. Esta rodada não substitui uma inspeção manual completa em Android nem confirma a composição visual em aparelho físico.

@@ -59,6 +59,7 @@ void main() {
         (d) => d['schema_version'] = 99,
         (d) => d['health'] = -2,
         (d) => d['events'] = ['finish'],
+        (d) => d['events'] = ['delivered', 'news', 'resolved', 'pulse', 'night', 'finish'],
         (d) => d['events'] = ['loot'],
         (d) => d['events'] = ['unknown'],
       ]) {

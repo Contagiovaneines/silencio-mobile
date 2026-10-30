@@ -11,7 +11,20 @@ ROOT = Path(__file__).resolve().parents[2]
 SOURCE = ROOT / 'tools/art/source/npc_views'
 NAMES = ['ines', 'orlando', 'nestor', 'marina', 'bia', 'davi']
 MAP = [('NE',False),('SW',True),('S',False),('SW',False),('W',False),('NW',True),('N',False),('NW',False)]
-RUN_MAP = [('W',True),('SE',True),('S',False),('SE',False),('W',False),('NW',False),('N',False),('NE',False)]
+# Backpack run inputs do not keep the same facing across all six source poses.
+# Normalize once per pose, in runtime row order E, SE, S, SW, W, NW, N, NE.
+# W/f5 faces right (W/f0-f4 face left); SE/f3-f5 and NW/f4-f5
+# also change side. NE/f5 already faces right and needs no extra mirror.
+RUN_MAP = [
+    ('W',  (True,  True,  True,  True,  True,  False)),
+    ('SE', (True,  True,  True,  False, False, False)),
+    ('S',  (False, False, False, False, False, False)),
+    ('SE', (False, False, False, True,  True,  True)),
+    ('W',  (False, False, False, False, False, True)),
+    ('NW', (False, False, False, False, True,  True)),
+    ('N',  (False, False, False, False, False, False)),
+    ('NE', (False, False, False, False, False, False)),
+]
 
 
 def normalize(image, height):
@@ -22,6 +35,33 @@ def normalize(image, height):
     result = Image.new('RGBA', (128,128))
     result.paste(image, (64-image.width//2,120-height))
     return result
+
+
+def nobag_locomotion_cells(sheet, state, target_height=97):
+    """Return Caio's authored 8x6 locomotion cells at one body scale.
+
+    Normalize each frame directly to the shared target. Scaling each frame by
+    its own source height first compounds pose-height differences and makes
+    Caio visibly change size between gait frames.
+    """
+    if state not in ('walk', 'run'):
+        raise ValueError(f'unsupported locomotion state: {state}')
+    sheet = sheet.convert('RGBA')
+    cells = [
+        [
+            sheet.crop((round(frame*sheet.width/6), round(direction*sheet.height/8),
+                        round((frame+1)*sheet.width/6), round((direction+1)*sheet.height/8)))
+            for frame in range(6)
+        ]
+        for direction in range(8)
+    ]
+    for direction, row in enumerate(cells):
+        for frame, image in enumerate(row):
+            skin = normalize(image, target_height)
+            if state == 'run' and frame == 5 and direction in (0, 4):
+                skin = skin.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+            cells[direction][frame] = skin
+    return cells
 
 
 def runs(image):
@@ -98,16 +138,15 @@ def main():
                 npc_actions['attack'][5+row]=views
                 npc_actions['guard'][5+row]=[views[0]]
     locomotion = {}
-    for state, mapping in [('walk',MAP),('run',RUN_MAP)]:
+    walk_map = [(direction, (mirror,) * 6) for direction, mirror in MAP]
+    for state, mapping in [('walk',walk_map),('run',RUN_MAP)]:
         locomotion[state] = []
-        for d,(direction, mirror) in enumerate(mapping):
+        for d,(direction, mirrors) in enumerate(mapping):
             views = []
             for f in range(6):
                 filename = f'user_caio_{direction}_{f}.png' if state=='walk' else f'run_{direction}_{f}.png'
                 skin = Image.open(ROOT / 'assets/images' / filename)
-                if mirror: skin = skin.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-                if state=='run' and f==5 and d in (0,4,7):
-                    skin=skin.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+                if mirrors[f]: skin = skin.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
                 views.append(runs(skin))
             locomotion[state].append(views)
     for state, poses in {'attack':['push_anticipation','push_contact','push_recover'], 'guard':['push_contact'], 'hurt':['hurt']}.items():
@@ -144,17 +183,8 @@ def main():
     modular_locomotion['caio_nobag']={}
     for state in ['walk','run']:
         sheet=Image.open(ROOT/f'tools/art/source/equipment_variants/caio_nobag_{state}_frames.png').convert('RGBA')
-        cells=[[sheet.crop((round(f*sheet.width/6),round(d*sheet.height/8),round((f+1)*sheet.width/6),round((d+1)*sheet.height/8))) for f in range(6)] for d in range(8)]
-        common=max(body_height(im) for row in cells for im in row)
-        frames=[]
-        for d,row in enumerate(cells):
-            poses=[]
-            for f,im in enumerate(row):
-                skin=normalize(im,round(97*body_height(im)/common))
-                if state=='run' and f==5 and d in (0,4):skin=skin.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-                poses.append(runs(skin))
-            frames.append(poses)
-        modular_locomotion['caio_nobag'][state]=frames
+        cells=nobag_locomotion_cells(sheet,state)
+        modular_locomotion['caio_nobag'][state]=[[runs(im) for im in row] for row in cells]
     output = ROOT / 'tools/art/actor_skins.px.js'
     output.write_text('// Original SILÊNCIO skins serialized as editable pixel spans.\nconst actorSkins = '+json.dumps(data,separators=(',',':'))+';\nconst caioActionSkins = '+json.dumps(actions,separators=(',',':'))+';\nconst caioLocomotionSkins = '+json.dumps(locomotion,separators=(',',':'))+';\nconst daviActionSkins = '+json.dumps(npc_actions,separators=(',',':'))+';\n',encoding='utf8')
     with output.open('a',encoding='utf8') as stream:

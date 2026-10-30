@@ -9,7 +9,7 @@ import 'package:silencio/services/save_repository.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('player completes phase 01 by walking, interacting and returning home', () async {
+  test('player completes phase 01 by walking, interacting and boarding the bus', () async {
     SharedPreferences.setMockInitialValues({});
     final repository = SaveRepository(await SharedPreferences.getInstance());
     final session = await GameSession.load(repository);
@@ -232,11 +232,35 @@ void main() {
     walk(35, 25);
     expect(session.campaign.has('alley'), isTrue);
     expect(world.encounterActive, isTrue);
+    world.setInput(1, 0);
+    tick(); // Turn toward Davi before the nonlethal shove.
+    world.setInput(0, 0);
+    session.push();
+    settleAction();
+    expect(world.enemyStun, greaterThan(0));
+    world.running = true;
     approach(PointKind.gate);
+    world.running = false;
     session.interact();
     expect(session.campaign.has('resolved'), isTrue);
     expect(world.encounterActive, isFalse);
     expect(session.campaign.health, greaterThan(0));
+    approach(PointKind.crossing);
+    session.interact();
+    expect(session.phase, PlayPhase.pulse);
+    for (
+      var frame = 0;
+      session.phase == PlayPhase.pulse && frame < 180;
+      frame++
+    ) {
+      tick();
+    }
+    dialogue();
+    expect(session.campaign.has('pulse'), isTrue);
+    session.phone();
+    dialogue();
+    expect(session.campaign.has('night'), isTrue);
+
     approach(PointKind.bus);
     expect(session.campaign.has('bus_arrived'), isFalse);
     for (var frame = 0; frame < 24; frame++) {
@@ -255,45 +279,12 @@ void main() {
     ) {
       session.tick(dt); // The bus owns its authored arrival position.
     }
-    expect(session.phase, PlayPhase.pulse);
-    expect(session.campaign.has('bus'), isTrue);
-    for (
-      var frame = 0;
-      session.phase == PlayPhase.pulse && frame < 180;
-      frame++
-    ) {
-      tick();
-    }
-    dialogue();
-    expect(session.campaign.has('pulse'), isTrue);
-    expect(session.campaign.finished, isFalse);
-    session.phone();
-    dialogue();
-    expect(session.campaign.has('night'), isTrue);
-
-    approach(PointKind.buildingDoor, id: 'entrada');
-    session.interact();
-    transition(0);
-    expect(session.campaign.y, lessThan(16));
-    approach(PointKind.stairsUp);
-    session.interact();
-    transition(1);
-    approach(PointKind.stairsUp);
-    session.interact();
-    transition(2);
-    approach(PointKind.apartmentDoor);
-    session.interact();
-    transition(2);
-    expect(session.campaign.y, lessThan(10));
-    approach(PointKind.bed);
-    session.interact();
     expect(session.phase, PlayPhase.complete);
-    expect(world.resting, 'lie');
     expect(session.campaign.finished, isTrue);
     await session.save();
     final saved = repository.load()!;
     expect(saved.finished, isTrue);
-    expect(saved.floor, 2);
+    expect(saved.floor, 0);
     expect(saved.has('night'), isTrue);
     expect(saved.history.any((line) => line.id == 'night_helena'), isTrue);
     expect(saved.bandages, 1);

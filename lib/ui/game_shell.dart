@@ -625,7 +625,7 @@ class _GameShellState extends State<GameShell>
           key: const Key('menu-continue'),
           title: tr('Continuar', 'Continue'),
           subtitle: s.hasSave
-              ? '${s.campaign.location} · ${s.campaign.evidenceCount}/5 ${tr('marcos', 'milestones')}'
+              ? '${s.campaign.location} · ${s.campaign.evidenceCount}/${Campaign.markerTotal} ${tr('marcos', 'milestones')}'
               : tr('Nenhum salvamento encontrado', 'No saved progress found'),
           icon: Icons.description_outlined,
           onPressed: s.hasSave ? _resume : null,
@@ -1100,7 +1100,7 @@ class _GameShellState extends State<GameShell>
                             ),
                             const SizedBox(width: 8),
                             Text(
-                              '${s.campaign.evidenceCount}/5 ${tr('MARCOS', 'MILESTONES')}',
+                              '${s.campaign.evidenceCount}/${Campaign.markerTotal} ${tr('MARCOS', 'MILESTONES')}',
                               style: const TextStyle(color: ochre, fontSize: 9),
                             ),
                           ],
@@ -1407,9 +1407,11 @@ class _GameShellState extends State<GameShell>
                 place == null
                     ? Icons.touch_app_outlined
                     : Icons.pan_tool_alt_outlined,
-                s.world.resting == 'sit'
+                s.world.resting == 'sit' || s.world.resting == 'typing'
                     ? tr('Levantar', 'Stand up')
-                    : place?.action ?? tr('Interagir', 'Interact'),
+                    : place == null
+                    ? tr('Interagir', 'Interact')
+                    : s.world.actionFor(place),
                 s.interact,
                 selected: place != null,
                 small: true,
@@ -1604,9 +1606,11 @@ class _GameShellState extends State<GameShell>
       'CAIO': 'caio',
       'HELENA': 'helena',
       'INÊS': 'ines',
+      'CELINA': 'ines',
       'ORLANDO': 'orlando',
-      'NESTOR': 'nestor',
+      'NANDO': 'nestor',
       'MARINA': 'marina',
+      'BIA': null,
     }[line?.speaker];
     return _scrim(
       Align(
@@ -2213,7 +2217,7 @@ class _GameShellState extends State<GameShell>
         ClipRRect(
           borderRadius: BorderRadius.circular(8),
           child: Image.asset(
-            'assets/images/video_placeholder_04_retorno_v01.png',
+            'assets/images/video_placeholder_01_abertura_v01.png',
             width: double.infinity,
             height: 190,
             fit: BoxFit.cover,
@@ -2236,7 +2240,7 @@ class _GameShellState extends State<GameShell>
         Text(
           s.campaign.inChapterTwo
               ? 'Mapa recolhido no posto de serviço. Helena espera na entrada dos fundos da oficina.\n“Estou indo.” A mensagem ainda não foi enviada. A Queda é o próximo capítulo, ainda em produção.'
-              : 'De volta ao apartamento. O pulso passou, mas o aviso de Helena ficou.\nHoje, às duas. O próximo capítulo começa nesse horário.',
+              : 'O ônibus da linha 203 parte sob a chuva. A mensagem de Helena continua no celular.\nHoje, às duas. O próximo capítulo começa nesse horário.',
           style: const TextStyle(
             color: Color(0xffb6c9bd),
             fontSize: 15,
@@ -2249,9 +2253,15 @@ class _GameShellState extends State<GameShell>
               ? (s.campaign.has('chapter2_rescue')
                     ? 'A vizinha ficou protegida. A chave abriu a passagem de serviço.'
                     : 'Você seguiu pela rota externa. A escolha ficou registrada.')
-              : s.campaign.has('help_ines')
-              ? 'Dona Inês se lembra da sua ajuda no hall.'
-              : 'O encontro terminou sem matar Davi.',
+              : [
+                  if (s.campaign.has('help_ines'))
+                    'Dona Celina se lembra da sua ajuda no hall.',
+                  if (s.campaign.has('answered_bia'))
+                    'Bia recebeu sua resposta escrita no abrigo.',
+                  if (!s.campaign.has('help_ines') &&
+                      !s.campaign.has('answered_bia'))
+                    'O encontro terminou sem matar Davi.',
+                ].join('\n'),
           style: const TextStyle(color: ochre, fontSize: 12, height: 1.5),
         ),
         const SizedBox(height: 20),
@@ -2735,7 +2745,7 @@ class _GameShellState extends State<GameShell>
         const Padding(
           padding: EdgeInsets.all(18),
           child: Text(
-            'No ônibus de Nestor · próxima esquina',
+            'No ônibus de Nando · próxima esquina',
             style: TextStyle(color: parchment, fontSize: 17),
           ),
         ),

@@ -31,23 +31,53 @@ void main() {
     b.update(.1);
     expect(b.facingX, closeTo(.7071, .001));
   });
-  test('street pedestrians do not pace without a story purpose', () {
+  test(
+    'Bia waits at the stop and Nando appears only beside the arriving bus',
+    () {
+      final campaign = Campaign()
+        ..floor = 0
+        ..x = 34
+        ..y = 28;
+      final world = WorldModel(campaign);
+
+      expect(
+        world.people.map((person) => person.id),
+        isNot(contains('nestor')),
+      );
+      expect(
+        world.people.map((person) => person.id),
+        isNot(contains('marina')),
+      );
+      expect(world.people.map((person) => person.id), contains('bia'));
+
+      campaign.events.addAll([
+        'delivered',
+        'news',
+        'resolved',
+        'pulse',
+        'night',
+        'bus_arrived',
+      ]);
+      final nando = world.people.singleWhere((person) => person.id == 'nestor');
+      final bus = world.visibleVehicles.singleWhere(
+        (vehicle) => vehicle.id == 'bus',
+      );
+      expect(bus.bounds.inflate(.8).contains(Offset(nando.x, nando.y)), isTrue);
+    },
+  );
+
+  test('Bia waits at the line 203 stop, not as a street-wandering NPC', () {
     final campaign = Campaign()
       ..floor = 0
-      ..x = 34
+      ..x = 48
       ..y = 28;
     final world = WorldModel(campaign);
 
-    expect(world.people.map((person) => person.id), isNot(contains('nestor')));
+    expect(world.people.map((person) => person.id), contains('bia'));
+    campaign.mark('pulse');
+    expect(world.people.map((person) => person.id), contains('bia'));
     expect(world.people.map((person) => person.id), isNot(contains('marina')));
-    expect(world.people.map((person) => person.id), isNot(contains('bia')));
-
-    campaign.mark('bus_arrived');
-    final nestor = world.people.singleWhere((person) => person.id == 'nestor');
-    expect(
-      (Offset(nestor.x, nestor.y) - WorldModel.busStop).distance,
-      lessThan(2),
-    );
+    expect(world.people.map((person) => person.id), isNot(contains('nestor')));
   });
 
   test(
@@ -191,6 +221,51 @@ void main() {
         reason: 'unreachable $kind at ${c.x},${c.y}',
       );
     }
+  });
+
+  test('apartment kitchen and bathroom keep a walkable approach', () {
+    for (final target in [const Offset(10.1, 4.65), const Offset(9.35, 8.05)]) {
+      final campaign = Campaign()
+        ..floor = 2
+        ..x = 6
+        ..y = 6;
+      final world = WorldModel(campaign);
+      world.setDoor('banheiro', true);
+      world.moveTo(target.dx, target.dy);
+      expect(
+        world.navigating,
+        isTrue,
+        reason: 'destination $target should be reachable from the living area',
+      );
+      for (var frame = 0; frame < 12000 && world.navigating; frame++) {
+        world.update(1 / 60);
+      }
+      expect(
+        world.navigating,
+        isFalse,
+        reason: 'navigation to $target should finish',
+      );
+      expect(world.canStand(campaign.x, campaign.y), isTrue);
+      expect(
+        (Offset(campaign.x, campaign.y) - target).distance,
+        lessThan(.8),
+        reason: 'stopped at ${campaign.x}, ${campaign.y} before $target',
+      );
+    }
+  });
+
+  test('mission items have a floor interaction point and a raised surface position', () {
+    final world = WorldModel(Campaign());
+    final key = world.allPlaces.singleWhere((p) => p.kind == PointKind.key);
+    final adapter = world.allPlaces.singleWhere(
+      (p) => p.kind == PointKind.adapter,
+    );
+    expect(key.displayAt, isNotNull);
+    expect(adapter.displayAt, isNotNull);
+    expect(key.displayHeight, greaterThan(0));
+    expect(adapter.displayHeight, greaterThan(0));
+    expect(world.canStand(key.x, key.y), isTrue);
+    expect(world.canStand(adapter.x, adapter.y), isTrue);
   });
   test('push has contact delay and costs stamina once', () {
     final c = Campaign()

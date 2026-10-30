@@ -40,11 +40,13 @@ class ResidentialLayout {
   static const apartment203 = Rect.fromLTRB(2, 2, 12, 10);
   static const apartment202 = Rect.fromLTRB(12, 2, 18, 10);
   static const apartment201 = Rect.fromLTRB(18, 2, 24, 10);
-  static const bathroom = Rect.fromLTRB(8, 7, 12, 10);
+  // The bathroom is widened into the former dead strip beside the living area.
+  // It stays inside unit 203 and gives the fixtures a real approach lane.
+  static const bathroom = Rect.fromLTRB(7.4, 7, 12, 10);
   static const down = Offset(10, 14.5);
   static const up = Offset(4.7, 14.5);
   static const doors = [
-    BuildingDoor('203', 2, Offset(7, 10), Offset(7, 9.15), Offset(7, 10.85)),
+    BuildingDoor('203', 2, Offset(7, 10), Offset(6.6, 9.15), Offset(7, 10.85)),
     BuildingDoor(
       '202',
       2,
@@ -92,7 +94,13 @@ class ResidentialLayout {
       Offset(7, 15.15),
       Offset(7, 16.85),
     ),
-    BuildingDoor('banheiro', 2, Offset(9, 7), Offset(9, 7.85), Offset(9, 6.15)),
+    BuildingDoor(
+      'banheiro',
+      2,
+      Offset(8.35, 7),
+      Offset(8.35, 7.85),
+      Offset(8.35, 6.15),
+    ),
   ];
 
   static const windows = [
@@ -123,10 +131,9 @@ class ResidentialLayout {
       // generous doorless passages through each divider for mobile navigation.
       yield const Rect.fromLTRB(1.98, 5.38, 4.65, 5.66);
       yield const Rect.fromLTRB(7.82, 1.98, 8.1, 4.75);
-      yield const Rect.fromLTRB(7.82, 5.85, 8.1, 7.0);
-      yield const Rect.fromLTRB(7.82, 7, 8.18, 10);
-      yield const Rect.fromLTRB(8, 6.82, 8.1, 7.18);
-      yield const Rect.fromLTRB(9.9, 6.82, 12, 7.18);
+      yield const Rect.fromLTRB(7.4, 7, 7.62, 10);
+      yield const Rect.fromLTRB(7.4, 6.82, 7.5, 7.18);
+      yield const Rect.fromLTRB(9.2, 6.82, 12, 7.18);
     }
     // The front wall has openings supplied by the door definitions.
     if (floor > 0) {
@@ -173,6 +180,3 @@ class ResidentialLayout {
     }
   }
 }
-
-
-

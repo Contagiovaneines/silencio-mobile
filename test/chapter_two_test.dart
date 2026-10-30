@@ -70,6 +70,8 @@ void main() {
       'resolved',
       'pulse',
       'night',
+      'bus_arrived',
+      'bus',
       'finish',
       'weapon',
       'enemy_defeated',
@@ -127,6 +129,8 @@ void main() {
         'resolved',
         'pulse',
         'night',
+        'bus_arrived',
+        'bus',
         'finish',
       ]);
       s.startChapterTwo();

@@ -27,7 +27,10 @@ enum PointKind {
   weapon,
   neighbor,
   merchant,
+  busPassenger,
   television,
+  homeTelevision,
+  lightSwitch,
   panel,
   sedan,
   water,
@@ -58,12 +61,30 @@ class Place {
     this.action, {
     this.floor = 0,
     this.id,
+    this.displayAt,
+    this.displayHeight = 0,
   });
   final String? id;
+
+  /// Optional raised rendering anchor for items displayed on furniture.
+  final Offset? displayAt;
+  final double displayHeight;
   final int floor;
   final PointKind kind;
   final double x, y;
   final String label, action;
+
+  Place at(Offset position) => Place(
+    kind,
+    position.dx,
+    position.dy,
+    label,
+    action,
+    floor: floor,
+    id: id,
+    displayAt: displayAt,
+    displayHeight: displayHeight,
+  );
 
   String? get floatingLabel => switch (kind) {
     PointKind.apartmentDoor || PointKind.buildingDoor => null,
@@ -101,6 +122,7 @@ class Furnishing {
   final Rect bounds;
   final String kind;
   final double height;
+
   /// Optional original PNG name from the approved refined apartment pack.
   final String? sprite;
   final bool collidable;
@@ -312,7 +334,7 @@ class WorldModel {
       sprite: 'guarda_roupa_B',
     ),
     Furnishing(
-      Rect.fromLTRB(5.15, 3.4, 5.75, 4.25),
+      Rect.fromLTRB(5.0, 3.55, 5.55, 4.15),
       'bedside',
       28,
       floor: 2,
@@ -379,21 +401,21 @@ class WorldModel {
       sprite: 'balcao_cuba_A',
     ),
     Furnishing(
-      Rect.fromLTRB(8.45, 2.55, 9.35, 3.45),
+      Rect.fromLTRB(8.35, 3.15, 9.15, 3.95),
       'stove',
       34,
       floor: 2,
       sprite: 'fogao_B',
     ),
     Furnishing(
-      Rect.fromLTRB(10.95, 3.55, 11.75, 4.7),
+      Rect.fromLTRB(11.0, 3.45, 11.8, 4.55),
       'fridge',
       44,
       floor: 2,
       sprite: 'geladeira_fechada_A',
     ),
     Furnishing(
-      Rect.fromLTRB(8.35, 3.65, 9.55, 4.4),
+      Rect.fromLTRB(8.35, 2.3, 9.55, 3.0),
       'wall_cabinet',
       42,
       floor: 2,
@@ -401,21 +423,21 @@ class WorldModel {
       collidable: false,
     ),
     Furnishing(
-      Rect.fromLTRB(9.45, 5.0, 10.95, 6.25),
+      Rect.fromLTRB(9.45, 5.3, 10.55, 6.1),
       'dining_table',
       38,
       floor: 2,
       sprite: 'mesa_jantar_A',
     ),
     Furnishing(
-      Rect.fromLTRB(9.45, 6.3, 10.2, 6.75),
+      Rect.fromLTRB(10.6, 5.35, 11.0, 5.75),
       'chair',
       26,
       floor: 2,
       sprite: 'cadeira_A',
     ),
     Furnishing(
-      Rect.fromLTRB(11.1, 5.2, 11.8, 6.0),
+      Rect.fromLTRB(9.25, 6.25, 9.7, 6.7),
       'chair',
       26,
       floor: 2,
@@ -434,28 +456,28 @@ class WorldModel {
     Furnishing(Rect.fromLTRB(31.8, 31.2, 32.8, 32), 'street_tree', 76),
     Furnishing(Rect.fromLTRB(40.5, 31.2, 41.5, 32), 'street_tree', 76),
     Furnishing(
-      Rect.fromLTRB(8.2, 8.35, 9.25, 9.05),
+      Rect.fromLTRB(7.65, 8.1, 8.4, 8.8),
       'basin',
       30,
       floor: 2,
       sprite: 'gabinete_pia_A',
     ),
     Furnishing(
-      Rect.fromLTRB(9.5, 9.15, 10.25, 9.75),
+      Rect.fromLTRB(8.85, 9.0, 9.45, 9.55),
       'toilet',
       25,
       floor: 2,
       sprite: 'vaso_sanitario_B',
     ),
     Furnishing(
-      Rect.fromLTRB(10.55, 7.55, 11.8, 9.55),
+      Rect.fromLTRB(10.35, 7.65, 11.65, 9.15),
       'shower',
       38,
       floor: 2,
       sprite: 'box_chuveiro_A',
     ),
     Furnishing(
-      Rect.fromLTRB(9.45, 8.15, 10.15, 8.75),
+      Rect.fromLTRB(9.4, 8.1, 9.95, 8.65),
       'bathmat',
       15,
       floor: 2,
@@ -463,7 +485,7 @@ class WorldModel {
       collidable: false,
     ),
     Furnishing(
-      Rect.fromLTRB(9.45, 7.35, 10.0, 8.05),
+      Rect.fromLTRB(9.2, 7.55, 9.75, 8.0),
       'bathroom_mirror',
       38,
       floor: 2,
@@ -471,7 +493,7 @@ class WorldModel {
       collidable: false,
     ),
     Furnishing(
-      Rect.fromLTRB(11.1, 6.55, 11.7, 7.1),
+      Rect.fromLTRB(11.15, 9.25, 11.75, 9.8),
       'laundry',
       21,
       floor: 2,
@@ -498,8 +520,9 @@ class WorldModel {
             const Person('orlando', 36, 25)
           else
             const Person('orlando', 28, 22),
-          if (campaign.has('bus_arrived'))
-            Person('nestor', busStop.dx - .7, busStop.dy),
+          if (campaign.busReady && campaign.has('bus_arrived'))
+            Person('nestor', busBay.dx - 1, busBay.dy - .7),
+          const Person('bia', 40.5, 24.6),
           if (campaign.has('resolved') && !campaign.has('enemy_defeated'))
             const Person('davi', 38, 25),
         ];
@@ -533,7 +556,10 @@ class WorldModel {
   Iterable<Vehicle> get visibleVehicles {
     if (campaign.floor != 0) return const <Vehicle>[];
     return vehicles
-        .where((v) => v.id != 'bus' || campaign.has('bus_arrived'))
+        .where(
+          (v) =>
+              v.id != 'bus' || campaign.busReady && campaign.has('bus_arrived'),
+        )
         .map(
           (v) => v.id == 'bus'
               ? v.at(Offset.lerp(v.position, busBay, _busArrivalProgress)!)
@@ -565,7 +591,14 @@ class WorldModel {
       campaign.floor,
       Offset(campaign.x, campaign.y),
     );
-    return allPlaces.where((p) {
+    final availablePlaces = allPlaces.map((place) {
+      if (place.kind != PointKind.apartmentDoor || campaign.floor != 2) {
+        return place;
+      }
+      final door = ResidentialLayout.door('203');
+      return place.at(unit == null ? door.outside : door.inside);
+    });
+    return availablePlaces.where((p) {
       if (p.floor != campaign.floor) return false;
       final position = Offset(p.x, p.y);
       if (unit == null) {
@@ -622,9 +655,14 @@ class WorldModel {
               id: d.id,
             ),
           const Place(PointKind.sofa, 5.05, 6.42, 'Sofá', 'Sentar', floor: 2),
-          const Place(PointKind.chair,
-              7.5,
-              4.3, 'Cadeira', 'Sentar', floor: 2),
+          const Place(
+            PointKind.chair,
+            7.85,
+            4.35,
+            'Cadeira',
+            'Sentar',
+            floor: 2,
+          ),
           const Place(
             PointKind.wardrobe,
             5.25,
@@ -635,24 +673,40 @@ class WorldModel {
           ),
           const Place(
             PointKind.refrigerator,
-            10.5,
-            4.5,
+            11.5,
+            5.2,
             'Geladeira',
             'Abrir geladeira',
             floor: 2,
           ),
           const Place(
             PointKind.notebook,
-            6.4,
-            4.5,
+            6.35,
+            4.35,
             'Notebook',
             'Usar notebook',
             floor: 2,
           ),
           const Place(
+            PointKind.homeTelevision,
+            4.95,
+            8.2,
+            'Televisão',
+            'Ligar TV',
+            floor: 2,
+          ),
+          const Place(
+            PointKind.lightSwitch,
+            6.5,
+            9.1,
+            'Interruptor',
+            'Apagar luzes',
+            floor: 2,
+          ),
+          const Place(
             PointKind.bathroom,
-            9.8,
-            8.5,
+            9.45,
+            8.05,
             'Banheiro',
             'Examinar',
             floor: 2,
@@ -724,25 +778,29 @@ class WorldModel {
           if (!campaign.has('key'))
             const Place(
               PointKind.key,
-              9,
-              4.7,
+              5.7,
+              4.5,
               'Chave de casa',
               'Pegar chave',
               floor: 2,
+              displayAt: Offset(5.3, 3.85),
+              displayHeight: 22,
             ),
           if (!campaign.has('adapter'))
             const Place(
               PointKind.adapter,
-              8.8,
-              5.5,
+              9.55,
+              4.25,
               'Adaptador',
               'Recolher',
               floor: 2,
+              displayAt: Offset(10.65, 2.7),
+              displayHeight: 24,
             ),
           const Place(
             PointKind.bed,
-            5.55,
-            4.7,
+            5.0,
+            2.4,
             'Cama · salvar o dia',
             'Descansar',
             floor: 2,
@@ -751,7 +809,7 @@ class WorldModel {
             PointKind.neighbor,
             inesX,
             11.5,
-            'Dona Inês · 202',
+            'Dona Celina · 202',
             'Ajudar',
             floor: 2,
           ),
@@ -799,15 +857,23 @@ class WorldModel {
             PointKind.bus,
             43.5,
             29.5,
-            'Parada · Nestor',
+            'Ponto · linha 203',
             'Aguardar ônibus',
           ),
+          if (!campaign.has('answered_bia'))
+            const Place(
+              PointKind.busPassenger,
+              40.5,
+              24.6,
+              'Bia · abrigo da linha 203',
+              'Ler mensagem',
+            ),
           const Place(
             PointKind.crossing,
             48.5,
             28,
-            'Passagem a pé',
-            'Seguir a pé',
+            'Cruzamento',
+            'Observar a rua',
           ),
           Place(
             PointKind.dog,
@@ -1079,6 +1145,15 @@ class WorldModel {
   bool get inResidence =>
       campaign.floor > 0 ||
       ResidentialLayout.corridor.contains(Offset(campaign.x, campaign.y));
+  String actionFor(Place place) => switch (place.kind) {
+    PointKind.homeTelevision =>
+      campaign.has('home_tv_on') ? 'Desligar TV' : 'Ligar TV',
+    PointKind.lightSwitch =>
+      campaign.has('home_lights_off') ? 'Acender luzes' : 'Apagar luzes',
+    PointKind.buildingDoor when place.id == 'banheiro' =>
+      doorIsOpen('banheiro') ? 'Fechar porta' : 'Abrir porta',
+    _ => place.action,
+  };
   bool doorIsOpen(String id) =>
       id == '203' ? doorOpen : campaign.openDoors.contains(id);
   bool windowIsOpen(String id) =>
@@ -1259,13 +1334,21 @@ class WorldModel {
         kind == PointKind.window;
     for (final p in places) {
       final next = distance(p.x, p.y);
-      final range = p.kind == PointKind.chair || p.kind == PointKind.sofa
+      final seated = p.kind == PointKind.chair || p.kind == PointKind.sofa;
+      final pickup =
+          p.kind == PointKind.key ||
+          p.kind == PointKind.adapter ||
+          p.kind == PointKind.weapon;
+      final portal = isPortal(p.kind);
+      final range = portal
+          ? 1.85
+          : seated || pickup
           ? .85
-          : 1.85;
+          : 1.35;
       // A nearby portal gets the contextual action while Caio is at its
       // threshold, even if a collectible lies a few pixels closer. This
       // prevents a key or adapter from stealing the door/window interaction.
-      final portalAtThreshold = isPortal(p.kind) && next < 1.1;
+      final portalAtThreshold = portal && next < 1.1;
       final nearestPortalAtThreshold =
           nearest != null && isPortal(nearest.kind) && bestDistance < 1.1;
       if (portalAtThreshold && !nearestPortalAtThreshold) {
@@ -1403,6 +1486,12 @@ class WorldModel {
     }
     var goal = (x.floor(), y.floor());
     final start = (campaign.x.floor(), campaign.y.floor());
+    final actorPosition = Offset(campaign.x, campaign.y);
+    final startCenter = Offset(start.$1 + .5, start.$2 + .5);
+    final centerStartIsReachable =
+        canStand(startCenter.dx, startCenter.dy) &&
+        canTravel(actorPosition, startCenter);
+    final routeStart = centerStartIsReachable ? startCenter : actorPosition;
     final queue = Queue<(int, int)>()..add(start);
     final previous = <(int, int), (int, int)?>{start: null};
     while (queue.isNotEmpty) {
@@ -1411,7 +1500,7 @@ class WorldModel {
       for (final s in [(1, 0), (-1, 0), (0, 1), (0, -1)]) {
         final n = (here.$1 + s.$1, here.$2 + s.$2);
         final from = here == start
-            ? Offset(campaign.x, campaign.y)
+            ? routeStart
             : Offset(here.$1 + .5, here.$2 + .5);
         if (previous.containsKey(n) ||
             !canStand(n.$1 + .5, n.$2 + .5) ||
@@ -1443,6 +1532,9 @@ class WorldModel {
     }
     path
       ..clear()
+      ..addAll(
+        centerStartIsReachable && start != goal ? [startCenter] : const [],
+      )
       ..addAll(reverse.reversed);
     _destination = path.isEmpty ? null : Offset(x, y);
   }
@@ -1498,7 +1590,7 @@ class WorldModel {
     simulationTime += dt;
     if (campaign.stamina <= 15) recoveringBreath = true;
     if (campaign.stamina >= 99.9) recoveringBreath = false;
-    if (campaign.floor == 0 && campaign.canLeave && !campaign.has('bus')) {
+    if (campaign.floor == 0 && campaign.busReady && !campaign.has('bus')) {
       if (!campaign.has('bus_arrived') &&
           (Offset(campaign.x, campaign.y) - busStop).distance <= 1.7) {
         _busWaitTime += dt;
@@ -1850,19 +1942,3 @@ class WorldModel {
     return true;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

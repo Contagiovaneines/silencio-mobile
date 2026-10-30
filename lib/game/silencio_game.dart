@@ -464,6 +464,8 @@ class SilencioGame extends FlameGame {
         >[];
     final farWalls = <Rect>[];
     final nearWalls = <Rect>[];
+    final restingSupportDraws = <int>{};
+    var playerDrawIndex = -1;
     for (final block in WorldModel.blocks.where(
       (b) => b.floor == session.campaign.floor && _onScreen(b.bounds),
     )) {
@@ -597,29 +599,33 @@ class SilencioGame extends FlameGame {
     for (final furniture in session.world.visibleFurniture.where(
       (f) => _onScreen(f.bounds),
     )) {
-      final anchor = session.world.restAnchor;
-      final resting = session.world.resting;
-      final isRestingOnThis = resting == 'lie' && furniture.kind == 'bed' ||
-          resting == 'sit' &&
-              anchor != null &&
-              ((anchor.dx < 5 && furniture.kind == 'sofa') ||
-                  (anchor.dx >= 5 && furniture.kind == 'chair'));
-      if (isRestingOnThis) continue;
       final b = furniture.bounds;
+      final drawIndex = draws.length;
       draws.add((
         depth: b.center.dx + b.center.dy,
         footprint: b,
         position: null,
         draw: () => _furniture(c, furniture),
       ));
+      if (furniture.floor == session.campaign.floor &&
+          const {'bed', 'sofa', 'chair'}.contains(furniture.kind)) {
+        restingSupportDraws.add(drawIndex);
+      }
     }
     final player = session.campaign;
+    final restingPosition = session.world.restAnchor;
+    final actorPosition =
+        session.world.resting != null && restingPosition != null
+        ? restingPosition
+        : Offset(player.x, player.y);
+    playerDrawIndex = draws.length;
     draws.add((
-      depth: player.x + player.y + (session.world.playerElevation > 0 ? 3 : 0),
+      depth:
+          actorPosition.dx +
+          actorPosition.dy +
+          (session.world.playerElevation > 0 ? 3 : 0),
       footprint: null,
-      position: session.world.playerElevation > 0
-          ? null
-          : Offset(player.x, player.y),
+      position: session.world.playerElevation > 0 ? null : actorPosition,
       draw: () {
         if (session.phase == PlayPhase.transit) return;
         _actor(
@@ -657,7 +663,14 @@ class SilencioGame extends FlameGame {
             projectedX > bounds.right - bounds.top) {
           continue;
         }
-        final inFront = point.dy >= bounds.bottom || point.dx >= bounds.right;
+        final supportBeforeRestingActor =
+            session.world.resting != null &&
+            j == playerDrawIndex &&
+            restingSupportDraws.contains(i);
+        final inFront =
+            supportBeforeRestingActor ||
+            point.dy >= bounds.bottom ||
+            point.dx >= bounds.right;
         final from = inFront ? i : j;
         final to = inFront ? j : i;
         if (edges[from].add(to)) incoming[to]++;
@@ -678,7 +691,43 @@ class SilencioGame extends FlameGame {
     for (final wall in nearWalls) {
       _structuralWall(c, wall);
     }
-    if (session.phase != PlayPhase.buildingTransition) {
+    final lightingUnit = occupiedUnit;
+    if (lightingUnit != null &&
+        lightingUnit == ResidentialLayout.apartment203 &&
+        (session.campaign.has('home_lights_off') ||
+            session.campaign.has('home_tv_on'))) {
+      c.save();
+      if (session.campaign.has('home_lights_off')) {
+        c.clipPath(
+          _poly([
+            iso(lightingUnit.left, lightingUnit.top),
+            iso(lightingUnit.right, lightingUnit.top),
+            iso(lightingUnit.right, lightingUnit.bottom),
+            iso(lightingUnit.left, lightingUnit.bottom),
+          ]),
+        );
+        c.drawRect(
+          Rect.fromLTRB(-size.x * 2, -size.y * 2, size.x * 2, size.y * 2),
+          _paint(const Color(0x8c07131a)),
+        );
+      }
+      if (session.campaign.has('home_tv_on')) {
+        final screen = iso(3.45, 8.55);
+        c.drawCircle(
+          screen - const Offset(0, 24),
+          60,
+          Paint()
+            ..shader = ui.Gradient.radial(screen - const Offset(0, 24), 60, [
+              const Color(0x503a9db4),
+              const Color(0x003a9db4),
+            ]),
+        );
+      }
+      c.restore();
+    }
+    if (session.phase != PlayPhase.buildingTransition &&
+        session.phase != PlayPhase.objectPanel &&
+        session.world.resting == null) {
       final nearby = session.world.nearby;
       final placeLabels = session.world.perception
           ? session.world.places
@@ -1366,10 +1415,7 @@ class SilencioGame extends FlameGame {
     const doorCenterX = 7.0;
     final landingLeft = math.max(unit.left, doorCenterX - 2.0);
     final landingRight = math.min(unit.right, doorCenterX + 2.0);
-    final endY = math.min(
-      unit.bottom + 2.5,
-      ResidentialLayout.corridor.bottom,
-    );
+    final endY = math.min(unit.bottom + 2.5, ResidentialLayout.corridor.bottom);
     final landing = _poly([
       iso(landingLeft, unit.bottom),
       iso(landingRight, unit.bottom),
@@ -2243,8 +2289,8 @@ class SilencioGame extends FlameGame {
         ),
         _paint(const Color(0x38201913)),
       );
-      final actor = iso(session.campaign.x, session.campaign.y) -
-          const Offset(0, 35);
+      final actor =
+          iso(session.campaign.x, session.campaign.y) - const Offset(0, 35);
       final destination = Rect.fromLTWH(
         center.dx - width / 2,
         bottom - height,
@@ -2262,12 +2308,35 @@ class SilencioGame extends FlameGame {
             255,
             255,
             destination.contains(actor) &&
-                    session.campaign.x + session.campaign.y <
-                        b.right + b.bottom
+                    session.campaign.x + session.campaign.y < b.right + b.bottom
                 ? .45
                 : 1,
           ),
       );
+      if (kind == 'television') {
+        final on = session.campaign.has('home_tv_on');
+        final screen = Rect.fromLTWH(
+          destination.left + width * .22,
+          destination.top + height * .13,
+          width * .48,
+          height * .45,
+        );
+        c.drawRRect(
+          RRect.fromRectAndRadius(screen, const Radius.circular(3)),
+          _paint(on ? const Color(0xff64b6c0) : const Color(0xff121b20)),
+        );
+        if (on) {
+          c.drawRect(
+            screen.deflate(3),
+            Paint()
+              ..shader = ui.Gradient.linear(
+                screen.topLeft,
+                screen.bottomRight,
+                [const Color(0xffb8e5d0), const Color(0xff467e89)],
+              ),
+          );
+        }
+      }
       return;
     }
     final packSpriteKey = switch (kind) {
@@ -2775,12 +2844,37 @@ class SilencioGame extends FlameGame {
 
       case PointKind.television:
         _prop(c, 3, p, 48);
+      case PointKind.homeTelevision:
+        // The on/off screen is drawn on the apartment's TV furniture.
+        break;
+      case PointKind.lightSwitch:
+        final plate = Rect.fromCenter(
+          center: p - const Offset(0, 35),
+          width: 13,
+          height: 20,
+        );
+        c.drawRRect(
+          RRect.fromRectAndRadius(plate, const Radius.circular(3)),
+          _paint(const Color(0xffd4c9aa)),
+        );
+        c.drawRRect(
+          RRect.fromRectAndRadius(plate.deflate(3), const Radius.circular(2)),
+          _paint(
+            session.campaign.has('home_lights_off')
+                ? const Color(0xff5b5650)
+                : amber,
+          ),
+        );
       case PointKind.panel:
         _prop(c, 2, p, 32);
       case PointKind.adapter:
       case PointKind.key:
       case PointKind.water:
       case PointKind.weapon:
+        final display = place.displayAt == null
+            ? p
+            : iso(place.displayAt!.dx, place.displayAt!.dy) -
+                  Offset(0, place.displayHeight);
         final name = place.kind == PointKind.adapter
             ? 'adapter'
             : place.kind == PointKind.key
@@ -2798,11 +2892,11 @@ class SilencioGame extends FlameGame {
               image.width.toDouble(),
               image.height.toDouble(),
             ),
-            Rect.fromLTWH(p.dx - 14, p.dy - 24, 28, 28),
+            Rect.fromLTWH(display.dx - 14, display.dy - 24, 28, 28),
             Paint(),
           );
         } else {
-          c.drawCircle(p - const Offset(0, 8), 5, _paint(amber));
+          c.drawCircle(display - const Offset(0, 8), 5, _paint(amber));
         }
       case PointKind.gate:
         final a = iso(40.9, 24), b = iso(40.9, 27.8);
@@ -3099,12 +3193,14 @@ class SilencioGame extends FlameGame {
     double dy,
     bool moving,
   ) {
+    final resting = session.world.resting;
+    final restAnchor = session.world.restAnchor;
+    final actorGround = name == 'caio' && resting != null && restAnchor != null
+        ? restAnchor
+        : session.world.playerDrawPosition;
     final p =
         (name == 'caio'
-            ? iso(
-                    session.world.playerDrawPosition.dx,
-                    session.world.playerDrawPosition.dy,
-                  ) -
+            ? iso(actorGround.dx, actorGround.dy) -
                   Offset(0, session.world.playerElevation)
             : iso(x, y)) +
         Offset(
@@ -3118,9 +3214,9 @@ class SilencioGame extends FlameGame {
     if (name != 'caio' && name != 'dominated') {
       final motion = session.world.npcMotion(name);
       final speaker = const {
-        'ines': 'INÊS',
+        'ines': 'CELINA',
         'orlando': 'ORLANDO',
-        'nestor': 'NESTOR',
+        'nestor': 'NANDO',
         'marina': 'MARINA',
         'bia': 'BIA',
         'davi': 'DAVI',
@@ -3253,25 +3349,23 @@ class SilencioGame extends FlameGame {
         (session.phase == PlayPhase.playing ||
             session.phase == PlayPhase.buildingTransition);
     final rest = session.world.resting;
-    if ((rest == 'sit' || rest == 'lie') &&
+    if ((rest == 'sit' || rest == 'lie' || rest == 'typing') &&
         session.world.restAnchor != null) {
       final anchor = session.world.restAnchor!;
-      final asset = rest == 'lie'
-          ? 'caio_deitado_cama'
-          : anchor.dx < 5
-          ? 'caio_sentado_sofa'
-          : 'caio_sentado_cadeira';
-      final source = _refinedSources[asset];
-      final atlas = _sprites['apartment_refined'];
+      final source = _homeSources[rest];
+      final atlas = _sprites['caio_home_poses'];
       if (source != null && atlas != null) {
-        final height = 112.0;
+        // Rest poses are compact like the live actor's 80×90 frame. The
+        // original atlas was being rendered at its source-photo proportions,
+        // which made Caio look larger and softer when he stopped moving.
+        final height = rest == 'lie' ? 48.0 : 68.0;
         final width = height * source.width / source.height;
         final at = iso(anchor.dx, anchor.dy);
         c.drawImageRect(
           atlas,
           source,
           Rect.fromLTWH(at.dx - width / 2, at.dy - height, width, height),
-          Paint()..filterQuality = FilterQuality.medium,
+          Paint()..filterQuality = FilterQuality.none,
         );
         return;
       }

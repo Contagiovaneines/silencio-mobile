@@ -2,9 +2,9 @@
 
 | Entidade/estado | Implementação | Pendência artística |
 |---|---|---|
-| Caio parado | pose por direção revisada; mantém orientação | dois quadros reais de idle por vista |
-| Caio andar | seis quadros por ciclo; avanço ligado à distância percorrida | revisar todas as transições e vistas espelhadas |
-| Caio correr | seis quadros do pacote, fôlego e cadência por deslocamento | revisão visual das vistas geradas |
+| Caio parado | atlas de 4 quadros em oito direções; respiração discreta | conferir variação em tela pequena e transições |
+| Caio andar | atlas completo de 6 quadros em oito direções; avanço ligado à distância percorrida | revisar apoio plantar em movimento e vistas sem mochila |
+| Caio correr | atlas completo de 6 quadros em oito direções; orientação por quadro normalizada no gerador; corrida depende de fôlego | revisar apoio plantar e deriva da família sem mochila; Android pendente |
 | Caio empurrar | antecipação → contato → recuperação, 0,65 s | interpolação entre poses e quarto quadro |
 | Caio impacto | pose de reação, interrupção e ferimento | segundo quadro e recuo desenhado |
 | Caio pegar/curar/cair | poses específicas; cura consome no contato | transições completas, levantar e recuperação |
@@ -16,7 +16,8 @@
 
 ## Regras do motor
 
-- Fonte 128 × 128; pivô humano (64,120), apresentação 80 × 80. Colisão usa pés, sem incluir o retângulo transparente do PNG.
+- Atlas atuais de Caio: célula 128 × 144, pivô (64,119), apresentação 80 × 90 por nearest-neighbor. Não aplicar esses números automaticamente às imagens legadas de outros personagens.
+- Ordem das linhas de Caio: E, SE, S, SW, W, NW, N, NE. A seleção considera a projeção isométrica do mundo.
 - `SpriteFacing` é o único dono da adaptação entre direção da tela e arquivos. Caminhada/poses e corrida têm tabelas próprias, pois o erro de rótulo é diferente entre esses lotes. O rótulo NE do lote corresponde visualmente a uma vista lateral; não é usado cegamente como ângulo de câmera.
 - Movimento é normalizado. A animação avança por distância efetivamente percorrida; encostar na parede não faz os pés continuarem andando.
 - Empurrão só causa efeito no instante de contato, dentro de alcance, na frente de Caio e sem obstáculo no segmento.

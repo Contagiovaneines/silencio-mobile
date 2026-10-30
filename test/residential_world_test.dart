@@ -134,14 +134,25 @@ void main() {
     expect(s.world.nearby!.id, 'banheiro');
     s.interact();
     finish();
+    expect(s.world.doorIsOpen('banheiro'), isTrue);
+    s.world.moveTo(8.35, 7.85);
+    for (var i = 0; i < 600 && s.world.navigating; i++) {
+      s.tick(1 / 60);
+    }
     expect(
       ResidentialLayout.bathroom.contains(Offset(s.campaign.x, s.campaign.y)),
       isTrue,
     );
     expect(s.world.isOpen(9, 7), isFalse);
+    s.world.moveTo(8.35, 6.15);
+    for (var i = 0; i < 600 && s.world.navigating; i++) {
+      s.tick(1 / 60);
+    }
+    expect(s.campaign.y, lessThan(7));
+    expect(s.world.nearby?.id, 'banheiro');
     s.interact();
     finish();
-    expect(s.campaign.y, lessThan(7));
+    expect(s.world.doorIsOpen('banheiro'), isFalse);
   });
 
   test(

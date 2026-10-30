@@ -96,6 +96,7 @@ class Campaign {
     'bus',
     'pulse',
     'night',
+    'answered_bia',
     'finish',
     'dog',
     'cat',
@@ -112,6 +113,8 @@ class Campaign {
     'chapter2_shortcut',
     'chapter2_enemy_down',
     'chapter2_complete',
+    'home_tv_on',
+    'home_lights_off',
   };
   bool has(String id) => events.contains(id);
   bool mark(String id) {
@@ -130,8 +133,16 @@ class Campaign {
 
   bool get finished => inChapterTwo ? has('chapter2_complete') : has('finish');
   bool get canLeave => has('delivered') && has('news') && has('resolved');
-  int get evidenceCount =>
-      ['delivered', 'news', 'resolved', 'pulse', 'night'].where(has).length;
+  bool get busReady => canLeave && has('pulse') && has('night');
+  int get evidenceCount => [
+    'delivered',
+    'news',
+    'resolved',
+    'pulse',
+    'night',
+    'bus',
+  ].where(has).length;
+  static const markerTotal = 6;
   String get objective {
     if (inChapterTwo) {
       if (finished) {
@@ -177,19 +188,19 @@ class Campaign {
     if (!has('resolved')) {
       return 'Atravesse o beco: crie distância ou feche o portão.';
     }
+    if (!has('pulse')) return 'Siga até o cruzamento. A cidade está mudando.';
+    if (!has('night')) return 'Confira a nova mensagem de Helena no celular.';
     if (!has('bus')) {
       if (has('bus_arrived')) {
-        return 'O ônibus chegou. Embarque com Nestor na parada.';
+        return 'O ônibus da linha 203 chegou. Embarque no ponto.';
       }
       if (floor == 0 &&
           (Offset(x, y) - const Offset(43.5, 29.5)).distance < 2) {
-        return 'Aguarde na parada. O ônibus de Nestor está chegando.';
+        return 'Aguarde no ponto. O ônibus da linha 203 está chegando.';
       }
-      return 'Siga até a parada e aguarde o ônibus de Nestor.';
+      return 'Siga até o ponto da Rua das Flores e aguarde a linha 203.';
     }
-    if (!has('pulse')) return 'No trajeto, observe o que acontece na cidade.';
-    if (!has('night')) return 'Leia a mensagem de Helena no celular.';
-    return 'Volte ao apartamento 203, no 2º andar, e use a cama.';
+    return 'Aguarde a partida do ônibus.';
   }
 
   String get location => floor == 2
@@ -253,8 +264,15 @@ class Campaign {
     if (has('help_ines'))
       const JournalEntry(
         'ines',
-        'A sacola de Dona Inês',
+        'A sacola de Dona Celina',
         'Ajudei a recolher as compras no hall.',
+        'CONSEQUÊNCIA',
+      ),
+    if (has('answered_bia'))
+      const JournalEntry(
+        'answered_bia',
+        'Bia no ponto da linha 203',
+        'Respondi por mensagem. Bia espera a linha e procura notícias da mãe, que trabalha perto do hospital.',
         'CONSEQUÊNCIA',
       ),
     if (has('delivered'))
@@ -456,7 +474,11 @@ class Campaign {
     );
     if (c.history.map((v) => v.id).toSet().length != c.history.length ||
         (c.has('finish') &&
-            (!c.has('night') || !c.has('pulse') || !c.canLeave)) ||
+            (!c.has('night') ||
+                !c.has('pulse') ||
+                !c.has('bus_arrived') ||
+                !c.has('bus') ||
+                !c.canLeave)) ||
         (c.has('loot') && !c.has('delivered')) ||
         (c.has('delivered') && !c.has('adapter')) ||
         (c.has('enemy_defeated') &&

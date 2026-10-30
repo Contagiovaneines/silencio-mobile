@@ -23,24 +23,10 @@ void main() {
 
   void at(PointKind kind) {
     final p = s.world.allPlaces.firstWhere((v) => v.kind == kind);
-    if (kind == PointKind.key) {
-      s.campaign
-        ..floor = 2
-        ..x = 9
-        ..y = 4.85;
-      return;
-    }
-    if (kind == PointKind.adapter) {
-      s.campaign
-        ..floor = 2
-        ..x = 8.8
-        ..y = 5.5;
-      return;
-    }
     s.campaign
       ..floor = p.floor
       ..x = p.x
-      ..y = p.y + 1;
+      ..y = p.y;
   }
 
   test('opening handoff does not duplicate the objective in a toast', () {
@@ -51,63 +37,190 @@ void main() {
     expect(s.notice, isEmpty);
   });
 
-  test('first phase requires delivery, bus boarding, pulse, message and returning home', () async {
+  test('apartment television and light switch toggle independently', () {
     s.startNew();
-    expect(s.phase, PlayPhase.opening);
     s.finishOpening();
-    s.phone();
-    endDialogue();
-    at(PointKind.key);
-    s.interact();
-    for (var i = 0; i < 50; i++) {
-      s.tick(.02);
+    final television = s.world.allPlaces.singleWhere(
+      (p) => p.kind == PointKind.homeTelevision,
+    );
+    s.campaign
+      ..floor = television.floor
+      ..x = television.x
+      ..y = television.y;
+    s.interact(television);
+    expect(s.campaign.has('home_tv_on'), isTrue);
+    expect(s.campaign.has('news'), isFalse);
+    s.interact(television);
+    expect(s.campaign.has('home_tv_on'), isFalse);
+
+    final switchPoint = s.world.allPlaces.singleWhere(
+      (p) => p.kind == PointKind.lightSwitch,
+    );
+    s.campaign
+      ..x = switchPoint.x
+      ..y = switchPoint.y;
+    s.interact(switchPoint);
+    expect(s.campaign.has('home_lights_off'), isTrue);
+    s.interact(switchPoint);
+    expect(s.campaign.has('home_lights_off'), isFalse);
+  });
+
+  test(
+    'notebook interaction seats Caio at the desk instead of changing actor',
+    () {
+      s.startNew();
+      s.finishOpening();
+      final notebook = s.world.allPlaces.singleWhere(
+        (p) => p.kind == PointKind.notebook,
+      );
+      s.campaign
+        ..floor = 2
+        ..x = notebook.x
+        ..y = notebook.y;
+      s.interact(notebook);
+      expect(s.world.resting, 'typing');
+      expect(s.world.restAnchor, const Offset(7.3, 3.85));
+      s.closePanel();
+      expect(s.world.resting, isNull);
+    },
+  );
+
+  test(
+    'bathroom door opens in place and does not trigger a building transition',
+    () {
+      s.startNew();
+      s.finishOpening();
+      final bathroomDoor = s.world.allPlaces.singleWhere(
+        (p) => p.kind == PointKind.buildingDoor && p.id == 'banheiro',
+      );
+      s.campaign
+        ..floor = 2
+        ..x = bathroomDoor.x
+        ..y = bathroomDoor.y + .8;
+      s.interact(bathroomDoor);
+      expect(s.world.doorIsOpen('banheiro'), isTrue);
+      expect(s.phase, PlayPhase.playing);
+      expect(s.campaign.floor, 2);
+    },
+  );
+
+  test(
+    'first phase follows V3 and completes when the player boards the bus',
+    () async {
+      s.startNew();
+      expect(s.phase, PlayPhase.opening);
+      s.finishOpening();
+      s.phone();
+      endDialogue();
+      at(PointKind.key);
+      s.interact();
+      for (var i = 0; i < 50; i++) {
+        s.tick(.02);
+      }
+      at(PointKind.adapter);
+      s.interact();
+      for (var i = 0; i < 50; i++) {
+        s.tick(.02);
+      }
+      at(PointKind.merchant);
+      s.interact();
+      endDialogue();
+      expect(s.campaign.has('delivered'), isTrue);
+      at(PointKind.television);
+      s.interact();
+      for (var i = 0; i < 3; i++) {
+        s.advanceNews();
+      }
+      expect(s.campaign.has('news'), isTrue);
+      s.campaign.mark('alley');
+      at(PointKind.gate);
+      s.interact();
+      expect(s.campaign.has('resolved'), isTrue);
+      at(PointKind.crossing);
+      s.interact();
+      expect(s.phase, PlayPhase.pulse);
+      s.tick(2.1);
+      endDialogue();
+      expect(s.campaign.has('pulse'), isTrue);
+      expect(s.campaign.finished, isFalse);
+      s.phone();
+      endDialogue();
+      expect(s.campaign.has('night'), isTrue);
+      at(PointKind.bus);
+      for (var i = 0; i < 24; i++) {
+        s.tick(.12);
+      }
+      expect(s.campaign.has('bus_arrived'), isTrue);
+      s.interact();
+      endDialogue();
+      for (var i = 0; s.phase == PlayPhase.transit && i < 30; i++) {
+        s.tick(.12);
+      }
+      expect(s.phase, PlayPhase.complete);
+      expect(s.campaign.has('bus'), isTrue);
+      expect(s.campaign.has('finish'), isTrue);
+      await s.save();
+      expect(r.load()!.finished, isTrue);
+    },
+  );
+
+  test('bus cannot arrive or board before pulse and Helena message', () {
+    s.startNew();
+    s.finishOpening();
+    s.campaign.events.addAll(['delivered', 'news', 'resolved']);
+    at(PointKind.bus);
+    for (var i = 0; i < 40; i++) {
+      s.tick(.12);
     }
-    at(PointKind.adapter);
-    s.interact();
-    for (var i = 0; i < 50; i++) {
-      s.tick(.02);
-    }
-    at(PointKind.merchant);
-    s.interact();
-    endDialogue();
-    expect(s.campaign.has('delivered'), isTrue);
-    at(PointKind.television);
-    s.interact();
-    for (var i = 0; i < 3; i++) {
-      s.advanceNews();
-    }
-    expect(s.campaign.has('news'), isTrue);
-    s.campaign.mark('alley');
-    at(PointKind.gate);
-    s.interact();
-    expect(s.campaign.has('resolved'), isTrue);
-    at(PointKind.crossing);
+    expect(s.campaign.has('bus_arrived'), isFalse);
     s.interact();
     expect(s.phase, PlayPhase.playing);
-    at(PointKind.bus);
-    for (var i = 0; i < 24; i++) {
-      s.tick(.12);
-    }
-    expect(s.campaign.has('bus_arrived'), isTrue);
-    s.interact();
-    endDialogue();
-    for (var i = 0; s.phase == PlayPhase.transit && i < 30; i++) {
-      s.tick(.12);
-    }
-    expect(s.phase, PlayPhase.pulse);
-    s.tick(2.1);
-    endDialogue();
-    expect(s.campaign.has('pulse'), isTrue);
+    expect(s.campaign.has('bus'), isFalse);
     expect(s.campaign.finished, isFalse);
-    s.phone();
+  });
+  test('optional Bia reply is written, journaled and saved', () async {
+    s.startNew();
+    s.finishOpening();
+    s.campaign.events.addAll([
+      'adapter',
+      'delivered',
+      'news',
+      'resolved',
+      'pulse',
+    ]);
+    at(PointKind.busPassenger);
+    s.interact();
+    expect(s.phase, PlayPhase.dialogue);
+    expect(s.currentLine?.speaker, 'BIA');
+    expect(s.currentLine?.mode, 'mensagem escrita');
     endDialogue();
-    expect(s.campaign.has('night'), isTrue);
+    expect(s.campaign.has('answered_bia'), isTrue);
+    expect(
+      s.campaign.entries.any((entry) => entry.id == 'answered_bia'),
+      isTrue,
+    );
+    await s.save();
+    final saved = Campaign.decode(r.preferences.getString(SaveRepository.key)!);
+    expect(saved.has('answered_bia'), isTrue);
+  });
+
+  test('bed remains rest and save interaction after V3 bus ending', () {
+    s.startNew();
+    s.finishOpening();
+    s.campaign.events.addAll([
+      'delivered',
+      'news',
+      'resolved',
+      'pulse',
+      'night',
+    ]);
     at(PointKind.bed);
     s.interact();
-    expect(s.phase, PlayPhase.complete);
-    await s.save();
-    expect(r.load()!.finished, isTrue);
+    expect(s.phase, PlayPhase.objectPanel);
+    expect(s.campaign.finished, isFalse);
+    expect(s.campaign.has('finish'), isFalse);
   });
+
   test(
     'authorized loot and optional help are idempotent across reloads',
     () async {
